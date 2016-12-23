@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    "use strict";
+
+    (function(){
+        var arr = [1,22,33,44,265,55,67,234,6,34]
+        function bubbleSort (arr){
+            var temp;
+            for(var i=0;i<arr.length;i++){
+                for(var j=i+1;j<arr.length;j++){
+
+                    if(arr[i]>arr[j]){
+                        temp = arr[i]
+                        arr[i] = arr[j]
+                        arr [j] = temp
+                    }
+                }
+            }
+            return arr
+        }
+        //外层循环为每个  用来比较的数字，里层的循环为每次都选择从自己之后的数字去比较，一直到数组长度
+        //我抓一把沙仍进水里，那么沙子会立马沉入水底， 沙子上的灰尘会因为惯性暂时沉入水底，但是又会立马像气泡一样浮出水面，最后也就真相大白咯。
+        console.log(bubbleSort(arr))
+    })()
+</script>
+
+</body>
+</html>

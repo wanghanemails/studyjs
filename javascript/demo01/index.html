@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    div {
+        display: inline-block;
+        width: 100%;
+        height: 400%;
+        background-color: aqua;
+        position: absolute;
+        top: 0;;
+    }
+</style>
+<body>
+<div>
+
+
+
+
+
+</div>
+
+
+</body>
+<script>
+
+    "use strict";
+
+
+
+    var myblog = {
+        add:function(){
+            console.log("重新顺序后加载myblog")
+        }
+    }
+
+    myblog.add();//重新顺序后加载myblog
+    //myblog.delete();//内部减减   is not a function 新变量赋值覆盖
+
+    var myblog2 =  {
+        delete:function(){
+            console.log("内部减减")
+        }
+    };
+
+    //    myblog.add();   //is not a function
+    var myblog = (function(my){
+        my.oldAdd = my.add||(function(){console.log("未定义")});
+        my.add = function(){
+            console.log("内部加加");
+        }
+        return my;
+    })(myblog||myblog2);
+
+
+
+    myblog.add();//内部加加   重载
+    myblog.oldAdd();//内部加加   重载
+    // myblog.delete();//内部减减
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>homework</title>
+    <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+    <script src="http://www.lanrenzhijia.com/ajaxjs/jquery-1.10.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+</head>
+<style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #desktop{
+
+            border:none;
+            margin: 0 auto;
+            width: 100%;
+            height: 60px;
+            background-color: #56320c;
+            margin-top: 250px;
+            position: relative;
+        }
+
+        .container{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+       .positive{
+           width: 80px;
+           height: 80px;
+           background-color: #8B6914;
+           position: absolute;
+           left: 50%;
+           margin-left: -40px;
+           top: -40px;
+
+       }
+       .top{
+           width: 80px;
+           height: 40px;
+           position: absolute;
+           left: 50%;
+           margin-left: -20px;
+           top: -79px;
+           background-color: #776435;
+           transform: skew(-45deg,0deg);
+       }
+        .right{
+            width: 40px;
+            height: 80px;
+            background-color: #846a29;
+            position: absolute;
+            left: 50%;
+            margin-left: 40px;
+            top: -60px;
+            transform: skew(0deg,-45deg);
+        }
+</style>
+<body>
+    <div id="desktop">
+        <div class="container">
+
+            <div class="positive "></div>
+            <div class="top"></div>
+            <div class="right"></div>
+            <div></div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    (function(){
+        var move = false;
+
+        var firstX = 0;
+        var firstY = 0;
+
+        var positiveX,topX,rightX,positiveY,topY,rightY;
+
+       init();
+
+        $(".positive").bind("touchstart",function(event){
+            move = true;
+            var touch = event.originalEvent.targetTouches[0];
+            var prevX = touch.pageX;
+            var prevY = touch.pageY;
+
+            firstX = touch.pageX;
+            firstY = touch.pageY;
+
+
+        });
+
+        $(".positive").bind("touchend",function(event){
+            move=false;
+            var touch = event.originalEvent.changedTouches[0];
+            var prevX = touch.pageX;
+            var prevY = touch.pageY;
+            firstX = touch.pageX;
+            firstY = touch.pageY;
+
+            init();
+
+        });
+
+        $(".positive").bind("touchmove",function(event){
+
+            var touch = event.originalEvent.targetTouches[0];
+            var prevX = touch.pageX;
+            var prevY = touch.pageY;
+
+            changeX((prevX-firstX),(prevY-firstY),positiveX,topX,rightX,positiveY,topY,rightY)
+
+
+        });
+
+        function init(){
+            positiveX = parseInt($(".positive").css("marginLeft"));
+            topX = parseInt($(".top").css("marginLeft"));
+            rightX = parseInt($(".right").css("marginLeft"));
+
+            positiveY = parseInt($(".positive").css("top"));
+            topY = parseInt($(".top").css("top"));
+            rightY = parseInt($(".right").css("top"));
+        }
+
+        function changeX(x,y,positiveX,topX,rightX,positiveY,topY,rightY){
+
+            $(".positive").css("marginLeft",positiveX+x+"px");
+            $(".top").css("marginLeft",topX+x+"px");
+            $(".right").css("marginLeft",rightX+x+"px");
+            $(".positive").css("top",positiveY+y+"px");
+            $(".top").css("top",topY+y+"px");
+            $(".right").css("top",rightY+y+"px");
+        }
+    })()
+
+
+
+
+
+
+</script>
+</html>
