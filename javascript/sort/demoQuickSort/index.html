@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+
+//  快速排序思路，找准基，随意，  i  j  左右开始 循环找分别找比自己小的和大的，最后i = j的时候 重新把另一个新的数组拿来排序   直到长度为1的时候跳出算法
+//"use strict"
+
+
+(function(){
+    var arr = [12,2,33,456,123,33,32,312,6,88]
+
+
+    function quickSort(arr){
+        //如果数组<=1,则直接返回
+        if(arr.length<=1){
+            return arr;
+        }
+        var pivotIndex=Math.floor(arr.length/2)-1;
+        //找基准，并把基准从原数组删除
+
+
+
+
+        var pivot=arr.splice(pivotIndex,1)[0];
+
+        //挖出来准基
+        //定义左右数组
+        var left=[];
+        var right=[];
+
+        //比基准小的放在left，比基准大的放在right
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]<=pivot){
+                left.push(arr[i]);
+            }
+            else{
+                right.push(arr[i]);
+            }
+        }
+        //递归
+        return quickSort(left).concat([pivot],quickSort(right));
+    }
+    quickSort(arr)
+    console.log( quickSort(arr))
+})()
+
+</script>
+</html>
