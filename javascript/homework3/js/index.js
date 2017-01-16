@@ -50,13 +50,17 @@
                     arr_num.push(end_sum[i])
                 }
                 return arr_num;
-            })()
+            })();
 
             (function(){
-                for(var i=0;i<end_sum.length;i++){
-                  
+                var str = "";
+                for(var i=0;i<arr_num.length;i++){
+
+                 str   +=   that.drawCube(arr_num[i])
+
                 }
-            })()
+                return  document.getElementById(that.id).innerHTML=str;;
+            })();
 
 
 
@@ -67,6 +71,8 @@
             var that = this;
             var task = setInterval(function(){
                 that.sumM =  that.sumM-1;
+
+                console.log(this)
 
                 if(that.sumM==0){
                     clearInterval(task);
@@ -86,7 +92,13 @@
             }else{
              return    ssM = num;
             }
-        },drawCube:function(){
+        },drawCube:function(num){
+            var that = this;
+
+            
+
+
+            return num;
 
         }
 
