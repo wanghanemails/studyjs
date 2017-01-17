@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+
+<style>
+    .each-small-cube {
+        position: relative;
+        left: 500px;
+        top: 200px;
+        transform-style: preserve-3d;
+
+    }
+ .each-small-cube li{
+     width: 30px;
+     height: 30px;
+     background-color: #8B6914;
+     color: #ffffff;
+     text-align: center;
+     position: absolute;
+     perspective:30px;
+ }
+.each-small-cube .first{
+    top:0;
+    left: 0;
+}
+   .each-small-cube .second{
+       top: 0px;
+       left: 15px;
+       /*-webkit-transform:rotate3d(0,0,0);*/
+       /*-moz-transform: rotate3d(0,0,0);*/
+       /*-ms-transform: rotate3d(0,0,0);*/
+       /*-o-transform: rotate3d(0,0,0);*/
+       /*transform: rotate3d(0,0,0);*/
+       -webkit-transform: rotateY(90deg);
+       -moz-transform: rotateY(90deg);
+       -ms-transform: rotateY(90deg);
+       -o-transform: rotateY(90deg);
+       transform: rotateY(90deg);
+}
+  .each-small-cube .third{
+       top: 0px;
+       left: 0px;
+       /*-webkit-transform:rotate3d(0,0,0);*/
+       /*-moz-transform: rotate3d(0,0,0);*/
+       /*-ms-transform: rotate3d(0,0,0);*/
+       /*-o-transform: rotate3d(0,0,0);*/
+       /*transform: rotate3d(0,0,0);*/
+       -webkit-transform: translateZ(30px);
+       -moz-transform: translateZ(30px);
+       -ms-transform: translateZ(30px);
+       -o-transform: translateZ(30px);
+       transform: translateZ(30px);
+}
+    .each-small-cube .four{
+        top: 0px;
+        left: -15px;
+        /*-webkit-transform:rotate3d(0,0,0);*/
+        /*-moz-transform: rotate3d(0,0,0);*/
+        /*-ms-transform: rotate3d(0,0,0);*/
+        /*-o-transform: rotate3d(0,0,0);*/
+        /*transform: rotate3d(0,0,0);*/
+        -webkit-transform: rotateY(-90deg);
+        -moz-transform: rotateY(-90deg);
+        -ms-transform: rotateY(-90deg);
+        -o-transform: rotateY(-90deg);
+    }
+    .each-small-cube .five{
+        top: -15px;
+        left: 0px;
+        /*-webkit-transform:rotate3d(0,0,0);*/
+        /*-moz-transform: rotate3d(0,0,0);*/
+        /*-ms-transform: rotate3d(0,0,0);*/
+        /*-o-transform: rotate3d(0,0,0);*/
+        /*transform: rotate3d(0,0,0);*/
+        -webkit-transform: rotateX(90deg);
+        -moz-transform: rotateX(90deg);
+        -ms-transform: rotateX(90deg);
+        -o-transform: rotateX(90deg);
+    }
+    .each-small-cube .six{
+        top: 15px;
+        left: 0px;
+        /*-webkit-transform:rotate3d(0,0,0);*/
+        /*-moz-transform: rotate3d(0,0,0);*/
+        /*-ms-transform: rotate3d(0,0,0);*/
+        /*-o-transform: rotate3d(0,0,0);*/
+        /*transform: rotate3d(0,0,0);*/
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+        -ms-transform: rotateX(-90deg);
+        -o-transform: rotateX(-90deg);
+    }
+</style>
+<body>
+
+</body>
+
+
+<ul class="each-small-cube">
+    <li class="first">1</li>
+    <li class="second">2</li>
+    <li class="third">3</li>
+    <li class="four">4</li>
+    <li class="five">5</li>
+    <li class="six">6</li>
+</ul>
+
+<script>
+
+
+</script>
+</html>

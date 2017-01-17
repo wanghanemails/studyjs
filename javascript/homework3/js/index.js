@@ -15,15 +15,12 @@
             var hoursM = parseInt(timesString[1])*60*60;
             var minuteM = parseInt(timesString[2])*60;
             var secondM = parseInt(timesString[3]);
-
+            that.prev_arr = new Array();
             that.sumM = daysM+hoursM +minuteM+secondM;
 
             that.getEndTime();
             //调用每隔一秒减时间函数
             //that.timeDown();
-
-
-
 
 
         },
@@ -49,21 +46,36 @@
                 for(var i=0;i<end_sum.length;i++){
                     arr_num.push(end_sum[i])
                 }
+
+
                 return arr_num;
+
             })();
 
             (function(){
-                var str = "";
+                //调出当前时间的每个数字,每个数字花出一个由小方块组成的大方块.
+                var str = "<ul class='top-container clearfix'>";
                 for(var i=0;i<arr_num.length;i++){
 
-                 str   +=   that.drawCube(arr_num[i])
 
+                    str   +=   that.drawCube(arr_num[i])
                 }
-                return  document.getElementById(that.id).innerHTML=str;;
+                str+= "</ul>"
+                console.info(that.prev_arr);
+                return  document.getElementById(that.id).innerHTML=str;
             })();
 
 
+            (function(){
 
+                for(var i=0;i<arr_num.length;i++){
+
+                    that.prev_arr[i]=arr_num[i];
+
+                }
+                //console.info(that.prev_arr);
+                return that.prev_arr;
+            })();
 
             //document.getElementById(that.id).innerHTML = ""+end_sum;
         },
@@ -95,10 +107,18 @@
         },drawCube:function(num){
             var that = this;
 
-            
+            var bigCube = "<li class='bigCube-container'>";
+
+            //bigCube+= num;
+                bigCube+= "<ul class='small-container'>"
+
+                //每个li是一个小正方体
 
 
-            return num;
+                bigCube+= "</ul>";
+
+            bigCube+="</li>"
+            return bigCube;
 
         }
 
