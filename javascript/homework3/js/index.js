@@ -53,21 +53,59 @@
             })();
 
             (function(){
-                //调出当前时间的每个数字,每个数字花出一个由小方块组成的大方块.
+                //花出一个由小方块组成的大方块.
                 var str = "<ul class='top-container clearfix'>";
                 for(var i=0;i<arr_num.length;i++){
 
 
+
+                    str += "<li class='each-num'>";
                     str   +=   that.drawCube(arr_num[i])
+                    str += "</li>";
                 }
                 str+= "</ul>"
+
                 console.info(that.prev_arr);
                 return  document.getElementById(that.id).innerHTML=str;
             })();
 
 
+
+
+
+            (function(){
+                //根据数字显示颜色
+                //花出一个由小方块组成的大方块.
+
+                for(var i=0;i<arr_num.length;i++){
+
+                 that.showNumColor(arr_num[i],i);
+
+                }
+
+            })();
+
+
+
+            (function(){
+                //根据数字显示颜色
+                //花出一个由小方块组成的大方块.
+
+                for(var i=0;i<arr_num.length;i++){
+
+
+
+                    that.moveContainer(i)
+
+                }
+
+            })();
+
+
+
             (function(){
 
+                //运动完后当前时间覆盖前一秒时间的字符串数组
                 for(var i=0;i<arr_num.length;i++){
 
                     that.prev_arr[i]=arr_num[i];
@@ -84,7 +122,7 @@
             var task = setInterval(function(){
                 that.sumM =  that.sumM-1;
 
-                console.log(this)
+
 
                 if(that.sumM==0){
                     clearInterval(task);
@@ -100,25 +138,104 @@
         },
         backSpace:function(num){
             if(num<10){
-             return   ssM = "0"+num;
+             return    "0"+num;
             }else{
-             return    ssM = num;
+             return    num;
             }
         },drawCube:function(num){
             var that = this;
 
-            var bigCube = "<li class='bigCube-container'>";
+            var bigCube = "<ul class='each-big-cube'>";
 
-            //bigCube+= num;
-                bigCube+= "<ul class='small-container'>"
+            var oneSmall_cube = "<ul>";
 
+            (function(){
+
+                for(var i=0;i<5;i++){
+
+                    oneSmall_cube+="<li class='each-row'>";
+                    for(var j=0;j<3;j++){
+                        oneSmall_cube +="<ul class='each-small-cube clearfix' >";
+                        oneSmall_cube +="<li class='first' ></li>";
+                        oneSmall_cube +="<li class='second' ></li>";
+                        oneSmall_cube +="<li class='third' ></li>";
+                        oneSmall_cube +="<li class='four' ></li>";
+                        oneSmall_cube +="<li class='five' ></li>";
+                        oneSmall_cube +="<li class='six' ></li>";
+                        oneSmall_cube +="</ul>";
+                    }
+                    oneSmall_cube+="</li>";
+                }
+
+                oneSmall_cube +="</ul>";
+
+            })();
+
+            //console.log(oneSmall_cube)
+
+
+            bigCube+= "<li class='first-screen'>";
+            bigCube+=oneSmall_cube;
+            bigCube+= "</li>";
+
+            bigCube+= "<li class='second-screen'>";
+            bigCube+=oneSmall_cube;
+            bigCube+= "</li>";
+
+            bigCube+= "<li class='third-screen'>";
+            bigCube+=oneSmall_cube;
+            bigCube+= "</li>";
                 //每个li是一个小正方体
-
-
                 bigCube+= "</ul>";
-
-            bigCube+="</li>"
             return bigCube;
+
+        },showNumColor:function(num,i){
+
+            var that = this;
+
+
+
+            switch (num){
+
+
+                case "1":
+
+
+                    (function(){
+
+
+                        console.log(i)
+                        //正面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276")
+
+                        }
+
+                        
+
+                    })();
+
+
+
+                    break;
+                case "2":console.log("得到了2");break;
+                case "3":console.log("得到了3");break;
+                case "4":console.log("得到了4");break;
+                case "5":console.log("得到了5");break;
+                case "6":console.log("得到了6");break;
+                case "7":console.log("得到了7");break;
+                case "8":console.log("得到了8");break;
+                case "9":console.log("得到了9");break;
+                case "0":console.log("得到了0");break;
+
+
+            }
+
+
+
+
+        },moveContainer:function(x){
 
         }
 
