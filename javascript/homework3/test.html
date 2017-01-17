@@ -8,14 +8,43 @@
 
 <style>
 
-    .test{
-        position: relative;
+    .each-big-cube{
+        position: absolute;
         width: 90px;
-        height: 90px;
+        height: 150px;
         -webkit-transform-style:preserve-3d;
         transform-style: preserve-3d;
-        left: 500px;
+
         top: 200px;
+        left: 200px;
+    }
+
+    .first-screen{
+        position: absolute;
+        width: 90px;
+        height: 150px;
+        -webkit-transform-style:preserve-3d;
+        transform-style: preserve-3d;
+        transform: translateZ(0px);
+
+    }
+    .second-screen{
+        position: absolute;
+        width: 90px;
+        height: 150px;
+        -webkit-transform-style:preserve-3d;
+        transform-style: preserve-3d;
+        transform: translateZ(30px);
+
+    }
+    .third-screen{
+        position: absolute;
+        width: 90px;
+        height: 150px;
+        -webkit-transform-style:preserve-3d;
+        transform-style: preserve-3d;
+        transform: translateZ(60px);
+
     }
     .each-small-cube {
         position: relative;
@@ -34,16 +63,12 @@
      color: #ffffff;
      text-align: center;
      position: absolute;
-     perspective:30px;
-
 
 
  }
-.each-small-cube .first{
+.first-screen .each-small-cube .first{
 
     background-color:#FF00FF ;
-
-
     -webkit-transform: translateZ(15px);
     -moz-transform: translateZ(15px);
     -ms-transform: translateZ(15px);
@@ -51,17 +76,15 @@
     transform: translateZ(15px);
 
 }
-   .each-small-cube .second{
+  .first-screen .each-small-cube .second{
        background-color:#FF0000 ;
-
-
        -webkit-transform: rotateY(90deg) translateZ(15px);
        -moz-transform: rotateY(90deg) translateZ(15px);
        -ms-transform: rotateY(90deg) translateZ(15px);
        -o-transform: rotateY(90deg) translateZ(15px);
        transform: rotateY(90deg) translateZ(15px);
 }
-  .each-small-cube .third{
+    .first-screen  .each-small-cube .third{
       background-color:#00FFFF ;
       -webkit-transform: translateZ(-15px);
       -moz-transform: translateZ(-15px);
@@ -70,10 +93,8 @@
       transform: translateZ(-15px);
 
 }
-    .each-small-cube .four{
+    .first-screen  .each-small-cube .four{
         background-color:#00FF00 ;
-
-
         -webkit-transform: rotateY(270deg) translateZ(15px);
         -moz-transform: rotateY(270deg) translateZ(15px);
         -ms-transform: rotateY(270deg) translateZ(15px);
@@ -81,19 +102,120 @@
         transform: rotateY(270deg) translateZ(15px);
 
     }
-    .each-small-cube .five{
+    .first-screen  .each-small-cube .five{
         background-color:#C8C800 ;
-
         -webkit-transform: rotateX(90deg) translateZ(15px);
         -moz-transform: rotateX(90deg) translateZ(15px);
         -ms-transform: rotateX(90deg) translateZ(15px);
         -o-transform: rotateX(90deg) translateZ(15px);
         transform: rotateX(90deg) translateZ(15px);
     }
-    .each-small-cube .six{
+    .first-screen  .each-small-cube .six{
         background-color:#0000FF ;
+        -webkit-transform: rotateX(270deg) translateZ(15px);
+        -moz-transform: rotateX(270deg) translateZ(15px);
+        -ms-transform: rotateX(270deg) translateZ(15px);
+        -o-transform: rotateX(270deg) translateZ(15px);
+        transform: rotateX(270deg) translateZ(15px);
+    }
+    .second-screen .each-small-cube .first{
 
+        background-color:#FF00FF ;
+        -webkit-transform: translateZ(15px);
+        -moz-transform: translateZ(15px);
+        -ms-transform: translateZ(15px);
+        -o-transform: translateZ(15px);
+        transform: translateZ(15px);
 
+    }
+    .second-screen .each-small-cube .second{
+        background-color:#FF0000 ;
+        -webkit-transform: rotateY(90deg) translateZ(15px);
+        -moz-transform: rotateY(90deg) translateZ(15px);
+        -ms-transform: rotateY(90deg) translateZ(15px);
+        -o-transform: rotateY(90deg) translateZ(15px);
+        transform: rotateY(90deg) translateZ(15px);
+    }
+    .second-screen  .each-small-cube .third{
+        background-color:#00FFFF ;
+        -webkit-transform: translateZ(-15px);
+        -moz-transform: translateZ(-15px);
+        -ms-transform: translateZ(-15px);
+        -o-transform: translateZ(-15px);
+        transform: translateZ(-15px);
+
+    }
+    .second-screen  .each-small-cube .four{
+        background-color:#00FF00 ;
+        -webkit-transform: rotateY(270deg) translateZ(15px);
+        -moz-transform: rotateY(270deg) translateZ(15px);
+        -ms-transform: rotateY(270deg) translateZ(15px);
+        -o-transform: rotateY(270deg) translateZ(15px);
+        transform: rotateY(270deg) translateZ(15px);
+
+    }
+    .second-screen  .each-small-cube .five{
+        background-color:#C8C800 ;
+        -webkit-transform: rotateX(90deg) translateZ(15px);
+        -moz-transform: rotateX(90deg) translateZ(15px);
+        -ms-transform: rotateX(90deg) translateZ(15px);
+        -o-transform: rotateX(90deg) translateZ(15px);
+        transform: rotateX(90deg) translateZ(15px);
+    }
+    .second-screen  .each-small-cube .six{
+        background-color:#0000FF ;
+        -webkit-transform: rotateX(270deg) translateZ(15px);
+        -moz-transform: rotateX(270deg) translateZ(15px);
+        -ms-transform: rotateX(270deg) translateZ(15px);
+        -o-transform: rotateX(270deg) translateZ(15px);
+        transform: rotateX(270deg) translateZ(15px);
+    }
+    .third-screen .each-small-cube .first{
+
+        background-color:#FF00FF ;
+        -webkit-transform: translateZ(15px);
+        -moz-transform: translateZ(15px);
+        -ms-transform: translateZ(15px);
+        -o-transform: translateZ(15px);
+        transform: translateZ(15px);
+
+    }
+    .third-screen .each-small-cube .second{
+        background-color:#FF0000 ;
+        -webkit-transform: rotateY(90deg) translateZ(15px);
+        -moz-transform: rotateY(90deg) translateZ(15px);
+        -ms-transform: rotateY(90deg) translateZ(15px);
+        -o-transform: rotateY(90deg) translateZ(15px);
+        transform: rotateY(90deg) translateZ(15px);
+    }
+    .third-screen  .each-small-cube .third{
+        background-color:#00FFFF ;
+        -webkit-transform: translateZ(-15px);
+        -moz-transform: translateZ(-15px);
+        -ms-transform: translateZ(-15px);
+        -o-transform: translateZ(-15px);
+        transform: translateZ(-15px);
+
+    }
+    .third-screen  .each-small-cube .four{
+        background-color:#00FF00 ;
+        -webkit-transform: rotateY(270deg) translateZ(15px);
+        -moz-transform: rotateY(270deg) translateZ(15px);
+        -ms-transform: rotateY(270deg) translateZ(15px);
+        -o-transform: rotateY(270deg) translateZ(15px);
+        transform: rotateY(270deg) translateZ(15px);
+
+    }
+    .third-screen  .each-small-cube .five{
+        background-color:#C8C800 ;
+        -webkit-transform: rotateX(90deg) translateZ(15px);
+        -moz-transform: rotateX(90deg) translateZ(15px);
+        -ms-transform: rotateX(90deg) translateZ(15px);
+        -o-transform: rotateX(90deg) translateZ(15px);
+        transform: rotateX(90deg) translateZ(15px);
+    }
+    .third-screen  .each-small-cube .six{
+        background-color:#0000FF ;
         -webkit-transform: rotateX(270deg) translateZ(15px);
         -moz-transform: rotateX(270deg) translateZ(15px);
         -ms-transform: rotateX(270deg) translateZ(15px);
@@ -105,139 +227,409 @@
 
 </body>
 
-<ul class="test">
-
-    <li>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
+<ul class="each-big-cube">
+    <li class="first-screen">
+        <ul >
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
         </ul>
     </li>
-    <li>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
+    <li class="second-screen">
+        <ul >
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
         </ul>
     </li>
-    <li>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
+    <li class="third-screen">
+        <ul >
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+                <ul class="each-small-cube">
+                    <li class="first">1</li>
+                    <li class="second">2</li>
+                    <li class="third">3</li>
+                    <li class="four">4</li>
+                    <li class="five">5</li>
+                    <li class="six">6</li>
+                </ul>
+            </li>
         </ul>
     </li>
-    <li>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-    </li>
-    <li>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-        <ul class="each-small-cube">
-            <li class="first">1</li>
-            <li class="second">2</li>
-            <li class="third">3</li>
-            <li class="four">4</li>
-            <li class="five">5</li>
-            <li class="six">6</li>
-        </ul>
-    </li>
-
 </ul>
 <script>
 
