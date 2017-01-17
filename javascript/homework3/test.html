@@ -7,11 +7,24 @@
 <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
 
 <style>
-    .each-small-cube {
+
+    .test{
         position: relative;
+        width: 90px;
+        height: 90px;
+        -webkit-transform-style:preserve-3d;
+        transform-style: preserve-3d;
         left: 500px;
         top: 200px;
+    }
+    .each-small-cube {
+        position: relative;
+        width: 30px;
+        height: 30px;
+
+        -webkit-transform-style:preserve-3d;
         transform-style: preserve-3d;
+        float: left;
 
     }
  .each-small-cube li{
@@ -22,93 +35,210 @@
      text-align: center;
      position: absolute;
      perspective:30px;
+
+
+
  }
 .each-small-cube .first{
-    top:0;
-    left: 0;
+
+    background-color:#FF00FF ;
+
+
+    -webkit-transform: translateZ(15px);
+    -moz-transform: translateZ(15px);
+    -ms-transform: translateZ(15px);
+    -o-transform: translateZ(15px);
+    transform: translateZ(15px);
+
 }
    .each-small-cube .second{
-       top: 0px;
-       left: 15px;
-       /*-webkit-transform:rotate3d(0,0,0);*/
-       /*-moz-transform: rotate3d(0,0,0);*/
-       /*-ms-transform: rotate3d(0,0,0);*/
-       /*-o-transform: rotate3d(0,0,0);*/
-       /*transform: rotate3d(0,0,0);*/
-       -webkit-transform: rotateY(90deg);
-       -moz-transform: rotateY(90deg);
-       -ms-transform: rotateY(90deg);
-       -o-transform: rotateY(90deg);
-       transform: rotateY(90deg);
+       background-color:#FF0000 ;
+
+
+       -webkit-transform: rotateY(90deg) translateZ(15px);
+       -moz-transform: rotateY(90deg) translateZ(15px);
+       -ms-transform: rotateY(90deg) translateZ(15px);
+       -o-transform: rotateY(90deg) translateZ(15px);
+       transform: rotateY(90deg) translateZ(15px);
 }
   .each-small-cube .third{
-       top: 0px;
-       left: 0px;
-       /*-webkit-transform:rotate3d(0,0,0);*/
-       /*-moz-transform: rotate3d(0,0,0);*/
-       /*-ms-transform: rotate3d(0,0,0);*/
-       /*-o-transform: rotate3d(0,0,0);*/
-       /*transform: rotate3d(0,0,0);*/
-       -webkit-transform: translateZ(30px);
-       -moz-transform: translateZ(30px);
-       -ms-transform: translateZ(30px);
-       -o-transform: translateZ(30px);
-       transform: translateZ(30px);
+      background-color:#00FFFF ;
+      -webkit-transform: translateZ(-15px);
+      -moz-transform: translateZ(-15px);
+      -ms-transform: translateZ(-15px);
+      -o-transform: translateZ(-15px);
+      transform: translateZ(-15px);
+
 }
     .each-small-cube .four{
-        top: 0px;
-        left: -15px;
-        /*-webkit-transform:rotate3d(0,0,0);*/
-        /*-moz-transform: rotate3d(0,0,0);*/
-        /*-ms-transform: rotate3d(0,0,0);*/
-        /*-o-transform: rotate3d(0,0,0);*/
-        /*transform: rotate3d(0,0,0);*/
-        -webkit-transform: rotateY(-90deg);
-        -moz-transform: rotateY(-90deg);
-        -ms-transform: rotateY(-90deg);
-        -o-transform: rotateY(-90deg);
+        background-color:#00FF00 ;
+
+
+        -webkit-transform: rotateY(270deg) translateZ(15px);
+        -moz-transform: rotateY(270deg) translateZ(15px);
+        -ms-transform: rotateY(270deg) translateZ(15px);
+        -o-transform: rotateY(270deg) translateZ(15px);
+        transform: rotateY(270deg) translateZ(15px);
+
     }
     .each-small-cube .five{
-        top: -15px;
-        left: 0px;
-        /*-webkit-transform:rotate3d(0,0,0);*/
-        /*-moz-transform: rotate3d(0,0,0);*/
-        /*-ms-transform: rotate3d(0,0,0);*/
-        /*-o-transform: rotate3d(0,0,0);*/
-        /*transform: rotate3d(0,0,0);*/
-        -webkit-transform: rotateX(90deg);
-        -moz-transform: rotateX(90deg);
-        -ms-transform: rotateX(90deg);
-        -o-transform: rotateX(90deg);
+        background-color:#C8C800 ;
+
+        -webkit-transform: rotateX(90deg) translateZ(15px);
+        -moz-transform: rotateX(90deg) translateZ(15px);
+        -ms-transform: rotateX(90deg) translateZ(15px);
+        -o-transform: rotateX(90deg) translateZ(15px);
+        transform: rotateX(90deg) translateZ(15px);
     }
     .each-small-cube .six{
-        top: 15px;
-        left: 0px;
-        /*-webkit-transform:rotate3d(0,0,0);*/
-        /*-moz-transform: rotate3d(0,0,0);*/
-        /*-ms-transform: rotate3d(0,0,0);*/
-        /*-o-transform: rotate3d(0,0,0);*/
-        /*transform: rotate3d(0,0,0);*/
-        -webkit-transform: rotateX(-90deg);
-        -moz-transform: rotateX(-90deg);
-        -ms-transform: rotateX(-90deg);
-        -o-transform: rotateX(-90deg);
+        background-color:#0000FF ;
+
+
+        -webkit-transform: rotateX(270deg) translateZ(15px);
+        -moz-transform: rotateX(270deg) translateZ(15px);
+        -ms-transform: rotateX(270deg) translateZ(15px);
+        -o-transform: rotateX(270deg) translateZ(15px);
+        transform: rotateX(270deg) translateZ(15px);
     }
 </style>
 <body>
 
 </body>
 
+<ul class="test">
 
-<ul class="each-small-cube">
-    <li class="first">1</li>
-    <li class="second">2</li>
-    <li class="third">3</li>
-    <li class="four">4</li>
-    <li class="five">5</li>
-    <li class="six">6</li>
+    <li>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+    </li>
+    <li>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+    </li>
+    <li>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+    </li>
+    <li>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+    </li>
+    <li>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+        <ul class="each-small-cube">
+            <li class="first">1</li>
+            <li class="second">2</li>
+            <li class="third">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <li class="six">6</li>
+        </ul>
+    </li>
+
 </ul>
-
 <script>
 
 
