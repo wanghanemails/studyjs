@@ -56,7 +56,7 @@ a:hover{ color:#f54343; text-decoration:underline;}
     height: 150px;
     -webkit-transform-style:preserve-3d;
     transform-style: preserve-3d;
-    transform: translateZ(0px);
+    transform: translateZ(-30px);
 
 }
 .second-screen{
@@ -65,7 +65,7 @@ a:hover{ color:#f54343; text-decoration:underline;}
     height: 150px;
     -webkit-transform-style:preserve-3d;
     transform-style: preserve-3d;
-    transform: translateZ(30px);
+    transform: translateZ(0px);
 
 }
 .third-screen{
@@ -74,7 +74,7 @@ a:hover{ color:#f54343; text-decoration:underline;}
     height: 150px;
     -webkit-transform-style:preserve-3d;
     transform-style: preserve-3d;
-    transform: translateZ(60px);
+    transform: translateZ(30px);
 
 }
 .each-small-cube {
@@ -153,9 +153,9 @@ a:hover{ color:#f54343; text-decoration:underline;}
 }
 
 .moveCube{
-    -webkit-animation:moveY 2s infinite forwards;
-    -o-animation:moveY 2s infinite forwards;
-    animation:moveY 2s infinite forwards;
+    -webkit-animation:moveY 1s infinite forwards;
+    -o-animation:moveY 1s infinite forwards;
+    animation:moveY 1s infinite forwards;
 }
 
 @-webkit-keyframes moveY {

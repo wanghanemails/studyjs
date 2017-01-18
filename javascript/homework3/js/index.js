@@ -15,7 +15,7 @@
             var hoursM = parseInt(timesString[1])*60*60;
             var minuteM = parseInt(timesString[2])*60;
             var secondM = parseInt(timesString[3]);
-            that.prev_arr = new Array();
+            that.next_arr = new Array();
             that.sumM = daysM+hoursM +minuteM+secondM;
 
             that.getEndTime();
@@ -35,22 +35,37 @@
         },
 
         getEndTime:function(){
-            //    初始化画出
+
+            //debugger;
+
             var that =this;
             var end_sum = that.backSpace(that.showTime("day",that.sumM))+""+that.backSpace(that.showTime("hour",that.sumM))+""+that.showTime("minute",that.sumM)+""+that.backSpace(that.showTime("second",that.sumM));
 
-            console.log(end_sum.length)
+
             var arr_num = new Array();
 
             (function(){
                 for(var i=0;i<end_sum.length;i++){
-                    arr_num.push(end_sum[i])
+                    arr_num.push(parseInt(end_sum[i]))
                 }
 
 
                 return arr_num;
 
             })();
+
+
+            //(function(){
+            //    if(that.init){
+            //    for(var i=0;i<end_sum.length;i++){
+            //        that.prev_arr.push(end_sum[i])
+            //    }
+            //        that.init=false;
+            //    }
+            //
+            //    return that.prev_arr;
+            //
+            //})();
 
             (function(){
                 //花出一个由小方块组成的大方块.
@@ -65,7 +80,7 @@
                 }
                 str+= "</ul>"
 
-                console.info(that.prev_arr);
+                //console.info(that.prev_arr);
                 return  document.getElementById(that.id).innerHTML=str;
             })();
 
@@ -86,20 +101,47 @@
             })();
 
 
+            (function(){
+
+                //当前时间覆盖前一秒时间的字符串数组
+                var current_time ="";
+                for(var i=0;i<arr_num.length;i++){
+
+                    current_time+=arr_num[i];
+
+                }
+                var next_str = (parseInt(current_time)-1)+"";
+
+                var next_arr_s = []
+
+
+                for(var i=0;i<next_str.length;i++){
+
+                    next_arr_s.push(parseInt(next_str[i]));
+
+                }
+
+                that.next_arr = next_arr_s;
+                console.info(that.next_arr);
+                return that.next_arr;
+            })();
+
 
             (function(){
                 //根据数字显示颜色
-                //花出一个由小方块组成的大方块.
+                //花出一个由小方块组成的大方块.并运动
+                //
 
                 var move_arr  = new Array();
                 for(var i=0;i<arr_num.length;i++){
 
 
-                    if(that.prev_arr.length==arr_num.length){
+                    if(that.next_arr.length==arr_num.length){
 
-                        if(arr_num[i]!=that.prev_arr[i]){
+                        if(arr_num[i]!=that.next_arr[i]){
 
                             move_arr.push(i)
+
 
                         }
 
@@ -110,23 +152,13 @@
 
                 }
 
+                //debugger
                 that.moveContainer(move_arr)
 
             })();
 
 
 
-            (function(){
-
-                //运动完后当前时间覆盖前一秒时间的字符串数组
-                for(var i=0;i<arr_num.length;i++){
-
-                    that.prev_arr[i]=arr_num[i];
-
-                }
-                console.info(that.prev_arr);
-                return that.prev_arr;
-            })();
 
             //document.getElementById(that.id).innerHTML = ""+end_sum;
         },
@@ -136,14 +168,13 @@
                 that.sumM =  that.sumM-1;
 
 
-
                 if(that.sumM==0){
                     clearInterval(task);
                     return ;
                 }
 
                 that.getEndTime();
-            },2000)
+            },1000)
 
         },
         drawDiamonds:function(){
@@ -213,13 +244,13 @@
             switch (num){
 
 
-                case "1":
+                case 1:
 
 
                     (function(){
 
 
-                        console.log(i)
+                        //console.log(i)
                         //正面 first   面
                         for(var j=0;j<5;j++){
 
@@ -253,7 +284,7 @@
                     })();break;
 
 
-                case "2":
+                case 2:
 
                     (function(){
                         //正面
@@ -280,7 +311,7 @@
 
                     })();break;
 
-                case "3":
+                case 3:
 
                     (function(){
                         //正面
@@ -318,7 +349,7 @@
 
 
 
-                case "4":
+                case 4:
 
 
                     (function (){
@@ -358,7 +389,7 @@
 
 
                     })();break;
-                case "5":
+                case 5:
 
                     (function(){
                         //正面
@@ -389,7 +420,7 @@
 
 
                     })();break;
-                case "6":
+                case 6:
 
                     (function(){
                         //正面
@@ -426,7 +457,7 @@
 
 
                     })();break;
-                case "7":
+                case 7:
 
                     (function (){
                         //正面
@@ -460,7 +491,7 @@
                         $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#cdcdcd");
 
                     })();break;
-                case "8":
+                case 8:
 
 
                     (function (){
@@ -496,7 +527,7 @@
 
                     })();break;
 
-                case "9":
+                case 9:
                     (function (){
 
                         //正面
@@ -541,7 +572,7 @@
 
 
                     })();break;
-                case "0":
+                case 0:
 
                     (function(){
 
@@ -593,7 +624,8 @@
         },
         moveContainer:function(moveArr){
 
-            console.log(moveArr)
+            //console.log(moveArr)
+            //debugger;
             //debugger;
             var that = this;
 
@@ -602,7 +634,7 @@
                 //debugger;
                 for(var i=0;i<moveArr.length;i++){
 
-                    console.log($($(".each-big-cube")[moveArr[i]]))
+                    //console.log($($(".each-big-cube")[moveArr[i]]))
                     //debugger;
                     $($(".each-big-cube")[moveArr[i]]).addClass("moveCube")
                 }
@@ -626,7 +658,7 @@
 
 
 
-    var getTime = new GetTime("90:14:36:12","content");
+    var getTime = new GetTime("90:14:36:18","content");
 
 
 
