@@ -142,7 +142,8 @@
             }else{
              return    num;
             }
-        },drawCube:function(num){
+        },
+        drawCube:function(num){
             var that = this;
 
             var bigCube = "<ul class='each-big-cube'>";
@@ -189,7 +190,8 @@
                 bigCube+= "</ul>";
             return bigCube;
 
-        },showNumColor:function(num,i){
+        },
+        showNumColor:function(num,i){
 
             var that = this;
 
@@ -208,30 +210,29 @@
                         //正面 first   面
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
 
                         }
 
-                        //侧面  second  面
+                        //右侧面  second  面
 
 
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
                         }
 
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
                         }
 
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
 
 
@@ -245,20 +246,20 @@
                         //正面
                         for(var j=0;j<3;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
 
                         }
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
 
 
-                        //反面
+                        //右侧面
 
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
                         }
 
@@ -272,32 +273,32 @@
                         //正面
                         for(var j=0;j<3;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
 
                         }
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
 
-                        //反面
-
-
+                        //右侧面
 
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[3]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[3]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
 
                     })();break;
@@ -311,50 +312,264 @@
                         //正面
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
 
                         }
 
                         for(var j=0;j<3;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
                         }
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
 
 
-                        //反面
+                        //右侧面
 
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
-                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
 
                         for(var j=0;j<5;j++){
 
-                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
                         }
 
 
-                    })()
+                    })();break;
+                case "5":
+
+                    (function(){
+                        //正面
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+
+                        //右侧面
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
 
 
 
 
-                    ;break;
-                case "5":console.log("得到了5");break;
-                case "6":console.log("得到了6");break;
-                case "7":console.log("得到了7");break;
-                case "8":console.log("得到了8");break;
-                case "9":console.log("得到了9");break;
-                case "0":console.log("得到了0");break;
+                    })();break;
+                case "6":
+
+                    (function(){
+                        //正面
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+
+                        //右侧面
+
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[3]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#ffffff");
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#ffffff");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+
+                    })();break;
+                case "7":
+
+                    (function (){
+                        //正面
+
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+
+                        }
+
+                        //右侧面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#ffffff");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                    })();break;
+                case "8":
+
+
+                    (function (){
+                        //正面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+
+                        }
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+
+                        }
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+
+                        //右侧面
+
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+
+
+                    })();break;
+
+                case "9":
+                    (function (){
+
+                        //正面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+
+                        }
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+
+                        }
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#ffffff");
+
+
+
+                        //右侧面
+
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+
+
+
+                    })();break;
+                case "0":
+
+                    (function(){
+
+                        //正面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276");
+
+
+
+                        //右侧面
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276");
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[3]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#ffffff");
+
+
+
+
+                    })();break;
 
 
             }
@@ -362,7 +577,8 @@
 
 
 
-        },moveContainer:function(x){
+        },
+        moveContainer:function(x){
 
         }
 
@@ -381,7 +597,7 @@
 
 
 
-    var getTime = new GetTime("16:14:32:12","content");
+    var getTime = new GetTime("90:14:36:12","content");
 
 
 
