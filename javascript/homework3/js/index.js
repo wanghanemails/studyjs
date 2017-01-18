@@ -205,23 +205,150 @@
 
 
                         console.log(i)
-                        //正面
+                        //正面 first   面
                         for(var j=0;j<5;j++){
 
                             $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".first").css("backgroundColor","#004276")
 
                         }
 
-                        
-
-                    })();
+                        //侧面  second  面
 
 
+                        for(var j=0;j<5;j++){
 
-                    break;
-                case "2":console.log("得到了2");break;
-                case "3":console.log("得到了3");break;
-                case "4":console.log("得到了4");break;
+                            $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        }
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        }
+
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+
+
+
+
+                    })();break;
+
+
+                case "2":
+
+                    (function(){
+                        //正面
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
+
+
+                        //反面
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        }
+
+
+
+                    })();break;
+
+                case "3":
+
+                    (function(){
+                        //正面
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+
+                        }
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[3]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+
+                        //反面
+
+
+
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[3]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[1]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+
+                    })();break;
+
+
+
+                case "4":
+
+
+                    (function (){
+                        //正面
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[j]).find(".each-small-cube")[2]).find(".first").css("backgroundColor","#004276")
+
+                        }
+
+                        for(var j=0;j<3;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[j]).find(".first").css("backgroundColor","#004276")
+                        }
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[1]).find(".each-small-cube")[0]).find(".first").css("backgroundColor","#004276")
+
+
+                        //反面
+
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .first-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[0]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[2]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+                        $($($($(".each-num")[i]).find(".each-big-cube .second-screen li.each-row")[4]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+
+                        for(var j=0;j<5;j++){
+
+                            $($($($(".each-num")[i]).find(".each-big-cube .third-screen li.each-row")[j]).find(".each-small-cube")[1]).find(".second").css("backgroundColor","#004276")
+
+                        }
+
+
+                    })()
+
+
+
+
+                    ;break;
                 case "5":console.log("得到了5");break;
                 case "6":console.log("得到了6");break;
                 case "7":console.log("得到了7");break;
@@ -254,7 +381,7 @@
 
 
 
-    var getTime = new GetTime("16:10:22:12","content");
+    var getTime = new GetTime("16:14:32:12","content");
 
 
 
