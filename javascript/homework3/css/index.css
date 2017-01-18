@@ -139,6 +139,8 @@ a:hover{ color:#f54343; text-decoration:underline;}
     -ms-transform: rotateX(90deg) translateZ(15px);
     -o-transform: rotateX(90deg) translateZ(15px);
     transform: rotateX(90deg) translateZ(15px);
+
+
 }
 .each-small-cube .six{
     /*background-color:#0000FF ;*/
@@ -149,3 +151,19 @@ a:hover{ color:#f54343; text-decoration:underline;}
     transform: rotateX(270deg) translateZ(15px);
 }
 
+.moveCube{
+    -webkit-animation:moveY 2s infinite forwards;
+    -o-animation:moveY 2s infinite forwards;
+    animation:moveY 2s infinite forwards;
+}
+
+@-webkit-keyframes moveY {
+
+    0%{transform:rotateY(0deg)}
+    100%{transform:rotateY(90deg)}
+}
+
+@keyframes moveY {
+    0%{transform:rotateY(0deg)}
+    100%{transform:rotateY(90deg)}
+}
