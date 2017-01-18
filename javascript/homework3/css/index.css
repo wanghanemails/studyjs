@@ -34,7 +34,7 @@ a:hover{ color:#f54343; text-decoration:underline;}
 
 .each-num{
     position: relative;
-    margin-right: 80px;
+    margin-right: 60px;
     width: 90px;
     height: 150px;
     float: left;
@@ -131,6 +131,7 @@ a:hover{ color:#f54343; text-decoration:underline;}
     -o-transform: rotateY(270deg) translateZ(15px);
     transform: rotateY(270deg) translateZ(15px);
 
+
 }
 .each-small-cube .five{
     /*background-color:#C8C800 ;*/
@@ -166,4 +167,14 @@ a:hover{ color:#f54343; text-decoration:underline;}
 @keyframes moveY {
     0%{transform:rotateY(0deg)}
     100%{transform:rotateY(90deg)}
+}
+
+.testtest{
+    background-color: white;
+}
+
+
+
+.each-num:nth-child(2){
+    margin-right: 200px;
 }
