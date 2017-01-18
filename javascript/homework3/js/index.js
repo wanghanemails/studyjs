@@ -80,7 +80,7 @@
                 }
                 str+= "</ul>"
 
-                //console.info(that.prev_arr);
+
                 return  document.getElementById(that.id).innerHTML=str;
             })();
 
@@ -122,7 +122,8 @@
                 }
 
                 that.next_arr = next_arr_s;
-                console.info(that.next_arr);
+
+
                 return that.next_arr;
             })();
 
@@ -216,7 +217,7 @@
 
             })();
 
-            //console.log(oneSmall_cube)
+
 
 
             bigCube+= "<li class='first-screen'>";
@@ -250,7 +251,7 @@
                     (function(){
 
 
-                        //console.log(i)
+
                         //正面 first   面
                         for(var j=0;j<5;j++){
 
@@ -624,8 +625,7 @@
         },
         moveContainer:function(moveArr){
 
-            //console.log(moveArr)
-            //debugger;
+
             //debugger;
             var that = this;
 
@@ -634,8 +634,7 @@
                 //debugger;
                 for(var i=0;i<moveArr.length;i++){
 
-                    //console.log($($(".each-big-cube")[moveArr[i]]))
-                    //debugger;
+
                     $($(".each-big-cube")[moveArr[i]]).addClass("moveCube")
                 }
 
@@ -649,8 +648,7 @@
     //接受参数   HH：MM：SS
     function GetTime(time,id){
         this.id = id;
-        //var current_time = new Date(time).getTime();
-        //console.log(current_time);
+
         this.time = time;
         this.initTime(time,id);
     }
