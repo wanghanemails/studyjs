@@ -41,14 +41,18 @@
             //debugger;
 
             var that =this;
+
             var end_sum = that.backSpace(that.showTime("day",that.sumM))+""+that.backSpace(that.showTime("hour",that.sumM))+""+that.showTime("minute",that.sumM)+""+that.backSpace(that.showTime("second",that.sumM));
 
 
             var arr_num = new Array();
 
+
+            var end_str =  parseInt(end_sum)+"";
+
             (function(){
-                for(var i=0;i<end_sum.length;i++){
-                    arr_num.push(parseInt(end_sum[i]))
+                for(var i=0;i<end_str.length;i++){
+                    arr_num.push(parseInt(end_str[i]))
                 }
 
 
@@ -57,18 +61,7 @@
             })();
 
 
-            //(function(){
-            //    if(that.init){
-            //    for(var i=0;i<end_sum.length;i++){
-            //        that.prev_arr.push(end_sum[i])
-            //    }
-            //        that.init=false;
-            //    }
-            //
-            //    return that.prev_arr;
-            //
-            //})();
-
+            //debugger;
             (function(){
                 //花出一个由小方块组成的大方块.
                 var str = "<ul class='top-container clearfix'>";
@@ -82,13 +75,19 @@
                 }
 
 
-                var unit_str = "<li class='day-unit'>天</li><li class='hour-min'>:</li><li class='min-sec'>:</li>"
+                var unit_str = "<li class='day-unit'>天</li><li class='hour-min'>:</li><li class='min-sec'>:</li>";
 
-                str+=unit_str;
+
                 str+= "</ul>"
-                document.getElementById(that.id).innerHTML=str
+                document.getElementById(that.id).innerHTML=str;
+                console.log($("#"+that.id).find(".each-num").length)
 
 
+                if($("#"+that.id).find(".each-num").length>6){
+
+                    $("#"+that.id).find(".top-container").append(unit_str);
+
+                }
 
 
 
@@ -139,6 +138,7 @@
             })();
 
 
+            //debugger;
             (function(){
                 //根据数字显示颜色
                 //花出一个由小方块组成的大方块.并运动
@@ -244,6 +244,7 @@
 
             var that = this;
 
+            //bug
             if(i==2||i==4||i==6){
                 switch (num){
 
@@ -761,11 +762,8 @@
                     }
                 }
 
-
             }
         }
-
-
 
     }
     //接受参数   HH：MM：SS
@@ -779,7 +777,7 @@
 
 
 
-    var getTime = new GetTime("11:14:36:02","content");
+    var getTime = new GetTime("00:14:36:02","content");
 
 
 
