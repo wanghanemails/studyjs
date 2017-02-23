@@ -1,0 +1,256 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+        <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.8.3.min.js"></script>
+        <script src="http://y0.ifengimg.com/commonpage/1130/F-RequireJS.min.js"></script>
+        <!-- build:basejs scripts/base-core.js-->
+        <!--bower:basejs-->
+        <script src="components/requirejs__2.1.11/require.js"></script>
+        <script src="components/glue__1.1.11/dist/scripts/glue-core_9a34a86c.js"></script>
+        <!-- requirejs 、 glue 组件版本-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_ssxz_pc_depmodules.css-->
+        <!-- bower:css -->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <link rel="stylesheet" href="components/FSearch__1.0.4/dist/styles/FSearch_main_c2f49d4c.css" />
+
+        <!-- build:css styles/ent_ssxz_pc_depmodules_pc.css device:pc-->
+        <!-- bower:css device:pc-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_ssxz_pc_depmodules_mobile.css device:mobile-->
+        <!-- bower:css device:mobile-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_ssxz_pc_depmodules_pad.css device:pad-->
+        <!-- bower:css device:pad-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_ssxz_pc_main.css lib-->
+        <link rel="stylesheet" href="styles/ent_ssxz_pc.css"/>
+        <!--项目自身的css文件-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_ssxz_pc_main_pad.css lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_ssxz_pc_main_mobile.css lib device:mobile-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_ssxz_pc_main_pc.css lib device:pc-->
+        <!--endbuild-->
+    </head>
+    <body>
+    <div class="h_searchDiv pc">
+        <div class="h_theLogo clearfix">
+            <a href="http://ent.ifeng.com/" target="_blank">
+                <img src="http://p0.ifengimg.com/a/2016/0909/logo_ent.gif" width="157" height="26" title="凤凰娱乐" alt="凤凰娱乐">
+            </a>
+           <div class="href_title">
+               <a href="http://www.ifeng.com" target="_blank">凤凰网首页</a>
+               <span>|</span>
+               <a href="http://ent.ifeng.com/" target="_blank">娱乐首页</a>
+           </div>
+        </div>
+        <!--131023a begin-->
+
+        <style>
+            .h_find{ width:300px; float:right;}
+            .search{ height:26px;}
+            .search .lb{ width:78px; height:26px; margin-right:5px; position:relative; float:left; z-index:99;}
+            .search .lb ul{ width:78px;}
+            .search .lb ul li{ width:76px; height:24px; line-height:24px; border:1px solid #b2b2b2;}
+            .search .lb ul li a{ color:#666; display:block; width:66px; height:24px; line-height:24px; background:url(http://y2.ifengimg.com/e01ed39fc2da5d4a/2013/1023/s_bg01_1.gif) no-repeat right top; padding-left:10px;}/*默认背景*/
+            .search .lb ul li a:hover{ background:url(http://y2.ifengimg.com/e01ed39fc2da5d4a/2013/1023/s_bg01_2.gif) no-repeat right top; text-decoration:none;}
+            .search .lb ul li .a_cl{ background:url(http://y2.ifengimg.com/e01ed39fc2da5d4a/2013/1023/s_bg01_3.gif) no-repeat right top;}
+            .search .lb ul li ul{ width:51px; display:none; position:absolute; left:0; background:#fff; border:1px solid #b2b2b2; border-top:none;}
+            .search .lb ul li ul li{ width:51px; background:none; border:0; padding-left:0;}
+            .search .lb ul li ul li a{ width:42px; background:none; padding-left:9px;}
+            .search .lb ul li ul li a:hover{ background:#e7e7e7; background-image:none;}
+            .search .t_btn{ width:215px; height:24px; background:url(http://y2.ifengimg.com/e01ed39fc2da5d4a/2013/1023/s_bg02_1.gif) no-repeat right top; border:1px solid #b2b2b2; float:left;}
+            .search .t_btn_on{ background:url(http://y2.ifengimg.com/e01ed39fc2da5d4a/2013/1023/s_bg02_2.gif) no-repeat right top;}
+            .search .text_bg{ width:178px; height:24px; line-height:24px; overflow:hidden; float:left;}
+            .search .text_bg .text01{ color:#666; border:none; background:none; width:158px; padding:0 10px; height:24px; line-height:24px;}
+            .search .btn_bg{ width:37px; height:24px; float:left;}
+            .search .btn_bg .btn01{ border:none; background:none; width:37px; height:24px; cursor:pointer;}
+        </style>
+        <div class="h_find">
+            <script src="http://m0.ifengimg.com/keywords.js"></script>
+            <div class="search clearfix">
+
+                <div class="m-search clearfix" id="search"><form id="search-form" method="get" action="http://search.ifeng.com/sofeng/search.action" target="_blank" value="美国大选">    <ul class="list-box">        <li class="list">            <a class="select-item">站内</a>            <ul class="list-content">                <li id="ra1"><a>站内</a></li>                <li id="ra2"><a>站外</a></li>                <li id="ra3"><a>证券</a></li>                <li id="ra4"><a>汽车</a></li>                <li id="ra0"><a>视频</a></li>            </ul>        </li>    </ul>    <div class="btn-box clearfix">        <div class="keyword-box">            <input id="keyword" type="text" name="q" value="" class="text" autocomplete="off">            <input id="param1" type="hidden" name="c" value="1">            <input id="param2" type="hidden" name="" value="" disabled="disabled">        </div>        <div class="btn-bg"><input name="" type="submit" id="btnSearch1" class="btn" value=""></div>    </div></form></div>
+                <!--<script src="http://y0.ifengimg.com/commonpage/newSearch.js"></script>-->
+            </div>
+        </div>
+        <!--131023a end-->
+    </div>
+
+    <div class="top_logo clearfix">
+        <a href="#" target="_blank"><div class="logo">
+            <div class="num">NO.52</div>
+        </div>
+        </a>
+        <div class="ad-logo">
+            <div class="ad-img">
+                <a href="#" target="_blank"><img src="images/ad-img.jpg" alt=""/></a>
+            </div>
+            <div class="icon-logo">
+                <div class="comment-logo"><a href="#" target="_blank"><img src="images/comment-logo.jpg" alt=""/></a></div>
+                <div class="share-logo"><img src="images/share-logo.jpg" alt=""/></div>
+                <div class="list-logo"><img src="images/list-logo.jpg" alt=""/></div>
+
+                <div class="share-icons ">
+                    <div class="share-icons-container">
+                        <a href="#" target="_blank"><span></span></a>
+                        <a href="#" target="_blank"><span></span></a>
+                        <a href="#" target="_blank"><span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="carousel-container">
+        <ul class="clearfix">
+            <li><img src="images/img-1.jpg" alt=""/></li>
+            <li><img src="images/img-3.jpg" alt=""/></li>
+            <li><img src="images/img-2.jpg" alt=""/></li>
+            <li><img src="images/img-1.jpg" alt=""/></li>
+            <li><img src="images/img-3.jpg" alt=""/></li>
+            <li><img src="images/img-2.jpg" alt=""/></li>
+            <li><img src="images/img-1.jpg" alt=""/></li>
+            <li><img src="images/img-3.jpg" alt=""/></li>
+            <li><img src="images/img-2.jpg" alt=""/></li>
+            <li><img src="images/img-1.jpg" alt=""/></li>
+            <li><img src="images/img-3.jpg" alt=""/></li>
+            <li><img src="images/img-2.jpg" alt=""/></li>
+        </ul>
+        <div class="left_arrow_bt"></div>
+        <div class="left_arrow_bt button" id="left_arrow_bt"><img src="images/left-arrow.png" alt=""/></div>
+        <div class="right_arrow_bt "></div>
+        <div class="right_arrow_bt button" id="right_arrow_bt"><img src="images/right-arrow.png" alt=""/></div>
+    </div>
+
+
+
+
+
+
+    <!--footer重要注释误删begin-->
+    <style>.footer{width:1000px;margin:0 auto;padding-bottom: 6px}.footer a{color:#000;font-size:12px;text-decoration:none}.footer a:hover{color:#f54343;text-decoration:underline}.footer .footlink{height:28px;padding-top:30px;overflow:hidden;color:#000;line-height:28px;font-size:12px}.footer .fk_l{float:left}.footer .fk_r{float:right;width:200px}.footer .fk_l a{padding:0 7px;border-right:1px solid #000}.footer .fk_l .nolpad{padding-left:0}.footer .fk_l .noborder{border:none}.footer .fk_r ul{overflow:hidden;margin:0;padding:0;list-style:none}.footer .fk_r ul li{float:left;height:28px;overflow:hidden}.footer .fk_r ul .l_bg001{background:url(http://p2.ifengimg.com/a/2016_21/nav0416_14_fd540caa-fd540caadc.gif) no-repeat left 9px;padding-left:19px}.footer .fk_r ul .l_bg002{background:url(http://p2.ifengimg.com/a/2016_21/nav0416_17-68c300b50b.gif) no-repeat left 9px;padding-left:17px;margin-left:18px}.footer .copyright{font-family:Arial,"宋体";color:#666;height:28px;text-align:center;overflow:hidden;line-height:28px}.footer .copyright span{padding-right:12px;font-size:12px}</style>
+    <div id="footer" class="footer mt02">
+        <div class="footlink clearfix">
+            <div class="fk_l"><a class="nolpad" href="http://www.ifeng.com/corp/about/intro/" target="_blank">凤凰新媒体介绍</a><a href="http://ir.ifeng.com/" target="_blank">投资者关系 Investor Relations</a><a href="http://biz.ifeng.com/" target="_blank">广告服务</a><a href="http://career.ifeng.com/" target="_blank">诚征英才</a><a href="http://www.ifeng.com/corp/privacy/" target="_blank">保护隐私权</a><a href="http://www.ifeng.com/corp/exemption/" target="_blank">免责条款</a><a href="http://www.ifeng.com/corp/feedback/" target="_blank">意见反馈</a><a href="http://phtv.ifeng.com/intro/" target="_blank" class="noborder">凤凰卫视介绍</a></div>
+            <div class="fk_r">
+                <ul class="clearfix">
+                    <li class="l_bg001"><a href="http://v.ifeng.com/" target="_blank" title="视频">视频</a></li>
+                    <li>·<a href="http://v.ifeng.com/documentary/" target="_blank" title="纪实">纪实</a></li>
+                    <li>·<a href="http://v.ifeng.com/live/" target="_blank" title="直播">直播</a></li>
+                    <li class="l_bg002"><a href="http://phtv.ifeng.com/" target="_blank" title="凤凰卫视">凤凰卫视</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><span>凤凰新媒体</span><span>版权所有</span><span>Copyright © 2016 Phoenix New Media Limited All Rights Reserved.</span></div>
+    </div>
+    <!--footer重要注释误删begin-->
+        <!-- build:requirejs scripts/ent_ssxz_pc_depmodules.js-->
+        <!--bower:requirejs-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_ssxz_pc_depmodules_pad.js device:pad-->
+        <!--bower:requirejs device:pad-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_ssxz_pc_depmodules_mobile.js device:mobile-->
+        <!--bower:requirejs device:mobile-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_ssxz_pc_depmodules_pc.js device:pc-->
+        <!--bower:requirejs device:pc-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+        
+
+        <!-- build:js scripts/ent_ssxz_pc_main.js lib-->
+        <script src="scripts/version.js"></script>
+
+    <script>
+        requirejs.config({
+            paths:{
+                "jquery#1.8.1" : "http://y1.ifengimg.com/fe/jQuery/jquery-1.8.1.min",
+                "artTemplate#3.0.3" : "components/artTemplate__3.0.3/lib/template",
+                "FSearch#1.0.4" : "components/FSearch__1.0.4/dist/scripts/FSearch_main_c2f49d4c"
+
+            },
+            waitSeconds: 20,shim: {}});
+    </script>
+    <script>
+        require(['FSearch#1.0.4'], function(FSearch) {
+            new FSearch(glue).create("search", []);
+        });
+    </script>
+        <!--项目自身的js文件-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_ssxz_pc_main_pad.js lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_ssxz_pc_main_mobile.js lib device:mobile-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_ssxz_pc_main_pc.js lib device:pc-->
+        <!--endbuild-->
+
+
+        <!-- 以标签方式注册一个组件 -->
+        <!--
+        <div g-cid="widgetId" g-cname="ent_ssxz_pc" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div>
+        -->
+        <script>
+            // 以命令行方式注册一个组件
+            // glue.widgetRegist('srcNode', 'widgetId', 'ent_ssxz_pc', 'depWidgetId', 'priority', {
+            //   'model.propertyName': '@@outModel.propertyName'
+            // });
+
+            // 直接创建一个组件
+            // require(['ent_ssxz_pc'], function(ent_ssxz_pc) {
+            //   new ent_ssxz_pc(glue).create(srcNode, options);
+            // });
+
+            // 扫描组件
+            // glue.scan();
+            // 运行组件
+            // glue.run();
+        </script>
+    <script src="scripts/jquery-resizeEnd.min.js"></script>
+    <script src="scripts/index.js"></script>
+    </body>
+</html>

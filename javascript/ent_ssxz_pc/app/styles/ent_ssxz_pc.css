@@ -119,6 +119,63 @@
     float: left;
 }
 
+body{
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1920px) and (max-height: 1500px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 1820px) and (max-height: 1400px) {
+    body {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 1720px) and (max-height: 1300px) {
+    body {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 1600px)and (max-height: 1200px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1500px)and (max-height: 1100px) {
+    body {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 1400px)and (max-height: 1000px) {
+    body {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 1300px)and (max-height: 900px) {
+    body {
+        font-size: 0px;
+    }
+}
+@media screen and (max-width: 1200px)and (max-height: 800px) {
+    body {
+        font-size: 0px;
+    }
+}
+
 /*页头*/
 /*头部logo*/
 .top_logo{
@@ -196,13 +253,14 @@
     cursor: pointer;
 }
 .share-icons{
+    display: none;
     width: 117px;
     left: 50%;
     margin-left: -58px;
     background: url(../images/share-icon.jpg) no-repeat;
     position: absolute;
     top: 28px;
-
+    z-index: 99;
 }
 .share-icons-container{
     width: 117px;
@@ -215,6 +273,16 @@
     padding: 8px 0;
     margin-left: 8px;
     float: left;
+}
+
+.wxImg{
+    display: none;
+    width: 100px;
+    height: 100px;
+}
+.wxImg img{
+    width: 100px;
+    height: 100px;
 }
 /*广告和分享*/
 
@@ -231,32 +299,293 @@
     padding-top: 30px;
     padding-bottom: 50px;
     background-color: #000000;
+    position: relative;
+    overflow: hidden;
 }
 
 .carousel-container ul{
     width: 9999999px;
     position: relative;
-    left: -560px;
+
 }
 .carousel-container ul li{
-    width: 1000px;
     border-right: 10px solid #000000;
     border-left: 10px solid #000000;
-    background-color: #00ffac;
     float: left;
+    position: relative;
 
 }
 
+.carousel-container ul li img{
+        width: 100%;
+        height: 100%;
+}
+.first_introduce{
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    top: 25%;
+    background: linear-gradient(to right,rgba(0,0,0,0),rgba(0,0,0,1));
+    overflow: hidden;
+}
+.content{
+    position: absolute;
+    bottom: 0;
+    background-color: #000000;
+    opacity: 0.6;
+    width: 100%;
+    height: 8%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden
+}
+
+.current .content{
+    position: absolute;
+    bottom: 0;
+    background-color: #000000;
+    opacity: 0.6;
+    width: 100%;
+    height: 16%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden
+}
+.current .shrink{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    opacity: 0.6;
+    height: 8%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden
+}
+.shrink{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    opacity: 0.6;
+    height: 8%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden
+}
+.font-content{
+    position: absolute;
+    background: none;
+    opacity: 1;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden
+}
+
+
+.current .font-content{
+    position: absolute;
+    bottom: 0;
+    background: none;
+    opacity: 1;
+    width: 100%;
+    height: 16%;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden
+}
+ .current .show_font_content {
+    position: absolute;
+    background: none;
+    opacity: 1;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: #fff;
+}
+.show_font_content {
+    position: absolute;
+    background: none;
+    opacity: 1;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: #fff;
+}
+.content .font{
+    width: 92%;
+    margin: 0 4%;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    position: relative;
+    height: 100%;
+}
+.current .content .font{
+    width: 92%;
+    margin: 0 4%;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    position: relative;
+    height: 100%;
+}
+.shrink  .font{
+    width: 92%;
+    margin: 0 4%;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    position: relative;
+    height: 100%;
+}
+/*.font .triangle{*/
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    /*right: -16px;*/
+    /*width: 16px;*/
+    /*height: 8px;*/
+    /*background: url(../images/shrink.png) no-repeat;*/
+    /*cursor: pointer;*/
+/*}*/
+ .font-content .font .triangle{
+    position: absolute;
+     bottom: 10px;
+     right: -16px;
+    width: 16px;
+    height: 8px;
+     background: url(../images/shrink.png) no-repeat;
+     cursor: pointer;
+}
+.show_font_content .font .triangle{
+    position: absolute;
+    bottom: 10px;
+    right: -16px;
+
+    width: 16px;
+    height: 8px;
+    background: url(../images/show.png) no-repeat ;
+    cursor: pointer;
+
+}
+.num_img{
+    position: absolute;
+    width: 100%;
+    bottom: -6.25%;
+    height: 5.25%;
+
+    padding-top: 1%;
+    background-color: #000000;
+    color: #999999;
+    text-align: right;
+    font-size: 0.6em;
+}
+.num_img span{
+    font-size: 1em;
+    color: #e54442;
+}
+.left_arrow_bt{
+
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.3;
+}
+.left_arrow_bt img{
+    width: 46px;
+    height: 96px;
+    position: absolute;
+    top: 50%;
+    margin-top: -48px;
+    right: 30px;
+
+}
+.right_arrow_bt{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #000000;
+    opacity: 0.3;
+}
+.right_arrow_bt img{
+    position: absolute;
+    width: 46px;
+    height: 96px;
+    top: 50%;
+    margin-top: -48px;
+    left: 30px;
+    overflow: hidden;
+}
+.button{
+    background: none;
+    opacity: 1;
+    z-index: 10;
+    cursor: pointer;
+}
+
+
+.first_introduce h2{
+    margin-top: 1%;
+    font-size: 2.7em;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+    color: #fff;
+    margin-left: 12%;
+}
+.first_introduce h3{
+    color: #faa44d;
+    font-size: 1.8em;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+    margin-top: 0.5%;
+    margin-bottom:1%;
+    margin-left: 12%
+}
+
+.first_introduce p{
+    color: #fff;
+    font-size: 0.8em;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+    width: 63%;
+    text-align: justify;
+
+    margin-left: 12%
+}
+
+.first_introduce p.author{
+    color: #fff;
+    font-size: 0.6em;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+    margin-top:3%;
+    width: 158px;
+    text-align: justify;
+    font-style: italic;
+
+}
 /*中控*/
 
 
-
-/*页尾*/
-
-
-/*页尾*/
-
-
-html{
-    overflow: visible;
-}
