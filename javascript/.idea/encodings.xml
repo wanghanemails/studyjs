@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/last-img.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/.bowerrc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/.gitattributes" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/.gitignore" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/.jshintrc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/Gruntfile.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/components" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/images" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/images/img-4-bg.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/images/img-4.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/images/last-img.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/images/play.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/index.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/scripts" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/scripts/citeswfobject.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/scripts/jquery-resizeEnd.min.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/scripts/lianbo.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/app/styles" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ent_2/bower.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/dist" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/docs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/ent_ssxz_pc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_2/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/img-4-bg.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/img-4.jpg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/last-img.jpg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/play.png" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/images/play.png" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/scripts/jquery-resizeEnd.min.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ent_ssxz_pc/app/scripts/jquery-resizeEnd.min.js" charset="UTF-8" />
   </component>
 </project>

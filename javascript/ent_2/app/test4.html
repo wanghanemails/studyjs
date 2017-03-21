@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>last.html</title>
+    <style>
+    </style>
+    <script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+    <script type="text/javascript">
+        $ (function ()
+        {
+            var player = $ ("#player")[0];
+            $ ('#b5').click (function ()
+            {
+                $ ("#player").Play ();
+            })
+
+            $ ('#b6').click (function ()
+            {
+                $ ("#player").Pause();
+            })
+
+            $ ('#b7').click (function ()
+            {
+                $ ("#player").Stop ();
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+<EMBED id="player" src="music/1.mp3" autoplay="false" hidden=no style="scrollbar-3dlight-color: #000">
+</EMBED>
+<input type="button" value="播放" id="b5" />
+<input type="button" value="暂停" id="b6" />
+<input type="button" value="停止" id="b7" />
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "ent_ssxz_pc",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {},
+  "main": [
+    "dist/styles/ent_ssxz_pc_main_0ba62a64.min.css",
+    "dist/styles/ent_ssxz_pc_main_0ba62a64.css",
+    "dist/scripts/ent_ssxz_pc_main_31a7deb2.min.js",
+    "dist/scripts/ent_ssxz_pc_main_31a7deb2.js",
+    {
+      "pad": []
+    },
+    {
+      "mobile": []
+    },
+    {
+      "pc": []
+    }
+  ],
+  "originalMainFiles": [
+    "app/styles/ent_ssxz_pc.css",
+    "app/scripts/version.js",
+    {
+      "pad": []
+    },
+    {
+      "mobile": []
+    },
+    {
+      "pc": []
+    }
+  ],
+  "version": "2.0.2",
+  "glue": {
+    "glue__1.1.11": "glue#1.1.11"
+  }
+}

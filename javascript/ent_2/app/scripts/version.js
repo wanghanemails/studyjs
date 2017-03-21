@@ -1,0 +1,1 @@
+var version = '@project-version@';

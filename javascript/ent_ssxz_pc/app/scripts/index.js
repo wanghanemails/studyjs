@@ -26,30 +26,58 @@
                this.ul =  this.carousel_container.find("ul.carousel-ul");
                this.li =  this.carousel_container.find("ul li.imgs");
 
+                $("html,body").stop().animate({scrollTop:195},500,function(){
+
+
+                    //    滑动到下面
+                });
+                //$("body").mousewheel(function(event){
+                //
+                //    if (event.deltaY < 0){
+                //
+                //
+                //
+                //
+                //    }else if (event.deltaY > 0){
+                //
+                //        if($("html,body").scrollTop()<=195){
+                //
+                //
+                //        }
+                //        //$("html,body").stop().animate({scrollTop:0},500);
+                //    }
+                //});
 
               function chooseWH(){
                   //自适应 用来选择 以宽还是高为基础去计算。
+
+
+
+                  $("html,body").scrollTop(195);
+
+
+
 
                   var real_height = window.innerHeight;
                   //var real_height = window.innerHeight-150-45-92;
                   //除去头部 标题 和底部。
 
-                  var height = true;
+                  //var height = true;
 
                   var n  = $(".current_index").index();
 
 
-                      (((window.innerWidth/1920)-(real_height/1070))>0) ? height=true : height=false ;
+                      //(((window.innerWidth/1920)-(real_height/1070))>0) ? height=true : height=false ;
 
                       //(((window.innerWidth/1000)-(real_height/458))>0) ? console.log("高小以他为比例"):console.log("宽小以他为比例");
 
-                      if(height){
+                      //if(height){
                           //宽大 高小  屏幕  用高算
 
-                          debugger;
-                          that.li_width =(real_height-80)/that.li_wh_ratio;
 
-                          that.init_Left =-Math.abs(that.li_width-((window.innerWidth-that.li_width)/2-40));
+                          that.li_width =(window.innerHeight-80)/that.li_wh_ratio;
+
+                          that.init_Left =-Math.abs(that.li_width-((window.innerWidth-that.li_width)/2-20));
 
                           var left = that.init_Left - ((n-1)*(that.li_width+20));
                           //this.right_class_bg
@@ -80,55 +108,55 @@
                           }else{
 
 
-                              that.li.stop(false, true).animate({width:that.li_width+"px",height:real_height-80+"px"},1000,function(){
+                              that.li.stop(false, true).animate({width:that.li_width+"px",height:real_height-80+"px"},500,function(){
 
                               });
 
                           }
 
-                      }
-                      else{
-
-                          //    高大宽小 屏幕  用宽算
-
-
-                          var container_height =   (window.innerWidth*that.container_wh_ratio)
-
-
-
-                          that.li_width =((container_height)-80)/that.li_wh_ratio;
-
-
-                          that.init_Left = -Math.abs(that.li_width-((window.innerWidth-that.li_width)/2-20));
-                          var left = that.init_Left - ((n-1)*(that.li_width+20));
-                          //that.carousel_container.css("height",container_height-80+"px");
-
-                          that.ul.css("left",left+"px");
-
-                          that.left_class_bg.css("height",container_height-80+"px");
-                          that.left_class_bg.css("width",that.li_width+"px");
-                          that.left_class_bg.css("left",that.init_Left+10+"px");
-
-
-                          that.right_class_bg.css("height",container_height-80+"px");
-                          that.right_class_bg.css("width",that.li_width+"px");
-                          that.right_class_bg.css("right",that.init_Left-10+"px");
-
-                          this.move_distans = that.li_width;
-
-                          if(that.first_resize){
-                              that.li.css("height",container_height-80+"px");
-                              that.li.css("width", that.li_width+"px");
-
-                          }else{
-
-                              that.li.stop(false, true).animate({width:that.li_width+"px",height:container_height-80+"px"},1000,function(){
-
-                              });
-
-                          }
-
-                      }
+                      //}
+                      //else{
+                      //
+                      //    //    高大宽小 屏幕  用宽算
+                      //
+                      //
+                      //    var container_height =   (window.innerWidth*that.container_wh_ratio)
+                      //
+                      //
+                      //
+                      //    that.li_width =((container_height)-80)/that.li_wh_ratio;
+                      //
+                      //
+                      //    that.init_Left = -Math.abs(that.li_width-((window.innerWidth-that.li_width)/2-20));
+                      //    var left = that.init_Left - ((n-1)*(that.li_width+20));
+                      //    //that.carousel_container.css("height",container_height-80+"px");
+                      //
+                      //    that.ul.css("left",left+"px");
+                      //
+                      //    that.left_class_bg.css("height",container_height-80+"px");
+                      //    that.left_class_bg.css("width",that.li_width+"px");
+                      //    that.left_class_bg.css("left",that.init_Left+10+"px");
+                      //
+                      //
+                      //    that.right_class_bg.css("height",container_height-80+"px");
+                      //    that.right_class_bg.css("width",that.li_width+"px");
+                      //    that.right_class_bg.css("right",that.init_Left-10+"px");
+                      //
+                      //    this.move_distans = that.li_width;
+                      //
+                      //    if(that.first_resize){
+                      //        that.li.css("height",container_height-80+"px");
+                      //        that.li.css("width", that.li_width+"px");
+                      //
+                      //    }else{
+                      //
+                      //        that.li.stop(false, true).animate({width:that.li_width+"px",height:container_height-80+"px"},1000,function(){
+                      //
+                      //        });
+                      //
+                      //    }
+                      //
+                      //}
 
 
                   //that.vedio_play();
@@ -142,7 +170,7 @@
               }
                 chooseWH();
 
-                console.log(that.li_width)
+
 
                 //debugger;
 
@@ -151,9 +179,13 @@
                     delay: 1000
                 }, function(){
                     //处理代码
+
+                    //debugger;
                    // 第二部  重绘加上动画。
                     that.could_resize = false;
+
                    chooseWH();
+
                 });
 
             },
@@ -173,7 +205,7 @@
 
                     var left = that.init_Left - ((n-1)*(that.li_width+20));
 
-                    that.ul.stop(false, true).animate({left:left+"px"},1000,function(){
+                    that.ul.stop(false, true).animate({left:left+"px"},500,function(){
 
                     });
 
@@ -197,7 +229,7 @@
 
                     var left = that.init_Left - (n*(that.li_width+20));
 
-                    that.ul.stop(false, true).animate({left:left+"px"},1000,function(){
+                    that.ul.stop(false, true).animate({left:left+"px"},500,function(){
 
                     });
 
@@ -211,12 +243,28 @@
                 var that = this;
 
                 that.right_id_bg.bind("click",function(){
+
+                    if($(".vedios-container").css("display")=="block"){
+
+                        //    此处可以加视频播放控制暂停，在轮播的时候
+
+                        //window.swfplay(0);
+
+
+                    }
+                    that.next();
+                });
+                $(".right-cursor").bind("click",function(){
                     that.next();
                 });
 
                 that.left_id_bg.bind("click",function(){
                     that.prev();
                 });
+                $(".left-cursor").bind("click",function(){
+                    that.prev();
+                });
+
             },
             initLayout_font:function(){
                 //控制中间字体块显示收缩
@@ -286,7 +334,7 @@
                 });
 
 
-                $(".play_button").bind("click",function(){
+                $("#play_button").bind("click",function(){
 
                     $(".play_remark").css("display","none");
                     $(".play_button").css("display","none");
@@ -305,10 +353,10 @@
                 var that = this;
 
 
-                var vedios_height = that.li_width*that.li_wh_ratio;
+                var vedios_height =  that.li_width*that.li_wh_ratio;
 
-                $(".vedios-container").html();
-                $(".vedios-container").append('<div id="playerDiv"></div>');
+
+                //$(".vedios-container").html()('<div id="playerDiv"></div>');
 
 
                 var play = new PlayItems({
@@ -346,10 +394,13 @@
 
         }
 
-      function Carousel (container,left_bt,right_bg,loop){
+      function Carousel (container,left_bt,right_bg,loop,left_button,right_button){
           this.carousel_container = $(container);
           this.left_class_bg = $("."+left_bt);
           this.right_class_bg = $("."+right_bg);
+
+          this.right_button_bg = $("."+right_bg);
+          this.left_button_bg = $("."+right_bg);
 
           this.isInit = false;
           this.left_id_bg = $("#"+left_bt);
@@ -363,14 +414,15 @@
           //this.move_distans =  -Math.abs(this.li_width-((window.innerWidth-this.li_width)/2-20));;
 
           this.initLayout();
+          this.vedio_play();
           this._initEvent();
           this.initLayout_font();
           this.share_wx_wb();
           this.button_click();
-          this.vedio_play();
+
       }
 
 
-    var carousel  = new  Carousel(".carousel-container","left_arrow_bt","right_arrow_bt",false);
+    var carousel  = new  Carousel(".carousel-container","left_arrow_bt","right_arrow_bt",false,"left_button_bg","right_button_bg");
 
 })(jQuery)
