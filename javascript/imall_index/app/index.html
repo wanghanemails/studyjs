@@ -1,0 +1,276 @@
+
+<!doctype html>
+<html >
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://p0.ifengimg.com/common/reset_160525.css" />
+    <link rel="stylesheet" href="styles/imall_index.css">
+</head>
+<body>
+
+
+<script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script><!--重要jq脚本页面中如有引用，则不需要重复引入，一个页面中jq只引入一次-->
+
+<script src="http://p0.ifengimg.com/fe/story.ifeng.com/scripts/swiper_44c.js"></script>
+
+
+
+
+
+<section class="swiper-container">
+    <div class="swiper-wrapper">
+        <article class="s_ban">
+            <div class="s_ban_main">
+                <ul class="swiper_wrapper clearfix" id="swiperBox">
+                    <li class="swiper"><a href="#" target="_blank"><img src="http://d.ifengimg.com/w654_h400/p2.ifengimg.com/a/2016_35/6f65421c3e434f7_size47_w800_h533.jpg" /></a></li>
+                    <li class="swiper"><a href="#" target="_blank"><img src="http://p0.ifengimg.com/fe/story.ifeng.com/images/s_ban_img1_6b52deff.jpg" /></a></li>
+                    <li class="swiper"><a href="#" target="_blank"><img src="http://p0.ifengimg.com/fe/story.ifeng.com/images/s_ban_img1_6b52deff.jpg" /></a></li>
+                </ul>
+            </div>
+            <div class="s_ban_items">
+                <ul class="dotList" id="swiperdot">
+                    <li class="current"></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="center-style">
+            <ul class="head-title clearfix">
+                <li>
+                    <div class="second-icon">
+                        <img src="images/icon-1.png" alt=""/>
+                        <div class="icon-content"><a href="#" target="_blank">凤凰礼品</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="second-icon">
+                        <img src="images/icon-2.png" alt=""/>
+                        <div class="icon-content"><a href="#" target="_blank">凤凰特工</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="second-icon">
+                        <img src="images/icon-3.png" alt=""/>
+                        <div class="icon-content"><a href="#" target="_blank">凤凰首家</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="second-icon">
+                        <img src="images/icon-4.png" alt=""/>
+                        <div class="icon-content"><a href="#" target="_blank">设计师说</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="second-icon">
+                        <img src="images/icon-5.png" alt=""/>
+                        <div class="icon-content"><a href="#" target="_blank">西域好物</a></div>
+                    </div>
+                </li>
+
+            </ul>
+        </article>
+        <article class="center-style recommend clearfix">
+            <div class="recommend-img"><img src="images/recommend.png" alt=""/></div>
+            <div class="recommend-content">
+                <p>九款创意灯具  带你逃离夜的黑</p>
+                <p>九款创意灯具  带你逃离夜的黑</p>
+                <p>九款创意灯具  带你逃离夜的黑</p>
+                <p>九款创意灯具  带你逃离夜的黑</p>
+            </div>
+            <div class="vedio-img">
+                <img src="images/vedio-img.png" alt=""/>
+                <div class="mask"></div>
+                <img class="vedio-img-mask" src="images/vedio-play.png" alt=""/>
+            </div>
+        </article>
+
+        <article class="nav-article center-style">
+            <ul class="clearfix">
+                <li>
+                    <div class="nav-article-img nav-article-img1">
+                        <img src="images/nav-article-img1.png" alt=""/>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-article-img nav-article-img2">
+                        <img src="images/nav-article-img2.png" alt=""/>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-article-img nav-article-img3">
+                        <img src="images/nav-article-img3.png" alt=""/>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-article-img nav-article-img4">
+                        <img src="images/nav-article-img4.png" alt=""/>
+                    </div>
+                </li>
+            </ul>
+        </article>
+
+            <div class="swiper-slide red-slide">
+                <div class="title">Slide 1</div>
+            </div>
+            <div class="swiper-slide blue-slide">
+                <div class="title">Slide 2</div>
+            </div>
+            <div class="swiper-slide orange-slide">
+                <div class="title">Slide 3</div>
+            </div>
+            <div class="swiper-slide green-slide">
+                <div class="title">Slide 4</div>
+            </div>
+            <div class="swiper-slide pink-slide">
+                <div class="title">Slide 5</div>
+            </div>
+            <div class="swiper-slide red-slide">
+                <div class="title">Slide 6</div>
+            </div>
+            <div class="swiper-slide blue-slide">
+                <div class="title">Slide 7</div>
+            </div>
+            <div class="swiper-slide orange-slide">
+                <div class="title">Slide 8</div>
+            </div>
+
+
+
+    </div>
+</section>
+<div class="preloader"> Loading... </div>
+
+
+
+
+<script>
+
+    $(".s_ban_main ul li").width(window.innerWidth);
+    $(".s_ban_main ul li").height(window.innerWidth*(150/320));
+    $(".s_ban_items").css("marginLeft",-($(".s_ban_items").width()/2));
+
+
+</script>
+<script>
+    /*幻灯1*/
+    var initData = {
+        "container":"s_ban",//包含所有滑动元素的容器（滑动的大盒子包括幻灯、点、文字元素） 必传参数
+        "handlerClassname":"dotList",//点元素的盒子 默认点元素需要用li 选传参数
+        "handlercurrent":"current",//点元素diff的class名 选传参数
+        "contentClassname":"text-swiper",//文字元素的class 选传参数
+        "buttonClass":["prevBtn","nextBtn"],//左右翻页class 选传参数
+        "loop":true,//是否循环 true为循环
+        "auto":true,//是否自动播放 true为自动播放
+        "time":3000,//自动轮播时间间隔
+        "overFun":hoverFunction,//鼠标移入幻灯时的自定义处理逻辑
+        "outFun":"",//鼠标移除幻灯时的处理逻辑
+        "padFlag":false //true 为pad端和pc端样式一致 false为pad和phone端的滑动样式一致
+    };
+    function hoverFunction(){
+        //hover的的效果函数
+        $(".s_ban .prevBtn,.s_ban .nextBtn").show();
+    }
+    new CommonswiperComponent.init(initData);
+//    /*幻灯2*/
+//    var initData1 = {
+//        "container":"s_ban2",//包含所有滑动元素的容器 必传参数
+//        "handlerClassname":"dotList",//点元素的盒子 默认点元素需要用li 选传参数
+//        "handlercurrent":"current",//点元素diff的class名 选传参数
+//        "contentClassname":"text-swiper",//文字元素的class 选传参数
+//        "buttonClass":["prevBtn","nextBtn"],//左右翻页class 选传参数
+//        "loop":true,//是否循环 true为循环
+//        "auto":true,//是否自动播放 true为自动播放
+//        "time":3000,//自动轮播时间间隔
+//        "overFun":hoverFunction,//鼠标hover时的自定义处理逻辑
+//        "outFun":"",
+//        "padFlag":false //true 为pad端和pc端样式一致 false为pad和phone端的滑动样式一致
+//    };
+//
+//    new CommonswiperComponent.init(initData1);
+
+</script>
+<script src="scripts/idangerous.swiper.min.js"></script>
+<!-- 以标签方式注册一个组件 -->
+<!--<div g-cid="widgetId" g-cname="fashion_fkzcj_201701" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div> -->
+<script>
+    // 以命令行方式注册一个组件
+    // glue.widgetRegist('srcNode', 'widgetId', 'fashion_fkzcj_201701', 'depWidgetId', 'priority', {
+    //   'model.propertyName': '@@outModel.propertyName'
+    // });
+
+    // 直接创建一个组件
+    // require(['fashion_fkzcj_201701'], function(fashion_fkzcj_201701) {
+    //   new fashion_fkzcj_201701(glue).create(srcNode, options);
+    // });
+
+    // 扫描组件
+    // glue.scan();
+    // 运行组件
+    // glue.run();
+</script>
+
+<script>
+    var holdPosition = 0;
+    var slideNumber = 0;
+
+    var mySwiper = new Swiper('.swiper-container',{
+        slidesPerView:'auto',
+        mode:'vertical',
+        watchActiveIndex: true,
+        onTouchStart: function() {
+            holdPosition = 0;
+        },
+    onResistanceBefore: function(s, pos){
+      holdPosition = 0;
+    },
+        onResistanceAfter: function(s, pos){
+
+            holdPosition = pos;
+        },
+        onTouchEnd: function(){
+
+            if (holdPosition>100) {
+//        debugger;
+//        mySwiper.setWrapperTranslate(0,-150,0)
+                var should_h = 700+slideNumber*100;
+                console.log(should_h)
+                mySwiper.setWrapperTranslate(0,-should_h,0)
+                mySwiper.params.onlyExternal=true
+                $('.preloader').addClass('visible');
+                loadNewSlides();
+            }
+        }
+    })
+
+    function loadNewSlides(){
+        setTimeout(function(){
+            //Prepend new slide
+
+            var colors = ['red','blue','green','orange','pink'];
+            var color = colors[Math.floor(Math.random()*colors.length)];
+
+
+            mySwiper.appendSlide('<div class="title">com '+slideNumber+'</div>', 'swiper-slide '+color+'-slide');
+            //Release interactions and set wrapper
+            var should_h = 600+slideNumber*100;
+            mySwiper.setWrapperTranslate(0,-should_h,0)
+//            mySwiper.setWrapperTranslate(0,0,0)
+            mySwiper.params.onlyExternal=false;
+            //Update active slide
+            mySwiper.updateActiveSlide(0)
+            //Hide loader
+
+            $('.preloader').removeClass('visible');
+
+        },1000)
+        slideNumber++;
+    }
+</script>
+</body>
+</html>
