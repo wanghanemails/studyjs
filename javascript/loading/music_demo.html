@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+<style>
+    button{
+        width: 100px;
+        height: 30px;
+    }
+</style>
+<audio class="div1" src="music/1.mp3"></audio>
+
+
+<button class="btn1"> 1</button>
+<button class="btn2"> 1</button>
+
+</body>
+
+<script>
+
+        window.onload = function(){
+
+
+            document.getElementsByClassName("btn1")[0].onclick = function(){
+                document.getElementsByClassName("div1")[0].src = "music/1.mp3"
+                document.getElementsByClassName("div1")[0].play();
+            }
+            document.getElementsByClassName("btn2")[0].onclick = function(){
+                document.getElementsByClassName("div1")[0].src = "music/2.mp3"
+                document.getElementsByClassName("div1")[0].play();
+            }
+        }
+
+</script>
+</html>

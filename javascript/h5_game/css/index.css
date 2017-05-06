@@ -1,0 +1,95 @@
+
+
+@font-face
+{
+    font-family: fzmwtjw;
+    src: url(../font/fzmwtjw.ttf);
+}
+html{
+    width:100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+}
+.game-container{
+    width: 200%;
+    height: 100%;
+    position: relative;
+    left: 0;
+}
+
+.loading{
+    width: 100%;
+    height: 100%;
+    background: url(../images/loading-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+
+}
+.loading-img{
+    width: 112px;
+    height: 116px;
+    margin: 0 auto;
+    position: relative;
+    top: 20.7%;
+}
+.loading-img img{
+    width: 100%;
+}
+.loading .loading-num{
+    color: #f6ee94;
+    font-size: 24px;
+    width: 50px;
+    margin: 0 auto;
+    position: relative;
+    top: 21%;
+    text-align: center;
+    font-family: "Agency FB";
+
+}
+.loading .loading-content{
+    width: 250px;
+    margin: 0 auto;
+    position: absolute;
+    height: 62px;
+    top: 50%;
+    left: 50%;
+
+    margin-left: -125px;
+}
+.loading .loading-content p{
+    font-size: 20px;
+    font-family: "fzmwtjw";
+    color: #fefefe;
+    line-height: 24px;
+    text-align: center;
+}
+.screen1{
+    width: 50%;
+    height: 100%;
+    background: url(../images/loading-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    float: left;
+
+
+}.screen2{
+     width: 50%;
+     height: 100%;
+     background: url(../images/loading-bg.png) no-repeat;
+     background-size: cover;
+     background-position: center center;
+     position: relative;
+     float: left;
+
+
+ }

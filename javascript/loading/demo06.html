@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .contaienr{
+        display: flex;
+        width: 52.5px;
+        height: 75px;
+        flex-wrap: wrap;
+        margin: 0 auto;
+
+        position: absolute;
+        left: 75px;
+        top: 75px;
+        transform: skew(0deg, -25deg);
+
+    }
+    .move{
+        animation: move 1s ease-in-out forwards;
+    }
+  .contaienr div{
+       width: 29.38%;
+       height: 32.66%;
+      background-color: #000;;
+      margin: 1px;
+      color: #fff;;
+  }
+    @keyframes move {
+        0%{
+            transform: skew(0deg, -25deg);
+            width: 52.5px;
+            height: 75px;
+            left: 75px;
+            top: 75px;
+        }
+        100%{
+            transform: skew(0deg, 0deg);
+            width: 210px;
+            height: 300px;
+            left: 300px;
+            top: 300px;
+        }
+    }
+</style>
+<body>
+
+
+
+
+            <div class="contaienr " id="container">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
+</body>
+<script>
+        document.getElementById("container").onclick =  function(){
+            this.className = "contaienr move"
+        }
+
+</script>
+</html>
