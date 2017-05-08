@@ -18,19 +18,111 @@ body{
     overflow: hidden;
 
 }
-.game-container{
-    width: 200%;
+.game-container img{
+    width: 100%;
+}
+.left-arrow{
+    width: 29px;
+    height: 24px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -12px;
+    display: none;
+    z-index: 10;
+
+}
+.right-arrow{
+    width: 29px;
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -12px;
+    display: none;
+    z-index: 10;
+}
+.left-arrow img ,.right-arrow img{
+    width: 100%;
+}
+.top-container{
+
     height: 100%;
     position: relative;
     left: 0;
-}
+    top: 0;
+    display: flex;
+    flex-wrap: nowrap;
 
+}
+.game-container{
+
+    height: 100%;
+    position: relative;
+    left: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.section1{
+    display: block;
+
+}
+.section2{
+    display: block;
+
+}
+.top-container .current_container{
+
+}
+.game-container .section-bg{
+    width: 100%;
+    height: 100%;;
+    position: relative;
+    left: 0;
+    z-index: 3;
+}
+.section-documents-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    display: none;
+    z-index: 100;
+}
+.section-documents{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    z-index: 99;
+}
+.section-clue{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    z-index: 99;
+}
+.section-documents-container img{
+    width: 100%;
+}
 .loading{
     width: 100%;
     height: 100%;
     background: url(../images/loading-bg.png) no-repeat;
     background-size: cover;
-    background-position: center center;
+
     position: relative;
 
 }
@@ -65,6 +157,12 @@ body{
 
     margin-left: -125px;
 }
+.loading .loading-content img{
+    width: 100%;
+
+
+
+}
 .loading .loading-content p{
     font-size: 20px;
     font-family: "fzmwtjw";
@@ -75,9 +173,9 @@ body{
 .screen1{
     width: 50%;
     height: 100%;
-    background: url(../images/loading-bg.png) no-repeat;
-    background-size: cover;
-    background-position: center center;
+    /*background: url(../images/loading-bg.png) no-repeat;*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
     position: relative;
     float: left;
 
@@ -85,11 +183,357 @@ body{
 }.screen2{
      width: 50%;
      height: 100%;
-     background: url(../images/loading-bg.png) no-repeat;
-     background-size: cover;
-     background-position: center center;
+     /*background: url(../images/loading-bg.png) no-repeat;*/
+     /*background-size: cover;*/
+     /*background-position: center center;*/
      position: relative;
      float: left;
 
 
  }
+ .section1-bg{
+     background: url(../images/section1-container-bg.png) no-repeat;
+     background-size: cover;
+
+ }
+.section2-bg{
+    background: url(../images/section2-container-bg.jpg) no-repeat;
+
+    background-size: cover;
+}
+ .train-container-window{
+     width: 50%;
+     height: 100%;
+     position: absolute;
+     left: 0;
+     top: 0;
+    z-index: 1;
+ }
+ .train-bg{
+     width: 32.46%;
+     height: 35.38%;
+     position: absolute;
+     top: 4.3%;
+     right: 15.8%;
+ }
+ .train-bg img{
+     width: 100%;
+ }
+
+.train-container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.train{
+    width: auto;
+    height: 40%;
+    position: absolute;
+    bottom: -10px;
+    left: 108px;
+    -webkit-animation: trainMove 10s cubic-bezier(0.8,0.58,0.02,1.02) infinite;
+    animation: trainMove 10s  cubic-bezier(0.8,0.58,0.02,1.02) infinite;
+    animation-delay:1s;
+    -webkit-animation-delay:1s;
+}
+/*infinite    forwards */
+.train img{
+    width: auto;
+    height: 100%;
+}
+
+@-webkit-keyframes trainMove {
+    0% {
+        left: 108px;
+
+    }
+    100% {
+        left: -2000px;
+    }
+}
+@keyframes trainMove {
+    0% {
+        left: 108px;
+
+    }
+    100% {
+        left: -2000px;
+    }
+}
+
+.zaihuang-medication{
+    width: 5%;
+    position: absolute;
+    bottom: 35vh;;
+    left: 2%;
+}
+
+.yunnan-medication{
+    width: 6.4%;
+    position: absolute;
+    bottom:35vh;
+    left:6%;
+}
+
+.section-documents .country-goods{
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    margin-left: -45.5%;
+    top: 11%;
+    z-index: 100;
+}
+
+.section-clue .clue{
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    margin-left: -45.5%;
+    top: 11%;
+    z-index: 100;
+}
+
+.close-mask{
+    z-index: 99;
+    position: relative;
+    width: 48px;
+    height: 64px;
+    margin: 0 auto;
+    top: 0;
+    top: 8%;
+}
+.close-mask img{
+    width: 100%;
+}
+
+
+.simulation-train{
+    width: 14%;
+    height: 16%;
+    position: absolute;
+    top: 27%;
+    left: 26%;
+    overflow: hidden;
+}
+
+.simulation-train .simulation-train-move{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 108px;
+    -webkit-animation: trainMove 10s cubic-bezier(0.8,0.58,0.02,1.02) infinite;
+    animation: trainMove 10s  cubic-bezier(0.8,0.58,0.02,1.02) infinite;
+    animation-delay:1s;
+    -webkit-animation-delay:1s;
+}
+.simulation-bedside-table{
+    width: 15%;
+    height: 15%;
+    position: absolute;
+    left: 0;
+    bottom: 20%;
+}
+.huawei-iphone{
+    height: 2.82%;
+    position: absolute;
+    right: 29%;
+    top: 47%;
+}
+.huawei-iphone img{
+    width: auto;
+    height: 100%;
+}
+.important-paper{
+
+    width: 7.65%;
+    height: 7.04%;
+    position: absolute;
+    left: 12.08%;
+    bottom: 3.15%;
+}
+.last-paper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.important-paper img{
+    width: auto;
+    height: 100%;
+}
+.cooling-ointment{
+    width: 47.36%;
+    height: 52.2%;
+    position: absolute;
+    left: 29.8%;
+    top: 11.36%;
+}
+.begin_puzzle{
+    width: 7.92%;
+
+    position: absolute;
+    left: 6.24%;
+    top: 13.76%;
+
+    z-index: 100;
+
+}
+.begin_puzzle img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.puzzle-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    display: none;
+    z-index: 100;
+}
+
+.begin_puzzle_changeBig{
+    /*-webkit-animation: puzzleChangeBig 1s cubic-bezier(0.8,0.58,0.02,1.02) forwards;*/
+    /*animation: puzzleChangeBig 1s  cubic-bezier(0.8,0.58,0.02,1.02) forwards;*/
+    -webkit-animation: puzzleChangeBig 1s ease  forwards;
+    animation: puzzleChangeBig 1s  ease  forwards;
+    animation-delay:0.5s;
+    -webkit-animation-delay:0.5s;
+}
+
+@-webkit-keyframes puzzleChangeBig {
+    0% {
+        width: 7.92%;
+        left: 6.24%;
+        top: 13.76%;
+    }
+    100% {
+        width: 42%;
+        left: 2%;
+        top: 10%;
+    }
+}
+@keyframes puzzleChangeBig {
+    0% {
+        width: 7.92%;
+        left: 6.24%;
+        top: 13.76%;
+    }
+    100% {
+        width: 42%;
+        left: 2%;
+        top: 10%;
+    }
+}
+
+
+.realpuzzle{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*媒体查询  适配*/
+/* iphone4 */
+@media screen and (device-width: 320px) and (device-height: 480px) and (-webkit-min-device-pixel-ratio : 2){
+    .train-bg{
+        width: 32.46%;
+        height: 35.38%;
+        position: absolute;
+        top: 4.3%;
+        right: 16%;
+    }
+    .section1-bg{
+        background: url(../images/section1-container-bg.png) no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    .section2-bg{
+        background: url(../images/section2-container-bg.jpg) no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    .loading{
+        width: 100%;
+        height: 100%;
+        background: url(../images/loading-bg.png) no-repeat;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+
+    }
+}
+/* iphone5 */
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
+    .train-bg{
+        width: 32.46%;
+        height: 35.38%;
+        position: absolute;
+        top: 4.3%;
+        right: 10%;
+    }
+}
+/*Android*/
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {
+
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation : portrait) {
+
+}
+
+@media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
+
+    /*iphone 6*/
+
+}
+
+
+
+
+
+@media (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
+
+    /*iphone 6 plus*/
+
+}

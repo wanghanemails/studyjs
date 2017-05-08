@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <title>爱你，不离不弃-凤凰新闻</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection"content="telephone=no, email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+
+
+
     <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
     <link rel="stylesheet" href="css/index.css" />
 </head>
@@ -12,27 +50,70 @@
 
 <body class="clearfix">
 
-    <article class="loading">
+    <section class="loading">
         <div class="loading-img"><img src="images/loading-time-img.png" alt=""/></div>
         <div class="loading-num"><span class="loading-num-percentage">0</span><span >%</span></div>
         <div class="loading-content">
-            <p>准备去巴基斯坦</p>
-            <p>进行“一带一路”相关采访</p>
+            <img src="images/loading_content.png" alt=""/>
         </div>
-    </article>
-    <section class="game-container section1 clearfix">
-
-
-        <article class="screen1">
-            111
-        </article>
-        <article class="screen2">
-            222
-        </article>
     </section>
+    <section class="top-container clearfix">
+        <section class="game-container current_container section1 ">
+
+            <div class="train-container-window">
+                  <div class="train-bg">
+                      <img src="images/train-bg.jpg" alt=""/>
+                      <div class="train-container">
+                          <div class="train"><img src="images/train.png" alt=""/></div>
+                      </div>
+                  </div>
+
+            </div>
+
+            <div class="section-bg section1-bg clearfix">
+
+                    <div class="zaihuang-medication"><img src="images/zaihuang-medication.png" alt=""/></div>
+                    <div class="yunnan-medication"><img src="images/yunnan-medication.png" alt=""/></div>
+                    <div class="simulation-train">
+                        <div class="simulation-train-move"></div>
+                    </div>
+                    <div class="simulation-bedside-table"></div>
+                    <div class="huawei-iphone"><img src="images/huawei-iphone.png" alt=""/></div>
+                    <div class="important-paper">
+                        <div class="last-paper"><img src="images/important-paper.png" alt=""/></div>
+                        <div class="cooling-ointment"><img src="images/cooling-ointment.png" alt=""/></div>
+                    </div>
 
 
 
+                    <div class="puzzle begin_puzzle">
+                        <img src="images/puzzle_begin_img.png" alt=""/>
+                    </div>
+
+            </div>
+        </section>
+        <section class="game-container section2 ">
+
+
+
+        <div class="section-bg section2-bg clearfix">
+
+
+        </div>
+    </section>
+    </section>
+    <div class="left-arrow" id="left-arrow"><img src="images/left-arrow.png" alt=""/></div>
+    <div class="right-arrow" id="right-arrow"><img src="images/right-arrow.png" alt=""/></div>
+    <div class="section-documents-container">
+        <div class="section-documents"></div>
+        <div class="section-clue"></div>
+
+    </div>
+    <div class="puzzle-container">
+        <div class="realpuzzle">
+
+        </div>
+    </div>
 </body>
 <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.8.3.min.js"></script>
 
