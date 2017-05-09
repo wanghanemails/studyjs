@@ -468,39 +468,10 @@
 
 
 
-                },changeOrder:function(a,b){
+                },
+                changeOrder:function(a,b){
                     var temp_index,temp_left,temp_top
                     var puzzle_smalls=document.querySelectorAll('.puzzle_small');
-
-                    //var a_index =parseInt( $($(".puzzle_small")[a]).attr("data-index"));
-                    //var b_index =parseInt( $($(".puzzle_small")[b]).attr("data-index"));
-                    //
-                    //
-                    //
-                    //var a_top =parseInt( $($(".puzzle_small")[a]).css("top"));
-                    //var a_left =parseInt( $($(".puzzle_small")[a]).css("left"));
-                    //
-                    //
-                    //var b_top =parseInt( $($(".puzzle_small")[b]).css("top"));
-                    //var b_left =parseInt( $($(".puzzle_small")[b]).css("left"));
-                    //
-                    //    temp_index = a_index;
-                    //    temp_left  = a_left;
-                    //    temp_top   = a_top;
-                    //
-                    //
-                    //
-                    //      $($(".puzzle_small")[a]).attr("data-index",b_index);
-                    //      $($(".puzzle_small")[b]).attr("data-index",temp_index);
-                    //
-                    //
-                    //
-                    //
-                    //$($(".puzzle_small")[a]).css("top",b_top);
-                    //$($(".puzzle_small")[a]).css("left",b_left);
-                    //
-                    //$($(".puzzle_small")[b]).css("top",temp_top);
-                    //$($(".puzzle_small")[b]).css("left",temp_left);
 
 
                     var aEle = puzzle_smalls[a];
@@ -521,12 +492,39 @@
                 //    jquery  更换时出现  重叠
 
 
+                },
+
+                puzzleEvent:function(){
+
+                    var that = this;
+                    var puzzle_smalls=document.querySelectorAll('.puzzle_small');
+
+
+                    $(".puzzle_small").bind("touchstart",function(e){
+
+
+                    });
+                    $(".puzzle_small").bind("touchmove",function(e){
+
+
+                    });
+
+                    $(".puzzle_small").bind("touchend ",function(e){
+
+                    });
+
+
+                    $(".puzzle_small").bind("transitionend ",function(e){
+                        var e = e||event;
+                    });
+
                 }
             }
            Puzzle.prototype.constructor = Puzzle;
             function  Puzzle(game){
                this.game = game;
                 this.initDomPuzzle();
+                this.puzzleEvent();
 
             }
 
