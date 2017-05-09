@@ -18,7 +18,7 @@ body{
     overflow: hidden;
 
 }
-.game-container img{
+.yunnan-medication img,.zaihuang-medication img{
     width: 100%;
 }
 .left-arrow{
@@ -51,7 +51,7 @@ body{
     position: relative;
     left: 0;
     top: 0;
-    display: flex;
+
     flex-wrap: nowrap;
 
 }
@@ -67,16 +67,14 @@ body{
     transition: all 0.5s;
 }
 .section1{
-    display: block;
+    display: none;
 
 }
 .section2{
-    display: block;
+    display: none;
 
 }
-.top-container .current_container{
 
-}
 .game-container .section-bg{
     width: 100%;
     height: 100%;;
@@ -210,11 +208,11 @@ body{
     z-index: 1;
  }
  .train-bg{
-     width: 32.46%;
+     width: 15.46%;
      height: 35.38%;
      position: absolute;
      top: 4.3%;
-     right: 15.8%;
+     left: 25.8%;
  }
  .train-bg img{
      width: 100%;
@@ -365,7 +363,7 @@ body{
     top: 0;
 }
 .important-paper img{
-    width: auto;
+
     height: 100%;
 }
 .cooling-ointment{
@@ -398,9 +396,10 @@ body{
     background-color: #000;
     top: 0;
     left: 0;
-    opacity: 0.7;
+    opacity: 1;
     display: none;
     z-index: 100;
+    overflow: hidden;
 }
 
 .begin_puzzle_changeBig{
@@ -438,33 +437,199 @@ body{
 }
 
 
-.realpuzzle{
-    
+.realpuzzle_bg-container{
+    width: 93%;
+    left: 50%;
+    margin-left: -46.5%;
+    position: relative;
+    top: 10%;
+    height: 81%;
+    display: none;
+}
+.realpuzzle_bg_move{
+    -webkit-animation: puzzleBgChange 1s ease  forwards;
+    animation: puzzleBgChange 1s  ease  forwards;
+    animation-delay:0.5s;
+    -webkit-animation-delay:0.5s;
+}
+
+@-webkit-keyframes puzzleBgChange {
+    0% {
+        width: 0%;
+
+        position: relative;
+        left: 0%;
+        margin-left: 0%;
+        top: 0%;
+        height: 0%;
+    }
+    100% {
+        width: 93%;
+        left: 50%;
+        margin-left: -46.5%;
+        position: relative;
+        top: 10%;
+        height: 81%;
+    }
+}
+@keyframes puzzleBgChange {
+    0% {
+        width: 0%;
+
+        position: relative;
+        left: 0%;
+        margin-left: 0%;
+        top: 0%;
+        height: 0%;
+    }
+    100% {
+        width: 93%;
+        left: 50%;
+        margin-left: -46.5%;
+        position: relative;
+        top: 10%;
+        height: 81%;
+    }
+}
+.realpuzzle_bg{
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+.top-container .current_container{
+    display: block;
+    /*-webkit-animation: showHide 10s ease  forwards;*/
+    /*animation: showHide 10s  ease  forwards;*/
+    /*animation-delay:0.5s;*/
+    /*-webkit-animation-delay:0.5s;*/
+}
+.top-container .wait_container{
+    display: none;
+    /*-webkit-animation: hade 1s ease  forwards;*/
+    /*animation: hade 1s  ease  forwards;*/
+    /*animation-delay:0.5s;*/
+    /*-webkit-animation-delay:0.5s;*/
+}
+
+@-webkit-keyframes hade {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes hade {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+
+@-webkit-keyframes showHide {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+@keyframes showHide {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+
+
+.puzzle_small{
+    position: relative;
+    width: 33.3%;
+    height: 33.3%;
+    position: absolute;
+    transition: all 0.5s ease 0s;
+
 }
 
 
 
 
+.puzzle_small img{
+    position: absolute;
+}
+
+
+.puzzle_1 img{
+    width: 98.57%;
+    top: 2%;
+    left: 4%;
+}
+.puzzle_2 img{
+    width: 143.12%;
+    top: 4%;
+    left: 4%;
+}
+.puzzle_3 img{
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+.puzzle_4 img{
+    width: 110.42%;
+    top: -20%;
+    left: 2%;
+}
+.puzzle_5 img{
+    width: 100%;
+    top: -26%;
+    left: 4%;
+}
+.puzzle_6 img{
+    width: 106.16%;
+    top: -14%;
+    left: -4%;
+}
+.puzzle_7 img{
+    width: 97.6%;
+    top: -10%;
+}
+.puzzle_8 img{
+    width: 121.32%;
+    top: -13%;
+    left: 0%;
+}
+.puzzle_9 img{
+    width: 86.72%;
+    top: 2%;
+    left: 12%;
+}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.hasLastPuzzle{
+    display: none;
+}
+.noLastPuzzle{
+    display: block;
+}
 
 
 
@@ -477,13 +642,7 @@ body{
  /*媒体查询  适配*/
 /* iphone4 */
 @media screen and (device-width: 320px) and (device-height: 480px) and (-webkit-min-device-pixel-ratio : 2){
-    .train-bg{
-        width: 32.46%;
-        height: 35.38%;
-        position: absolute;
-        top: 4.3%;
-        right: 16%;
-    }
+
     .section1-bg{
         background: url(../images/section1-container-bg.png) no-repeat;
         background-size: cover;
@@ -506,13 +665,7 @@ body{
 }
 /* iphone5 */
 @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){
-    .train-bg{
-        width: 32.46%;
-        height: 35.38%;
-        position: absolute;
-        top: 4.3%;
-        right: 10%;
-    }
+
 }
 /*Android*/
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {

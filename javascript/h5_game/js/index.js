@@ -175,6 +175,7 @@
                        var current_X = e.originalEvent.targetTouches[0].pageX;
                        that.moveClient_X = e.originalEvent.targetTouches[0].pageX;
 
+
                        //边界判断    左边界   到达边界还想移动     未到边界  移动距离后超出边界
                        if((this.offsetLeft==0&&that.moveClient_X - that.game_container_client_X>0)||current_X - that.game_container_start_X>0){
                            $(".game-container").css("left",0+"px")
@@ -194,16 +195,23 @@
                    });
 
 
-                   $("#left-arrow").bind("touchstart",function(){
+                   $("#left-arrow").unbind("touchstart").bind("touchstart",function(){
 
 
-                       if($(".top-container").css("left")==-that.container_width+"px"&& parseInt($(".current_container").css("left"))==0){
+                       if($(".section2").css("display")=="block"&& parseInt($(".current_container").css("left"))==0){
 
-                           $(".current_container").addClass("wait_container").removeClass("current_container").siblings().removeClass("wait_container").addClass("current_container");;
+                           //$(".section2").fadeOut(2000);
+                           //
+                           //$(".section1").fadeOut(1000).fadeIn(1000);
 
-                           $(".top-container").css("left",0+"px")
-                           $(".section1").css("left",0+"px")
-                           $(".section1").fadeOut(0).fadeIn(1000);
+
+                           $(".current_container").removeClass("current_container").addClass("wait_container").siblings().removeClass("wait_container").addClass("current_container");;
+
+
+                           $(".section1").css("left",-(that.container_width-window.innerWidth)+"px");
+
+
+
                        }else{
                            $(".current_container").css("left",0+"px")
                        }
@@ -211,17 +219,24 @@
 
                    });
 
-                   $("#right-arrow").bind("touchstart",function(){
+                   $("#right-arrow").unbind("touchstart").bind("touchstart",function(){
 
 
 
 
-                       if($(".top-container").css("left")==0+"px"&&parseInt($(".current_container").css("left"))==-(that.container_width-window.innerWidth)){
 
-                           $(".current_container").addClass("wait_container").removeClass("current_container").siblings().removeClass("wait_container").addClass("current_container");
+                       if(parseInt($(".current_container").css("left"))==-(that.container_width-window.innerWidth)&&$(".section1").css("display")=="block"){
+
+                           //$(".section1").fadeOut(2000);
+                           //
+                           //$(".section2").fadeOut(1000).fadeIn(1000);
+
+
+                           $(".current_container").removeClass("current_container").addClass("wait_container").siblings().removeClass("wait_container").addClass("current_container");
                            $(".section2").css("left",0+"px");
-                           $(".top-container").css("left",-that.container_width+"px");
-                           $(".section2").fadeOut(0).fadeIn(1000);
+
+
+
                        }else{
                            $(".current_container").css("left",-(that.container_width-window.innerWidth)+"px")
                        }
@@ -331,22 +346,42 @@
 
                    $(".begin_puzzle").bind("touchstart",function(){
 
-                       $(".begin_puzzle").addClass("begin_puzzle_changeBig")
+                       $(".begin_puzzle").addClass("begin_puzzle_changeBig");
+                       //$(".realpuzzle_bg-container").addClass("realpuzzle_bg_move");
 
 
-
+                       $(".realpuzzle_bg").addClass("isShow_wait_random");
 
                        var time_task_6 =  setTimeout(function(){
 
-                            $(".puzzle-container").css("display","block");
-                        },1000);
+                           $(".realpuzzle_bg-container").css("display","block");
+                           $(".puzzle-container").fadeIn(2000);
 
 
-                    if(that.hasLastPuzzle){
 
-                    }else{
 
-                    }
+
+
+                           //$(".puzzle_small").width( parseInt(($(".realpuzzle_bg").width()-6)/3));
+                           //$(".puzzle_small").height(parseInt(($(".realpuzzle_bg").height()-6)/3));
+
+
+                           if(!that.puzzle){
+                               that.puzzle = new Puzzle(that);
+                           }
+
+
+
+
+
+                           clearTimeout(time_task_6);
+
+                        },2000);
+
+
+
+
+
 
 
 
@@ -397,9 +432,93 @@
 
              loading_bg();
 
+
+
             Puzzle.prototype = {
                 initDomPuzzle:function(){
                    var that = this;
+
+
+                    if(that.game.hasLastPuzzle){
+                        $(".hasLastPuzzle").css("display","block");
+                        $(".noLastPuzzle").css("display","none");
+                    }
+
+                    var task_7  = setTimeout(function(){
+                        that.randomPuzzle_small();
+                    },2000);
+
+
+
+
+                },randomPuzzle_small:function(){
+                    var that = this;
+
+                    for(var i=0;i<20;i++){
+
+                        var b_index = parseInt(Math.random()*9);
+                        var i_index = parseInt(Math.random()*9);
+
+                        if(i_index!=b_index){
+                            that.changeOrder(i_index,b_index);
+                        }
+                    }
+
+
+
+
+
+                },changeOrder:function(a,b){
+                    var temp_index,temp_left,temp_top
+                    var puzzle_smalls=document.querySelectorAll('.puzzle_small');
+
+                    //var a_index =parseInt( $($(".puzzle_small")[a]).attr("data-index"));
+                    //var b_index =parseInt( $($(".puzzle_small")[b]).attr("data-index"));
+                    //
+                    //
+                    //
+                    //var a_top =parseInt( $($(".puzzle_small")[a]).css("top"));
+                    //var a_left =parseInt( $($(".puzzle_small")[a]).css("left"));
+                    //
+                    //
+                    //var b_top =parseInt( $($(".puzzle_small")[b]).css("top"));
+                    //var b_left =parseInt( $($(".puzzle_small")[b]).css("left"));
+                    //
+                    //    temp_index = a_index;
+                    //    temp_left  = a_left;
+                    //    temp_top   = a_top;
+                    //
+                    //
+                    //
+                    //      $($(".puzzle_small")[a]).attr("data-index",b_index);
+                    //      $($(".puzzle_small")[b]).attr("data-index",temp_index);
+                    //
+                    //
+                    //
+                    //
+                    //$($(".puzzle_small")[a]).css("top",b_top);
+                    //$($(".puzzle_small")[a]).css("left",b_left);
+                    //
+                    //$($(".puzzle_small")[b]).css("top",temp_top);
+                    //$($(".puzzle_small")[b]).css("left",temp_left);
+
+
+                    var aEle = puzzle_smalls[a];
+                    var bEle = puzzle_smalls[b];
+
+                    temp_left = aEle.style.left;
+                    aEle.style.left = bEle.style.left;
+                    bEle.style.left = temp_left;
+
+                    temp_top = aEle.style.top;
+                    aEle.style.top = bEle.style.top;
+                    bEle.style.top = temp_top;
+
+                    temp_index = aEle.getAttribute("data-index");
+                    aEle.setAttribute("data-index",bEle.getAttribute("data-index") );
+                    bEle.setAttribute("data-index",temp_index);
+
+                //    jquery  更换时出现  重叠
 
 
                 }
@@ -408,6 +527,7 @@
             function  Puzzle(game){
                this.game = game;
                 this.initDomPuzzle();
+
             }
 
     //jQuery(document).ready(function ($) {
