@@ -438,9 +438,8 @@ body{
 
 
 .realpuzzle_bg-container{
-    width: 93%;
-    left: 50%;
-    margin-left: -46.5%;
+    width: 92%;
+    left: 4%;
     position: relative;
     top: 10%;
     height: 81%;
@@ -464,12 +463,12 @@ body{
         height: 0%;
     }
     100% {
-        width: 93%;
-        left: 50%;
-        margin-left: -46.5%;
+        width: 92%;
+        left: 4%;
         position: relative;
         top: 10%;
         height: 81%;
+        display: none;
     }
 }
 @keyframes puzzleBgChange {
@@ -483,12 +482,12 @@ body{
         height: 0%;
     }
     100% {
-        width: 93%;
-        left: 50%;
-        margin-left: -46.5%;
+        width: 92%;
+        left: 4%;
         position: relative;
         top: 10%;
         height: 81%;
+        display: none;
     }
 }
 .realpuzzle_bg{

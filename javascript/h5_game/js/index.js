@@ -502,9 +502,99 @@
 
                     $(".puzzle_small").bind("touchstart",function(e){
 
+                        $(this).css("transition","none");
+                         //距离左边边界距离(x值)   多出来15px  因为外层距离  但是offset 0  因为左边无缝隙
+                         //that.start_x = e.originalEvent.targetTouches[0].pageX-parseInt($(".realpuzzle_bg-container").css("left"));
+
+                         $(this).css("z-index",999);
+                         that.start_x = e.originalEvent.targetTouches[0].pageX;
+                         that.start_y = e.originalEvent.targetTouches[0].pageY;
+
+
+                         //小拼图  内 x  的距离
+                         that.start_inner_x = e.originalEvent.targetTouches[0].pageX-this.offsetLeft;
+                         that.start_inner_y = e.originalEvent.targetTouches[0].pageY-this.offsetTop;
+                         that.start_offsetLeft = this.offsetLeft;
+                         that.start_offsetTop = this.offsetTop;
+
+
+
+                        console.log(that.start_offsetTop)
+
+
 
                     });
                     $(".puzzle_small").bind("touchmove",function(e){
+
+                    //    限定边界 不让移动
+
+
+                    that.current_x = e.originalEvent.targetTouches[0].pageX;
+                    that.current_y = e.originalEvent.targetTouches[0].pageY;
+
+
+
+                        //
+                        ////左边界
+                        //if(this.offsetLeft - (that.start_inner_x-that.current_x)<0){
+                        //
+                        //    $(this).css("left",0);
+                        //
+                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
+                        //}
+                        ////右边界
+                        //else if( that.current_x-that.start_inner_x >$(this).width()*2){
+                        //
+                        //    $(this).css("left",$(this).width()*2);
+                        //
+                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
+                        //}
+                        ////上边界
+                        //else  if(this.offsetTop - (that.start_inner_y-that.current_y)<0){
+                        //
+                        //    $(this).css("left",that.current_x-that.start_inner_x+"px");
+                        //
+                        //    $(this).css("top",0);
+                        //}
+                        ////下边界
+                        //else if( that.current_y-that.start_inner_y >$(this).height()*2){
+                        //
+                        //    $(this).css("left",that.current_x-that.start_inner_x);
+                        //
+                        //    $(this).css("top",$(this).height()*2+"px");
+                        //}
+                        ////原点
+                        //else if(this.offsetLeft - (that.start_inner_x-that.current_x)==0&&this.offsetTop - (that.start_inner_y-that.current_y)==0){
+                        //    $(this).css("top",0);
+                        //    $(this).css("left",0);
+                        //
+                        //}
+                        //else if(this.offsetLeft - (that.start_inner_x-that.current_x)==0&&that.current_y-that.start_inner_y ==$(this).height()*2){
+                        //    $(this).css("top",$(this).height()*2+"px");
+                        //    $(this).css("left",0);
+                        //}
+                        //else if( that.current_x-that.start_inner_x ==$(this).width()*2&&this.offsetTop - (that.start_inner_y-that.current_y)==0){
+                        //
+                        //    $(this).css("left",$(this).width()*2+"px");
+                        //
+                        //    $(this).css("top",0);
+                        //}
+                        //else if( that.current_x-that.start_inner_x ==$(this).width()*2&&that.current_y-that.start_inner_y ==$(this).height()*2){
+                        //
+                        //    $(this).css("left",$(this).width()*2+"px");
+                        //
+                        //    $(this).css("top",$(this).height()*2+"px");
+                        //}
+                        //
+                        ////正常
+                        //else {
+                        //
+                        //    $(this).css("left",that.current_x-that.start_inner_x+"px");
+                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
+                        //}
+
+                        $(this).css("left",that.current_x-that.start_inner_x+"px");
+                        $(this).css("top",that.current_y-that.start_inner_y+"px");
 
 
                     });
