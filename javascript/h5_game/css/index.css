@@ -568,11 +568,39 @@ body{
 }
 
 
-
-
 .puzzle_small img{
     position: absolute;
 }
+
+/*.puzzle_1{*/
+    /*top: 0;left: 0;*/
+/*}*/
+/*.puzzle_2{*/
+    /*top: 0;  left: 33.3%;*/
+/*}*/
+/*.puzzle_3{*/
+    /*top: 0;  left: 66.6%;*/
+/*}*/
+/*.puzzle_4{*/
+    /*top: 33.3%;  left: 0%;*/
+/*}*/
+/*.puzzle_5{*/
+    /*top: 33.3%;  left: 33.3%;*/
+/*}*/
+/*.puzzle_6{*/
+    /*top: 33.3%;  left: 66.6%;*/
+/*}*/
+/*.puzzle_7{*/
+    /*top: 66.6%;  left: 0%;*/
+/*}*/
+/*.puzzle_8{*/
+    /*top:  66.6%;  left: 33.3%;*/
+/*}*/
+/*.puzzle_9{*/
+    /*top: 66.6%;  left: 66.6%;*/
+/*}*/
+
+
 
 
 .puzzle_1 img{

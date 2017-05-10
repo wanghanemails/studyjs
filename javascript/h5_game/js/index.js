@@ -443,15 +443,26 @@
                         $(".hasLastPuzzle").css("display","block");
                         $(".noLastPuzzle").css("display","none");
                     }
+                    that.puzzle_width = $(".puzzle_small").width();
+                    that.puzzle_height= $(".puzzle_small").height();
+                    that.each_area = that.puzzle_height*that.puzzle_width;
 
-                    var task_7  = setTimeout(function(){
+                    that.after_random_init = [];
+
+
+                    var task_time_7  = setTimeout(function(){
+
+
                         that.randomPuzzle_small();
+
+                        clearTimeout(task_time_7)
                     },2000);
 
 
 
 
-                },randomPuzzle_small:function(){
+                },
+                randomPuzzle_small:function(){
                     var that = this;
 
                     for(var i=0;i<20;i++){
@@ -460,38 +471,119 @@
                         var i_index = parseInt(Math.random()*9);
 
                         if(i_index!=b_index){
-                            that.changeOrder(i_index,b_index);
+                            that.initChangeOrder(i_index,b_index);
                         }
                     }
 
 
 
 
+                //    记录运动完后的初始对应  位置
+                    that.initFirstRandomAfter();
+
+
+
+                    that.puzzleEvent();
 
                 },
-                changeOrder:function(a,b){
-                    var temp_index,temp_left,temp_top
-                    var puzzle_smalls=document.querySelectorAll('.puzzle_small');
+                initFirstRandomAfter:function(){
 
 
-                    var aEle = puzzle_smalls[a];
-                    var bEle = puzzle_smalls[b];
+                    var that = this;
 
-                    temp_left = aEle.style.left;
-                    aEle.style.left = bEle.style.left;
-                    bEle.style.left = temp_left;
 
-                    temp_top = aEle.style.top;
-                    aEle.style.top = bEle.style.top;
-                    bEle.style.top = temp_top;
 
-                    temp_index = aEle.getAttribute("data-index");
-                    aEle.setAttribute("data-index",bEle.getAttribute("data-index") );
-                    bEle.setAttribute("data-index",temp_index);
+                    for(var i=0;i<$(".puzzle_small").length;i++){
+                       var obj = {}
+                        //遇见神坑 调试了无数遍   注意 jquery  获取的是外链的css    js 获取的是内联  开始替换时 jquery 无效弃用后 用了原生js
+
+                        obj.left =$(".puzzle_small")[i].style.left;
+                        obj.top =$(".puzzle_small")[i].style.top;
+                        obj["data-index"] =$($(".puzzle_small")[i]).attr("data-index");
+                        obj.n =$($(".puzzle_small")[i]).index() ;
+
+                        that.after_random_init.push( that.deepCopy(obj,{}));
+
+
+                    }
+
+
+
+
+
+
+
+                },
+                initChangeOrder:function(a,b,has_after_random_init){
+                    if(!has_after_random_init){
+
+
+                        var temp_index,temp_left,temp_top
+                        //var puzzle_smalls=document.getElementsByClassName("puzzle_small");
+
+
+                        var aEle = document.getElementsByClassName("puzzle_small")[a];
+                        var bEle = document.getElementsByClassName("puzzle_small")[b];
+
+                        temp_left = aEle.style.left;
+                        aEle.style.left = bEle.style.left;
+                        bEle.style.left = temp_left;
+
+                        temp_top = aEle.style.top;
+                        aEle.style.top = bEle.style.top;
+                        bEle.style.top = temp_top;
+
+                        temp_index = aEle.getAttribute("data-index");
+                        aEle.setAttribute("data-index",bEle.getAttribute("data-index") );
+                        bEle.setAttribute("data-index",temp_index);
+                    }
+                    else{
+
+                    }
+
 
                 //    jquery  更换时出现  重叠
 
 
+                },
+                changeArrayRealDistance:function(n_index_a,n_index_b){
+                //    多走一步 每次 点击松开后，换虚拟位置的同时   更换数组中实际位移动画前位置  防止动画位移乱跑；
+                //    ..... 加上动画
+
+                    debugger;
+                        var that = this;
+
+                        var temp = that.deepCopy(that.after_random_init[n_index_a],{});
+                       //深clone a
+
+                       var  n_a = that.after_random_init[n_index_a];
+
+                       var  n_b = that.after_random_init[n_index_b];
+
+                    that.after_random_init[n_index_a]["data-index"] = that.after_random_init[n_index_b]["data-index"];
+                    that.after_random_init[n_index_a]["left"] = that.after_random_init[n_index_b]["left"];
+                    that.after_random_init[n_index_a]["top"] = that.after_random_init[n_index_b]["top"];
+
+
+                    that.after_random_init[n_index_b]["data-index"] = temp["data-index"];
+                    that.after_random_init[n_index_b]["left"] = temp["left"];
+                    that.after_random_init[n_index_b]["top"] = temp["top"];
+
+
+
+                },
+                deepCopy:function(p, c){
+                    var that = this;
+                    var c = c || [];
+                    for (var i in p) {
+                        if (typeof p[i] === 'object') {
+                            c[i] = (p[i].constructor === Array) ? [] : {};
+                            that.deepCopy(p[i], c[i]);
+                        } else {
+                            c[i] = p[i];
+                        }
+                    }
+                    return c;
                 },
 
                 puzzleEvent:function(){
@@ -514,12 +606,17 @@
                          //小拼图  内 x  的距离
                          that.start_inner_x = e.originalEvent.targetTouches[0].pageX-this.offsetLeft;
                          that.start_inner_y = e.originalEvent.targetTouches[0].pageY-this.offsetTop;
+
+                         that.current_move_before_top = $(this).css("top");
+                         that.current_move_before_left =$(this).css("left");
+
                          that.start_offsetLeft = this.offsetLeft;
                          that.start_offsetTop = this.offsetTop;
 
 
 
-                        console.log(that.start_offsetTop)
+                       var n =  $(this).index();
+
 
 
 
@@ -534,72 +631,37 @@
 
 
 
-                        //
-                        ////左边界
-                        //if(this.offsetLeft - (that.start_inner_x-that.current_x)<0){
-                        //
-                        //    $(this).css("left",0);
-                        //
-                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
-                        //}
-                        ////右边界
-                        //else if( that.current_x-that.start_inner_x >$(this).width()*2){
-                        //
-                        //    $(this).css("left",$(this).width()*2);
-                        //
-                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
-                        //}
-                        ////上边界
-                        //else  if(this.offsetTop - (that.start_inner_y-that.current_y)<0){
-                        //
-                        //    $(this).css("left",that.current_x-that.start_inner_x+"px");
-                        //
-                        //    $(this).css("top",0);
-                        //}
-                        ////下边界
-                        //else if( that.current_y-that.start_inner_y >$(this).height()*2){
-                        //
-                        //    $(this).css("left",that.current_x-that.start_inner_x);
-                        //
-                        //    $(this).css("top",$(this).height()*2+"px");
-                        //}
-                        ////原点
-                        //else if(this.offsetLeft - (that.start_inner_x-that.current_x)==0&&this.offsetTop - (that.start_inner_y-that.current_y)==0){
-                        //    $(this).css("top",0);
-                        //    $(this).css("left",0);
-                        //
-                        //}
-                        //else if(this.offsetLeft - (that.start_inner_x-that.current_x)==0&&that.current_y-that.start_inner_y ==$(this).height()*2){
-                        //    $(this).css("top",$(this).height()*2+"px");
-                        //    $(this).css("left",0);
-                        //}
-                        //else if( that.current_x-that.start_inner_x ==$(this).width()*2&&this.offsetTop - (that.start_inner_y-that.current_y)==0){
-                        //
-                        //    $(this).css("left",$(this).width()*2+"px");
-                        //
-                        //    $(this).css("top",0);
-                        //}
-                        //else if( that.current_x-that.start_inner_x ==$(this).width()*2&&that.current_y-that.start_inner_y ==$(this).height()*2){
-                        //
-                        //    $(this).css("left",$(this).width()*2+"px");
-                        //
-                        //    $(this).css("top",$(this).height()*2+"px");
-                        //}
-                        //
-                        ////正常
-                        //else {
-                        //
-                        //    $(this).css("left",that.current_x-that.start_inner_x+"px");
-                        //    $(this).css("top",that.current_y-that.start_inner_y+"px");
-                        //}
-
                         $(this).css("left",that.current_x-that.start_inner_x+"px");
                         $(this).css("top",that.current_y-that.start_inner_y+"px");
 
-
+                    // //只管位移    减去到小方块总的点的距离
                     });
 
                     $(".puzzle_small").bind("touchend ",function(e){
+
+                        that.end_x = e.originalEvent.changedTouches [0].pageX;
+                        that.end_y = e.originalEvent.changedTouches [0].pageY;
+
+                        $(this).css("z-index",100);
+                        $(this).css("transition","all 0.5s ease 0s");
+
+
+                      var obj =  that.isChangeOrNo(this,that.end_x-that.start_inner_x,that.end_y-that.start_inner_y);
+
+
+                        if($(this).index()== $(obj).index()){
+
+                            $(this).css("left",that.after_random_init[$(this).index()].left);
+                            $(this).css("top",that.after_random_init[$(this).index()].top);
+                            $(this).attr("data-index",that.after_random_init[$(this).index()]["data-index"]);
+
+                        }else{
+
+                                //that.changeOrder($(this).index(),$(obj).index());
+                                that.changeArrayRealDistance($(this).index(),$(obj).index());
+
+                        }
+
 
                     });
 
@@ -608,13 +670,52 @@
                         var e = e||event;
                     });
 
+                },
+                isChangeOrNo:function(obj,move_x,move_y){
+                     var that = this;
+                    //判断和谁换
+
+
+
+
+                  //  重合面积大于一半。
+
+                    for(var i=0;i<$(".puzzle_small").length;i++){
+
+                        console.log($(".puzzle_small")[i].offsetLeft)
+                        console.log($(".puzzle_small")[i].offsetTop)
+                        console.log(move_x)
+                        console.log(move_y)
+
+                        var doublication_width = that.puzzle_width - ( Math.abs($(".puzzle_small")[i].offsetLeft-move_x));
+                        var doublication_height = that.puzzle_height - ( Math.abs($(".puzzle_small")[i].offsetTop-move_y));
+                        var doublication_area = doublication_width*doublication_height;
+
+
+
+
+                        if(doublication_width>0&&doublication_height>0&&doublication_area>(that.each_area/2)){
+
+                            return  $(".puzzle_small")[i];
+
+                        }else {
+                            return obj;
+                        }
+
+
+                    }
+
+
+
+
                 }
             }
            Puzzle.prototype.constructor = Puzzle;
             function  Puzzle(game){
-               this.game = game;
+                this.game = game;
                 this.initDomPuzzle();
-                this.puzzleEvent();
+
+
 
             }
 
