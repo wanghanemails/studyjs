@@ -346,11 +346,12 @@
 
                    $(".begin_puzzle").bind("touchstart",function(){
 
+
                        $(".begin_puzzle").addClass("begin_puzzle_changeBig");
                        //$(".realpuzzle_bg-container").addClass("realpuzzle_bg_move");
 
 
-                       $(".realpuzzle_bg").addClass("isShow_wait_random");
+                       //$(".realpuzzle_bg").addClass("isShow_wait_random");
 
                        var time_task_6 =  setTimeout(function(){
 
@@ -360,15 +361,21 @@
 
 
 
+                           if(!$(this).hasClass("complete_puzzle") || !$(this).hasClass("wait_puzzle")){
+                               if(!that.puzzle){
+                                   that.puzzle = new Puzzle(that);
+                               }
+                           }else{
 
+
+
+                           }
 
                            //$(".puzzle_small").width( parseInt(($(".realpuzzle_bg").width()-6)/3));
                            //$(".puzzle_small").height(parseInt(($(".realpuzzle_bg").height()-6)/3));
 
 
-                           if(!that.puzzle){
-                               that.puzzle = new Puzzle(that);
-                           }
+
 
 
 
@@ -377,13 +384,6 @@
                            clearTimeout(time_task_6);
 
                         },2000);
-
-
-
-
-
-
-
 
                    });
 
@@ -425,7 +425,7 @@
                 img2.src = "images/loading-time-img.png"
                 img3.src = $(".loading-content img").attr("src")
                 img3.onload = function(){
-                    var game  = new  Game("loading-num-percentage");
+                    window.game  = new  Game("loading-num-percentage");
                 };
 
           }
@@ -476,13 +476,10 @@
                     }
 
 
-
+                    that.alreadyRandom = true;
 
                 //    记录运动完后的初始对应  位置
                     that.initFirstRandomAfter();
-
-
-
                     that.puzzleEvent();
 
                 },
@@ -550,8 +547,12 @@
                 //    多走一步 每次 点击松开后，换虚拟位置的同时   更换数组中实际位移动画前位置  防止动画位移乱跑；
                 //    ..... 加上动画
 
-                    debugger;
+
                         var that = this;
+                    that.after_random_init[n_index_a];
+                    that.after_random_init[n_index_b];
+
+
 
                         var temp = that.deepCopy(that.after_random_init[n_index_a],{});
                        //深clone a
@@ -569,7 +570,17 @@
                     that.after_random_init[n_index_b]["left"] = temp["left"];
                     that.after_random_init[n_index_b]["top"] = temp["top"];
 
+                    that.after_random_init[n_index_a]
+                    that.after_random_init[n_index_b]
 
+                    $($(".puzzle_small")[n_index_a]).css("left",that.after_random_init[n_index_a]["left"])
+                    $($(".puzzle_small")[n_index_a]).css("top",that.after_random_init[n_index_a]["top"])
+                    $($(".puzzle_small")[n_index_a]).attr("data-index",that.after_random_init[n_index_a]["data-index"])
+
+
+                    $($(".puzzle_small")[n_index_b]).css("left",that.after_random_init[n_index_b]["left"])
+                    $($(".puzzle_small")[n_index_b]).css("top",that.after_random_init[n_index_b]["top"])
+                    $($(".puzzle_small")[n_index_b]).attr("data-index",that.after_random_init[n_index_b]["data-index"])
 
                 },
                 deepCopy:function(p, c){
@@ -646,7 +657,10 @@
                         $(this).css("transition","all 0.5s ease 0s");
 
 
-                      var obj =  that.isChangeOrNo(this,that.end_x-that.start_inner_x,that.end_y-that.start_inner_y);
+
+                      //  1 传入当前 时刻  的 被点击  被放开 拼图 的位置。！
+
+                      var obj =  that.isChangeOrNo(this,this.offsetLeft,this.offsetTop);
 
 
                         if($(this).index()== $(obj).index()){
@@ -668,6 +682,56 @@
 
                     $(".puzzle_small").bind("transitionend ",function(e){
                         var e = e||event;
+
+                        var str = "";
+                        for(var i=0;i<$(".puzzle_small").length;i++){
+
+                            str += $($(".puzzle_small")[i]).attr("data-index");
+
+
+                        }
+
+                        if(str == "123456789"&&that.game.hasLastPuzzle&&that.alreadyRandom){
+                            that.game.hasKey = true;
+                            $(".realpuzzle_bg-container").css("display","none");
+                            $(".puzzle-container").css("display","none");
+                            //$(".begin_puzzle").removeClass("begin_puzzle_changeBig").addClass("complete_puzzle_changeSmall").addClass("complete_puzzle").removeClass(".begin_puzzle");
+                            //$(".begin_puzzle").removeClass("begin_puzzle_changeBig");
+                            //
+                            //if(!$(".begin_puzzle").hasClass("complete_puzzle_changeSmall")){
+                            //    $(".begin_puzzle") .addClass("complete_puzzle_changeSmall");
+                            //}
+                            //if(!$(".begin_puzzle").hasClass("complete_puzzle")){
+                            //    $(".begin_puzzle") .addClass("complete_puzzle");
+                            //}
+                            //$(".begin_puzzle") .removeClass(".begin_puzzle");
+                            //console.log()
+                        }
+
+                        if(str == "123456789"&&that.alreadyRandom&&!that.game.hasLastPuzzle){
+
+                            $(".realpuzzle_bg-container").css("display","none");
+                            $(".puzzle-container").css("display","none");
+
+                            //document.getElementById("puzzle_wall").className = "puzzle complete_puzzle_changeSmall complete_puzzle";
+
+                            $(".begin_puzzle").css("display","none");
+                            $(".complete_puzzle").css("display","block");
+                            $(".complete_puzzle").addClass("complete_puzzle_changeSmall");
+                            that.game.hasCompletPuzzle = true;
+                            //$(".begin_puzzle").removeClass("begin_puzzle_changeBig");
+                            //
+                            //if(!$(".begin_puzzle").hasClass("complete_puzzle_changeSmall")){
+                            //    $(".begin_puzzle") .addClass("complete_puzzle_changeSmall");
+                            //}
+                            //if(!$(".begin_puzzle").hasClass("complete_puzzle")){
+                            //    $(".begin_puzzle") .addClass("complete_puzzle");
+                            //}
+                            //$(".begin_puzzle") .removeClass(".begin_puzzle");
+
+                            console.log("完成拼图但是 缺一块");
+                        }
+
                     });
 
                 },
@@ -682,31 +746,29 @@
 
                     for(var i=0;i<$(".puzzle_small").length;i++){
 
-                        console.log($(".puzzle_small")[i].offsetLeft)
-                        console.log($(".puzzle_small")[i].offsetTop)
-                        console.log(move_x)
-                        console.log(move_y)
+
+                        if($(".puzzle_small")[i]==obj){
+                            continue
+                        }
 
                         var doublication_width = that.puzzle_width - ( Math.abs($(".puzzle_small")[i].offsetLeft-move_x));
                         var doublication_height = that.puzzle_height - ( Math.abs($(".puzzle_small")[i].offsetTop-move_y));
                         var doublication_area = doublication_width*doublication_height;
 
 
-
-
                         if(doublication_width>0&&doublication_height>0&&doublication_area>(that.each_area/2)){
+
 
                             return  $(".puzzle_small")[i];
 
-                        }else {
-                            return obj;
                         }
+
 
 
                     }
 
 
-
+                    return obj;
 
                 }
             }
