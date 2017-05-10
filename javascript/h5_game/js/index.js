@@ -243,7 +243,7 @@
 
                    });
 
-                   $(".zaihuang-medication").bind("touchstart",function(){
+                   $(".zaihuang-medication").unbind("touchstart").bind("touchstart",function(){
                         $(".section-documents-container").css("display","block");
                         $(".section-documents").css("display","block").siblings().css("display","none");
                         var img_str = "<div class='country-goods'><img src='images/top3.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
@@ -258,7 +258,7 @@
                        });
 
                    });
-                   $(".yunnan-medication").bind("touchstart",function(){
+                   $(".yunnan-medication").unbind("touchstart").bind("touchstart",function(){
 
                        $(".section-documents-container").css("display","block");
                        $(".section-documents").css("display","block").siblings().css("display","none");
@@ -292,7 +292,7 @@
                    });
 
 
-                   $(".huawei-iphone").bind("touchstart",function(){
+                   $(".huawei-iphone").unbind("touchstart").bind("touchstart",function(){
                        $(".section-documents-container").css("display","block");
                        $(".section-documents").css("display","block").siblings().css("display","none");
                        var img_str = "<div class='country-goods'><img src='images/top2.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
@@ -309,19 +309,42 @@
                    });
 
 
-                   $(".important-paper").bind("touchstart",function(){
-                       $(".section-documents-container").css("display","block");
-                       $(".section-clue").css("display","block").siblings().css("display","none");
-                       var img_str = "<div class='clue'><img src='images/photo.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+                   $(".important-paper").unbind("touchstart").bind("touchstart",function(){
 
-                       $(".section-clue").html(img_str);
-                        that.hasLastPuzzle = true;
 
-                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
-                           $(".section-documents-container").css("display","none");
-                           $(".section-clue").html("");
+                       if(that.hasCompletPuzzle&&!that.hasKey){
 
-                       });
+                           $(".section-documents-container").css("display","block");
+                           $(".section-clue").css("display","block").siblings().css("display","none");
+                           var img_str = "<div class='clue'><img src='images/key.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                           $(".section-clue").html(img_str);
+                           that.hasLastPuzzle = true;
+                           that.hasKey = true;
+
+                           $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                               $(".section-documents-container").css("display","none");
+                               $(".section-clue").html("");
+
+                           });
+                       }else{
+
+                           if(!that.hasLastPuzzle){
+
+                           $(".section-documents-container").css("display","block");
+                           $(".section-clue").css("display","block").siblings().css("display","none");
+                           var img_str = "<div class='clue'><img src='images/photo.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                           $(".section-clue").html(img_str);
+                            that.hasLastPuzzle = true;
+
+                           $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                               $(".section-documents-container").css("display","none");
+                               $(".section-clue").html("");
+
+                           });
+                           }
+                       }
 
                    });
 
@@ -340,11 +363,28 @@
                              $(".section-clue").html("");
 
                          });
+                     }else{
+
+
+
+                         $(".section-documents-container").css("display","block");
+                         $(".section-clue_calendar").css("display","block").siblings().css("display","none");
+                         var img_str = "<div class='clue_calendar'><img src='images/in_table_clue.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                         $(".section-clue_calendar").html(img_str);
+
+
+                         $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                             $(".section-documents-container").css("display","none");
+                             $(".section-clue_calendar").html("");
+
+                         });
+
                      }
 
                    });
 
-                   $(".begin_puzzle").bind("touchstart",function(){
+                   $(".begin_puzzle").unbind("touchstart").bind("touchstart",function(){
 
 
                        $(".begin_puzzle").addClass("begin_puzzle_changeBig");
@@ -387,6 +427,95 @@
 
                    });
 
+                   $(".complete_puzzle").unbind("touchstart").bind("touchstart",function(){
+
+                        if(that.hasLastPuzzle&&that.hasCompletPuzzle){
+                            $(".section-documents-container").css("display","block");
+                            $(".section-documents").css("display","block").siblings().css("display","none");
+                            var img_str = "<div class='country-goods'><img src='images/top6.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                            $(".section-documents").html(img_str);
+
+
+                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                $(".section-documents-container").css("display","none");
+                                $(".section-documents").html("");
+
+                            });
+                        }
+                       else if(that.hasCompletPuzzle&&!that.hasLastPuzzle){
+                            $(".section-documents-container").css("display","block");
+                            $(".section-clue").css("display","block").siblings().css("display","none");
+                            var img_str = "<div class='clue'><img src='images/photo_clue01.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                            $(".section-clue").html(img_str);
+
+
+                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                $(".section-documents-container").css("display","none");
+                                $(".section-clue").html("");
+
+                            });
+                        }
+                   });
+
+                   $(".uva").unbind("touchstart").bind("touchstart",function(){
+
+                     if(!that.controller_uva){
+                         $(".section-documents-container").css("display","block");
+                         $(".section-documents").css("display","block").siblings().css("display","none");
+                         var img_str = "<div class='country-goods'><img src='images/top5.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                         $(".section-documents").html(img_str);
+
+
+                         $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                             $(".section-documents-container").css("display","none");
+                             $(".section-documents").html("");
+
+                         });
+                     }else{
+
+
+
+                     }
+                   });
+
+                   $(".light").bind("touchstart",function(){
+
+                       if($(".light_close").css("display")=="block"){
+                           $(".light_close").css("display","none")
+                           $(".light_open").css("display","block")
+                       }else{
+                           $(".light_close").css("display","block")
+                           $(".light_open").css("display","none")
+                       }
+                   });
+
+                   $(".show_toy").bind("touchstart",function(){
+                           $(".toy").css("display","block");
+                   });
+
+
+                   $(".show_book").bind("touchstart",function(){
+
+                       $(".section-documents-container").css("display","block");
+                       $(".section-clue_book").css("display","block").siblings().css("display","none");
+                       var img_str = "<div class='clue_book'><img src='images/password.png' alt=''/></div><div class='close-mask'><img src='images/close-mask02.png' alt=''/></div>"
+
+                       $(".section-clue_book").html(img_str);
+
+
+                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".section-clue_book").html("");
+
+                       });
+
+                   });
+
+
+
 
                  $("img").unbind("touchstart",function(){
                      return false;
@@ -408,6 +537,7 @@
                 this.container_width = parseInt(window.innerHeight*(this.background_WH));
                 this.hasKey = false;
                 this.hasLastPuzzle = false;
+                this.controller_uva = false;
 
 
 
@@ -692,20 +822,31 @@
                         }
 
                         if(str == "123456789"&&that.game.hasLastPuzzle&&that.alreadyRandom){
+
                             that.game.hasKey = true;
                             $(".realpuzzle_bg-container").css("display","none");
                             $(".puzzle-container").css("display","none");
-                            //$(".begin_puzzle").removeClass("begin_puzzle_changeBig").addClass("complete_puzzle_changeSmall").addClass("complete_puzzle").removeClass(".begin_puzzle");
-                            //$(".begin_puzzle").removeClass("begin_puzzle_changeBig");
-                            //
-                            //if(!$(".begin_puzzle").hasClass("complete_puzzle_changeSmall")){
-                            //    $(".begin_puzzle") .addClass("complete_puzzle_changeSmall");
-                            //}
-                            //if(!$(".begin_puzzle").hasClass("complete_puzzle")){
-                            //    $(".begin_puzzle") .addClass("complete_puzzle");
-                            //}
-                            //$(".begin_puzzle") .removeClass(".begin_puzzle");
-                            //console.log()
+
+                            $(".begin_puzzle").css("display","none");
+                            $(".complete_puzzle").css("display","block");
+                            $(".complete_puzzle").addClass("complete_puzzle_changeSmall");
+                            that.game.hasCompletPuzzle = true;
+
+
+                            $(".section-documents-container").css("display","block");
+                            $(".section-clue").css("display","block").siblings().css("display","none");
+                            var img_str = "<div class='clue'><img src='images/key.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                            $(".section-clue").html(img_str);
+
+
+
+                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                $(".section-documents-container").css("display","none");
+                                $(".section-clue").html("");
+
+                            });
+
                         }
 
                         if(str == "123456789"&&that.alreadyRandom&&!that.game.hasLastPuzzle){
@@ -729,7 +870,18 @@
                             //}
                             //$(".begin_puzzle") .removeClass(".begin_puzzle");
 
-                            console.log("完成拼图但是 缺一块");
+                            $(".section-documents-container").css("display","block");
+                            $(".section-clue").css("display","block").siblings().css("display","none");
+                            var img_str = "<div class='clue'><img src='images/photo_clue01.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                            $(".section-clue").html(img_str);
+
+
+                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                $(".section-documents-container").css("display","none");
+                                $(".section-clue").html("");
+
+                            });
                         }
 
                     });

@@ -112,6 +112,26 @@ body{
 
     z-index: 99;
 }
+.section-clue_calendar{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    z-index: 99;
+}
+.section-clue_book{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    z-index: 99;
+}
 .section-documents-container img{
     width: 100%;
 }
@@ -295,7 +315,14 @@ body{
     top: 11%;
     z-index: 100;
 }
+.section-clue_calendar .clue_calendar{
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 
+    top: 20%;
+    z-index: 100;
+}
 .close-mask{
     z-index: 99;
     position: relative;
@@ -305,6 +332,55 @@ body{
     top: 0;
     top: 8%;
 }
+.section-clue_calendar .close-mask{
+    z-index: 99;
+    position: relative;
+    width: 48px;
+    height: 64px;
+    margin: 0 auto;
+    top: 0;
+    top: 20%;
+}
+
+
+
+
+
+.section-clue_book .clue_book{
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    top: 2%;
+    z-index: 100;
+}
+.close-mask{
+    z-index: 99;
+    position: relative;
+    width: 48px;
+    height: 64px;
+    margin: 0 auto;
+    top: 0;
+    top: 8%;
+}
+.section-clue_book .close-mask{
+    z-index: 99;
+    position: relative;
+    width: 48px;
+    height: 64px;
+    margin: 0 auto;
+    top: 0;
+    top: 30%;
+}
+
+
+
+
+
+
+
+
+
 .close-mask img{
     width: 100%;
 }
@@ -372,6 +448,63 @@ body{
     position: absolute;
     left: 29.8%;
     top: 11.36%;
+}
+
+.uva{
+    width: 13.02%;
+    height: 12.93%;
+    position: absolute;
+    bottom: 5%;
+    left: 62%;
+
+}
+.uva img{
+    width: 100%;
+}
+
+.light{
+    width: 7.92%;
+    height: 11.44%;
+    position: absolute;
+    left: 0;
+    top: 31.51%;
+}
+.light_close{
+    width: 100%;
+    display: block;
+}
+.light_open{
+    width: 100%;
+    display: none;
+}
+.light_close img,.light_open img{
+    width: 100%;
+
+}
+.toy{
+    width: 9.81%;
+    height: 11.44%;
+    position: absolute;
+    right: 4.38%;
+    top: 27.19%;
+    display: none;
+}
+.toy img{
+    width: 100%;
+}
+.show_toy{
+    width: 25%;
+    height: 11.44%;
+    position: absolute;
+    right: 0;
+    top: 27%;
+}
+.show_book{
+    width: 25%;
+    height: 11.44%;
+    position: absolute;
+    right: 0;
+    top: 15%;
 }
 .begin_puzzle{
      width: 7.92%;
