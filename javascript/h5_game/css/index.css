@@ -60,11 +60,11 @@ body{
     height: 100%;
     position: relative;
     left: 0;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
 }
 .section1{
     display: none;
@@ -345,7 +345,7 @@ body{
     height: 100%;
     background: url(../images/loading-bg.png) no-repeat;
     background-size: cover;
-
+    z-index: 100;
     position: relative;
 
 }
@@ -459,8 +459,8 @@ body{
     left: 108px;
     -webkit-animation: trainMove 10s cubic-bezier(0.8,0.58,0.02,1.02) infinite;
     animation: trainMove 10s  cubic-bezier(0.8,0.58,0.02,1.02) infinite;
-    animation-delay:1s;
-    -webkit-animation-delay:1s;
+    animation-delay:0s;
+    -webkit-animation-delay:0s;
 }
 /*infinite    forwards */
 .train img{
@@ -474,7 +474,7 @@ body{
 
     }
     100% {
-        left: -2000px;
+        left: -1800px;
     }
 }
 @keyframes trainMove {
@@ -483,7 +483,7 @@ body{
 
     }
     100% {
-        left: -2000px;
+        left: -1800px;
     }
 }
 
@@ -618,6 +618,19 @@ body{
 }
 
 
+.chair{
+
+    position: absolute;
+    width: 27.718%;
+    height: 42.623%;
+    bottom: 8%;
+    right: -14%;
+
+}
+.chair img{
+    width: 100%;
+}
+
 
 
 
@@ -631,11 +644,11 @@ body{
 
 
 .simulation-train{
-    width: 14%;
+    width: 20%;
     height: 16%;
     position: absolute;
     top: 27%;
-    left: 26%;
+    left: 21%;
     overflow: hidden;
 }
 
@@ -647,8 +660,8 @@ body{
     left: 108px;
     -webkit-animation: trainMove 10s cubic-bezier(0.8,0.58,0.02,1.02) infinite;
     animation: trainMove 10s  cubic-bezier(0.8,0.58,0.02,1.02) infinite;
-    animation-delay:1s;
-    -webkit-animation-delay:1s;
+    animation-delay:0s;
+    -webkit-animation-delay:0s;
 }
 .simulation-bedside-table{
     width: 15%;
@@ -712,7 +725,7 @@ body{
     bottom: 5%;
     right: 4%;
     display: none;
-
+    z-index: 999;
 }
 .uva_controll img{
     width: 100%;
@@ -1121,11 +1134,11 @@ body{
 }
 
 .haier{
-    width: 27%;
-    height: 64%;
+    width: 23%;
+    height: 26%;
     position: absolute;
-    left: 0%;
-    bottom: 7%;
+    left: 2%;
+    bottom: 43%;
     display: inline-block;
 }
 .open_safe{

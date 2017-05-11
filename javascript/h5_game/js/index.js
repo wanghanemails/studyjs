@@ -32,7 +32,9 @@
                     //禁止时间冒泡
 
                     $(".simulation-train-move").width($(".train").width());
-                    $(".simulation-train-move").height($(".train").height());
+                    $(".simulation-train-move").height($(".train").height()*1.5);
+
+
 
 
                     $(".icons").height($(".icons").width());
@@ -114,26 +116,15 @@
                                                     $(".right-arrow").css("display","block")
 
                                                     that.initEventMy();
-
                                                 }
-
-
-
-                                            },1000)
+                                            },800)
                                         }
-
-
-
-                                    },700)
+                                    },500)
 
                                 }
 
-
-
-                            },500)
+                            },300)
                         }
-
-
 
                     },200)
 
@@ -162,7 +153,7 @@
                     //
                     //
                     //
-                    //},5)
+                    //},5);
 
 
 
@@ -346,6 +337,7 @@
                            $(".icon_key").css("display","block");
                            $(".icon_controll").css("display","none");
                            $(".icon_puzzle").css("display","none");
+                           $(".last-paper").css("display","none");
 
                            $(".icon_key").addClass("icon__move");
 
@@ -369,7 +361,7 @@
                             var current_num = parseInt($("#current_num_clue").html())+1;
                                $("#current_num_clue").html(current_num)
 
-
+                               $(".last-paper").css("display","none");
 
 
 
@@ -787,11 +779,13 @@
                            }
                            else{
 
+                               $(".input-container").removeClass("moveshark");
 
                                    $(".input-container").addClass("moveshark");
                            }
                        }
                    });
+
                    $(".input-container").bind("animationend",function(){
                        $(".input-container").removeClass("moveshark");
 
@@ -904,6 +898,7 @@
                 img1.src = "images/loading-bg.png"
                 img2.src = "images/loading-time-img.png"
                 img3.src = $(".loading-content img").attr("src")
+                img3.src = $(".train img").attr("src")
                 img3.onload = function(){
                     window.game  = new  Game("loading-num-percentage");
                 };
