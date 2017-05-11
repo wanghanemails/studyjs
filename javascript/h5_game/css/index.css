@@ -53,7 +53,7 @@ body{
     top: 0;
 
     flex-wrap: nowrap;
-
+    display: block;
 }
 .game-container{
 
@@ -90,6 +90,148 @@ body{
     left: 0;
     opacity: 1;
     display: none;
+    z-index: 100;
+}
+.state_clue{
+    width: 30.6%;
+    height: 4.6%;
+    position: absolute;
+    top: 15.6%;
+    right: 8px;
+
+    z-index: 99;
+}
+.state_clue .font{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.state_clue .font-opt{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+.state_clue .font-font{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+
+}
+.font-font div{
+    display: inline-block;
+    font-family: "fzmwtjw";
+    color: #fff;
+    font-size: 12px;
+    position: relative;
+
+
+}
+
+.font-font .normal{
+    left: 6%;
+    top: -16%;
+}
+
+#total_num_clue{
+    left: -6%;
+}
+
+#current_num_clue{
+    color: #fbb50c;
+    font-size: 30px;
+    left: 3%;
+    top: -8%;
+}
+
+.icon__move{
+    -webkit-animation: icon__move 2s ease forwards;
+    animation: icon__move 2s  ease forwards;
+    animation-iteration-count:1;
+    -webkit-animation-iteration-count:1;
+}
+@-webkit-keyframes icon__move {
+    0% {
+        bottom: -300%;
+        left: -484%;
+        width: 200%;
+    }
+
+    100% {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+}
+@keyframes icon__move {
+    0% {
+        bottom: -300%;
+        left: -484%;
+        width: 200%;
+
+    }
+
+    100% {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+
+.icons {
+    width: 30%;
+    position: absolute;
+    right:  0;
+    top: 50%;
+    background: url(../images/circle.png) no-repeat;
+    background-size: cover;
+}
+.icons img{
+    width: 100%;
+}
+.icons  .icon_puzzle{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+
+.icons  .icon_key{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+.icons  .icon_controll{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+
+.foot{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
     z-index: 100;
 }
 .section-documents{
@@ -132,6 +274,69 @@ body{
 
     z-index: 99;
 }
+
+.password_input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 99;
+
+}
+.password_input .input-container{
+    width: 100%;
+    position: relative;
+    left: 0;
+    top: 50%;
+    margin-top: -14.9%;
+}
+
+.moveshark{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: shark 0.1s ease forwards;
+    animation: shark 0.1s  ease forwards;
+    animation-iteration-count:3;
+    -webkit-animation-iteration-count:3;
+}
+@-webkit-keyframes shark {
+    0% {
+        left: 0px;
+    }
+    25% {
+        left: 20px;
+    }
+    50% {
+        left: 0px;
+    }
+    75% {
+        left: -20px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+@keyframes shark {
+    0% {
+        left: 0px;
+    }
+    25% {
+        left: 20px;
+    }
+    50% {
+        left: 0px;
+    }
+    75% {
+        left: -20px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+
 .section-documents-container img{
     width: 100%;
 }
@@ -215,7 +420,7 @@ body{
 
  }
 .section2-bg{
-    background: url(../images/section2-container-bg.jpg) no-repeat;
+    background: url(../images/section2-container-bg.png) no-repeat;
 
     background-size: cover;
 }
@@ -342,15 +547,54 @@ body{
     top: 20%;
 }
 
+.close-mask_03{
+    z-index: 99;
+    position: relative;
+    width: 48px;
+    height: 64px;
+    margin: 0 auto;
+    top: 58%;
+    margin-top: -14.9%;
+}
+.input_password{
+    width: 43.6%;
+    height: 42%;
+    bottom: 10%;
+    right: 16.8%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
 
+}
 
+.input_password li{
 
+    width: 18.96%;
+    height: 21.62%;
+    padding-right: 4.5%;
+    padding-bottom: 5.2%;
+}
 
+.input_password_showNum{
+    position: absolute;
+    width: 40.41%;
+    height: 28%;
+    right: 19.2%;
+    top: 14.05%;
+    font-size: 34px;
+    font-family: "fzmwtjw";
+    display: flex;
+}
+.input_password_showNum span{
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
 .section-clue_book .clue_book{
     width: 100%;
     margin: 0 auto;
     position: relative;
-
     top: 2%;
     z-index: 100;
 }
@@ -461,7 +705,18 @@ body{
 .uva img{
     width: 100%;
 }
+.uva_controll{
+    width: 13.02%;
+    height: 12.93%;
+    position: absolute;
+    bottom: 5%;
+    right: 4%;
+    display: none;
 
+}
+.uva_controll img{
+    width: 100%;
+}
 .light{
     width: 7.92%;
     height: 11.44%;
@@ -855,6 +1110,450 @@ body{
 
 
 
+ /*场景2*/
+.byd_car{
+    width: 8%;
+    height: 9%;
+    position: absolute;
+    left: 18%;
+    top: 7%;
+    display: inline-block;
+}
+
+.haier{
+    width: 27%;
+    height: 64%;
+    position: absolute;
+    left: 0%;
+    bottom: 7%;
+    display: inline-block;
+}
+.open_safe{
+    width: 15%;
+    height: 22%;
+    position: absolute;
+    left: 32%;
+    top: 11%;
+    display: inline-block;
+
+}
+.open_safe_open{
+    width: 15.76%;
+    height: 31.69%;
+    position: absolute;
+    left: 31.4%;
+    top: 10%;
+    display: none;
+    z-index: 10;
+}
+.open_safe_open img{
+    width: 100%;
+}
+
+
+
+
+.open_table{
+    width: 26%;
+    height: 20%;
+    position: absolute;
+    right: 4%;
+    bottom: 11%;
+    display: inline-block;
+
+}
+
+.open_table_open{
+    width: 15.28%;
+
+    position: absolute;
+    right: 14.5%;
+    bottom: 6.8%;
+    display: none;
+    z-index: 10;
+}
+.open_table_open img{
+    width: 100%;
+}
+
+.no_use{
+    width: 10.47%;
+    position: absolute;
+    bottom: 1%;
+    left: 42%;
+    display: none;
+
+}
+.no_use img{
+    width: 100%;
+}
+
+.sauce{
+    width: 2%;
+    position: absolute;
+    left: 54%;
+    bottom: 43.2%;
+    z-index: 1;
+}
+.sauce img{
+    width: 100%;
+}
+
+.laoganma{
+    width: 4%;
+    position: absolute;
+    left: 56%;
+    bottom: 43%;
+    z-index: 10;
+}
+.laoganma img{
+    width: 100%;
+}
+
+.sauce_move{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: leftRight_rotate 2s ease forwards;
+    animation: leftRight_rotate 2s  ease forwards;
+
+}
+
+@-webkit-keyframes leftRight_rotate {
+    0% {
+        transform: rotate(0deg);
+
+
+    }
+    25%{
+        transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes leftRight_rotate {
+    0% {
+        transform: rotate(0deg);
+
+
+    }
+    25%{
+        transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+
+.laoganma_move{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: laoganma_left 2s ease forwards;
+    animation: laoganma_left 2s  ease forwards;
+
+}
+
+@-webkit-keyframes laoganma_left {
+    0% {
+     left: 56%;
+
+    }
+    25%{
+        left: 57%;
+    }
+    50%{
+        left: 56%;
+    }
+    75%{
+        left: 56%;
+    }
+    100% {
+        left: 56%;
+    }
+}
+@keyframes laoganma_left {
+    0% {
+        left: 56%;
+
+
+    }
+    25%{
+        left: 57%;
+    }
+    50%{
+        left: 57%;
+    }
+    75%{
+        left: 57%;
+    }
+    100% {
+        left: 57%;
+    }
+}
+
+.milk{
+    width: 8.12%;
+    position: absolute;
+    left: 1.1%;
+    top: 19%;
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    perspective-origin: bottom;
+    -webkit-perspective: 100;
+    perspective: 100;
+}
+.milk img{
+    width: 100%;
+}
+
+
+.paper_03{
+    width: 8.12%;
+    position: absolute;
+    left: 8.5%;
+    top: 19.6%;
+
+
+}
+.paper_03 img{
+    width: 100%;
+}
+
+
+
+.paper_02{
+    width: 6.12%;
+    position: absolute;
+    left: 16.4%;
+    top: 16.6%;
+    z-index: -1;
+
+
+}
+.paper_02 img{
+    width: 100%;
+}
+
+
+.paper_01{
+    width: 5.12%;
+    position: absolute;
+    left: 19.4%;
+    top: 26.6%;
+
+}
+.paper_01 img{
+    width: 100%;
+}
+
+.paper_01_move{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: paper_01_move 0.5s ease-in forwards;
+    animation: paper_01_move 0.5s  ease-in forwards;
+}
+
+
+@-webkit-keyframes paper_01_move {
+    0% {
+        transform: rotate(0deg);
+        left: 19.4%;
+        top: 26.6%;
+    }
+
+
+
+    100% {
+        left: 20.4%;
+        top: 26.8%;
+        transform: rotate(90deg);
+    }
+}
+@keyframes paper_01_move {
+    0% {
+        transform: rotate(0deg);
+        left: 19.4%;
+        top: 26.6%;
+    }
+
+
+
+    100% {
+        left: 20.4%;
+        top: 26.8%;
+        transform: rotate(90deg);
+    }
+}
+
+
+
+
+
+
+
+
+@-webkit-keyframes leftRight_rotate_02 {
+    0% {
+        transform: rotate(0deg);
+
+
+    }
+    25%{
+        transform: rotate(15deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes leftRight_rotate_02 {
+    0% {
+        transform: rotate(0deg);
+
+
+    }
+    25%{
+        transform: rotate(15deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.moveMilk{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: milk_move 2s ease forwards;
+    animation: milk_move 2s  ease forwards;
+}
+.moveMilk img{
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    -webkit-animation: milk_img 2s ease forwards;
+    animation: milk_img 2s  ease forwards;
+}
+@-webkit-keyframes milk_move {
+    0% {
+        -webkit-perspective: 0;
+        perspective: 0;
+
+    }
+    25%{
+        -webkit-perspective: 100;
+        perspective: 100;
+    }
+    50%{
+        -webkit-perspective: 0;
+        perspective: 0;
+    }
+    75%{
+        -webkit-perspective: -100;
+        perspective: -100;
+    }
+    100% {
+        -webkit-perspective: 0;
+        perspective: 0;
+    }
+}
+@keyframes milk_move {
+    0% {
+        -webkit-perspective: 0;
+        perspective: 0;
+
+    }
+    25%{
+        -webkit-perspective: 100;
+        perspective: 100;
+    }
+    50%{
+        -webkit-perspective: 0;
+        perspective: 0;
+    }
+    75%{
+        -webkit-perspective: -100;
+        perspective: -100;
+    }
+    100% {
+        -webkit-perspective: 0;
+        perspective: 0;
+    }
+}
+@-webkit-keyframes milk_img {
+    0% {
+        transform: rotate3d(0,0,0,3deg);
+
+    }
+    25%{
+        transform: rotate3d(1,0,0,3deg);
+    }
+    50%{
+        transform: rotate3d(0,0,0,3deg);
+    }
+    75%{
+        transform: rotate3d(-1,0,0,3deg);
+    }
+    100% {
+        transform: rotate3d(0,0,0,3deg);
+    }
+}
+@keyframes milk_img {
+    0% {
+        transform: rotate3d(0,0,0,3deg);
+
+    }
+    25%{
+        transform: rotate3d(1,0,0,3deg);
+    }
+    50%{
+        transform: rotate3d(0,0,0,3deg);
+    }
+    75%{
+        transform: rotate3d(-1,0,0,3deg);
+    }
+    100% {
+        transform: rotate3d(0,0,0,3deg);
+    }
+}
+
+
+ /*场景2*/
+
+
+.foot{
+    width: 100%;
+    height: 100%;
+    background: url(../images/foot.jpg) no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+
+
+
 
 
 
@@ -870,7 +1569,7 @@ body{
         background-position: center center;
     }
     .section2-bg{
-        background: url(../images/section2-container-bg.jpg) no-repeat;
+        background: url(../images/section2-container-bg.png) no-repeat;
         background-size: cover;
         background-position: center center;
     }

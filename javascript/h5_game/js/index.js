@@ -34,123 +34,135 @@
                     $(".simulation-train-move").width($(".train").width());
                     $(".simulation-train-move").height($(".train").height());
 
+
+                    $(".icons").height($(".icons").width());
+                    $(".icons").css("marginTop",-$(".icons").height()/2);
+
                     that.game_container_start_X = 0;
                     that.game_container_client_X = 0;
                     that.moveClient_X = 0;
                     var current_loading_num = 0;
                     $(".section-bg").width(that.container_width);
                     $(".top-container").width(2*that.container_width);
-                    //线上环境
-                    //var time_task = setInterval(function(){
-                    //
-                    //    if(parseInt( $("."+that.loading_num).html())!==50){
-                    //
-                    //        $("."+that.loading_num).html(current_loading_num);
-                    //        current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-                    //
-                    //
-                    //
-                    //
-                    //    }else{
-                    //        clearInterval(time_task);
-                    //        //
-                    //        //$(".loading").css("display","none")
-                    //        //$(".left-arrow").css("display","block")
-                    //        //$(".right-arrow").css("display","block")
-                    //        //
-                    //        //that.initEventMy();
-                    //
-                    //        var time_task2 = setInterval(function(){
-                    //
-                    //            if(parseInt( $("."+that.loading_num).html())!==80){
-                    //
-                    //                $("."+that.loading_num).html(current_loading_num);
-                    //                current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-                    //
-                    //
-                    //
-                    //
-                    //            }else{
-                    //                clearInterval(time_task2);
-                    //                var time_task3 = setInterval(function(){
-                    //
-                    //                    if(parseInt( $("."+that.loading_num).html())!==90){
-                    //
-                    //                        $("."+that.loading_num).html(current_loading_num);
-                    //                        current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-                    //
-                    //
-                    //
-                    //
-                    //                    }else{
-                    //                        clearInterval(time_task3);
-                    //
-                    //                        var time_task4 = setInterval(function(){
-                    //
-                    //                            if(parseInt( $("."+that.loading_num).html())!==100){
-                    //
-                    //                                $("."+that.loading_num).html(current_loading_num);
-                    //                                current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-                    //
-                    //
-                    //
-                    //
-                    //                            }else{
-                    //                                clearInterval(time_task4);
-                    //                                $(".loading").css("display","none")
-                    //                                $(".left-arrow").css("display","block")
-                    //                                $(".right-arrow").css("display","block")
-                    //
-                    //                                that.initEventMy();
-                    //
-                    //                            }
-                    //
-                    //
-                    //
-                    //                        },1000)
-                    //                    }
-                    //
-                    //
-                    //
-                    //                },700)
-                    //
-                    //            }
-                    //
-                    //
-                    //
-                    //        },500)
-                    //    }
-                    //
-                    //
-                    //
-                    //},200)
 
-                    //开发环境
+
+
+                    $(".input_password_showNum").css("lineHeight",window.innerWidth*0.48*0.28+"px")
+
+
+
+
+                    //线上环境
                     var time_task = setInterval(function(){
 
+                        if(parseInt( $("."+that.loading_num).html())!==50){
 
-                       if(parseInt( $("."+that.loading_num).html())!==100){
-
-                           $("."+that.loading_num).html(current_loading_num);
-                           current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-
+                            $("."+that.loading_num).html(current_loading_num);
+                            current_loading_num = parseInt( $("."+that.loading_num).html())+1;
 
 
 
-                       }else{
-                           clearInterval(time_task);
 
-                           $(".loading").css("display","none")
-                           $(".left-arrow").css("display","block")
-                           $(".right-arrow").css("display","block")
+                        }else{
+                            clearInterval(time_task);
+                            //
+                            //$(".loading").css("display","none")
+                            //$(".left-arrow").css("display","block")
+                            //$(".right-arrow").css("display","block")
+                            //
+                            //that.initEventMy();
 
-                           that.initEventMy();
+                            var time_task2 = setInterval(function(){
 
-                       }
+                                if(parseInt( $("."+that.loading_num).html())!==80){
+
+                                    $("."+that.loading_num).html(current_loading_num);
+                                    current_loading_num = parseInt( $("."+that.loading_num).html())+1;
 
 
 
-                    },5)
+
+                                }else{
+                                    clearInterval(time_task2);
+                                    var time_task3 = setInterval(function(){
+
+                                        if(parseInt( $("."+that.loading_num).html())!==90){
+
+                                            $("."+that.loading_num).html(current_loading_num);
+                                            current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                                        }else{
+                                            clearInterval(time_task3);
+
+                                            var time_task4 = setInterval(function(){
+
+                                                if(parseInt( $("."+that.loading_num).html())!==100){
+
+                                                    $("."+that.loading_num).html(current_loading_num);
+                                                    current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                                                }else{
+                                                    clearInterval(time_task4);
+                                                    $(".loading").css("display","none")
+                                                    $(".left-arrow").css("display","block")
+                                                    $(".right-arrow").css("display","block")
+
+                                                    that.initEventMy();
+
+                                                }
+
+
+
+                                            },1000)
+                                        }
+
+
+
+                                    },700)
+
+                                }
+
+
+
+                            },500)
+                        }
+
+
+
+                    },200)
+
+                    //开发环境
+                    //var time_task = setInterval(function(){
+                    //
+                    //
+                    //   if(parseInt( $("."+that.loading_num).html())!==100){
+                    //
+                    //       $("."+that.loading_num).html(current_loading_num);
+                    //       current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+                    //
+                    //
+                    //
+                    //
+                    //   }else{
+                    //       clearInterval(time_task);
+                    //
+                    //       $(".loading").css("display","none")
+                    //       $(".left-arrow").css("display","block")
+                    //       $(".right-arrow").css("display","block")
+                    //
+                    //       that.initEventMy();
+                    //
+                    //   }
+                    //
+                    //
+                    //
+                    //},5)
 
 
 
@@ -322,6 +334,21 @@
                            that.hasLastPuzzle = true;
                            that.hasKey = true;
 
+
+                           var current_num = parseInt($("#current_num_clue").html())+2;
+                           $("#current_num_clue").html(current_num)
+
+
+
+
+
+
+                           $(".icon_key").css("display","block");
+                           $(".icon_controll").css("display","none");
+                           $(".icon_puzzle").css("display","none");
+
+                           $(".icon_key").addClass("icon__move");
+
                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
                                $(".section-documents-container").css("display","none");
                                $(".section-clue").html("");
@@ -337,6 +364,25 @@
 
                            $(".section-clue").html(img_str);
                             that.hasLastPuzzle = true;
+
+
+                            var current_num = parseInt($("#current_num_clue").html())+1;
+                               $("#current_num_clue").html(current_num)
+
+
+
+
+
+                             $(".icon_key").css("display","none");
+                             $(".icon_controll").css("display","none");
+                             $(".icon_puzzle").css("display","block");
+
+
+
+
+
+
+                               $(".icon_puzzle").addClass("icon__move");
 
                            $(".close-mask").unbind("touchstart").bind("touchstart",function(){
                                $(".section-documents-container").css("display","none");
@@ -369,11 +415,29 @@
 
                          $(".section-documents-container").css("display","block");
                          $(".section-clue_calendar").css("display","block").siblings().css("display","none");
-                         var img_str = "<div class='clue_calendar'><img src='images/in_table_clue.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+                         var img_str = "<div class='clue_calendar' id='clue_calendar'><img src='images/in_table_clue.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
 
                          $(".section-clue_calendar").html(img_str);
 
 
+                         $("#clue_calendar").bind("touchstart",function(){
+
+
+
+                             $(".section-clue_calendar").css("display","none");
+                             $(".section-documents").css("display","block").siblings().css("display","none");
+                             var img_str = "<div class='country-goods'><img src='images/top8.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                             $(".section-documents").html(img_str);
+
+
+                             $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                 $(".section-documents-container").css("display","none");
+                                 $(".section-documents").html("");
+
+                             });
+
+                         });
                          $(".close-mask").unbind("touchstart").bind("touchstart",function(){
                              $(".section-documents-container").css("display","none");
                              $(".section-clue_calendar").html("");
@@ -515,6 +579,292 @@
                    });
 
 
+                   $(".byd_car").bind("touchstart",function(){
+
+                       $(".section-documents-container").css("display","block");
+                       $(".section-documents").css("display","block").siblings().css("display","none");
+                       var img_str = "<div class='country-goods'><img src='images/top10.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                       $(".section-documents").html(img_str);
+
+
+                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".section-documents").html("");
+
+                       });
+
+                   });
+
+                   $(".haier").bind("touchstart",function(){
+
+                       $(".section-documents-container").css("display","block");
+                       $(".section-documents").css("display","block").siblings().css("display","none");
+                       var img_str = "<div class='country-goods'><img src='images/top9.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                       $(".section-documents").html(img_str);
+
+
+                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".section-documents").html("");
+
+                       });
+
+                   });
+
+                   $(".open_safe").unbind("touchstart").bind("touchstart",function(){
+                       $(".open_safe_open").css("display","block");
+
+
+                   });
+
+                   $(".open_safe_open").unbind("touchstart").bind("touchstart",function(){
+                   //  密码输入
+
+
+                   });
+
+
+
+
+                   $(".open_table").unbind("touchstart").bind("touchstart",function(){
+
+                       $(".open_table_open").css("display","block");
+
+
+                   });
+                   $(".open_table_open").unbind("touchstart").bind("touchstart",function(){
+
+                       $(".no_use").css("display","block");
+
+                   });
+
+                   $(".no_use").unbind("touchstart").bind("touchstart",function(){
+
+                       $(".section-documents-container").css("display","block");
+                       $(".section-clue").css("display","block").siblings().css("display","none");
+                       var img_str = "<div class='clue'><img src='images/nouse.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                       $(".section-clue").html(img_str);
+
+
+
+                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".section-clue").html("");
+
+                       });
+                   });
+
+
+                   $("#sauce").bind("touchstart",function(){
+                       $("#sauce").addClass("sauce_move");
+                       $(".laoganma").addClass("laoganma_move");
+                   });
+                   $("#sauce").bind("animationend",function(){
+                       $("#sauce").removeClass("sauce_move");
+
+                   });
+
+                   $(".laoganma").bind("touchstart",function(){
+                       $(".section-documents-container").css("display","block");
+                       $(".section-documents").css("display","block").siblings().css("display","none");
+                       var img_str = "<div class='country-goods'><img src='images/top4.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                       $(".section-documents").html(img_str);
+
+
+                       $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".section-documents").html("");
+
+                       });
+
+                   });
+
+                   $(".milk").bind("touchstart",function(){
+                       $(".milk").addClass("moveMilk");
+
+                   });
+                   $(".milk").bind("animationend",function(){
+                       $(".milk").removeClass("moveMilk");
+
+                   });
+
+
+
+                   $(".paper_03").bind("touchstart",function(){
+                       $(".paper_03").addClass("sauce_move");
+                       $(".paper_02").addClass("sauce_move");
+                       $(".paper_01").addClass("paper_01_move");
+                   });
+                   $(".paper_03").bind("animationend",function(){
+                       $(".paper_03").removeClass("sauce_move");
+                       $(".paper_02").removeClass("sauce_move");
+
+                   });
+
+
+                   $(".open_safe_open").bind("touchstart",function(){
+                       $(".section-documents-container").css("display","block");
+                       $(".password_input").css("display","block");
+
+
+
+                       $(".close-mask_03").unbind("touchstart").bind("touchstart",function(){
+                           $(".section-documents-container").css("display","none");
+                           $(".password_input").css("display","none");
+
+                       });
+
+                   });
+
+                   $(".input_password li").bind("touchstart",function(){
+
+                       if($(this).attr("data-index")&&$(".input_password_showNum .num_password").length<4){
+
+                           $(".input_password_showNum").append("<span class='num_password'>"+$(this).attr("data-index")+"</span>");
+                       }else if($(this).attr("data-index")&&$(".input_password_showNum .num_password").length==4){
+                           $($(".input_password_showNum .num_password")[3]).html($(this).attr("data-index"));
+                       }
+
+                   });
+
+                   $(".remove_password").bind("touchstart",function(){
+
+                       if($(".num_password").length>=1){
+                           $($(".num_password")[$(".num_password").length-1]).remove();
+                       }
+
+                   });
+                   $(".end_password").bind("touchstart",function(){
+
+                       if($(".num_password").length>=1){
+
+
+                       var str = "";
+                       for(var i=0;i<$(".num_password").length;i++){
+
+                                str += $($(".num_password")[i]).html();
+
+                          }
+
+
+
+                           if(str == "1462"){
+
+                               $(".password_input").css("display","none");
+                               $(".section-clue").css("display","block").siblings().css("display","none");
+                               var img_str = "<div class='clue'><img src='images/control.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                               $(".section-clue").html(img_str);
+
+                               that.controller_uva = true;
+
+                               var current_num = parseInt($("#current_num_clue").html())+1;
+                               $("#current_num_clue").html(current_num)
+
+
+
+
+
+                               $(".icon_key").css("display","none");
+                               $(".icon_controll").css("display","block");
+                               $(".icon_puzzle").css("display","none");
+
+
+                               $(".icon_controll").addClass("icon__move");
+
+
+                               $(".uva_controll").css("display","block");
+                               $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                                   $(".section-documents-container").css("display","none");
+                                   $(".section-clue").html("");
+
+                               });
+
+                           }
+                           else{
+
+
+                                   $(".input-container").addClass("moveshark");
+                           }
+                       }
+                   });
+                   $(".input-container").bind("animationend",function(){
+                       $(".input-container").removeClass("moveshark");
+
+                   });
+
+
+                   that.coule_click = true;
+
+                   $(".uva_controll").bind("touchstart",function(){
+
+                        if(that.controller_uva&&that.coule_click){
+
+                            that.coule_click = false;
+
+                             var current_add = 12;
+                            var time_task_8 = setInterval(function(){
+
+                                that.coule_click = false;
+
+                                var top_current =parseInt( $(".uva").css("bottom"));
+
+
+
+                                if((top_current+current_add)>=(window.innerHeight-$(".uva").height())){
+
+                                    $(".uva").css("bottom",(window.innerHeight-$(".uva").height())+"px");
+
+                                   $(".left-arrow").css("display","none");
+                                   $(".right-arrow").css("display","none");
+
+
+
+                                    $(".section-documents-container").css("display","block");
+                                    $(".section-clue").css("display","block").siblings().css("display","none");
+
+                                    var img_str = "<div class='clue'><img src='images/end_game.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                                    $(".section-clue").html(img_str);
+
+
+
+                                    $(".section-clue").unbind("touchstart").bind("touchstart",function(){
+
+                                        $(".section-documents-container").css("display","none");
+                                        $(".state_clue").css("display","none");
+
+                                        $(".top-container").fadeOut(1000);
+
+                                    });
+
+
+
+
+                                    clearInterval(time_task_8);
+
+
+
+                                }else{
+                                    $(".uva").css("bottom",(top_current+current_add)+"px");
+                                    current_add+= 2;
+                                }
+
+                            },50)
+
+
+
+                        }
+
+                   });
+
+
+
+
 
 
                  $("img").unbind("touchstart",function(){
@@ -568,7 +918,7 @@
                 initDomPuzzle:function(){
                    var that = this;
 
-
+                     that.onece = true;
                     if(that.game.hasLastPuzzle){
                         $(".hasLastPuzzle").css("display","block");
                         $(".noLastPuzzle").css("display","none");
@@ -831,6 +1181,26 @@
                             $(".complete_puzzle").css("display","block");
                             $(".complete_puzzle").addClass("complete_puzzle_changeSmall");
                             that.game.hasCompletPuzzle = true;
+
+
+                            if(that.onece){
+                                var current_num = parseInt($("#current_num_clue").html())+1;
+                                $("#current_num_clue").html(current_num)
+
+
+
+
+
+                                $(".icon_key").css("display","block");
+                                $(".icon_controll").css("display","none");
+                                $(".icon_puzzle").css("display","none");
+
+
+                                $(".icon_key").addClass("icon__move");
+
+                                that.onece  = false;
+                            }
+
 
 
                             $(".section-documents-container").css("display","block");
