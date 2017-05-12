@@ -137,18 +137,19 @@ body{
 
 .font-font .normal{
     left: 6%;
-    top: -16%;
+    top: -20%;
 }
 
 #total_num_clue{
     left: -2%;
+    top: -2%;
 }
 
 #current_num_clue{
     color: #fbb50c;
-    font-size: 30px;
+    font-size: 28px;
     left: 3%;
-    top: -8%;
+    top: -12%;
     margin-right: 2%;
 }
 
@@ -190,7 +191,7 @@ body{
 .icons {
     width: 30%;
     position: absolute;
-    right:  0;
+    right:  -2px;
     top: 50%;
     background: url(../images/circle.png) no-repeat;
     background-size: cover;
@@ -384,10 +385,12 @@ body{
 .section-documents-container img{
     width: 100%;
 }
+
 .loading{
     width: 100%;
     height: 100%;
     background-color: #8badab;
+    position: relative;
     z-index: 999;
 
 
@@ -1235,7 +1238,7 @@ body{
 
 
 
-/*����2*/
+
 .byd_car{
     width: 8%;
     height: 9%;
@@ -1687,25 +1690,7 @@ body{
 /* iphone4 */
 @media screen and (device-width: 320px) and (device-height: 480px) and (-webkit-min-device-pixel-ratio : 2){
 
-    .section1-bg{
-        background: url(../images/section1-container-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-    .section2-bg{
-        background: url(../images/section2-container-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-    .loading{
-        width: 100%;
-        height: 100%;
-        background: url(../images/loading-bg.png) no-repeat;
-        background-size: cover;
-        background-position: center center;
-        position: relative;
 
-    }
 }
 /* iphone5 */
 @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2){

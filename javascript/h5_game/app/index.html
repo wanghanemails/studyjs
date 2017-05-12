@@ -112,6 +112,7 @@
         <!--endbower-->
         <!--endbuild-->
 
+
         <section class="loading">
            <article class="loading-container">
                <div class="loading-img"><img src="images/loading-time-img.png" alt=""/></div>
@@ -146,6 +147,8 @@
             <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/control_ceb9e03d.png" alt=""/>
             <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/end_game_77c124de.png" alt=""/>
             <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask02_dbc72254.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/section2-container-bg_f78f124a.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg" alt=""/>
 
         </div>
 
@@ -192,9 +195,7 @@
                     </div>
 
 
-                    <div class="uva_controll">
-                        <img src="images/controll_uva.png" alt=""/>
-                    </div>
+
                     <div class="light">
                         <div class="light_close">
                             <img src="images/light_close.png" alt=""/>
@@ -421,6 +422,85 @@
         </script>
     </body>
     <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.8.3.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">var url = window.location.href;
+    var link = "http://creative.ifeng.com/WxInterface";
+    var data = {
+        'url':url,
+    }
+    $.getJSON(link+"/WxInterface.php?callback=?",data,function(data){
+        var sign = eval(data);
+        wx.config({
+            debug: false,
+            appId: sign.appId,
+            timestamp:sign.timestamp,
+            nonceStr: sign.nonceStr,
+            signature: sign.signature,
+            jsApiList: [
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ]
+        });
+    });
+    wx.ready(function  () {
+        // 分享给朋友圈
+        wx.onMenuShareTimeline({
+            title: '没时间解释了！快上飞机！', // 分享标题
+            link: '', // 分享链接
+            imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        // 朋友
+        wx.onMenuShareAppMessage({
+            title: '没时间解释了！快上飞机！', // 分享标题
+            desc: '没时间解释了！快上飞机！。', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        // QQ
+        wx.onMenuShareQQ({
+            title: '没时间解释了！快上飞机！', // 分享标题
+            desc: '没时间解释了！快上飞机！。',// 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg',// 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        // 新浪
+        wx.onMenuShareWeibo({
+            title: '没时间解释了！快上飞机！', // 分享标题
+            desc: '没时间解释了！快上飞机！。', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    })</script>
+
+
 
     <script src="scripts/index.js"></script>
 </html>

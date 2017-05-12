@@ -41,7 +41,7 @@
 
 
             $(".icons").height($(".icons").width());
-            $(".icons").css("marginTop",-$(".icons").height()/2);
+            $(".icons").css("marginTop",-($(".icons").height()/2+2));
 
             that.game_container_start_X = 0;
             that.game_container_client_X = 0;
@@ -114,9 +114,14 @@
 
                                         }else{
                                             clearInterval(time_task4);
-                                            $(".loading").css("display","none")
-                                            $(".left-arrow").css("display","block")
-                                            $(".right-arrow").css("display","block")
+
+
+
+
+
+                                            $(".loading").css("display","none");
+                                            $(".left-arrow").css("display","block");
+                                            $(".right-arrow").css("display","block");
 
                                             that.initEventMy();
                                         }
@@ -429,6 +434,7 @@
 
 
 
+
                     if(!$(this).hasClass("complete_puzzle") || !$(this).hasClass("wait_puzzle")){
                         if(!that.puzzle){
                             that.puzzle = new Puzzle(that);
@@ -689,6 +695,9 @@
 
             $(".light").bind("touchstart",function(){
 
+
+
+
                 if($(".light_close").css("display")=="block"){
                     $(".light_close").css("display","none")
                     $(".light_open").css("display","block")
@@ -696,6 +705,8 @@
                     $(".light_close").css("display","block")
                     $(".light_open").css("display","none")
                 }
+
+
             });
 
             $(".show_toy").bind("touchstart",function(){
@@ -919,7 +930,7 @@
                         $(".icon_controll").addClass("icon__move");
 
 
-                        $(".uva_controll").css("display","block");
+
                         $(".close-mask").unbind("touchstart").bind("touchstart",function(){
                             $(".section-documents-container").css("display","none");
                             $(".section-clue").html("");
@@ -944,11 +955,6 @@
 
 
 
-            $(".uva_controll").bind("touchstart",function(){
-
-
-
-            });
 
 
 
