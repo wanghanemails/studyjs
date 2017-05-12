@@ -1,0 +1,416 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>没时间解释了！快上飞机！</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <!-- build:basejs scripts/base-core.js-->
+        <!--bower:basejs-->
+        <!-- requirejs 、 glue 组件版本-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:css styles/h5_game_adytum_depmodules.css-->
+        <!-- bower:css -->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/h5_game_adytum_depmodules_pc.css device:pc-->
+        <!-- bower:css device:pc-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/h5_game_adytum_depmodules_mobile.css device:mobile-->
+        <!-- bower:css device:mobile-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/h5_game_adytum_depmodules_pad.css device:pad-->
+        <!-- bower:css device:pad-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection"content="telephone=no, email=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- 删除苹果默认的工具栏和菜单栏 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <!-- 设置苹果工具栏颜色 -->
+        <meta name="format-detection" content="telphone=no, email=no" />
+        <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+        <!-- 启用360浏览器的极速模式(webkit) -->
+        <meta name="renderer" content="webkit">
+        <!-- 避免IE使用兼容模式 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- 微软的老式浏览器 -->
+        <meta name="MobileOptimized" content="320">
+        <!-- uc强制竖屏 -->
+        <meta name="screen-orientation" content="portrait">
+        <!-- QQ强制竖屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <!-- UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- QQ强制全屏 -->
+        <meta name="x5-fullscreen" content="true">
+        <!-- UC应用模式 -->
+        <meta name="browsermode" content="application">
+        <!-- QQ应用模式 -->
+        <meta name="x5-page-mode" content="app">
+        <!-- windows phone 点击无高光 -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- 适应移动端end -->
+
+        <!-- build:css styles/h5_game_adytum_main.css lib-->
+
+        <!--项目自身的css文件-->
+        <!--endbuild-->
+
+        <!-- build:css styles/h5_game_adytum_main_pad.css lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:css styles/h5_game_adytum_main_mobile.css lib device:mobile-->
+        <!--endbuild-->
+
+        <!-- build:css styles/h5_game_adytum_main_pc.css lib device:pc-->
+        <!--endbuild-->
+        <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+        <link rel="stylesheet" href="styles/index.css" />
+    </head>
+    <body>
+
+        
+        <!-- build:requirejs scripts/h5_game_adytum_depmodules.js-->
+        <!--bower:requirejs-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/h5_game_adytum_depmodules_pad.js device:pad-->
+        <!--bower:requirejs device:pad-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/h5_game_adytum_depmodules_mobile.js device:mobile-->
+        <!--bower:requirejs device:mobile-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/h5_game_adytum_depmodules_pc.js device:pc-->
+        <!--bower:requirejs device:pc-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <section class="loading">
+           <article class="loading-container">
+               <div class="loading-img"><img src="images/loading-time-img.png" alt=""/></div>
+               <div class="loading-num"><span class="loading-num-percentage">0</span><span >%</span></div>
+               <div class="loading-content">
+                   <img src="images/loading_content.png" alt=""/>
+               </div>
+           </article>
+        </section>
+
+        <div class="imgs" style="display: none">
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top1_678659a0.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top2_0102e177.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top3_364e8302.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top4_9ab1fe65.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top5_7dfc61d4.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top6_cc3cb7e3.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top7_b2c61c5a.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top8_635ec299.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top9_c2cbf541.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top10_f08514c3.png" alt=""/>
+
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask_626c98f2.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/key_620f260c.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_7f35e42a.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_clue02_5f03f5c5.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/in_table_clue_87476e3a.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_clue01_430b6bb5.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/password_a8f1ffec.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask02_dbc72254.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/nouse_7346f7fd.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/control_ceb9e03d.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/end_game_77c124de.png" alt=""/>
+            <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask02_dbc72254.png" alt=""/>
+
+        </div>
+
+
+
+
+
+        <section class="top-container clearfix">
+            <section class="game-container current_container section1 ">
+
+                <div class="train-container-window">
+                    <div class="train-bg">
+                        <img src="images/train-bg.jpg" alt=""/>
+                        <div class="train-container">
+                            <div class="train"><img src="images/train.png" alt=""/></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-bg section1-bg clearfix">
+
+                    <div class="zaihuang-medication"><img src="images/zaihuang-medication.png" alt=""/></div>
+                    <div class="yunnan-medication"><img src="images/yunnan-medication.png" alt=""/></div>
+                    <div class="simulation-train">
+                        <div class="simulation-train-move"></div>
+                    </div>
+                    <div class="simulation-bedside-table"></div>
+                    <div class="huawei-iphone"><img src="images/huawei-iphone.png" alt=""/></div>
+                    <div class="important-paper">
+                        <div class="last-paper"><img src="images/important-paper.png" alt=""/></div>
+                        <div class="cooling-ointment"><img src="images/cooling-ointment.png" alt=""/></div>
+                    </div>
+
+                    <div class="uva">
+                        <img src="images/uva.png" alt=""/>
+                    </div>
+                    <div class="uva_bg">
+                        <img src="images/uva_bg.png" alt=""/>
+                    </div>
+
+                    <div class="chair">
+                        <img src="images/chair.png" alt=""/>
+                    </div>
+
+
+                    <div class="uva_controll">
+                        <img src="images/controll_uva.png" alt=""/>
+                    </div>
+                    <div class="light">
+                        <div class="light_close">
+                            <img src="images/light_close.png" alt=""/>
+                        </div>
+                        <div class="light_open">
+                            <img src="images/light_open.png" alt=""/>
+                        </div>
+                    </div>
+
+                    <div class="toy">
+                        <img src="images/toy.png" alt=""/>
+                    </div>
+                    <div class="show_toy"></div>
+
+                    <div class="show_book"></div>
+
+
+
+
+                    <div class="puzzle begin_puzzle" id="puzzle_wall">
+                        <img src="images/puzzle_begin_img.png" alt=""/>
+                    </div>
+                    <div class="puzzle complete_puzzle" >
+                        <img src="images/puzzle_begin_img.png" alt=""/>
+                    </div>
+                    <div class="puzzle wait_puzzle" >
+                        <img src="images/puzzle_begin_img.png" alt=""/>
+                    </div>
+
+
+
+
+
+                </div>
+            </section>
+            <section class="game-container section2 ">
+                <div class="section-bg section2-bg clearfix">
+
+                    <div class="byd_car"></div>
+                    <div class="haier"></div>
+                    <div class="open_safe"></div>
+                    <div class="open_safe_open">
+                        <img src="images/open_03.png" alt=""/>
+                    </div>
+
+
+
+                    <div class="no_use">
+                        <img src="images/no_use.png" alt=""/>
+                    </div>
+                    <div class="open_table"> </div>
+                    <div class="open_table_open">
+                        <img src="images/open_02.png" alt=""/>
+                    </div>
+
+                    <div class="sauce" id="sauce"><img src="images/sauce.png" alt=""/></div>
+                    <div class="laoganma">
+                        <img src="images/laoganma.png" alt=""/>
+                    </div>
+
+                    <div class="milk">
+                        <img src="images/milk.png" alt=""/>
+                    </div>
+
+                    <div class="paper_03">
+                        <img src="images/paper_03.png" alt=""/>
+                    </div>
+
+                    <div class="paper_02">
+                        <img src="images/paper_02.png" alt=""/>
+                    </div>
+                    <div class="paper_01">
+                        <img src="images/paper_01.png" alt=""/>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <div class="left-arrow" id="left-arrow"><img src="images/left-arrow.png" alt=""/></div>
+        <div class="right-arrow" id="right-arrow"><img src="images/right-arrow.png" alt=""/></div>
+        <div class="section-documents-container">
+            <div class="section-documents"></div>
+            <div class="section-clue"></div>
+            <div class="section-clue_calendar"></div>
+            <div class="section-clue_book"></div>
+            <div class="password_input">
+                <div class="input-container">
+                    <img src="images/password_input.png" alt=""/>
+
+                    <div class="input_password_showNum">
+
+                    </div>
+                    <ul class="input_password">
+                        <li data-index="1"></li>
+                        <li data-index="2"></li>
+                        <li data-index="3"></li>
+                        <li data-index="4"></li>
+                        <li data-index="5"></li>
+                        <li data-index="6"></li>
+                        <li data-index="7"></li>
+                        <li data-index="8"></li>
+                        <li data-index="9"></li>
+                        <li data-index="0"></li>
+                        <li class="remove_password"></li>
+                        <li class="end_password"></li>
+                    </ul>
+
+                </div>
+                <div class='close-mask_03'><img src='images/close-mask.png' alt=''/></div>
+            </div>
+        </div>
+        <div class="puzzle-container">
+            <div class="realpuzzle_bg-container">
+                <div class="realpuzzle_bg" id="real_container">
+                    <div class="puzzle_small puzzle_1" style=" top: 0;left: 0;" data-index=1>
+                        <img src="images/puzzle_01.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_2" style=" top: 0;  left: 33.3%;" data-index=2>
+                        <img src="images/puzzle_02.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_3" style=" top: 0;  left: 66.6%;"  data-index=3>
+                        <img  class="hasLastPuzzle"  src="images/puzzle_03.png" alt=""/>
+                        <img class="noLastPuzzle" src="images/puzzle_03_noLastPuzzle.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_4" style=" top: 33.3%;  left: 0%;"  data-index=4>
+                        <img src="images/puzzle_04.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_5" style=" top: 33.3%;  left: 33.3%;"  data-index=5>
+                        <img src="images/puzzle_05.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_6" style=" top: 33.3%;  left: 66.6%;"  data-index=6>
+                        <img src="images/puzzle_06.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_7" style=" top: 66.6%;  left: 0%;"  data-index=7>
+                        <img src="images/puzzle_07.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_8" style=" top:  66.6%;  left: 33.3%;"  data-index=8>
+                        <img src="images/puzzle_08.png" alt=""/>
+                    </div>
+                    <div class="puzzle_small puzzle_9" style=" top: 66.6%;  left: 66.6%;"  data-index=9>
+                        <img src="images/puzzle_09.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="close-puzzle">
+                <img src="images/close-mask02.png" alt=""/>
+            </div>
+        </div>
+
+        <div class="state_clue">
+            <div class="font clearfix">
+                <div class="font-font">
+                    <div class="normal">已有线索</div>
+                    <div id="current_num_clue">0</div>
+                    <div id="total_num_clue" >/3</div>
+                </div>
+                <div class="font-opt"></div>
+            </div>
+            <div class="icons">
+                <div class="icon_puzzle">
+                    <img src="images/important-paper.png" alt=""/>
+                </div>
+                <div class="icon_key">
+                    <img src="images/only_key.png" alt=""/>
+                </div>
+                <div class="icon_controll">
+                    <img src="images/controll_uva.png" alt=""/>
+                </div>
+            </div>
+        </div>
+
+        <div class="prompt_container">
+            <div class="promt_content">
+                <img src="images/prompt.png" alt=""/>
+            </div>
+            <div class="promt_opt"></div>
+        </div>
+        <section class="foot"></section>
+        <!-- build:js scripts/h5_game_adytum_main.js lib-->
+        <script src="scripts/version.js"></script>
+        
+        
+        <!--项目自身的js文件-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/h5_game_adytum_main_pad.js lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/h5_game_adytum_main_mobile.js lib device:mobile-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/h5_game_adytum_main_pc.js lib device:pc-->
+        <!--endbuild-->
+
+
+        <!-- 以标签方式注册一个组件 -->
+        <!--
+        <div g-cid="widgetId" g-cname="h5_game_adytum" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div>
+        -->
+        <script>
+            // 以命令行方式注册一个组件
+            // glue.widgetRegist('srcNode', 'widgetId', 'h5_game_adytum', 'depWidgetId', 'priority', {
+            //   'model.propertyName': '@@outModel.propertyName'
+            // });
+
+            // 直接创建一个组件
+            // require(['h5_game_adytum'], function(h5_game_adytum) {
+            //   new h5_game_adytum(glue).create(srcNode, options);
+            // });
+
+            // 扫描组件
+            // glue.scan();
+            // 运行组件
+            // glue.run();
+        </script>
+    </body>
+    <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.8.3.min.js"></script>
+
+    <script src="scripts/index.js"></script>
+</html>

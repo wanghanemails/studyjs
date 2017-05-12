@@ -96,7 +96,7 @@ body{
     width: 30.6%;
     height: 4.6%;
     position: absolute;
-    top: 15.6%;
+    top: 2.6%;
     right: 8px;
 
     z-index: 99;
@@ -130,6 +130,43 @@ body{
     z-index: 10;
 
 }
+.prompt_container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 99;
+}
+
+.promt_content{
+    width: 63.2%;
+    height: 47%;
+    position: absolute;
+
+    left: 0;
+    opacity: 1;
+    z-index: 99;
+    bottom: -4%;
+    left: 5%;
+}
+.promt_content img{
+    width: 100%;
+}
+.promt_opt{
+    width: 63.2%;
+    height: 30%;
+    position: absolute;
+    /* top: 0; */
+    left: 5%;
+    opacity: 0.5;
+    z-index: 90;
+    /* top: 0; */
+    background-color: #000;
+    bottom: 13%;
+}
+
 .font-font div{
     display: inline-block;
     font-family: "fzmwtjw";
