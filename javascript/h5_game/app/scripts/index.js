@@ -19,10 +19,10 @@
                 var e= e||event
 
                 e.stopPropagation();
-                //½ûÖ¹ä¯ÀÀÆ÷ÊÂ¼ş
+                //ç¦æ­¢æµè§ˆå™¨äº‹ä»¶
                 e.preventDefault();
 
-                //³¢ÊÔ½ûÖ¹ä¯ÀÀÆ÷ Ç°½ø·µ»Ø²Ù×÷¡£¡£¡£
+                //å°è¯•ç¦æ­¢æµè§ˆå™¨ å‰è¿›è¿”å›æ“ä½œã€‚ã€‚ã€‚
                 var control = navigator.control || {};
                 if (control.gesture) {
                     control.gesture(false);
@@ -32,7 +32,7 @@
 
 
             var that = this;
-            //½ûÖ¹Ê±¼äÃ°Åİ
+            //ç¦æ­¢æ—¶é—´å†’æ³¡
             that.coule_click = true;
             $(".simulation-train-move").width($(".train").width());
             $(".simulation-train-move").height($(".train").height()*1.5);
@@ -57,10 +57,85 @@
 
 
 
-            //ÏßÉÏ»·¾³
+            //çº¿ä¸Šç¯å¢ƒ
+            var time_task = setInterval(function(){
+
+                if(parseInt( $("."+that.loading_num).html())!==50){
+
+                    $("."+that.loading_num).html(current_loading_num);
+                    current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                }else{
+                    clearInterval(time_task);
+                    //
+                    //$(".loading").css("display","none")
+                    //$(".left-arrow").css("display","block")
+                    //$(".right-arrow").css("display","block")
+                    //
+                    //that.initEventMy();
+
+                    var time_task2 = setInterval(function(){
+
+                        if(parseInt( $("."+that.loading_num).html())!==80){
+
+                            $("."+that.loading_num).html(current_loading_num);
+                            current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                        }else{
+                            clearInterval(time_task2);
+                            var time_task3 = setInterval(function(){
+
+                                if(parseInt( $("."+that.loading_num).html())!==90){
+
+                                    $("."+that.loading_num).html(current_loading_num);
+                                    current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                                }else{
+                                    clearInterval(time_task3);
+
+                                    var time_task4 = setInterval(function(){
+
+                                        if(parseInt( $("."+that.loading_num).html())!==100){
+
+                                            $("."+that.loading_num).html(current_loading_num);
+                                            current_loading_num = parseInt( $("."+that.loading_num).html())+1;
+
+
+
+
+                                        }else{
+                                            clearInterval(time_task4);
+                                            $(".loading").css("display","none")
+                                            $(".left-arrow").css("display","block")
+                                            $(".right-arrow").css("display","block")
+
+                                            that.initEventMy();
+                                        }
+                                    },800)
+                                }
+                            },500)
+
+                        }
+
+                    },200)
+                }
+
+            },100)
+
+            //å¼€å‘ç¯å¢ƒ
             //var time_task = setInterval(function(){
             //
-            //    if(parseInt( $("."+that.loading_num).html())!==50){
+            //
+            //    if(parseInt( $("."+that.loading_num).html())!==100){
             //
             //        $("."+that.loading_num).html(current_loading_num);
             //        current_loading_num = parseInt( $("."+that.loading_num).html())+1;
@@ -70,93 +145,18 @@
             //
             //    }else{
             //        clearInterval(time_task);
-            //        //
-            //        //$(".loading").css("display","none")
-            //        //$(".left-arrow").css("display","block")
-            //        //$(".right-arrow").css("display","block")
-            //        //
-            //        //that.initEventMy();
             //
-            //        var time_task2 = setInterval(function(){
+            //        $(".loading").css("display","none")
+            //        $(".left-arrow").css("display","block")
+            //        $(".right-arrow").css("display","block")
             //
-            //            if(parseInt( $("."+that.loading_num).html())!==80){
+            //        that.initEventMy();
             //
-            //                $("."+that.loading_num).html(current_loading_num);
-            //                current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-            //
-            //
-            //
-            //
-            //            }else{
-            //                clearInterval(time_task2);
-            //                var time_task3 = setInterval(function(){
-            //
-            //                    if(parseInt( $("."+that.loading_num).html())!==90){
-            //
-            //                        $("."+that.loading_num).html(current_loading_num);
-            //                        current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-            //
-            //
-            //
-            //
-            //                    }else{
-            //                        clearInterval(time_task3);
-            //
-            //                        var time_task4 = setInterval(function(){
-            //
-            //                            if(parseInt( $("."+that.loading_num).html())!==100){
-            //
-            //                                $("."+that.loading_num).html(current_loading_num);
-            //                                current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-            //
-            //
-            //
-            //
-            //                            }else{
-            //                                clearInterval(time_task4);
-            //                                $(".loading").css("display","none")
-            //                                $(".left-arrow").css("display","block")
-            //                                $(".right-arrow").css("display","block")
-            //
-            //                                that.initEventMy();
-            //                            }
-            //                        },800)
-            //                    }
-            //                },500)
-            //
-            //            }
-            //
-            //        },200)
             //    }
             //
-            //},100)
-
-            //¿ª·¢»·¾³
-            var time_task = setInterval(function(){
-
-
-               if(parseInt( $("."+that.loading_num).html())!==100){
-
-                   $("."+that.loading_num).html(current_loading_num);
-                   current_loading_num = parseInt( $("."+that.loading_num).html())+1;
-
-
-
-
-               }else{
-                   clearInterval(time_task);
-
-                   $(".loading").css("display","none")
-                   $(".left-arrow").css("display","block")
-                   $(".right-arrow").css("display","block")
-
-                   that.initEventMy();
-
-               }
-
-
-
-            },5);
+            //
+            //
+            //},5);
 
 
 
@@ -182,12 +182,12 @@
                 that.moveClient_X = e.originalEvent.targetTouches[0].pageX;
 
 
-                //±ß½çÅĞ¶Ï    ×ó±ß½ç   µ½´ï±ß½ç»¹ÏëÒÆ¶¯     Î´µ½±ß½ç  ÒÆ¶¯¾àÀëºó³¬³ö±ß½ç
+                //è¾¹ç•Œåˆ¤æ–­    å·¦è¾¹ç•Œ   åˆ°è¾¾è¾¹ç•Œè¿˜æƒ³ç§»åŠ¨     æœªåˆ°è¾¹ç•Œ  ç§»åŠ¨è·ç¦»åè¶…å‡ºè¾¹ç•Œ
                 if((this.offsetLeft==0&&that.moveClient_X - that.game_container_client_X>0)||current_X - that.game_container_start_X>0){
                     $(".game-container").css("left",0+"px")
 
                 }
-                //±ß½çÅĞ¶Ï    ÓÒ±ß½ç  µ½´ï±ß½ç»¹ÏëÒÆ¶¯     Î´µ½±ß½ç  ÒÆ¶¯¾àÀëºó³¬³ö±ß½ç
+                //è¾¹ç•Œåˆ¤æ–­    å³è¾¹ç•Œ  åˆ°è¾¾è¾¹ç•Œè¿˜æƒ³ç§»åŠ¨     æœªåˆ°è¾¹ç•Œ  ç§»åŠ¨è·ç¦»åè¶…å‡ºè¾¹ç•Œ
                 else if((this.offsetLeft==-(that.container_width-window.innerWidth) &&  that.moveClient_X - that.game_container_client_X<0)||current_X - that.game_container_start_X<-375){
                     $(".game-container").css("left",-(that.container_width-window.innerWidth)+"px")
 
@@ -320,40 +320,40 @@
 
 
 
-                    if(!that.hasLastPuzzle){
+                if(!that.hasLastPuzzle){
 
-                        $(".section-documents-container").css("display","block");
-                        $(".section-clue").css("display","block").siblings().css("display","none");
-                        var img_str = "<div class='clue'><img src='http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_7f35e42a.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+                    $(".section-documents-container").css("display","block");
+                    $(".section-clue").css("display","block").siblings().css("display","none");
+                    var img_str = "<div class='clue'><img src='http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_7f35e42a.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
 
-                        $(".section-clue").html(img_str);
-                        that.hasLastPuzzle = true;
-
-
-                        var current_num = parseInt($("#current_num_clue").html())+1;
-                        $("#current_num_clue").html(current_num)
-
-                        $(".last-paper").css("display","none");
+                    $(".section-clue").html(img_str);
+                    that.hasLastPuzzle = true;
 
 
+                    var current_num = parseInt($("#current_num_clue").html())+1;
+                    $("#current_num_clue").html(current_num)
 
-                        $(".icon_key").css("display","none");
-                        $(".icon_controll").css("display","none");
-                        $(".icon_puzzle").css("display","block");
+                    $(".last-paper").css("display","none");
 
 
+
+                    $(".icon_key").css("display","none");
+                    $(".icon_controll").css("display","none");
+                    $(".icon_puzzle").css("display","block");
 
 
 
 
-                        $(".icon_puzzle").addClass("icon__move");
 
-                        $(".close-mask").unbind("touchstart").bind("touchstart",function(){
-                            $(".section-documents-container").css("display","none");
-                            $(".section-clue").html("");
 
-                        });
-                    }
+                    $(".icon_puzzle").addClass("icon__move");
+
+                    $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                        $(".section-documents-container").css("display","none");
+                        $(".section-clue").html("");
+
+                    });
+                }
 
 
             });
@@ -476,42 +476,98 @@
                     });
                 }
                 else if(that.hasCompletPuzzle&&that.hasLastPuzzle&&!that.hasKey){
-                //   µã»÷µÃµ½Ô¿³×
-
-                    $(".section-documents-container").css("display","block");
-                    $(".section-clue").css("display","block").siblings().css("display","none");
-                    var img_str = "<div class='clue'><img src='http://p0.ifengimg.com/fe/h5_game_adytum/images/key_620f260c.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
-
-                    $(".section-clue").html(img_str);
-                    that.hasLastPuzzle = true;
-                    that.hasKey = true;
 
 
-                    var current_num = parseInt($("#current_num_clue").html())+1;
-                    $("#current_num_clue").html(current_num)
+                    //   ç‚¹å‡»å¾—åˆ°é’¥åŒ™
+                    //$(".section-documents-container").css("display","block");
+                    //$(".section-clue").css("display","block").siblings().css("display","none");
+                    //var img_str = "<div class='clue'><img src='http://p0.ifengimg.com/fe/h5_game_adytum/images/key_620f260c.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+                    //
+                    //$(".section-clue").html(img_str);
+                    //that.hasLastPuzzle = true;
+                    //that.hasKey = true;
+                    //
+                    //
+                    //var current_num = parseInt($("#current_num_clue").html())+1;
+                    //$("#current_num_clue").html(current_num)
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //$(".icon_key").css("display","block");
+                    //$(".icon_controll").css("display","none");
+                    //$(".icon_puzzle").css("display","none");
+                    //$(".last-paper").css("display","none");
+                    //
+                    //$(".icon_key").addClass("icon__move");
+                    //
+                    //$(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                    //    $(".section-documents-container").css("display","none");
+                    //    $(".section-clue").html("");
+                    //
+                    //});
+                    //å¾—åˆ°é’¥åŒ™
+
+                    $(".complete_puzzle").removeClass("complete_puzzle_changeSmall ");
+                    $(".complete_puzzle").addClass("begin_puzzle_changeBig");
+
+                    var task_09 = setTimeout(function(){
+
+                        $(".complete-puzzle-container").fadeIn(2000);
+
+                        clearTimeout(task_09)
+                    },2000);
 
 
 
-
-
-
-                    $(".icon_key").css("display","block");
-                    $(".icon_controll").css("display","none");
-                    $(".icon_puzzle").css("display","none");
-                    $(".last-paper").css("display","none");
-
-                    $(".icon_key").addClass("icon__move");
-
-                    $(".close-mask").unbind("touchstart").bind("touchstart",function(){
-                        $(".section-documents-container").css("display","none");
-                        $(".section-clue").html("");
-
-                    });
-
-
+                //    complete-puzzle-container  ä¸¤ç§’å æ˜¾ç¤º  ä¸€ä¸ªå®Œå…¨çš„æ‹¼å›¾
 
                 }
             });
+
+            $(".complete-puzzle-container").bind("touchstart",function(){
+                $(".complete-puzzle-container").css("display","none");
+
+
+                $(".complete_puzzle").removeClass("begin_puzzle_changeBig");
+                $(".complete_puzzle").addClass("complete_puzzle_changeSmall");
+
+
+                $(".section-documents-container").css("display","block");
+                $(".section-clue").css("display","block").siblings().css("display","none");
+                var img_str = "<div class='clue'><img src='http://p0.ifengimg.com/fe/h5_game_adytum/images/key_620f260c.png' alt=''/></div><div class='close-mask'><img src='images/close-mask.png' alt=''/></div>"
+
+                $(".section-clue").html(img_str);
+                that.hasLastPuzzle = true;
+                that.hasKey = true;
+
+
+                var current_num = parseInt($("#current_num_clue").html())+1;
+                $("#current_num_clue").html(current_num)
+
+
+
+
+
+
+                $(".icon_key").css("display","block");
+                $(".icon_controll").css("display","none");
+                $(".icon_puzzle").css("display","none");
+                $(".last-paper").css("display","none");
+
+                $(".icon_key").addClass("icon__move");
+
+                $(".close-mask").unbind("touchstart").bind("touchstart",function(){
+                    $(".section-documents-container").css("display","none");
+                    $(".section-clue").html("");
+
+                });
+
+
+            });
+
 
             $(".close-puzzle").bind("touchstart",function(){
                 $(".puzzle-container").css("display","none");
@@ -521,8 +577,22 @@
                 $(".begin_puzzle").removeClass("begin_puzzle_changeBig");
             });
 
+
+
+            $(".close-complete-puzzle").bind("touchstart",function(){
+                $(".complete-puzzle-container").css("display","none");
+
+
+
+                $(".complete_puzzle").removeClass("begin_puzzle_changeBig");
+                $(".complete_puzzle").addClass("complete_puzzle_changeSmall");
+
+            });
+
+
+
             $(".prompt_container").bind("touchstart",function(){
-                    $(this).css("display","none")
+                $(this).css("display","none")
             });
             $(".uva").unbind("touchstart").bind("touchstart",function(){
 
@@ -692,7 +762,7 @@
             });
 
             $(".open_safe_open").unbind("touchstart").bind("touchstart",function(){
-                //  ÃÜÂëÊäÈë
+                //  å¯†ç è¾“å…¥
 
 
             });
@@ -977,7 +1047,7 @@
 
             that.alreadyRandom = true;
 
-            //    ¼ÇÂ¼ÔË¶¯ÍêºóµÄ³õÊ¼¶ÔÓ¦  Î»ÖÃ
+            //    è®°å½•è¿åŠ¨å®Œåçš„åˆå§‹å¯¹åº”  ä½ç½®
             that.initFirstRandomAfter();
             that.puzzleEvent();
 
@@ -991,7 +1061,7 @@
 
             for(var i=0;i<$(".puzzle_small").length;i++){
                 var obj = {}
-                //Óö¼ûÉñ¿Ó µ÷ÊÔÁËÎŞÊı±é   ×¢Òâ jquery  »ñÈ¡µÄÊÇÍâÁ´µÄcss    js »ñÈ¡µÄÊÇÄÚÁª  ¿ªÊ¼Ìæ»»Ê± jquery ÎŞĞ§ÆúÓÃºó ÓÃÁËÔ­Éújs
+                //é‡è§ç¥å‘ è°ƒè¯•äº†æ— æ•°é   æ³¨æ„ jquery  è·å–çš„æ˜¯å¤–é“¾çš„css    js è·å–çš„æ˜¯å†…è”  å¼€å§‹æ›¿æ¢æ—¶ jquery æ— æ•ˆå¼ƒç”¨å ç”¨äº†åŸç”Ÿjs
 
                 obj.left =$(".puzzle_small")[i].style.left;
                 obj.top =$(".puzzle_small")[i].style.top;
@@ -1038,13 +1108,13 @@
             }
 
 
-            //    jquery  ¸ü»»Ê±³öÏÖ  ÖØµş
+            //    jquery  æ›´æ¢æ—¶å‡ºç°  é‡å 
 
 
         },
         changeArrayRealDistance:function(n_index_a,n_index_b){
-            //    ¶à×ßÒ»²½ Ã¿´Î µã»÷ËÉ¿ªºó£¬»»ĞéÄâÎ»ÖÃµÄÍ¬Ê±   ¸ü»»Êı×éÖĞÊµ¼ÊÎ»ÒÆ¶¯»­Ç°Î»ÖÃ  ·ÀÖ¹¶¯»­Î»ÒÆÂÒÅÜ£»
-            //    ..... ¼ÓÉÏ¶¯»­
+            //    å¤šèµ°ä¸€æ­¥ æ¯æ¬¡ ç‚¹å‡»æ¾å¼€åï¼Œæ¢è™šæ‹Ÿä½ç½®çš„åŒæ—¶   æ›´æ¢æ•°ç»„ä¸­å®é™…ä½ç§»åŠ¨ç”»å‰ä½ç½®  é˜²æ­¢åŠ¨ç”»ä½ç§»ä¹±è·‘ï¼›
+            //    ..... åŠ ä¸ŠåŠ¨ç”»
 
 
             var that = this;
@@ -1054,7 +1124,7 @@
 
 
             var temp = that.deepCopy(that.after_random_init[n_index_a],{});
-            //Éîclone a
+            //æ·±clone a
 
             var  n_a = that.after_random_init[n_index_a];
 
@@ -1105,7 +1175,7 @@
             $(".puzzle_small").bind("touchstart",function(e){
 
                 $(this).css("transition","none");
-                //¾àÀë×ó±ß±ß½ç¾àÀë(xÖµ)   ¶à³öÀ´15px  ÒòÎªÍâ²ã¾àÀë  µ«ÊÇoffset 0  ÒòÎª×ó±ßÎŞ·ìÏ¶
+                //è·ç¦»å·¦è¾¹è¾¹ç•Œè·ç¦»(xå€¼)   å¤šå‡ºæ¥15px  å› ä¸ºå¤–å±‚è·ç¦»  ä½†æ˜¯offset 0  å› ä¸ºå·¦è¾¹æ— ç¼éš™
                 //that.start_x = e.originalEvent.targetTouches[0].pageX-parseInt($(".realpuzzle_bg-container").css("left"));
 
                 $(this).css("z-index",999);
@@ -1113,7 +1183,7 @@
                 that.start_y = e.originalEvent.targetTouches[0].pageY;
 
 
-                //Ğ¡Æ´Í¼  ÄÚ x  µÄ¾àÀë
+                //å°æ‹¼å›¾  å†… x  çš„è·ç¦»
                 that.start_inner_x = e.originalEvent.targetTouches[0].pageX-this.offsetLeft;
                 that.start_inner_y = e.originalEvent.targetTouches[0].pageY-this.offsetTop;
 
@@ -1133,7 +1203,7 @@
             });
             $(".puzzle_small").bind("touchmove",function(e){
 
-                //    ÏŞ¶¨±ß½ç ²»ÈÃÒÆ¶¯
+                //    é™å®šè¾¹ç•Œ ä¸è®©ç§»åŠ¨
 
 
                 that.current_x = e.originalEvent.targetTouches[0].pageX;
@@ -1144,7 +1214,7 @@
                 $(this).css("left",that.current_x-that.start_inner_x+"px");
                 $(this).css("top",that.current_y-that.start_inner_y+"px");
 
-                // //Ö»¹ÜÎ»ÒÆ    ¼õÈ¥µ½Ğ¡·½¿é×ÜµÄµãµÄ¾àÀë
+                // //åªç®¡ä½ç§»    å‡å»åˆ°å°æ–¹å—æ€»çš„ç‚¹çš„è·ç¦»
             });
 
             $(".puzzle_small").bind("touchend ",function(e){
@@ -1157,7 +1227,7 @@
 
 
 
-                //  1 ´«Èëµ±Ç° Ê±¿Ì  µÄ ±»µã»÷  ±»·Å¿ª Æ´Í¼ µÄÎ»ÖÃ¡££¡
+                //  1 ä¼ å…¥å½“å‰ æ—¶åˆ»  çš„ è¢«ç‚¹å‡»  è¢«æ”¾å¼€ æ‹¼å›¾ çš„ä½ç½®ã€‚ï¼
 
                 var obj =  that.isChangeOrNo(this,this.offsetLeft,this.offsetTop);
 
@@ -1190,7 +1260,7 @@
 
                 }
 
-                if(str == "123456789"&&that.game.hasLastPuzzle&&that.alreadyRandom){
+                if(str == "123456789"&&that.game.hasLastPuzzle&&that.alreadyRandom&&!that.game.hasKey){
 
                     that.game.hasKey = true;
                     $(".realpuzzle_bg-container").css("display","none");
@@ -1278,12 +1348,12 @@
         },
         isChangeOrNo:function(obj,move_x,move_y){
             var that = this;
-            //ÅĞ¶ÏºÍË­»»
+            //åˆ¤æ–­å’Œè°æ¢
 
 
 
 
-            //  ÖØºÏÃæ»ı´óÓÚÒ»°ë¡£
+            //  é‡åˆé¢ç§¯å¤§äºä¸€åŠã€‚
 
             for(var i=0;i<$(".puzzle_small").length;i++){
 
