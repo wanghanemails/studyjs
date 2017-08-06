@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+<body>
+        <div id="my"></div>
+</body>
+<script>
+    console.log(window.innerHeight)
+    console.log(window.innerWidth)
+
+
+
+
+    window.onresize = function () {
+
+        var a = document.getElementById("my");
+        a.style.height = window.innerHeight/3 +"px";
+        a.style.width = window.innerWidth/3 +"px";
+
+//        a.style.marginLeft = -window.innerWidth/6+"px";
+//        a.style.marginTop = -window.innerHeight/6+"px";
+
+    }
+
+</script>
+</html>

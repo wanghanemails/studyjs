@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+<script src="../js/vue/dist/vue.js"></script>
+
+<body>
+    
+    <div id="mydiv" >
+         <div v-my-instructions:hello.a.b="message"></div>
+          <input type="text" id="myinput" v-model="message">
+         <div>{{test}}</div>
+    </div>
+</body>
+<script>
+Vue.directive('my-instructions',{
+
+    bind:function(el,binding,vnode){
+var s = JSON.stringify;
+                
+        
+        console.log(el)
+
+        el.innerHTML =
+      'name: '       + s(binding.name) + '<br>' +
+      'value: '      + s(binding.value) + '<br>' +
+      'expression: ' + s(binding.expression) + '<br>' +
+      'argument: '   + s(binding.arg) + '<br>' +
+      'modifiers: '  + s(binding.modifiers) + '<br>' +
+      'vnode keys: ' + Object.keys(vnode).join(', ');
+      
+    },
+    inserted:function(el,binding,vnode){
+         var s = JSON.stringify;
+        el.innerHTML = binding.value;
+        console.log(1,binding.value)
+        console.log(2,el.childNodes[0]);
+        console.log(3,el.parentNode);
+        
+        console.log(4,el.nextSbiling);
+        console.log(5,el.previousSbiling);
+        
+        
+    },
+    update:function(el,binding,vnode){
+        var s = JSON.stringify;
+                
+         var s = JSON.stringify;
+        el.innerHTML = s(binding.value);
+
+    }
+
+
+})
+new Vue({
+    el: "#mydiv",
+    data: {
+        message :"first instructions",
+        test:"尝试去搞事情"
+    }
+})
+
+</script>
+
+</html>
