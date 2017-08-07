@@ -39,14 +39,14 @@
         },
         gunForzidan:function (zidans,n_zidan,trans_delay,move_dis) {
 
-            if(zidans[5]==zidans){
-                debugger;
-            }
 
-            var move_dis = move_dis|| "left"
 
-            var that  =this;
+            // var deriction_move = move_dis|| "left";
 
+
+
+            var that  = this;
+            // debugger;
             that.creatZidan(zidans,n_zidan,trans_delay,move_dis);
 
             var task_creat_zidan = setInterval(function () {
@@ -60,9 +60,11 @@
                 }
             },that.zidan_frequency)
         },
-        creatZidan:function (zidans,n_zidan,trans_delay,direction,move_dis) {
+        creatZidan:function (zidans,n_zidan,trans_delay,move_dis) {
             var that = this;
-            var move_dis = move_dis|| "left"
+
+            var move_dis = move_dis|| "left";
+
             var trans_delay = trans_delay||"0ms";
 
 
@@ -86,8 +88,13 @@
             last_zidan_q.css("-webkit-transition-delay",trans_delay);
             last_zidan_q.css("transition-delay",trans_delay);
 
+            if(move_dis=="left"){
+                last_zidan_q.css("left",window.innerWidth);
+            }else {
+                last_zidan_q.css("left",-window.innerWidth);
+            }
 
-            last_zidan_q.css("top",(move_dis=="left")?-window.innerWidth:-window.innerWidth);
+
 
 
 
@@ -106,12 +113,13 @@
             });
 
             $("body").click(function (e) {
-                console.log(e.pageX)
-                console.log(e.pageY)
 
 
+                console.log($(".zidan")[0].offsetTop)
+                console.log($(".zidan")[0].offsetLeft)
 
-            })
+
+            });
         }
     }
     WolfFight.prototype.constructor = WolfFight;
