@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+<script src="../js/vue/dist/vue.js"></script>
+
+<body> 
+    <div id="mydiv">
+    <input type="text " v-model="parentMessage">
+        <div>{{parentMessage}}</div>
+       <ul>
+
+         <li v-for="item in items  " > {{ item.name }}</li>
+       </ul>
+        <span v-text="parentMessage"></span>
+        <!-- 和下面的一样 -->
+        <span>{{parentMessage}}</span>
+    </div>
+</body>
+<script>
+new Vue({
+    el: "#mydiv",
+
+    data: {
+        parentMessage:'滴滴',
+        items :[
+
+           {
+                name:'滴滴顺风车',
+                price:12.3
+           },
+           {
+                name:"滴滴专车",
+                price:13
+           }
+
+        ]
+    },
+    
+   
+})
+</script>
+
+</html>

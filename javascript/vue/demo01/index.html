@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+<script src="../js/vue/dist/vue.js"></script>
+
+<body>
+    <div id="mydiv">
+        <ul>
+            <li v-for="tab in tabs">
+                {{tab.text}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+new Vue({
+    el: "#mydiv",
+    data: {
+        tabs :[
+            {
+                text: "沙哈森1"
+            }, {
+                text: "沙哈森2"
+            }, {
+                text: "沙哈森3"
+            }, {
+                text: "沙哈森4"
+            }, {
+                text: "沙哈森5"
+            }, {
+                text: "沙哈森6"
+            }, {
+                text: "沙哈森7"
+            }
+        ]
+    }
+})
+</script>
+
+</html>

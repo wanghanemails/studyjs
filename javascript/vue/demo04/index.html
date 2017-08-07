@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css">
+	<script src="../js/vue/dist/vue.js"></script>
+<body>
+		
+			<div id="mydemo" v-my-demo="{color:'red',text:'hello'}"></div>
+</body>
+	<script>
+	// 自定义指令直接传入函数，第一个参数为 el 本身元素，第二个为binding 一个对象    该函数为钩子函数。
+	// 
+	// 
+	// 
+		Vue.directive("my-demo",function(el,binding){
+			    console.log(el);
+			    console.log(binding)
+				console.log(binding.value.color);
+				console.log(binding.value.text);
+
+		});
+		new Vue({
+			el:"#mydemo",
+			data:{
+
+			}
+		})
+	</script>
+</html>

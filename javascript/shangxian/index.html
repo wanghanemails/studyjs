@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <title>没时间解释了！快上飞机！</title>  <meta name="viewport" content="width=device-width" />
+    <!-- build:basejs scripts/base-core.js-->
+    <!--bower:basejs-->
+    <!-- requirejs 、 glue 组件版本-->
+    <!--endbower-->
+    <!--endbuild-->
+    <!-- build:css styles/h5_game_adytum_depmodules.css-->
+    <!-- bower:css -->
+    <!--引用组件的css-->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/h5_game_adytum_depmodules_pc.css device:pc-->
+    <!-- bower:css device:pc-->
+    <!--引用组件的css-->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/h5_game_adytum_depmodules_mobile.css device:mobile-->
+    <!-- bower:css device:mobile-->
+    <!--引用组件的css-->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/h5_game_adytum_depmodules_pad.css device:pad-->
+    <!-- bower:css device:pad-->
+    <!--引用组件的css-->
+    <!-- endbower -->
+    <!-- endbuild --> <meta name="apple-mobile-web-app-capable" content="yes" /> <meta name="apple-mobile-web-app-status-bar-style" content="black" /> <meta name="format-detection" content="telephone=no, email=no" /> <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 删除苹果默认的工具栏和菜单栏 --> <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 设置苹果工具栏颜色 --> <meta name="format-detection" content="telphone=no, email=no" />
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) --> <meta name="renderer" content="webkit" />
+    <!-- 避免IE使用兼容模式 --> <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --> <meta name="HandheldFriendly" content="true" />
+    <!-- 微软的老式浏览器 --> <meta name="MobileOptimized" content="320" />
+    <!-- uc强制竖屏 --> <meta name="screen-orientation" content="portrait" />
+    <!-- QQ强制竖屏 --> <meta name="x5-orientation" content="portrait" />
+    <!-- UC强制全屏 --> <meta name="full-screen" content="yes" />
+    <!-- QQ强制全屏 --> <meta name="x5-fullscreen" content="true" />
+    <!-- UC应用模式 --> <meta name="browsermode" content="application" />
+    <!-- QQ应用模式 --> <meta name="x5-page-mode" content="app" />
+    <!-- windows phone 点击无高光 --> <meta name="msapplication-tap-highlight" content="no" />
+    <!-- 适应移动端end -->
+    <!-- build:css styles/h5_game_adytum_main.css lib-->
+    <!--项目自身的css文件-->
+    <!--endbuild-->
+    <!-- build:css styles/h5_game_adytum_main_pad.css lib device:pad-->
+    <!--endbuild-->
+    <!-- build:css styles/h5_game_adytum_main_mobile.css lib device:mobile-->
+    <!--endbuild-->
+    <!-- build:css styles/h5_game_adytum_main_pc.css lib device:pc-->
+    <!--endbuild--> <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" /> <link rel="stylesheet" href="index.css" />
+    <script type="text/javascript">
+        var url = window.location.href;
+        if (url.indexOf('http://i') != -1){
+            document.write('<script type="text/javascript">gloableSettings={"queryString":"","channelPath":"/wwwh5/special"}<\/script>');
+            var numTitle = document.title.indexOf("_凤凰");
+            if(numTitle != -1){
+                var stringTitle = document.title.substring(numTitle);
+                document.title = document.title.replace(stringTitle,"_手机凤凰网");
+            }
+            else{
+                document.title = document.title + "_手机凤凰网";
+            }
+        }else{
+            document.write('<script src="http://m1.ifengimg.com/ifeng/sources/inice_v1.js"><\/script>');
+            document.write('<script src="http://h0.ifengimg.com/20150625/fa.min.js"><\/script>');
+        }
+    </script></head><body>
+<!-- build:requirejs scripts/h5_game_adytum_depmodules.js-->
+<!--bower:requirejs-->
+<!--依赖组件的配置-->
+<!--endbower-->
+<!--endbuild-->
+<!-- build:requirejs scripts/h5_game_adytum_depmodules_pad.js device:pad-->
+<!--bower:requirejs device:pad-->
+<!--依赖组件的配置-->
+<!--endbower-->
+<!--endbuild-->
+<!-- build:requirejs scripts/h5_game_adytum_depmodules_mobile.js device:mobile-->
+<!--bower:requirejs device:mobile-->
+<!--依赖组件的配置-->
+<!--endbower-->
+<!--endbuild-->
+<!-- build:requirejs scripts/h5_game_adytum_depmodules_pc.js device:pc-->
+<!--bower:requirejs device:pc-->
+<!--依赖组件的配置-->
+<!--endbower-->
+<!--endbuild-->
+
+
+<style>
+    .loading .loading-num{
+        top:25%;
+    }
+    .loading-num span{
+        display: inline-block;
+        float: left;
+
+    }
+</style>
+
+<section class="loading">
+    <article class="loading-container">
+        <div class="loading-img">
+            <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/loading-time-img.png" alt="" />
+        </div>
+        <div class="loading-num ">
+            <span class="loading-num-percentage">0</span>
+            <span>%</span>
+        </div>
+        <div class="loading-content">
+            <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/loading_content.png" alt="" />
+        </div>
+    </article>
+</section> <div class="imgs" style="display: none">
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top1_678659a0.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top2_0102e177.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top3_364e8302.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top4_9ab1fe65.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top5_7dfc61d4.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top6_cc3cb7e3.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top7_b2c61c5a.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top8_635ec299.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top9_c2cbf541.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/top10_f08514c3.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask_626c98f2.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/key_620f260c.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_7f35e42a.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_clue02_5f03f5c5.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/in_table_clue_87476e3a.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/photo_clue01_430b6bb5.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/password_a8f1ffec.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask02_dbc72254.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/nouse_7346f7fd.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/control_ceb9e03d.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/end_game_77c124de.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/close-mask02_dbc72254.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/section2-container-bg_f78f124a.png" alt="" />
+    <img src="http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg" alt="" />
+</div> <section class="top-container clearfix">
+    <section class="game-container current_container section1 ">
+        <div class="train-container-window">
+            <div class="train-bg">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/train-bg.jpg" alt="" />
+                <div class="train-container">
+                    <div class="train">
+                        <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/train.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-bg section1-bg clearfix">
+            <div class="zaihuang-medication">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/zaihuang-medication.png" alt="" />
+            </div>
+            <div class="yunnan-medication">
+                <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/yunnan-medication.png" alt="" />
+            </div>
+            <div class="simulation-train">
+                <div class="simulation-train-move"></div>
+            </div>
+            <div class="simulation-bedside-table"></div>
+            <div class="huawei-iphone">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/huawei-iphone.png" alt="" />
+            </div>
+            <div class="important-paper">
+                <div class="last-paper">
+                    <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/important-paper.png" alt="" />
+                </div>
+                <div class="cooling-ointment">
+                    <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/cooling-ointment.png" alt="" />
+                </div>
+            </div>
+            <div class="uva">
+                <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/uva.png" alt="" />
+            </div>
+            <div class="uva_bg">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/uva_bg.png" alt="" />
+            </div>
+            <div class="chair">
+                <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/chair.png" alt="" />
+            </div>
+            <div class="light">
+                <div class="light_close">
+                    <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/light_close.png" alt="" />
+                </div>
+                <div class="light_open">
+                    <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/light_open.png" alt="" />
+                </div>
+            </div>
+            <div class="toy">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/toy.png" alt="" />
+            </div>
+            <div class="show_toy"></div>
+            <div class="show_book"></div>
+            <div class="puzzle begin_puzzle" id="puzzle_wall">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_begin_img.png" alt="" />
+            </div>
+            <div class="puzzle complete_puzzle">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_begin_img.png" alt="" />
+            </div>
+            <div class="puzzle wait_puzzle">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_begin_img.png" alt="" />
+            </div>
+        </div>
+    </section>
+    <section class="game-container section2 ">
+        <div class="section-bg section2-bg clearfix">
+            <div class="byd_car"></div>
+            <div class="haier"></div>
+            <div class="open_safe"></div>
+            <div class="open_safe_open">
+                <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/open_03.png" alt="" />
+            </div>
+            <div class="no_use">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/no_use.png" alt="" />
+            </div>
+            <div class="open_table">
+            </div>
+            <div class="open_table_open">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/open_02.png" alt="" />
+            </div>
+            <div class="sauce" id="sauce">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/sauce.png" alt="" />
+            </div>
+            <div class="laoganma">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/laoganma.png" alt="" />
+            </div>
+            <div class="milk">
+                <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/milk.png" alt="" />
+            </div>
+            <div class="paper_03">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/paper_03.png" alt="" />
+            </div>
+            <div class="paper_02">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/paper_02.png" alt="" />
+            </div>
+            <div class="paper_01">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/paper_01.png" alt="" />
+            </div>
+        </div>
+    </section>
+</section> <div class="left-arrow" id="left-arrow">
+    <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/left-arrow.png" alt="" />
+</div> <div class="right-arrow" id="right-arrow">
+    <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/right-arrow.png" alt="" />
+</div> <div class="section-documents-container">
+    <div class="section-documents"></div>
+    <div class="section-clue"></div>
+    <div class="section-clue_calendar"></div>
+    <div class="section-clue_book"></div>
+    <div class="password_input">
+        <div class="input-container">
+            <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/password_input.png" alt="" />
+            <div class="input_password_showNum">
+            </div>
+            <ul class="input_password">
+                <li data-index="1"></li>
+                <li data-index="2"></li>
+                <li data-index="3"></li>
+                <li data-index="4"></li>
+                <li data-index="5"></li>
+                <li data-index="6"></li>
+                <li data-index="7"></li>
+                <li data-index="8"></li>
+                <li data-index="9"></li>
+                <li data-index="0"></li>
+                <li class="remove_password"></li>
+                <li class="end_password"></li>
+            </ul>
+        </div>
+        <div class="close-mask_03">
+            <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/close-mask.png" alt="" />
+        </div>
+    </div>
+</div> <div class="puzzle-container">
+    <div class="realpuzzle_bg-container">
+        <div class="realpuzzle_bg" id="real_container">
+            <div class="puzzle_small puzzle_1" style=" top: 0;left: 0;" data-index="1">
+                <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_01.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_2" style=" top: 0;  left: 33.3%;" data-index="2">
+                <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_02.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_3" style=" top: 0;  left: 66.6%;" data-index="3">
+                <img class="hasLastPuzzle" src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_03.png" alt="" />
+                <img class="noLastPuzzle" src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_03_noLastPuzzle.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_4" style=" top: 33.3%;  left: 0%;" data-index="4">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_04.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_5" style=" top: 33.3%;  left: 33.3%;" data-index="5">
+                <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_05.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_6" style=" top: 33.3%;  left: 66.6%;" data-index="6">
+                <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_06.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_7" style=" top: 66.6%;  left: 0%;" data-index="7">
+                <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_07.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_8" style=" top:  66.6%;  left: 33.3%;" data-index="8">
+                <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_08.png" alt="" />
+            </div>
+            <div class="puzzle_small puzzle_9" style=" top: 66.6%;  left: 66.6%;" data-index="9">
+                <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/puzzle_09.png" alt="" />
+            </div>
+        </div>
+    </div>
+    <div class="close-puzzle">
+        <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/close-mask02.png" alt="" />
+    </div>
+</div> <div class="complete-puzzle-container">
+    <div class="complete_realpuzzle_bg-container">
+        <img src="http://p2.ifengimg.com/l/2017/19/fb83dfa1988b4f9/photo_1.png" alt="" />
+    </div>
+    <div class="close-complete-puzzle">
+        <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/close-mask02.png" alt="" />
+    </div>
+</div> <div class="state_clue">
+    <div class="font clearfix">
+        <div class="font-font">
+            <div class="normal">
+                已有线索
+            </div>
+            <div id="current_num_clue">
+                0
+            </div>
+            <div id="total_num_clue">
+                /3
+            </div>
+        </div>
+        <div class="font-opt"></div>
+    </div>
+    <div class="icons">
+        <div class="icon_puzzle">
+            <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/important-paper.png" alt="" />
+        </div>
+        <div class="icon_key">
+            <img src="http://p3.ifengimg.com/l/2017/19/fb83dfa1988b4f9/only_key.png" alt="" />
+        </div>
+        <div class="icon_controll">
+            <img src="http://p0.ifengimg.com/l/2017/19/fb83dfa1988b4f9/controll_uva.png" alt="" />
+        </div>
+    </div>
+</div> <div class="prompt_container">
+    <div class="promt_content">
+        <img src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/prompt.png" alt="" />
+    </div>
+    <div class="promt_opt"></div>
+</div> <section class="foot"></section>
+<!-- build:js scripts/h5_game_adytum_main.js lib--> <script src="http://p1.ifengimg.com/l/2017/19/fb83dfa1988b4f9/version.js"></script>
+<!--项目自身的js文件-->
+<!--endbuild-->
+<!-- build:js scripts/h5_game_adytum_main_pad.js lib device:pad-->
+<!--endbuild-->
+<!-- build:js scripts/h5_game_adytum_main_mobile.js lib device:mobile-->
+<!--endbuild-->
+<!-- build:js scripts/h5_game_adytum_main_pc.js lib device:pc-->
+<!--endbuild-->
+<!-- 以标签方式注册一个组件 -->
+<!--
+        <div g-cid="widgetId" g-cname="h5_game_adytum" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div>
+        --> <script>// 以命令行方式注册一个组件
+// glue.widgetRegist('srcNode', 'widgetId', 'h5_game_adytum', 'depWidgetId', 'priority', {
+//   'model.propertyName': '@@outModel.propertyName'
+// });
+
+// 直接创建一个组件
+// require(['h5_game_adytum'], function(h5_game_adytum) {
+//   new h5_game_adytum(glue).create(srcNode, options);
+// });
+
+// 扫描组件
+// glue.scan();
+// 运行组件
+// glue.run();</script> <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.8.3.min.js"></script> <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> <script type="text/javascript">var url = window.location.href;
+var link = "http://creative.ifeng.com/WxInterface";
+var data = {
+    'url':url,
+}
+$.getJSON(link+"/WxInterface.php?callback=?",data,function(data){
+    var sign = eval(data);
+    wx.config({
+        debug: false,
+        appId: sign.appId,
+        timestamp:sign.timestamp,
+        nonceStr: sign.nonceStr,
+        signature: sign.signature,
+        jsApiList: [
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
+        ]
+    });
+});
+wx.ready(function  () {
+    // 分享给朋友圈
+    wx.onMenuShareTimeline({
+        title: '没时间解释了！快上飞机！', // 分享标题
+        link: '', // 分享链接
+        imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    // 朋友
+    wx.onMenuShareAppMessage({
+        title: '没时间解释了！快上飞机！', // 分享标题
+        desc: '飞往巴基斯坦的机票去哪了？！', // 分享描述
+        link: '', // 分享链接
+        imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    // QQ
+    wx.onMenuShareQQ({
+        title: '没时间解释了！快上飞机！', // 分享标题
+        desc: '飞往巴基斯坦的机票去哪了？！',// 分享描述
+        link: '', // 分享链接
+        imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg',// 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    // 新浪
+    wx.onMenuShareWeibo({
+        title: '没时间解释了！快上飞机！', // 分享标题
+        desc: '飞往巴基斯坦的机票去哪了？！', // 分享描述
+        link: '', // 分享链接
+        imgUrl: 'http://p0.ifengimg.com/fe/h5_game_adytum/images/share_396b5c6f.jpg', // 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+    });
+})</script> <script src="index.js"></script>
+<script type="text/javascript">
+    var tongjiurl = window.location.href;
+    if (tongjiurl.indexOf('http://i') != -1){
+        document.write('<script src="http://y1.ifengimg.com/a/2014/tv/v6/sta_collection_common_v12.js"><\/script>');
+        document.write('<script src="http://y1.ifengimg.com/a/2014/tv/v6/sta_collection_4_pv_v10.js"><\/script>');
+    }else{
+        document.write('<script>var sta_collection_time = new Date().getTime();<\/script>');
+        document.write('<script id="sta_collection_new">window.analytics(encodeURIComponent(window.location.href));setTimeout(function(){window.aptracker.collection();},800);<\/script>');
+        document.write('<div id="ifeng_da_le" style="width:1px;height:1px"><script src="http://m0.ifengimg.com/ifeng/sources/120331-iImpression.js"><\/script></div>');
+    }
+</script><!-- 页尾通栏  --></body></html>
