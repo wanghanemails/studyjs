@@ -105,21 +105,94 @@
             })
         },
         initLeadEvent:function () {
-            $(".lead_wu").click(function (e) {
+            var that = this;
+            var startX ,startY;
 
+            $(".lead_wu").bind("touchstart",function (e) {
+                
+
+                  startX = e.originalEvent.targetTouches[0].pageX-this.offsetLeft;
+                  startY = e.originalEvent.targetTouches[0].pageX-this.offsetTop;
+              
+
+            });
+
+            $(".lead_wu").bind("touchmove",function (e) {
+
+               var   moveX = e.originalEvent.targetTouches[0].pageX;
+               var   moveY = e.originalEvent.targetTouches[0].pageY;
+
+                var    toX = moveX-startX;
+                 var   toY = moveY - startY;
+
+
+            $(this).css("left",toX+"px");
+            $(this).css("top",toY+"px");
 
                 // console.log($(".zidan")[0].pageX)
 
-            });
+            });            
 
-            $("body").click(function (e) {
+            // $("body").click(function (e) {
+
+            //         var x = e.pageX;
+            //         var y = e.pageY;
+
+            //         console.log(x)
+            //         console.log(y)
+                   
+            //         console.log(that.getAllZidanData());
+
+            // });
+        },
+        getAllOffsets:function(click_obj){
+           
+
+                  var top = 0;
+                  var left = 0;
+                 
+
+                // for(var i=0;i<parrents.length;i++){
+                //     top += $(parrents[i]).offset().top;
+                //     left += $(parrents[i]).offset().left;
+
+                // }
+                var obj = {};
+                top += $(click_obj).offset().top;
+                left += $(click_obj).offset().left;
+                obj.top = top;
+                obj.left = left;
+               
+               return obj;
 
 
-                console.log($(".zidan")[0].offsetTop)
-                console.log($(".zidan")[0].offsetLeft)
+        },
+        getAllZidanData:function(){
+            var that =this;
+            var array = [];
 
+            
+               
+            for(var i=0;i<zidans.length;i++){
+                
+               
 
-            });
+                    var my_length = $("."+zidans[i]).find(".zidan").length;
+                 
+               
+                    if(my_length>0){
+                       
+                        for(var j=0;j<$("."+zidans[i]).find(".zidan").length;j++){
+
+                            array.push(that.getAllOffsets($("."+zidans[i]).find(".zidan")[j]));
+                            // console.log(that.getAllOffsets($("."+zidans[i]).find(".zidan")[j]))
+                        }
+
+                    }
+             
+
+            }
+            return array;
         }
     }
     WolfFight.prototype.constructor = WolfFight;
@@ -128,7 +201,7 @@
 
 
     function WolfFight(count_time,zidans) {
-        this.zidan_frequency = 10000;
+        this.zidan_frequency = 1000;
         this.game_over = false;
         this.hard_level = 5;
         this.beginTime(count_time);
