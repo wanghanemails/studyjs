@@ -24,7 +24,7 @@ html,body{
     left: 0;
     bottom: 0;
     z-index: 8;
-    background: url(../images/section-mask.png) top center no-repeat;
+    background: url(http://p0.ifengimg.com/71f9287bab6b3ce4/2017/32/1952d605e422ae7.png) top center no-repeat;
     background-size: 100% 100%;
 }
 
@@ -402,9 +402,10 @@ html,body{
     position: absolute;
     left: 0;
     bottom: 0;
-    z-index: 8;
+
     background: url(../images/share_img.png) top center no-repeat;
     background-size: 100% 100%;
+    z-index: 1000;
 }
 
 .logos{
