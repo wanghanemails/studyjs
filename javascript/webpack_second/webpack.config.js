@@ -3,44 +3,43 @@
  */
 
 const webpack = require('webpack');
-const html_webpacl_plugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry:{
-        page1:[__dirname +'\\src\\js\\main1.js',__dirname +'\\src\\js\\main2.js'],
-        page2:__dirname +'\\src\\js\\main3.js'
+        a:__dirname +'\\src\\js\\main1.js',
+
     },
     output:{
         path:__dirname +'\\dist',
-        filename:'js\\[name]-[hash]bundle.js',
-        chunkFilename: "[id].bundle.js"
+        filename:'js\\[name]-[chunkhash]bundle.js',
+        chunkFilename: "[id].bundle.js",
+        // publicPuath:""   //占位符   用来替换前缀域名   让js 为绝对地址。
+        // publicPath:"http://cdn.com/"   //占位符   用来替换前缀域名   让js 为绝对地址。
     },
-    module: {
-        loaders: [
-            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-
-            { test: /\.jade$/, loader: "jade" },
-            // => "jade" loader is used for ".jade" files
-
-            { test: /\.css$/, loader: "style!css" },
-            // => "style" and "css" loader is used for ".css" files
-            // Alternative syntax:
-            { test: /\.css$/, loaders: ["style", "css"] },
-        ]
-    },
+    // module: {
+    //     loaders: [
+    //         {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+    //
+    //         { test: /\.jade$/, loader: "jade" },
+    //         // => "jade" loader is used for ".jade" files
+    //
+    //         { test: /\.css$/, loader: "style!css" },
+    //         // => "style" and "css" loader is used for ".css" files
+    //         // Alternative syntax:
+    //         { test: /\.css$/, loaders: ["style", "css"] },
+    //     ]
+    // },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-            },
-            output: {
-                comments: false,
-            },
-        }),
-        new html_webpacl_plugin({
+
+        new htmlWebpackPlugin({
             template:__dirname+'\\index.html',
+            filename:'page1.html',
             inject:'head',
-            title:"hehe",
-            date:new Date()
+            // inject:false,
+            title:"hehe1",
+            // excludeChunks: ['main','a']
+
         } ),
+
     ]
 }

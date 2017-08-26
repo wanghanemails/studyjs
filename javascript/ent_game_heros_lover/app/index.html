@@ -1,0 +1,741 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>“秀恩爱联盟”大片七夕上映</title>
+        <meta name="description" content=""/>
+
+        <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <!-- build:basejs scripts/base-core.js-->
+        <!--bower:basejs-->
+        <!-- requirejs 、 glue 组件版本-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_game_heros_lover_depmodules.css-->
+        <!-- bower:css -->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_game_heros_lover_depmodules_pc.css device:pc-->
+        <!-- bower:css device:pc-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_game_heros_lover_depmodules_mobile.css device:mobile-->
+        <!-- bower:css device:mobile-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_game_heros_lover_depmodules_pad.css device:pad-->
+        <!-- bower:css device:pad-->
+        <!--引用组件的css-->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/ent_game_heros_lover_main.css lib-->
+
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+        <!--项目自身的css文件-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_game_heros_lover_main_pad.css lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:css styles/ent_game_heros_lover_main_mobile.css lib device:mobile-->
+        <!--endbuild-->
+
+        <script>
+            function IsPC() { //pc终端
+                var userAgentInfo = navigator.userAgent;
+                var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+                var flag = true;
+                for (var v = 0; v < Agents.length; v++) {
+                    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                        flag = false; break;
+                    }
+                }
+                return flag;
+            }
+
+
+
+            if (IsPC() === true) {
+                //<scripts src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></sc'+'ript>
+//                document.write('<link class="mycss" rel="stylesheet" href="styles/ent_game_wolf2_pc.css">');
+//                document.write('<scripts src=""></sc'+'ript>');
+
+                document.write('<link rel="stylesheet" href="styles/ent_game_heros_lover_pc.css" />');
+
+
+
+
+
+
+            }else {
+                document.write('<link rel="stylesheet" href="styles/ent_game_heros_lover.css" />');
+
+//                document.write('<scripts src="scripts/index.js"></sc'+'ript>');
+
+            }
+        </script>
+        <!-- build:css styles/ent_game_heros_lover_main_pc.css lib device:pc-->
+        <!--endbuild-->
+        <!--#include virtual="/cmpp_12005/chip/s_common_h5_tongji.html"-->
+    </head>
+    <body>
+
+    <div class="imgs" style="display: none">
+        <img src="images/hero1_section1-bg.jpg" alt="">
+        <img src="images/hero1_section2-bg.jpg" alt="">
+        <img src="images/hero2_section1-bg.jpg" alt="">
+        <img src="images/hero2_section2-bg.jpg" alt="">
+        <img src="images/hero3_section1-bg.jpg" alt="">
+        <img src="images/hero3_section2-bg.jpg" alt="">
+        <img src="images/hero4_section1-bg.jpg" alt="">
+        <img src="images/hero4_section2-bg.jpg" alt="">
+        <img src="images/hero5_section1-bg.jpg" alt="">
+        <img src="images/hero5_section2-bg.jpg" alt="">
+        <img src="images/hero6_section1-bg.jpg" alt="">
+        <img src="images/hero6_section2-bg.jpg" alt="">
+        <img src="images/background-bg.jpg" alt="">
+        <img src="images/share_img_btn.png" alt="">
+        <img src="images/back_p2.png" alt="">
+        <img src="images/begin-button.png" alt="">
+
+
+
+    </div>
+    <img class="pc_none" src="http://p2.ifengimg.com/71f9287bab6b3ce4/2017/34/2ea7acf9e137187.jpg" style="position: fixed;left:-100%;" />
+    <div id="loading">
+        <div class="icon inco-move">
+            <img src="http://y3.ifengimg.com/ifengimcp/pic/20141229/36bf7efc10f1a3f1bad9_size33_w1024_h1024.png" id="fenghuang" width="100%">
+        </div>
+    </div>
+
+    <audio id="myaudio" src="http://p3.ifengimg.com/71f9287bab6b3ce4/2017/34/884c2b63b47c60b.mp3" autoplay loop></audio>
+    <div class="muzic-btin">
+        <div class="muzic-opening">
+            <img src="images/muzic-opening.png" alt="">
+        </div>
+        <div class="muzic-stoping">
+            <img src="images/muzic-stoping.png  " alt="">
+        </div>
+    </div>
+
+        <!-- build:requirejs scripts/ent_game_heros_lover_depmodules.js-->
+        <!--bower:requirejs-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_game_heros_lover_depmodules_pad.js device:pad-->
+        <!--bower:requirejs device:pad-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_game_heros_lover_depmodules_mobile.js device:mobile-->
+        <!--bower:requirejs device:mobile-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+
+        <!-- build:requirejs scripts/ent_game_heros_lover_depmodules_pc.js device:pc-->
+        <!--bower:requirejs device:pc-->
+        <!--依赖组件的配置-->
+        <!--endbower-->
+        <!--endbuild-->
+        
+
+        <!-- build:js scripts/ent_game_heros_lover_main.js lib-->
+        <script src="scripts/version.js"></script>
+
+
+        <div id="wrongmask"><img src="images/mask.jpg">
+            <div class="makeVertical">请保持手机锁定竖屏状态</div>
+        </div>
+        <div class="share-mask"></div>
+
+        <section class="section-container">
+            <article class="p1">
+                <div class="begin-btn"></div>
+                <div class="logos">
+                    <div class="logo-1">
+                        <a href="http://share.iclient.ifeng.com/channel_7543" target="_blank"><img src="images/logo-1.png" alt=""></a>
+                    </div>
+                    <div class="logo-2">
+                        <a href="http://fashion.ifeng.com/" target="_blank"><img src="images/logo-2.png" alt=""></a>
+                    </div>
+
+                </div>
+            </article>
+            <article class="p2">
+                <div class="p2-begin">
+                    <div class="content"></div>
+                    <ul class="heros-start-ul">
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros1-content-img.png" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros2-content-img.png" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros3-content-img.png" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros4-content-img.png" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros5-content-img.png" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="heros-background-container"></div>
+                            <div class="heros-img">
+                                <img src="images/heros6-content-img.png" alt="">
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <ul class="real-container">
+                    <li class="heros1-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero1_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero1_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero1_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero1-section1-content1.png" alt="">
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                        <div class="scene-2-container">
+
+
+                                <div class="content2-font content2-font1">
+                                    <img src="images/hero1-section2-content2.png" alt="">
+                                </div>
+
+                                <div class="content2-font  content2-font2">
+                                    <img src="images/hero1-section2-content1.png" alt="">
+                                </div>
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros1-logo.png" alt="">
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="heros2-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero2_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero2_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero2_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero2-section1-content1.png" alt="">
+                            </div>
+
+                            <div class="content-font content1-font2">
+                                <img src="images/hero2-section1-content2.png" alt="">
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="scene-2-container">
+
+                            <div class="content2-font content2-font1 ">
+                                <img src="images/hero2-section2-content1.png" alt="">
+                            </div>
+
+                            <div class="content2-font content2-font2">
+                                <img src="images/hero2-section2-content2.png" alt="">
+                            </div>
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros2-logo.png" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="heros3-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero3_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero3_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero3_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero3-section1-content1.png" alt="">
+                            </div>
+                            <div class="content-font content1-font2">
+                                <img src="images/hero3-section1-content2.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="scene-2-container">
+
+                            <div class="content2-font content2-font1">
+                                <img src="images/hero3-section2-content1.png" alt="">
+                            </div>
+
+                            <div class="content2-font content2-font2">
+                                <img src="images/hero3-section2-content2.png" alt="">
+                            </div>
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros3-logo.png" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="heros4-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero4_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero4_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero4_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero4-section1-content1.png" alt="">
+                            </div>
+                            <div class="content-font content1-font2">
+                                <img src="images/hero4-section1-content2.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="scene-2-container">
+
+                            <!--<div class="content2-font content2-font1">-->
+                                <!--<img src="images/hero1-section2-content1.png" alt="">-->
+                            <!--</div>-->
+
+                            <div class="content2-font content2-font1">
+                                <img src="images/hero4-section2-content1.png" alt="">
+                            </div>
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros4-logo.png" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="heros5-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero5_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero5_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero5_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero5-section1-content1.png" alt="">
+                            </div>
+                            <div class="content-font content1-font2">
+                                <img src="images/hero5-section1-content2.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="scene-2-container">
+
+                            <div class="content2-font content2-font1">
+                                <img src="images/hero5-section2-content1.png" alt="">
+                            </div>
+
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros5-logo.png" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="heros6-scene">
+                        <div class="scene-1 clearfix">
+                            <div class="scene1-left">
+                                <img src="images/hero6_section1-bg.jpg" alt="">
+                            </div>
+                            <div class="scene1-right">
+                                <img src="images/hero6_section1-bg.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="scene-2">
+                            <img src="images/hero6_section2-bg.jpg" alt="">
+                        </div>
+
+
+                        <div class="scene-1-container">
+                            <div class="content-font content1-font1">
+                                <img src="images/hero6-section1-content1.png" alt="">
+                            </div>
+                            <div class="content-font content1-font2">
+                                <img src="images/hero6-section1-content2.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="scene-2-container">
+
+                            <div class="content2-font content2-font1">
+                                <img src="images/hero6-section2-content1.png" alt="">
+                            </div>
+
+
+
+
+
+
+                            <div class="back_p2_btn"></div>
+                            <div class="share_btn"></div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="logo-img">
+                                <img src="images/heros6-logo.png" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="logos">
+                    <div class="logo-1">
+                        <a href="http://share.iclient.ifeng.com/channel_7543" target="_blank"><img src="images/logo-1.png" alt=""></a>
+                    </div>
+                    <div class="logo-2">
+                        <a href="http://fashion.ifeng.com/" target="_blank"><img src="images/logo-2.png" alt=""></a>
+                    </div>
+
+                </div>
+            </article>
+        </section>
+
+        <!--项目自身的js文件-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_game_heros_lover_main_pad.js lib device:pad-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_game_heros_lover_main_mobile.js lib device:mobile-->
+        <!--endbuild-->
+
+        <!-- build:js scripts/ent_game_heros_lover_main_pc.js lib device:pc-->
+        <!--endbuild-->
+
+
+        <!-- 以标签方式注册一个组件 -->
+        <!--
+        <div g-cid="widgetId" g-cname="ent_game_heros_lover" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div>
+        -->
+        <script>
+            //加载与转屏
+            function hengshuping() {
+                //turn
+                if (window.orientation == 90 || window.orientation == -90) {
+                    document.getElementById("wrongmask").style.display="block";
+                } else {
+                    document.getElementById("wrongmask").style.display="none";
+                };
+            };
+            window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);
+
+            // 以命令行方式注册一个组件
+            // glue.widgetRegist('srcNode', 'widgetId', 'ent_game_heros_lover', 'depWidgetId', 'priority', {
+            //   'model.propertyName': '@@outModel.propertyName'
+            // });
+
+            // 直接创建一个组件
+            // require(['ent_game_heros_lover'], function(ent_game_heros_lover) {
+            //   new ent_game_heros_lover(glue).create(srcNode, options);
+            // });
+
+            // 扫描组件
+            // glue.scan();
+            // 运行组件
+            // glue.run();
+        </script>
+    <!--#include virtual="/cmpp_12005/chip/s_common_h5_tongji_foot.html"-->
+    </body>
+
+    <script>
+        // 放在在JS顶部
+        var setpage=new Image();
+        // 放在想要统计的位置
+        setpage.src='http://sapp.d.ifeng.com/stat.html?site=(ifeng_heros_love_h5)&dtfrom=(begin|end)&dateline='+(new Date).getTime();
+        setTimeout( function(){
+            document.getElementById("loading").style.display="none";
+        } , 3000);
+
+
+
+//        if(window.history && history.pushState){
+//
+//            var e = window.location.href + '#backhead',
+//                t = "http://fashion.ifeng.com/emotion/special/superman2017/";
+////                t = "http://ued.ifeng.com/ued_h5/back_ifeng/index.html";
+//            window.onpopstate = function(event) {
+//                var t = event.state;
+//                "index" === t.page && location.reload()
+//            };
+//            history.replaceState({
+//                page:"index"
+//            },null,t);
+//            history.pushState({
+//                page:"share"
+//            },null,e);
+//        }
+
+
+
+
+
+
+
+
+
+        function share(data_count,randomeNum,img_url) {
+            var count_end = data_count||"n";
+
+
+
+            var real_content,real_desc;
+            real_content ='超级英雄大片“秀恩爱联盟”七夕献映';
+            real_desc = '蝙蝠侠、钢铁侠、蜘蛛侠、美队、超人……你想和谁一起过七夕？'
+
+            var url = window.location.href;
+            var real_img_url = img_url||"http://p2.ifengimg.com/71f9287bab6b3ce4/2017/34/2ea7acf9e137187.jpg";
+            var link = "http://creative.ifeng.com/WxInterface";
+            var data = {
+                'url':url,
+            }
+            $.getJSON(link+"/WxInterface.php?callback=?",data,function(data){
+                var sign = eval(data);
+                wx.config({
+                    debug: false,
+                    appId: sign.appId,
+                    timestamp:sign.timestamp,
+                    nonceStr: sign.nonceStr,
+                    signature: sign.signature,
+                    jsApiList: [
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo'
+                    ]
+                });
+            });
+            wx.ready(function  () {
+
+
+                var myvedio = document.getElementById("myaudio");
+
+                myvedio.setAttribute("src","http://p3.ifengimg.com/71f9287bab6b3ce4/2017/34/884c2b63b47c60b.mp3");
+
+                myvedio.play();
+                // 分享给朋友圈
+                wx.onMenuShareTimeline({
+                    title: real_content, // 分享标题
+                    link: '', // 分享链接
+                    imgUrl: real_img_url, // 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                // 朋友
+                wx.onMenuShareAppMessage({
+                    title: real_content, // 分享标题
+                    desc: real_desc, // 分享描述
+                    link: '', // 分享链接
+                    imgUrl: real_img_url, // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                // QQ
+                wx.onMenuShareQQ({
+                    title: real_content, // 分享标题
+                    desc: real_desc,// 分享描述
+                    link: '', // 分享链接
+                    imgUrl: real_img_url,// 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                // 新浪
+                wx.onMenuShareWeibo({
+                    title: real_content, // 分享标题
+                    desc: real_desc, // 分享描述
+                    link: '', // 分享链接
+                    imgUrl: real_img_url, // 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            })
+        }
+
+        share();
+
+        function muzicPlay() {
+            var myvedio = document.getElementById("myaudio");
+            myvedio.setAttribute("src","http://p3.ifengimg.com/71f9287bab6b3ce4/2017/34/884c2b63b47c60b.mp3");
+            myvedio.play();
+
+
+            $(".muzic-opening").bind( ((IsPC()==true)?"click":"touchstart"),function () {
+                $(this).css("display","none");
+                $(".muzic-stoping").css("display","block");
+                myvedio.pause();
+
+            });
+            $(".muzic-stoping").bind( (IsPC()==true)?"click":"touchstart",function () {
+                $(this).css("display","none");
+                $(".muzic-opening").css("display","block");
+                myvedio.play();
+            })
+        }
+        muzicPlay();
+    </script>
+    <script>
+        if (IsPC() === true) {
+            //<scripts src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></sc'+'ript>
+//                document.write('<link class="mycss" rel="stylesheet" href="styles/ent_game_wolf2_pc.css">');
+
+
+//            document.write('<link rel="stylesheet" href="styles/ent_game_heros_lover_pc.css" />');
+
+            document.write('<script src="scripts/index_pc.js"></sc'+'ript>');
+
+
+
+
+        }else {
+//            document.write('<link rel="stylesheet" href="styles/ent_game_heros_lover.css" />');
+
+//                document.write('<scripts src="scripts/index.js"></sc'+'ript>');
+            document.write('<script src="scripts/index.js"></sc'+'ript>');
+        }
+    </script>
+
+
+
+</html>

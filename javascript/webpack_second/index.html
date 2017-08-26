@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title   %></title>
 </head>
+
+<!--<script src="<%=htmlWebpackPlugin.files.chunks.page1.entry      %>"></script>-->
 <body>
 
 </body>
-<%= htmlWebpackPlugin.options.date   %>
+
+<!--<script src="<%=htmlWebpackPlugin.files.chunks.page2.entry      %>"></script>-->
+
+
+<!--<%= htmlWebpackPlugin.options.date   %>-->
 
 
 
-<% for(var key in htmlWebpackPlugin.files){   %>
-<%= key%>:<%= JSON.stringify(htmlWebpackPlugin.files[key])%>
-<%  }  %>
+<!--<% for(var key in htmlWebpackPlugin.files){   %>-->
+<!--<%= key%>:<%= JSON.stringify(htmlWebpackPlugin.files[key])%>-->
+<!--<%  }  %>-->
 
-<% for(var key in htmlWebpackPlugin.options){   %>
-<%= key%>:<%= JSON.stringify(htmlWebpackPlugin.options[key])%>
-<%  }  %>
+<!--<% for(var key in htmlWebpackPlugin.options){   %>-->
+<!--<%= key%>:<%= JSON.stringify(htmlWebpackPlugin.options[key])%>-->
+<!--<%  }  %>-->
+
 </html>

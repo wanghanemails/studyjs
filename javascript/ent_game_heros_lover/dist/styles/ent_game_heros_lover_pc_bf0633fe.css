@@ -1,0 +1,917 @@
+#loading{ background:#000; width:100%; height:100%; position:fixed; top:0; left:0; display:-webkit-box; -webkit-box-align:center; -webkit-box-pack:center; z-index:99999999;}
+#loading .icon{ position:absolute; width:20%; left:40%; top:30%; -webkit-animation:shun360 2s linear infinite; animation:shun360 2s linear infinite;}
+@-webkit-keyframes shun360{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+@keyframes shun360{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+html,body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+html{
+transform:rotate(-90deg);
+-ms-transform:rotate(-90deg); 	/* IE 9 */
+-moz-transform:rotate(-90deg); 	/* Firefox */
+-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+-o-transform:rotate(-90deg); 	/* Opera */
+overflow: hidden;
+width: 750px;
+height: 1206px;
+margin: 0 auto;
+}
+
+
+
+
+body{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/background-bg_dacb4dd6.jpg) no-repeat;
+    /*background-size: cover;*/
+    /*background-size: 100% 100%;*/
+    background-size: 100% 100%;
+}
+.section-container{
+    width: 100%;
+    height: 200%;
+    position: relative;
+    top: 0%;
+    -webkit-transition: all 1s ;
+    -moz-transition: all 1s ;
+    -ms-transition: all 1s ;
+    -o-transition: all 1s ;
+    transition: all 1s ;
+    overflow: hidden;
+}
+.section-container .p1{
+    width: 100%;
+    height: 50%;
+    position: relative;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/p1-bg_4566a02e.jpg) top center no-repeat;
+    /*background-size: cover;*/
+    /*background-size: 100% 100%;*/
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.section-container .p2{
+    width: 100%;
+    height: 50%;
+    position: relative;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/background-bg_dacb4dd6.jpg) no-repeat;
+    /*background-size: cover;*/
+    /*background-size: 100% 100%;*/
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+
+.p1  .begin-btn{
+    width: 15.7%;
+    position: absolute;
+    height: 24.2%;
+
+    left: 16%;
+    top: 37%;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/begin-btn_37c0a572.png) top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: 0 0 50px 1px #bb5900;
+    -moz-box-shadow:  0 0 50px 1px #bb5900;
+    box-shadow: 0 0 50px 1px #bb5900;
+    border-radius: 20px;
+}
+.p2 .p2-begin{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.p2 .p2-begin .content{
+    width: 72px;
+    height: 396px;
+    position: absolute;
+    top: 50%;
+    margin-top: -198px;
+    right: 12.5%;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/p2-content_2a585100.png) top center no-repeat;
+    /*background-size: cover;*/
+    /*background-size: 100% 100%;*/
+    background-size: 100% 100%;
+}
+.p2 .p2-begin .heros-start-ul{
+    position: absolute;
+    left:25.6%;
+    top: 0px;
+    width: 45%;
+}
+
+.p2 .p2-begin .heros-start-ul li{
+    width: 100%;
+
+    margin-top: -32px;
+    position: relative;
+
+}
+.p2 .p2-begin .heros-start-ul li img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(even){
+    left: -12px;
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(odd){
+    left: -36px;
+}
+.p2 .p2-begin .heros-start-ul li .heros-background-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    -webkit-animation: fadeIncontainer 3s  infinite ;
+    animation: fadeIncontainer 3s  infinite ;
+}
+.p2 .p2-begin .heros-start-ul li .heros-img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.heros-img img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(1) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros1-container_40b92c0d.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(2) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros2-container_f451540e.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(3) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros3-container_0d179c43.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(4) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros4-container_d92a5dee.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(5) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros5-container_02ec0504.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+.p2 .p2-begin .heros-start-ul li:nth-child(6) .heros-background-container{
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/heros6-container_b1c280d5.png) top center no-repeat;
+    background-size: 100% 100%;
+
+}
+/*/*   129* 90      200  *162     170* 130   * /*/
+
+.real-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    display: none;
+}
+.real-container li{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.progress-bar{
+    width: 7.46%;
+    height: 91.2%;
+    position: absolute;
+    left: 12.2%;
+    display: none;
+    top: 0;
+    z-index: 101;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/progress_bar_83eb35d7.png) top center no-repeat;
+    background-size: 100% 100%;
+}
+.progress-bar .logo-img{
+    width: 139.28%;
+    position: absolute;
+    top: 10px;
+    left: -20%;
+    z-index: 999;
+}
+.progress-bar .logo-img img{
+    width: 100%;
+}
+.heros1-scene{
+    display: none;
+}
+.heros2-scene{
+    display: none;
+}
+.heros3-scene{
+    display: none;
+}
+.heros4-scene{
+    display: none;
+}
+.heros5-scene{
+    display: none;
+}
+.heros6-scene{
+    display: none;
+}
+.scene-1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 100;
+}
+.scene1-left{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.scene1-right{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+}
+.scene1-left img{
+
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.scene1-right img{
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.scene-2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 99;
+}
+.scene-2 img{
+    width: 100%;
+    height: 100%;
+}
+.real-container .content1-font1 img{
+    width: 100%;
+}
+.real-container .content1-font2 img{
+    width: 100%;
+}
+
+
+
+
+.real-container .scene-1-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 101;
+    display: block;
+}
+.real-container .scene-2-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 101;
+    display: none;
+}
+
+
+.real-container .heros1-scene .content1-font1{
+    width: 16%;
+    position: absolute;
+    right: 8.8%;
+    top:16.9%;
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+}
+
+.real-container .heros2-scene .content1-font1{
+    width: 17%;
+
+    position: absolute;
+    right: 46.8%;
+    top: 3.5%;
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 0s;
+}
+.real-container .heros2-scene .content1-font2{
+    width: 21%;
+
+    position: absolute;
+    right: 42.8%;
+    bottom: 4%;
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+.real-container .heros3-scene .content1-font1{
+    width: 20.8%;
+
+    position: absolute;
+    right: 53.8%;
+    bottom: 40%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 0s;
+}
+.real-container .heros3-scene .content1-font2{
+    width: 21.8%;
+
+    position: absolute;
+    right: 1%;
+    top: 44%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 1s;
+
+}
+
+.real-container .heros4-scene .content1-font1{
+    width: 19.7%;
+
+    position: absolute;
+    right: 3.8%;
+    top: 2.9%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 0s;
+}
+.real-container .heros4-scene .content1-font2{
+    width: 21.8%;
+
+    position: absolute;
+    right: 19.8%;
+    bottom: 0.9%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 1s;
+
+}
+
+.real-container .heros5-scene .content1-font1{
+    width: 12.5%;
+
+    position: absolute;
+    right: 3.8%;
+    top: 2.9%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 0s;
+}
+.real-container .heros5-scene .content1-font2{
+    width: 21.6%;
+
+    position: absolute;
+    right: 18.8%;
+    bottom: 0.9%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 1s;
+
+}
+
+.real-container .heros6-scene .content1-font1{
+    width: 12%;
+
+    position: absolute;
+    right: 4.4%;
+    top: 38.4%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 0s;
+}
+.real-container .heros6-scene .content1-font2{
+    width: 16.5%;
+
+    position: absolute;
+    right: 33.8%;
+    top: 26%;
+
+    background-size: 100% 100%;
+    z-index: 102;
+    display: none;
+    opacity: 0;
+    animation-delay: 1s;
+
+}
+
+
+
+
+
+
+
+
+
+
+.fadeIn{
+    -webkit-animation: fadeIn 2s  forwards ;
+    animation: fadeIn 2s  forwards ;
+
+}
+.fadeInAlways{
+    -webkit-animation: fadeIn 2s  infinite ;
+    animation: fadeIn 2s  infinite ;
+
+}
+
+
+/*forwards   infinite*/
+
+@-webkit-keyframes fadeIn {
+    0%{opacity: 0;}
+
+    100%{opacity: 1;}
+}
+@keyframes fadeIn {
+    0%{opacity: 0;}
+
+    100%{opacity: 1;}
+}
+
+@-webkit-keyframes fadeIncontainer {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@keyframes fadeIncontainer {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+.end_area{
+    width: 100%;
+    height: 16%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+
+}
+
+.delay_05s{
+    animation-delay:0.5s;
+    -webkit-animation-delay:0.5s;
+
+}
+
+.delay_1s{
+    animation-delay:1s;
+    -webkit-animation-delay:1s;
+
+}
+.delay_1_5s{
+    animation-delay:1.5s;
+    -webkit-animation-delay:1.5s;
+
+}
+.delay_2s{
+    animation-delay:2s;
+    -webkit-animation-delay:2s;
+
+}
+
+.delay_3s{
+    animation-delay:3s;
+    -webkit-animation-delay:3s;
+
+}
+
+
+.scene-2-container .back_p2_btn{
+
+    width: 12.5%;
+    height: 26.5%;
+    position: absolute;
+    left: 4.8%;
+    top:15.7%;
+
+    opacity: 0;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/back_p2_f37d3eef.png) top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: 0 0 50px 1px #0009bb;
+    -moz-box-shadow:  0 0 50px 1px #0009bb;
+    box-shadow: 0 0 50px 10px  #0009bb;
+    border-radius: 20px;
+
+    animation-delay:3s;
+    -webkit-animation-delay:3s;
+    /*0009bb*/
+}
+
+.fadeIn5sclass{
+    -webkit-animation: fadeIn5s 2s  forwards ;
+    animation: fadeIn5s 2s  forwards ;
+
+}
+
+@-webkit-keyframes fadeIn5s {
+    0%{opacity: 0;}
+
+    100%{opacity: 1;}
+}
+@keyframes fadeIn5s {
+    0%{opacity: 0;}
+
+    100%{opacity: 1;}
+}
+
+
+.scene-2-container .share_btn{
+
+    width: 12.5%;
+    height: 26.5%;
+    position: absolute;
+    left: 4.8%;
+    bottom:15.7%;
+
+    opacity: 0;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/share_img_btn_0ae6400e.png) top center no-repeat;
+    background-size: 100% 100%;
+    -webkit-box-shadow: 0 0 50px 1px #bb5900;
+    -moz-box-shadow:  0 0 50px 10px  #bb5900;
+    box-shadow: 0 0 50px 1px #bb5900;
+    border-radius: 20px;
+    animation-delay:3s;
+    -webkit-animation-delay:3s;
+    /*0009bb*/
+}
+
+
+
+.heros1-scene .scene-2-container .content2-font1{
+
+    position: absolute;
+    width:16.5%;
+
+    right: 4.8%;
+    bottom: 26.5%;
+}
+.heros1-scene .scene-2-container .content2-font2{
+
+    width: 9.6%;
+
+    position: absolute;
+    right: 25.2%;
+    top: 20.88%;
+}
+
+.heros2-scene .scene-2-container  .content2-font1{
+
+    position: absolute;
+    width: 17.3%;
+    right: 29.8%;
+    bottom: 5.5%;
+
+}
+.heros2-scene .scene-2-container .content2-font2{
+    width:17.3%;
+
+    position: absolute;
+    right: 37.2%;
+    top: 8.88%;
+}
+
+
+
+
+
+.heros3-scene .scene-2-container  .content2-font1{
+    width: 16.6%;
+    position: absolute;
+    right: 1.2%;
+    bottom: 16.88%;
+}
+.heros3-scene .scene-2-container .content2-font2{
+    position: absolute;
+    width: 14.2%;
+    right: 7.8%;
+    top: 5.5%;
+}
+
+
+
+.heros4-scene .scene-2-container .content2-font1{
+    position: absolute;
+    width: 28%;
+    right: 3.8%;
+    top: 3.5%;
+}
+
+
+.heros5-scene .scene-2-container .content2-font1{
+    position: absolute;
+    width: 13.8%;
+    right: 14.3%;
+    top: 11.5%;
+}
+
+
+
+
+.heros6-scene .scene-2-container .content2-font1{
+    position: absolute;
+    width: 14.2%;
+    right: 14%;
+    top: 10.86%;
+}
+
+.pc_none{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.scene-2-container .content2-font img{
+    width: 100%;
+
+}
+.scene-2-container .content2-font{
+    opacity: 0;
+}
+
+.share-mask{
+    width: 100%;
+    height: 100%;
+    background: url(http://p0.ifengimg.com/fe/ent_game_heros_lover/images/share_img_d8349097.png) top center no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    display: none;
+}
+
+#wrongmask{
+    width: 100%;
+    height: 100%;
+    background-color: #32373b;
+    font-size: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+#wrongmask img{
+    width: 30%;
+    height: 30%;
+    margin: 0 auto;
+    margin-top: 20%;
+    margin-left: 36%;
+    -webkit-animation: devMove 1s ease-in-out  infinite;
+    -o-animation: devMove 1s ease-in-out  infinite;
+    animation: devMove 1s ease-in-out  infinite;
+}
+@-webkit-keyframes devMove {
+    0%{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50%{
+        -webkit-transform: rotate(5deg);
+        -moz-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    100%{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+@keyframes devMove {
+    0%{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50%{
+        -webkit-transform: rotate(5deg);
+        -moz-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    100%{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+.makeVertical{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Microsoft YaHei";
+    margin-top: 2%;
+}
+
+
+
+
+.logos{
+    width: 6%;
+    height: 100%;
+    position: absolute;
+    left: 4%;
+    top: 0;
+}
+
+.logo-1{
+    width:100%;
+    margin-top:27.1%;
+}
+
+.logo-1 img{
+    width: 100%;
+
+}
+
+
+.logo-2{
+    width:100%;
+    margin-top:20px;
+}
+
+.logo-2 img{
+    width: 100%;
+
+}
+
+.muzic-btin{
+    width: 12%;
+    position: fixed;
+    right: 18px;
+    bottom: 32px;
+    z-index: 999;
+}
+.muzic-opening img{
+    width: 100%;
+}
+.muzic-stoping{
+    display: none;
+}
+.muzic-stoping img{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (device-height:480px) and (-webkit-min-device-pixel-ratio:2){   /* 兼容iphone4/4s */
+    .p2 .p2-begin .heros-start-ul li{
+        margin-top: -32px;
+    }
+
+    .p2 .p2-begin .heros-start-ul{
+        position: absolute;
+        left:25.6%;
+        top: 0px;
+        width: 155px;
+    }
+
+    .p2 .p2-begin .heros-start-ul li{
+
+        width: 136px;
+        height: 111px;
+        margin-top: -34px;
+        position: relative;
+
+    }
+}
+
+@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone5 */
+    .p2 .p2-begin .heros-start-ul li{
+        margin-top: -54px;
+    }
+}
+@media (device-height:667px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone6 */
+    .p2 .p2-begin .heros-start-ul li{
+        margin-top: -36px;
+    }
+}
+
+@media (device-height:736px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone6 Plus */
+    .p2 .p2-begin .heros-start-ul li{
+        margin-top: -22px;
+    }
+}
+
+.p2 .p2-begin .heros-start-ul li:nth-child(1){
+    margin-top: -12px;
+}

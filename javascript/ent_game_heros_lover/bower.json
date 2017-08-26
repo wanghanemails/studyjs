@@ -1,0 +1,32 @@
+{
+  "name": "ent_game_heros_lover",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {},
+  "main": [
+    "dist/scripts/ent_game_heros_lover_main_36f04a18.min.js",
+    "dist/scripts/ent_game_heros_lover_main_36f04a18.js",
+    {
+      "pad": []
+    },
+    {
+      "mobile": []
+    },
+    {
+      "pc": []
+    }
+  ],
+  "originalMainFiles": [
+    "app/scripts/version.js",
+    {
+      "pad": []
+    },
+    {
+      "mobile": []
+    },
+    {
+      "pc": []
+    }
+  ],
+  "version": "1.0.4"
+}
