@@ -73,7 +73,7 @@
                 $(".section-container").css("top","-100%")
             });
         },
-        percentage_to_px:function (left_percentage,screen_size) {
+        percentage_to_num:function (left_percentage,screen_size) {
             var that = this;
 
             var left_percentage =   left_percentage+"";
@@ -88,6 +88,11 @@
                 return b;
             }
 
+        },
+        getStyle:function (obj,attr) {
+            if(typeof getComputedStyle)
+                return getComputedStyle(obj,null)[attr];
+            else return obj.currentStyle[attr];
         },
         each_hero_scene:function () {
             var that = this;
@@ -108,13 +113,24 @@
               // console.log(  $(".real-container li").eq(n).find(".progress-bar").css("left")*that.window_width)
 
                // 调用百分比转换后的，尺寸
+               //  var progress_left = parseFloat($(".real-container li").eq(n).find(".progress-bar").css("left"));
+               var progress_left = that.percentage_to_num( progress_bar_percentage[n],that.window_width);
 
-               var progress_left = that.percentage_to_px( $(".real-container li").eq(n).find(".progress-bar").css("left"),that.window_width);
+                $(".real-container li").eq(n).find(".progress-bar").css("left",progress_left+"px");
+
 
                var progress_half = $(".real-container li").eq(n).find(".progress-bar").width()/2;
 
                //切口位置  下边的距离
                var  bottom_width = progress_left+progress_half;
+
+
+
+
+
+
+
+
 
 
                 $(".real-container li").eq(n).find(".scene1-left").width(bottom_width);
@@ -331,5 +347,8 @@
 
     }
     var heros  = new HerosLover();
+
+
+
 
 })(jQuery)

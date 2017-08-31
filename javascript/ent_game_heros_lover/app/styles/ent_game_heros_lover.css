@@ -253,28 +253,52 @@ body{
 
 
 
+/*.real-container .heros1-scene .progress-bar{*/
+    /*left: 46%;*/
+/*}*/
+/*.real-container .heros2-scene .progress-bar{*/
+    /*left: 25%;*/
+/*}*/
+/*.real-container .heros3-scene .progress-bar{*/
+    /*left: 47%;*/
+/*}*/
+/*.real-container .heros4-scene .progress-bar{*/
+    /*left: 25%;*/
+/*}*/
+
+/*.real-container .heros5-scene .progress-bar{*/
+    /*left: 40%;*/
+/*}*/
+
+/*.real-container .heros6-scene .progress-bar{*/
+    /*left: 30%;*/
+/*}*/
 
 
-.real-container .heros1-scene .progress-bar{
-    left: 46%;
-}
-.real-container .heros2-scene .progress-bar{
-    left: 25%;
-}
-.real-container .heros3-scene .progress-bar{
-    left: 47%;
-}
-.real-container .heros4-scene .progress-bar{
-    left: 25%;
-}
 
-.real-container .heros5-scene .progress-bar{
-    left: 40%;
-}
 
-.real-container .heros6-scene .progress-bar{
-    left: 30%;
-}
+
+
+/*.real-container .heros1-scene .progress-bar{*/
+    /*left: 170px;*/
+/*}*/
+/*.real-container .heros2-scene .progress-bar{*/
+    /*left: 80px;*/
+/*}*/
+/*.real-container .heros3-scene .progress-bar{*/
+    /*left: 170px;*/
+/*}*/
+/*.real-container .heros4-scene .progress-bar{*/
+    /*left: 90px;*/
+/*}*/
+
+/*.real-container .heros5-scene .progress-bar{*/
+    /*left: 150px;*/
+/*}*/
+
+/*.real-container .heros6-scene .progress-bar{*/
+    /*left: 100px;*/
+/*}*/
 
 
 

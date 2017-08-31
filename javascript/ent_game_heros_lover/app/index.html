@@ -533,6 +533,14 @@
         <div g-cid="widgetId" g-cname="ent_game_heros_lover" g-depId="" g-priority="1" g-option"{'model.propertyName': '@@outModel.propertyName'}"></div>
         -->
         <script>
+            var progress_bar_percentage = [
+                "46%",
+                "25%",
+                "46%",
+                "25%",
+                "40%",
+                "30%"
+            ];
             //加载与转屏
             function hengshuping() {
                 //turn
@@ -573,22 +581,22 @@
 
 
 
-//        if(window.history && history.pushState){
-//
-//            var e = window.location.href + '#backhead',
-//                t = "http://fashion.ifeng.com/emotion/special/superman2017/";
-////                t = "http://ued.ifeng.com/ued_h5/back_ifeng/index.html";
-//            window.onpopstate = function(event) {
-//                var t = event.state;
-//                "index" === t.page && location.reload()
-//            };
-//            history.replaceState({
-//                page:"index"
-//            },null,t);
-//            history.pushState({
-//                page:"share"
-//            },null,e);
-//        }
+        if(window.history && history.pushState){
+
+            var e = window.location.href + '#backhead',
+                t = "http://fashion.ifeng.com/emotion/special/return/";
+//                t = "http://ued.ifeng.com/ued_h5/back_ifeng/index.html";
+            window.onpopstate = function(event) {
+                var t = event.state;
+                "index" === t.page && location.reload()
+            };
+            history.replaceState({
+                page:"index"
+            },null,t);
+            history.pushState({
+                page:"share"
+            },null,e);
+        }
 
 
 
