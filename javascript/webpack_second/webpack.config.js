@@ -32,7 +32,7 @@ module.exports = {
     plugins: [
 
         new htmlWebpackPlugin({
-            template:__dirname+'\\index.html',
+            template:__dirname+'\\index01.html',
             filename:'page1.html',
             inject:'head',
             // inject:false,

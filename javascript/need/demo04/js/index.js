@@ -13,7 +13,7 @@ var canvas, gl,
   velRadArr,
   boldRateArr,
   drawType,
-  numLines = 40000;
+  numLines = 50000;
 var target = [];
 var randomTargetXArr = [], randomTargetYArr = [];
 drawType = 2;
@@ -222,7 +222,7 @@ function loadScene() {
 
   //setInterval( drawScene, 1000 / 40 );
   animate();
-  setTimeout(timer, 1500);
+  setTimeout(timer, 1000);
 }
 var count = 0;
 var cn = 0;
@@ -266,6 +266,8 @@ function draw() {
       draw2();
       break;
   }
+
+
 }
 
 // ===================================
@@ -465,5 +467,5 @@ function draw2() {
 function timer() {
   drawType = (drawType + 1) % 3;
 
-  setTimeout(timer, 1500);
+  // setTimeout(timer, 1500);
 }
