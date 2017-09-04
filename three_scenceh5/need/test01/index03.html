@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script src="js/three.js"></script>
+<script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+
+
+
+<script>
+
+    (function ($) {
+        /* body... */
+        function init() {
+
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+
+        scene.fog = new THREE.Fog(0x4263c9,0.0015,100);
+        renderer.setClearColor(new THREE.Color(0x000000, 1.0));
+        renderer.setSize(window.innerWidth,window.innerHeight);
+
+
+        camera.position.set(0,0,155);
+
+        var cloud;
+
+
+
+        document.body.appendChild(renderer.domElement);
+
+
+             function Constrols () {
+
+                var that = this;
+                this.size = 3;
+                this.transparent = true;
+                this.opacity =Math.random();
+                this.color = 0xffffff;
+                this.rotateSystem = true;
+                this.sizeAttenuation = true;
+                this.redraw = function () {
+                    if (scene.getObjectByName("pointcloud")) {
+                        scene.remove(scene.getObjectByName("pointcloud"));
+                    }
+                    console.log(that.color)
+
+                    createParticles(that.size, that.transparent,  that.sizeAttenuation, that.color);
+                }();
+            }
+
+            var constrols = new Constrols();
+
+            function createParticles(size, transparent, sizeAttenuation, color) {
+
+
+                var gemo = new THREE.Geometry();
+                var texture = new THREE.ImageUtils.loadTexture("./images/dots.png");
+                var material = new THREE.PointCloudMaterial({
+
+                    vertexColors:true,
+                    size: size,
+                    transparent: transparent,
+                    blending: THREE.AdditiveBlending,
+                    map:texture,
+                    sizeAttenuation: sizeAttenuation,
+                    color: color
+                })
+
+
+                var range = 200;
+                for(var i=0;i<1000;i++){
+                    var particle = new THREE.Vector3(Math.random()*range-range/2,Math.random()*range-range/2,Math.random()*range-range/2);
+//                    particle.opacity=Math.random();
+                    gemo.vertices.push(particle);
+
+                    var color = new THREE.Color(0xffffff)
+
+                    color.setHSL(color.getHSL().h,color.getHSL().s,Math.random()*color.getHSL().l);
+                    gemo.colors.push(color);
+                }
+
+
+//        两个color的区别
+
+                cloud = new THREE.PointCloud(gemo,material);
+                cloud.name = "particles";
+
+                scene.add(cloud);
+
+            }
+
+
+        render();
+        function render() {
+            requestAnimationFrame(render);
+            renderer.render(scene,camera);
+
+            cloud.rotation.x += 0.01;
+            cloud.rotation.y += 0.01;
+            cloud.rotation.y += 0.01;
+
+          }
+        }
+
+
+        init();
+    })(jQuery)
+</script>
+</html>

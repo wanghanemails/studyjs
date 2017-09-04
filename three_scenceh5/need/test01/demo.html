@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/demo.css" />
+    <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+</head>
+<body>
+
+</body>
+<script src="js/three02.js"></script>
+<script src="js/TweenMax.js"></script>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!--<script src="tween.js"></script>-->
+<script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+
+
+
+<script>
+    (function ($) {
+        /* body... */
+        var group;
+        var amount = 1000;
+        function init() {
+
+        var moveend = false;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+
+        scene.fog = new THREE.Fog(0x4263c9,-250,250);
+
+        renderer.setClearColor(new THREE.Color(0x000000));
+        renderer.setSize(window.innerWidth,window.innerHeight);
+
+
+        camera.position.set(0,0,500);
+
+        var cloud;
+        var textureLoader = new THREE.TextureLoader();
+        var mytexture = new textureLoader.load("./images/dots.png");
+
+            document.body.appendChild(renderer.domElement);
+
+
+            var points = [];
+            for (var b = 0; b <= amount; b++) {
+                var pointx = movex(b,(window.innerWidth/2-10));
+                var pointy = movey(b,(window.innerWidth/2-10))+100;
+                var pointz =300;
+                points.push(new THREE.Vector3( pointx, pointy, -pointz ));
+            }
+
+            var spline = new THREE.CatmullRomCurve3( points );
+            var geometry = new THREE.Geometry();
+            for ( var i = 0; i < points.length ; i ++ ) {
+                var index = i / ( points.length );
+                var position = spline.getPoint( index );
+                geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+            }
+            geometry.computeLineDistances();
+
+//             function Constrols () {
+//
+//                var that = this;
+//                this.size = 3;
+//                this.transparent = true;
+//                this.opacity =Math.random();
+//                this.color = 0xffffff;
+//                this.rotateSystem = true;
+//                this.sizeAttenuation = true;
+//                this.redraw = function () {
+//                    if (scene.getObjectByName("pointcloud")) {
+//                        scene.remove(scene.getObjectByName("pointcloud"));
+//                    }
+//
+//
+//                                   }();
+//            }
+//
+//            var constrols = new Constrols();
+            var radius = 50;
+
+             var range = 3000;
+            group = new THREE.Group();
+
+
+
+             for(var i=0;i<amount;i++){
+//                 Math.random()*range-range/2
+
+                 var add_material,opacity_material;
+
+                 var x = (Math.random()*(range/3))-((range/3)/2);
+                 var y = (Math.random()*(range/3))-((range/3)/2);
+                 var z = (Math.random()*(range/3))-((range/10)/2);
+
+                 if(z<0){
+                     opacity_material = Math.random()*0.5;
+
+                 }else {
+                     opacity_material = Math.random()*0.5+0.5;
+                 }
+                 opacity_material = Math.random()*1;
+                 var sizi_random = Math.random()*10;
+                 createSprite(opacity_material,sizi_random)
+
+
+             }
+
+            function createSprite(opacity_material,sizi_random) {
+                var material = new THREE.SpriteMaterial({map:mytexture, color: 0x4263c9, fog: true ,opacity:opacity_material})
+
+                var sprite = new THREE.Sprite( material );
+                sprite.position.set( x, y, z );
+
+                sprite.scale.set(sizi_random, sizi_random, sizi_random);
+                sprite.position.opacity = opacity_material;
+//                sprite.position.normalize();
+//                sprite.position.multiplyScalar( radius );
+                var timerandom = 1 ;
+                TweenMax.to(
+                    sprite.position,
+                    timerandom,
+                    {x:geometry.vertices[i].x,y:geometry.vertices[i].y,z:geometry.vertices[i].z,delay:3,onStart:stopMove,duration:2,opacity:Math.random()}
+
+                );
+                group.add( sprite );
+            }
+
+            scene.add( group );
+            animate();
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+
+
+
+
+        }
+    
+        function stopMove() {
+            moveend = true;
+            group.rotation.x = 0;
+            group.rotation.y = 0;
+            group.rotation.z = 0;
+
+
+//            for(var i=0;i<amount;i++){
+//                group
+//            }
+        }
+          function render() {
+            if(moveend!=true){
+                group.rotation.x += 0.003;
+                group.rotation.y += 0.03;
+                group.rotation.z += 0.003;
+            }
+
+
+
+              renderer.clear();
+              renderer.render( scene, camera );
+          }
+        }
+
+        function fsin(x){     //正弦函数
+            return 50*Math.sin(0.8*x*Math.PI/180);
+        }
+
+        function j9(o){
+            return 600*Math.cos(6*o*Math.PI/180);
+        }
+        //极坐标转x/y坐标
+        function movex(o,p){
+            if(o<amount/5){
+                return ((Math.random()*0.5)*p)*Math.cos(o*Math.PI/180);
+                 }else {
+                return ((Math.random()*0.5+0.5)*p)*Math.cos(o*Math.PI/180);
+
+                   }
+            }
+
+        function movey(o,p){
+            if(o<amount/5){
+                return ((Math.random()*0.5)*p)*Math.sin(o*Math.PI/180);
+            }else {
+                return ((Math.random()*0.5+0.5)*p)*Math.sin(o*Math.PI/180);
+
+            }
+        }
+
+        init();
+    })(jQuery)
+</script>
+</html>

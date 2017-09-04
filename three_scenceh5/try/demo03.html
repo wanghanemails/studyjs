@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display:block;
+        }
+    </style>
+</head>
+<script src="js/three.js"></script>
+<body>
+<div id="info">Description</div>
+</body>
+<script>
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+    camera.position.set(0, 0, 100);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    var scene = new THREE.Scene();
+
+    var material = new THREE.LineBasicMaterial({ color: 0xeeeeff });
+
+
+    var texture = new THREE.TextureLoader().load( "water.jpg" );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set( 4, 4 );
+
+
+
+    scene.add(camera)
+    scene.add(texture)
+
+
+
+    var animate = function () {
+        requestAnimationFrame( animate );
+
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+    };
+
+    animate();
+</script>
+</html>
