@@ -1,0 +1,80 @@
+.st0 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash 5s linear forwards;
+    animation: dash 5s linear forwards;
+    display: none;
+}
+
+@-webkit-keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.section1{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none;
+}
+
+
+
+.section2{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(../images/section2_bg.jpg) top center no-repeat;
+    background-size: cover;
+}
+
+.section2-container-svg{
+    position: absolute;
+    left: 7%;
+    bottom:10%;
+    width: 86%;
+    height: 58%;
+    display: none;
+}
+.section2-sphere{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.section2-sphereMove{
+    -webkit-animation:movesphere 1s cubic-bezier(.55,.48,.88,1.44) forwards;
+    -o-animation:movesphere 1s cubic-bezier(.55,.48,.88,1.44) forwards;
+    animation:movesphere  1s cubic-bezier(.55,.48,.88,1.44) forwards;
+}
+@-webkit-keyframes movesphere {
+    0% {
+        bottom:20px;
+    }
+    100%{
+        bottom:50%;
+    }
+}
+@keyframes movesphere {
+    0% {
+        bottom:20px;
+    }
+    100%{
+        bottom:50%;
+    }
+}

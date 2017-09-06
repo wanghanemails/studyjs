@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 679.12 741.24">
+    <defs>
+        <style>
+            .cls-1{
+            fill:none;
+            stroke:#606060;
+            stroke-miterlimit:10;
+            stroke-width:10px;
+            }
+        </style>
+    </defs>
+    <title>资源 1</title>
+    <g id="图层_2" data-name="图层 2">
+        <g id="图层_1-2" data-name="图层 1">
+            <polyline class="cls-1" points="236.16 40.24 593.16 355.24 593.16 740.24"/>
+            <polyline class="cls-1" points="38.16 236.24 245.16 414.24 245.16 741.24"/>
+            <line class="cls-1" x1="7.17" y1="447.24" x2="384.17" y2="3.24"/>
+            <polyline class="cls-1" points="1.17 567.24 218.16 515.24 677.16 320.24"/>
+        </g>
+    </g>
+</svg>

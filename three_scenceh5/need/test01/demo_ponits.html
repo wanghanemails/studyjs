@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/demo.css" />
+    <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+</head>
+<body>
+
+</body>
+<script src="js/three02.js"></script>
+<script src="js/tween.js"></script>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!--<script src="tween.js"></script>-->
+<script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+
+
+
+<script>
+    (function ($) {
+        /* body... */
+        var group;
+        var amount = 1000;
+        var cloud;
+        function init() {
+
+        var moveend = false;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,.1,1000);
+
+        var renderer = new THREE.WebGLRenderer();
+
+
+//        scene.fog = new THREE.Fog(0xeeeeee,-250,250);
+
+        renderer.setClearColor(new THREE.Color(0x000000));
+        renderer.setSize(window.innerWidth,window.innerHeight);
+
+
+        camera.position.set(0,0,500);
+
+
+        var textureLoader = new THREE.TextureLoader();
+        var mytexture = new textureLoader.load("./images/dots.png");
+
+            document.body.appendChild(renderer.domElement);
+
+
+            var points = [];
+            for (var b = 0; b < amount; b++) {
+                var random = Math.random();
+                var pointx = movex(b,(window.innerWidth/2-10),random);
+                var pointy = movey(b,(window.innerWidth/2-10),random)+100;
+                var pointz =300;
+                points.push(new THREE.Vector3( pointx, pointy, -pointz ));
+            }
+
+            var spline = new THREE.CatmullRomCurve3( points );
+            var geometry = new THREE.Geometry();
+            for ( var i = 0; i < points.length ; i ++ ) {
+                var index = i / ( points.length );
+                var position = spline.getPoint( index );
+                geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+            }
+            geometry.computeLineDistances();
+
+
+            var radius = 50;
+
+             var range = 3000;
+
+
+            function Constrols () {
+
+                var that = this;
+                this.size = 5;
+                this.transparent = true;
+                this.opacity =1;
+                this.color = 0x4263c9;
+                this.rotateSystem = true;
+                this.sizeAttenuation = true;
+                this.redraw = function () {
+                    if (scene.getObjectByName("pointcloud")) {
+                        scene.remove(scene.getObjectByName("pointcloud"));
+                    }
+
+
+                    createParticles(that.size, that.transparent,  that.sizeAttenuation, that.color);
+                }();
+            }
+
+            var constrols = new Constrols();
+
+            function createParticles(size, transparent, sizeAttenuation, color_from) {
+
+
+                var gemo = new THREE.Geometry();
+
+                var texture = new THREE.TextureLoader("./images/dots.png");
+                var material = new THREE.PointsMaterial({
+
+                    vertexColors:true,
+                    size: size,
+                    transparent: transparent,
+                    blending: THREE.AdditiveBlending,
+                    map:mytexture,
+                    sizeAttenuation: sizeAttenuation,
+                    color: color_from,
+
+                })
+
+
+                var range = 3000;
+                for(var i=0;i<amount;i++){
+                    var x = (Math.random()*(range/5))-((range/5)/2);
+                    var y = (Math.random()*(range/5))-((range/5)/2);
+                    var z = (Math.random()*(range/5))-((range/5)/2);
+                    var particle = new THREE.Vector3(x,y,z);
+//                    particle.opacity=Math.random();
+
+
+                    var timerandom = 1 ;
+//                    TweenMax.to(
+//                        particle,
+//                        timerandom,
+//                        {x:geometry.vertices[i].x,y:geometry.vertices[i].y,z:geometry.vertices[i].z,onStart:stopMove,delay:3,duration:2}
+//
+//                    );
+
+
+                    gemo.vertices.push(particle);
+
+
+                    var color = new THREE.Color(color_from)
+
+
+//                    color.setHSL(color.getHSL().h,color.getHSL().s,(Math.random()*0.5+0.5)*color.getHSL().l);
+                    color.setHSL(color.getHSL().h,color.getHSL().s,color.getHSL().l);
+                    gemo.colors.push(color);
+                }
+                cloud = new THREE.Points(gemo,material);
+                cloud.name = "particles";
+
+
+
+
+
+
+                for(var j=0;j<cloud.geometry.vertices.length;j++){
+                    var timerandom = 1 ;
+
+
+//                    TweenMax.to(
+//                        cloud.geometry.vertices[j],
+//                        timerandom,
+//                        {x:geometry.vertices[j].x,y:geometry.vertices[j].y,z:geometry.vertices[j].z,onStart:stopMove,delay:3,duration:2}
+//
+//                    );
+
+                }
+
+//        两个color的区别
+
+
+                scene.add(cloud);
+
+                cloudAnimate();
+
+            }
+
+
+            function cloudAnimate() {
+                var particles = cloud.geometry.vertices;
+
+                cloud.geometry.verticesNeedUpdate = true;
+
+                var position1 = particles;
+                var position2 = points;
+
+
+
+                setTimeout(function () {
+
+                    for(var j=0;j<particles.length;j++){
+
+                        positionMove(i)
+
+                    }
+                },1000)
+
+
+
+                function positionMove(i) {
+
+                    debugger;
+                    var tween = new TWEEN.Tween(position1[i]).to(position2[i],3000).onUpdate(function () {
+                            particles[i].x = this.x;
+                            particles[i].y = this.y;
+                            particles[i].z = this.z;
+                            cloud.geometry.verticesNeedUpdate = true;
+                        }).easing(TWEEN.Easing.Quintic.InOut).delay(1000*Math.random());
+                    tween.start();
+                }
+
+            }
+
+
+//            scene.add( group );
+            animate();
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+
+
+
+
+        }
+    
+        function stopMove() {
+            moveend = true;
+
+//            cloud.rotation.x = 0;
+//            cloud.rotation.y = 0;
+//            cloud.rotation.z = 0;
+
+
+        }
+          function render() {
+            if(moveend!=true){
+                cloud.rotation.x += 0.0003;
+                cloud.rotation.y += 0.003;
+                cloud.rotation.z += 0.0003;
+            }
+
+
+
+              renderer.clear();
+              renderer.render( scene, camera );
+          }
+        }
+
+        function fsin(x){     //正弦函数
+            return 50*Math.sin(0.8*x*Math.PI/180);
+        }
+
+        function j9(o){
+            return 600*Math.cos(6*o*Math.PI/180);
+        }
+        //极坐标转x/y坐标
+        function movex(o,p,random){
+            if(o<5){
+                return (p)*Math.cos(o*Math.PI/180);
+            }else {
+                return ((random)*p)*Math.cos(o*Math.PI/180);
+
+            }
+        }
+
+        function movey(o,p,random){
+            if(o<5){
+                return (p)*Math.sin(o*Math.PI/180);
+            }else {
+                return ((random)*p)*Math.sin(o*Math.PI/180);
+
+            }
+        }
+
+        init();
+    })(jQuery)
+</script>
+</html>

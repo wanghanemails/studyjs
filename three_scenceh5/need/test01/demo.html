@@ -21,7 +21,7 @@
     (function ($) {
         /* body... */
         var group;
-        var amount = 1000;
+        var amount = 5000;
         function init() {
 
         var moveend = false;
@@ -48,9 +48,11 @@
 
             var points = [];
             for (var b = 0; b <= amount; b++) {
-                var pointx = movex(b,(window.innerWidth/2-10));
-                var pointy = movey(b,(window.innerWidth/2-10))+100;
-                var pointz =300;
+                var random = Math.random();
+                var pointx = movex(b,(window.innerWidth/2-10),random);
+                var pointy = movey(b,(window.innerWidth/2-10),random)+100;
+//                var pointz =movez(b,(window.innerWidth/2-10),random);
+                var pointz =200
                 points.push(new THREE.Vector3( pointx, pointy, -pointz ));
             }
 
@@ -84,7 +86,7 @@
 //            var constrols = new Constrols();
             var radius = 50;
 
-             var range = 3000;
+             var range = 5000;
             group = new THREE.Group();
 
 
@@ -96,7 +98,7 @@
 
                  var x = (Math.random()*(range/3))-((range/3)/2);
                  var y = (Math.random()*(range/3))-((range/3)/2);
-                 var z = (Math.random()*(range/3))-((range/10)/2);
+                 var z = (Math.random()*(range/3))-((range/3)/2);
 
                  if(z<0){
                      opacity_material = Math.random()*0.5;
@@ -125,7 +127,7 @@
                 TweenMax.to(
                     sprite.position,
                     timerandom,
-                    {x:geometry.vertices[i].x,y:geometry.vertices[i].y,z:geometry.vertices[i].z,delay:3,onStart:stopMove,duration:2,opacity:Math.random()}
+                    {x:geometry.vertices[i].x,y:geometry.vertices[i].y,z:geometry.vertices[i].z,delay:2+1*Math.random(),ease:Power0.easeInOut,onComplete:stopMove,duration:2,opacity:Math.random()}
 
                 );
                 group.add( sprite );
@@ -156,8 +158,8 @@
           function render() {
             if(moveend!=true){
                 group.rotation.x += 0.003;
-                group.rotation.y += 0.03;
-                group.rotation.z += 0.003;
+                group.rotation.y += 0.003;
+//                group.rotation.z += 0.003;
             }
 
 
@@ -175,23 +177,29 @@
             return 600*Math.cos(6*o*Math.PI/180);
         }
         //极坐标转x/y坐标
-        function movex(o,p){
-            if(o<amount/5){
-                return ((Math.random()*0.5)*p)*Math.cos(o*Math.PI/180);
+        function movex(o,p,random){
+            if(o<5){
+                return (p)*Math.cos(o*Math.PI/180);
                  }else {
-                return ((Math.random()*0.5+0.5)*p)*Math.cos(o*Math.PI/180);
+                return ((random)*p)*Math.cos(o*Math.PI/180);
 
                    }
             }
 
-        function movey(o,p){
-            if(o<amount/5){
-                return ((Math.random()*0.5)*p)*Math.sin(o*Math.PI/180);
+        function movey(o,p,random){
+            if(o<5){
+                return (p)*Math.sin(o*Math.PI/180);
             }else {
-                return ((Math.random()*0.5+0.5)*p)*Math.sin(o*Math.PI/180);
+                return ((random)*p)*Math.sin(o*Math.PI/180);
 
             }
         }
+        function movez(o,p,random){
+            var phi = Math.acos( -1 + ( 2 * o ) / amount );
+
+           return p*(Math.random()) * Math.cos( phi );
+        }
+
 
         init();
     })(jQuery)
