@@ -27,7 +27,7 @@
 
 <script>
 
-    var SEPARATION = 200, AMOUNTX = 40, AMOUNTY = 40;
+    var SEPARATION = 200, AMOUNTX = 20, AMOUNTY = 20;
     var begin_time = 10;
     var count_y = 15;
     var container;
@@ -43,9 +43,7 @@
 
     var lines = [];
 
-    var begin_line_time = 10;
-    var math_random_sudu = [] ;
-    var math_random_zhenfu = [] ;
+
     var each_random = [];
     var germotrys = [] ;
 
@@ -54,23 +52,6 @@
 
 
 
-    for(var rj=0;rj<10;rj++){
-
-        var obj={}
-        var obj2={}
-        obj.x=parseInt(Math.random()*window.innerWidth);
-        obj.y=parseInt(Math.random()*window.innerHeight);
-
-        obj2.x= Math.random()>0.5? 1:-1;
-        obj2.y= Math.random()>0.5? 1:-1;
-
-
-        math_random_sudu.push(obj);
-
-
-        math_random_zhenfu.push(obj2);
-
-    }
 
 
 
@@ -88,7 +69,7 @@
 
         camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1500 );
 
-        camera.position.z = 2000;
+        camera.position.z = 1500;
 
         scene = new THREE.Scene();
 
@@ -111,18 +92,19 @@
 //            allMartrials.push(obj)
             var geometry = new THREE.Geometry();
 
-            var vertex = new THREE.Vector3( Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1 );
+            var vertex = new THREE.Vector3(( Math.random()>0.5? 1:-1)* Math.random() * window.innerWidth, ( Math.random()>0.5? 1:-1)*Math.random() * window.innerHeight,1);
             vertex.normalize();
-            vertex.multiplyScalar( 200 );
+            vertex.multiplyScalar( 100 );
 
             geometry.vertices.push( vertex );
 
             var vertex2 = vertex.clone();
-            vertex2.multiplyScalar( Math.random() * 0.3 + 1 );
+            var mul =  Math.random() * 0.3 + 1;
+            vertex2.multiplyScalar( mul);
 
             geometry.vertices.push( vertex2 );
 
-            var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffffff, opacity: Math.random() } ) );
+            var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffffff, opacity:1 } ) );
             scene.add( line );
             germotrys.push(geometry);
             lines.push(line);
@@ -204,7 +186,7 @@
 
 
 
-                each_random.push(Math.random());
+//                each_random.push(Math.random());
             }
 
         }
@@ -219,16 +201,7 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
         container.appendChild( renderer.domElement );
 
-//				stats = new Stats();
-//				container.appendChild( stats.dom );
 
-//				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-//				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-//				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
-        //
-
-//				window.addEventListener( 'resize', onWindowResize, false );
 
     }
 
@@ -283,17 +256,16 @@
                 if(germotrys[j].boundingSphere ==null){
 
                 }else {
-//                    console.log(germotrys[j])
 
-
-//                    lines[j].scale.x  -=0.1;
-//                    lines[j].scale.y  -=0.1;
                     if(lines[j].scale.z>0){
-                        lines[j].scale.z  -=0.01;
+                        lines[j].scale.z  -=0.1;
+
+                        lines[j].scale.x  +=0.05;
+                        lines[j].scale.y  +=0.05;
                     }else {
-//                        lines[j].scale.z  -=0.01;
-//                        lines[j].scale.x  -=0.01;
-//                        lines[j].scale.y  -=0.01;
+                        lines[j].scale.z  +=0.1;
+                        lines[j].scale.x  +=0.05;
+                        lines[j].scale.y  +=0.05;
                     }
 
 

@@ -38,14 +38,14 @@
         AMOUNTY = 10,
 
         camera, scene, renderer;
-
+        var particles = [];
     init();
     animate();
 
     function init() {
 
         var container, separation = 100, amountX = 50, amountY = 50,
-            particles, particle;
+             particle;
 
         container = document.createElement('div');
         document.body.appendChild(container);
@@ -83,32 +83,16 @@
             particle.position.y = Math.random() * 2 - 1;
             particle.position.z = Math.random() * 2 - 1;
             particle.position.normalize();
-            particle.position.multiplyScalar( Math.random() * 10 + 450 );
+            particle.position.multiplyScalar( Math.random() * 10 + 350 );
             particle.scale.multiplyScalar( 2 );
+            particles.push(particle)
             scene.add( particle );
 
         }
 
         // lines
 
-        for (var i = 0; i < 300; i++) {
 
-            var geometry = new THREE.Geometry();
-
-            var vertex = new THREE.Vector3( Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1 );
-            vertex.normalize();
-            vertex.multiplyScalar( 450 );
-
-            geometry.vertices.push( vertex );
-
-//					var vertex2 = vertex.clone();
-//					vertex2.multiplyScalar( Math.random() * 0.3 + 1 );
-//
-//					geometry.vertices.push( vertex2 );
-
-            var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffffff, opacity: Math.random() } ) );
-            scene.add( line );
-        }
 
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         document.addEventListener( 'touchstart', onDocumentTouchStart, false );
@@ -172,6 +156,7 @@
 
         requestAnimationFrame( animate );
 
+
         render();
 
     }
@@ -181,6 +166,10 @@
         camera.position.x += ( mouseX - camera.position.x ) * .05;
         camera.position.y += ( - mouseY + 200 - camera.position.y ) * .05;
         camera.lookAt( scene.position );
+
+
+
+
 
         renderer.render( scene, camera );
 
