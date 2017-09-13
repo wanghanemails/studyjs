@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js canvas - particles - waves</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+		<link rel="stylesheet" href="index.css" />
+		<script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+		<style>
+
+		</style>
+	</head>
+	<body>
+
+	   <div id="bg"></div>
+	   <div class="yan"></div>
+		<script src="../build/three.js"></script>
+
+		<script src="js/renderers/Projector.js"></script>
+		<script src="js/renderers/CanvasRenderer.js"></script>
+
+
+
+		<script>
+
+			var SEPARATION = 200, AMOUNTX = 20, AMOUNTY = 20;
+			var begin_time = 10;
+            var count_y = 20;
+			var container;
+			var camera, scene, renderer;
+
+			var particles, particle, count = 0;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.getElementById("bg");
+
+
+
+
+//				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1500 );
+
+				camera.position.z = 2500;
+
+				scene = new THREE.Scene();
+
+                camera.lookAt( scene.position );
+				particles = new Array();
+
+
+
+				var i = 0; var material =[];
+				var j = 0;
+
+				for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+					for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+					    var x = 0.5;
+					    var y = 0.5;
+					    var z = 10*Math.random();
+//					    console.log(x,y)
+                         material.push(new THREE.SpriteCanvasMaterial( {
+
+                            color: 0xffffff,
+                            program: function ( context ) {
+
+                                context.beginPath();
+                                context.rect(0,0,x,y,z);
+                                context.fill();
+
+                            }
+						 }));
+
+                        particle = particles[ i ] = new THREE.Sprite( material [i]);
+						particle.position.x = (Math.random()>0.5? 1:-1)*Math.random()*window.innerWidth;
+						particle.position.y = (Math.random()>0.5? 1:-1)*Math.random()*window.innerHeight;
+						particle.position.z = 1000*Math.random();
+						i =i+1;
+
+						particle.name = "sprite-"+(i-1);
+						scene.add( particle );
+
+
+					}
+
+				}
+
+//				console.log(particles)
+
+				renderer = new THREE.CanvasRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+//				stats = new Stats();
+//				container.appendChild( stats.dom );
+
+//				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+//				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+//				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+				//
+
+//				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+			function render() {
+
+				var i = 0;
+
+
+				function begin_animate(count_y) {
+                    for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+                        for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                            particle = particles[ i++ ];
+
+//				particle.position.y = ( Math.sin( ( ix + count ) * 0.1 ) * 50 ) + ( Math.sin( ( iy + count ) * 0.1 ) * 50 );
+                            particle.scale.x = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 1 + ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 1;
+
+
+                            particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * count_y + ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * count_y;
+                            particle.scale.z = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * count_y + ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * count_y;
+//                            particle.position.y -= 1;
+
+
+
+                            if(particle.position.y<=-window.innerHeight){
+                                particle.position.y = window.innerHeight;
+                            }
+                            var zhenfu = Math.random()>0.5? 1:-1 ;
+
+//                        particle.position.y+=(1)*0.01*Math.random();
+//                        particle.position.x+=(1)*0.01*Math.random();
+//                        particle.position.z+=(1)*0.1*Math.random();
+                        }
+
+                    }
+                }
+
+
+				if(count_y<=1){
+				    count_y = 1;
+
+                    begin_animate(count_y);
+				}else {
+                    count_y-=0.2;
+                    begin_animate(count_y);
+				}
+
+				renderer.render( scene, camera );
+
+				count += 0.1;
+
+				if(camera.position.z>=1500){
+                    camera.position.z-=10;
+                    camera.lookAt( scene.position );
+				}
+
+			}
+
+		</script>
+	</body>
+</html>

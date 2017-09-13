@@ -108,7 +108,8 @@
 
 				line = new THREE.Line(geometry3, material );
 				line.scale.x = line.scale.y = line.scale.z =  scale*1.5;
-				line.position.x = 0;
+                line.scale.x=scale*3.5;
+                line.position.x = 0;
 				line.position.y = 0;
 				line.position.z = 0;
 				scene.add( line );

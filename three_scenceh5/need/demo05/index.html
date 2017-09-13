@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js canvas - particles - waves</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="bg">
+    <canvas id="mySpeedLine"></canvas>
+</div>
+
+<div class="yan"></div>
+<script src="three.js"></script>
+
+<script src="renders/Projector.js"></script>
+<script src="renders/CanvasRenderer.js"></script>
+
+
+
+<script>
+
+    var SEPARATION = 200, AMOUNTX = 40, AMOUNTY = 40;
+    var begin_time = 10;
+    var count_y = 15;
+    var container;
+    var camera, scene, renderer;
+    var allMartrials = [];
+    var particles, particle, count = 0;
+    var ctx;
+
+    var mouseX = 0, mouseY = 0;
+
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+
+    var lines = [];
+
+    var begin_line_time = 10;
+    var math_random_sudu = [] ;
+    var math_random_zhenfu = [] ;
+    var each_random = [];
+    var germotrys = [] ;
+
+
+
+
+
+
+    for(var rj=0;rj<10;rj++){
+
+        var obj={}
+        var obj2={}
+        obj.x=parseInt(Math.random()*window.innerWidth);
+        obj.y=parseInt(Math.random()*window.innerHeight);
+
+        obj2.x= Math.random()>0.5? 1:-1;
+        obj2.y= Math.random()>0.5? 1:-1;
+
+
+        math_random_sudu.push(obj);
+
+
+        math_random_zhenfu.push(obj2);
+
+    }
+//    var task_begin = setInterval(function () {
+//        begin_line_time =begin_line_time-0.2;
+//
+//
+//
+//        if(begin_line_time<=0){
+//
+//            clearInterval(task_begin)
+//        }else {
+////            debugger;
+//            var speedLine = document.getElementById("mySpeedLine");
+//            ctx = speedLine.getContext("2d");
+//
+//
+////                for(var i=0;i<10;i++){
+//
+//                     ctx.beginPath();
+////                        ctx.moveTo(124,497);
+////                        ctx.lineTo(114,507);
+//
+//                        ctx.strokeStyle = "rgb(255,255,255)";
+//                        ctx.stroke();
+//
+//
+////                }
+//
+//
+//
+//
+//
+//
+//
+//
+//        }
+//
+//
+//
+//
+//    },100);
+
+
+    init();
+
+    animate();
+
+    function init() {
+
+        container = document.getElementById("bg");
+
+
+
+//				document.body.appendChild( container );
+
+        camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1500 );
+
+        camera.position.z = 1500;
+
+        scene = new THREE.Scene();
+
+        camera.lookAt( scene.position );
+        particles = new Array();
+
+
+
+        var i = 0; var material =[];
+        var j = 0;
+
+
+        for(var xy=0;xy<10;xy++){
+
+
+//            var obj ={};
+//            obj.mylength=8*Math.random()+8;
+//            obj.x1  = (Math.random()>0.5? 1:-1)*obj.mylength*Math.random();
+//            obj.y1  = ( Math.random()>0.5? 1:-1)*obj.mylength*Math.random();
+//            allMartrials.push(obj)
+            var geometry = new THREE.Geometry();
+
+            var vertex = new THREE.Vector3(( Math.random()>0.5? 1:-1)* Math.random() * window.innerWidth, ( Math.random()>0.5? 1:-1)*Math.random() * window.innerHeight,1);
+            vertex.normalize();
+            vertex.multiplyScalar( 100 );
+
+            geometry.vertices.push( vertex );
+
+            var vertex2 = vertex.clone();
+            var mul =  Math.random() * 0.3 + 1;
+            vertex2.multiplyScalar( mul);
+
+            geometry.vertices.push( vertex2 );
+
+             var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffffff, opacity:1 } ) );
+            scene.add( line );
+            germotrys.push(geometry);
+            lines.push(line);
+        }
+
+
+        for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+            for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                var x = 10;
+                var y = 10;
+                var z = 10*Math.random();
+
+
+
+                if(ix==iy){
+                    var mylength = 8*Math.random()+8;
+
+
+
+
+                    var x1  = (Math.random()>0.5? 1:-1)*mylength*Math.random();
+                    var y1  = ( Math.random()>0.5? 1:-1)*mylength*Math.random();
+
+
+
+                    material.push(new THREE.SpriteCanvasMaterial( {
+
+                        color: 0xffffff,
+                        program: function ( context ) {
+
+                            context.beginPath();
+//                        context.rect(0,0,x,y);
+//                        context.fill();
+
+
+                            context.moveTo(0,0);
+
+                            context.lineTo(1,1)
+
+                            context.strokeStyle="rgb(255,255,255)";
+                            context.stroke();
+                        }
+                    }));
+                }else {
+                    var mylength =1;
+
+
+
+                    material.push(new THREE.SpriteCanvasMaterial( {
+
+                        color: 0xffffff,
+                        program: function ( context ) {
+                        context.beginPath();
+                        context.rect(0,0,x,y);
+                        context.fill();
+
+
+                        }
+                    }));
+                }
+
+//					    console.log(x,y)
+
+
+
+
+                particle = particles[ i ] = new THREE.Sprite( material [i]);
+                particle.position.x = (Math.random()>0.5? 1:-1)*Math.random()*window.innerWidth;
+                particle.position.y = (Math.random()>0.5? 1:-1)*Math.random()*window.innerHeight;
+                particle.position.z = 500*(Math.random()>0.5? 1:-1);
+//                particle.position.normalize();
+//                particle.position.multiplyScalar( Math.random() * 10 + 500 );
+                i =i+1;
+
+                particle.name = "sprite-"+(i-1);
+                scene.add( particle );
+
+
+
+                each_random.push(Math.random());
+            }
+
+        }
+
+//				console.log(particles)
+
+
+
+
+        renderer = new THREE.CanvasRenderer();
+        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        container.appendChild( renderer.domElement );
+
+
+
+    }
+
+
+    function animate() {
+        requestAnimationFrame( animate );
+        render();
+
+    }
+
+    function render() {
+
+        var i = 0;
+
+
+        function begin_animate(count_y) {
+            for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+                for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                    particle = particles[ i ];
+
+                    count_y = each_random[i]>0.1? count_y:0.1;
+//				particle.position.y = ( Math.sin( ( ix + count ) * 0.1 ) * 50 ) + ( Math.sin( ( iy + count ) * 0.1 ) * 50 );
+                    particle.scale.x = ( Math.sin( ( ix + count ) ) + 0.5 ) * 0.1 + ( Math.sin( ( iy + count ) ) + 0.5 ) * 0.1;
+
+                    if(count_y==0.1){
+                        particle.scale.y = ( Math.sin( ( ix + count )  ) + 0.5 ) * 0.1 + ( Math.sin( ( iy + count ) ) + 0.5 ) * 0.1;
+
+                    }else {
+                        particle.scale.y = 0.1 ;
+                    }
+
+
+
+
+
+                    if(particle.position.y<=-window.innerHeight){
+                        particle.position.y = window.innerHeight;
+                    }
+                    var zhenfu = Math.random()>0.5? 1:-1 ;
+
+                    i+=1;
+//                             scene.position.y+=(1)*0.1;
+//                             scene.position.x+=(1)*0.1;
+//                            particle.position.z+=(1)*1;
+                }
+
+            }
+
+            for(var j=0;j<10;j++){
+                if(germotrys[j].boundingSphere ==null){
+
+                }else {
+
+                    if(lines[j].scale.z>0){
+                        lines[j].scale.z  +=0.1;
+
+                        lines[j].scale.x  +=0.05;
+                        lines[j].scale.y  +=0.05;
+                    }else {
+                        lines[j].scale.z  +=0.1;
+                        lines[j].scale.x  +=0.05;
+                        lines[j].scale.y  +=0.05;
+                    }
+
+
+                }
+
+            }
+
+
+
+
+
+
+        }
+
+
+            if(count_y<=1){
+                count_y = 0.1;
+
+                begin_animate(count_y);
+            }else {
+                count_y-=0.1;
+                begin_animate(count_y);
+            }
+
+        renderer.render( scene, camera );
+
+        count += 0.1;
+
+        if(camera.position.z>=1000){
+            camera.position.z-=10;
+            camera.lookAt( scene.position );
+        }
+
+    }
+
+</script>
+</body>
+</html>

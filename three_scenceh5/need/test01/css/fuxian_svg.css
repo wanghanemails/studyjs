@@ -1,0 +1,17 @@
+.cls-1,.cls-2,.cls-3,.cls-4,.cls-5,.cls-6{
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash 10s linear forwards;
+    animation: dash 10s linear forwards;
+
+}
+@-webkit-keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

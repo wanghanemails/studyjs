@@ -7,7 +7,7 @@
 		<style>
 			body {
 				font-family: Monospace;
-				background-color: #f0f0f0;
+				background-color: #000;
 				margin: 0px;
 				overflow: hidden;
 			}
@@ -42,7 +42,7 @@
 			var windowHalfY = window.innerHeight / 2;
 
 			var loader = new THREE.FontLoader();
-			loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+			loader.load( 'fonts/droid/droid_serif_regular.typeface.json', function ( font ) {
 
 				init( font );
 				animate();
@@ -66,11 +66,11 @@
 				camera.position.set( 0, 150, 500 );
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xf0f0f0 );
+				scene.background = new THREE.Color( 0x000000);
 
 				// Get text from hash
 
-				var theText = "Hello three.js! :)";
+				var theText = "X";
 
 				var hash = document.location.hash.substr( 1 );
 
@@ -94,8 +94,8 @@
 				var centerOffset = -0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
 
 				var materials = [
-					new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, overdraw: 0.5 } ),
-					new THREE.MeshBasicMaterial( { color: 0x000000, overdraw: 0.5 } )
+					new THREE.MeshBasicMaterial( { color:  0xffffff, overdraw: 0.5 } ),
+					new THREE.MeshBasicMaterial( { color: 0xd2d2d2, overdraw: 0.5 } )
 				];
 
 				var mesh = new THREE.Mesh( geometry, materials );
