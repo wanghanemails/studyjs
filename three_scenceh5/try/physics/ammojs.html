@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="http://p0.ifengimg.com/common/reset_160525.css" />
+    <style>
+
+    </style>
+</head>
+<script src="../js/three.js"></script>
+<script src="../js/ammo.js"></script>
+<script src="../js/OrbitControls.js"></script>
+<body>
+
+    <div id="container">
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        loading....
+    </div>
+</body>
+
+<script>
+    // 全局变量
+
+
+    //绘图相关
+
+    var container,camera,scene,controls,renderer,textureLoader;
+    var clock = new THREE.Clock();
+
+
+    init();
+    animate();
+    
+    
+    
+    function init() {
+        
+    }
+    function animate() {
+
+    }
+    
+    function initGraphics() {
+
+        container = document.getElementById('container');
+        container.innerHTML = "";
+
+        camera  = new THREE.PerspectiveCamera(60,Window.innerWidth/window.innerHeight,0.1,10000);
+        camera.position.set(-7,5,8);
+
+        controls = new THREE.OrbitControls(camera);
+        controls.target.y = 2;
+
+
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor( 0xbfdle5 );
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        renderer.shadowMap.enabled
+
+        textureLoader = new THREE.TextureLoader()
+
+        scene = new THREE.Scene();
+
+
+        var ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight)
+//        环境光
+        var light = new THREE.DirectionalLight(0xffffff,1);
+        light.position.set(-10,10,5);
+        light.castShadow = true;
+
+    }
+</script>
+</html>
