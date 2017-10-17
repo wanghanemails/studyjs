@@ -20,8 +20,6 @@
             var container_strokeH = proportion_h*window.innerHeight;
 
 
-
-
            //
             // console.log( $("#Layer_1").attr("viewport"));
             // console.log( document.getElementById("Layer_1").getAttribute("viewBox"));
@@ -46,7 +44,6 @@
             var sphere1,sphere2,sphere3,sphere4;
 
            // document.getElementById("section2-sphere").classList.add("section2-sphereMove");
-
 
 
            var task_count = 0;
@@ -101,14 +98,11 @@
                     var path3 = "650.75 650.75 460.75 650.75 450.75 640.75 200.75 640.75 190.75 650.75 0.75 650.75";
                     var path4 = "0.75 650.75 0.75 460.75 10.75 450.75 10.75 200.75 0.75 190.75 0.75 0.75";
 
-
-
                     var mypaths = [];
                     mypaths.push(veiwBoxChange(path1,container_vb_w,container_vb_h))
                     mypaths.push(veiwBoxChange(path2,container_vb_w,container_vb_h))
                     mypaths.push(veiwBoxChange(path3,container_vb_w,container_vb_h))
                     mypaths.push(veiwBoxChange(path4,container_vb_w,container_vb_h))
-
 
 
 

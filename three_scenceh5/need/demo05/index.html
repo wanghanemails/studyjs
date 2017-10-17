@@ -173,10 +173,10 @@
 
                     count_y = each_random[i]>0.1? count_y:0.1;
 
-                    particle.scale.x = ( Math.sin( ( ix + count ) ) + 0.1 ) * 1 + ( Math.sin( ( iy + count ) ) + 0.1 ) * 1;
+                    particle.scale.x = ( Math.sin( ( count ) ) + 0.1 ) * 5 + ( Math.sin( ( count ) ) + 0.1 ) * 5;
 
                     if(count_y==0.1){
-                        particle.scale.y = ( Math.sin( ( ix + count )  ) + 0.1 ) * 1 + ( Math.sin( ( iy + count ) ) + 0.1 ) * 1;
+                        particle.scale.y = ( Math.sin( (  count )  ) + 0.1 ) * 5 + ( Math.sin( ( count ) ) + 0.1 ) * 5;
 
                     }else {
                         particle.scale.y = ( Math.sin( ( ix + count )  ) + 0.1 ) * 1 + ( Math.sin( ( iy + count ) ) + 0.1 ) * 1;

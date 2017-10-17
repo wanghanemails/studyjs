@@ -193,7 +193,7 @@
 
                 function positionMove(i) {
 
-                    debugger;
+
                     var tween = new TWEEN.Tween(position1[i]).to(position2[i],3000).onUpdate(function () {
                             particles[i].x = this.x;
                             particles[i].y = this.y;
