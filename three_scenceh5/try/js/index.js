@@ -39,24 +39,45 @@
         pause,
         focallength,
         dots,
-        canvasText;
+        place=0,
+        canvasText,
+        x_group,
+        x_opacity = 0;
+    WIDTH = window.innerWidth;
+    HEIGHT = window.innerHeight;
 
+    var time_text = 1000;
+    var time_num = 6;
 
 
     var cubeposition2 = [
-        {x:-40,y:-40,z:100},
-        {x:-40,y:-40,z:150},
-        {x:10,y:-40,z:100},
-        {x:10,y:-40,z:150},
-        {x:-40,y:10,z:100},
-        {x:-40,y:10,z:150},
-        {x:10,y:10,z:100},
-        {x:10,y:10,z:150},
+        {x:-80,y:-80,z:100},
+        {x:-80,y:-80,z:200},
+        {x:20,y:-80,z:100},
+        {x:20,y:-80,z:200},
+        {x:-80,y:20,z:100},
+        {x:-80,y:20,z:200},
+        {x:20,y:20,z:100},
+        {x:20,y:20,z:200},
+    ]
+
+    var cubeposition3 = [
+        {x:-WIDTH*(Math.random()*10+1),y:-HEIGHT*(Math.random()*10+1),z:100},
+        {x:-WIDTH*(Math.random()*10+1),y:-HEIGHT*(Math.random()*10+1),z:100},
+        {x:WIDTH*(Math.random()*10+1),y:-HEIGHT*(Math.random()*10+1),z:100},
+        {x:WIDTH*(Math.random()*10+1),y:-HEIGHT*(Math.random()*10+1),z:100},
+        {x:-WIDTH*(Math.random()*10+1),y:HEIGHT*(Math.random()*10+1),z:100},
+        {x:-WIDTH*(Math.random()*10+1),y:HEIGHT*(Math.random()*10+1),z:100},
+        {x:WIDTH*(Math.random()*10+1),y:HEIGHT*(Math.random()*10+1),z:100},
+        {x:WIDTH*(Math.random()*10+1),y:HEIGHT*(Math.random()*10+1),z:100},
     ]
     var smokeParticles = [];
     var move_second = false;
     var move_second_over = false;
     var move_third = false;
+    var move_third_over = false;
+    var move_four = false;
+    var move_four_over = false;
 
 
     var COLORS = {
@@ -95,8 +116,7 @@
 
     function createScene() {
 
-            WIDTH = window.innerWidth;
-            HEIGHT = window.innerHeight;
+
             aspectRatic = WIDTH/HEIGHT;
             neardis = 0.1;
             fardis = 10000;
@@ -132,13 +152,13 @@
 
 
         var light = new THREE.DirectionalLight(0xffffff,0.5);
-        light.position.set(10,100,1000);
+        light.position.set(-10,500,1000);
         scene.add(light);
 
 
 
         var light2 = new THREE.DirectionalLight(0xffffff,0.5);
-        light2.position.set(500,500,2000);
+        light2.position.set(-500,500,2000);
         scene.add(light2);
 
         clock = new THREE.Clock();
@@ -161,7 +181,7 @@
 
         document.getElementById("WebGL-output").appendChild(renderer.domElement)
 
-        canvasTextFuc();
+
         createSprites();
 
     //        允许阴影。
@@ -307,7 +327,6 @@
                     add_ball2.position.y  =- 0.6;
 
 
-
                     var blueTube = new THREE.Mesh(tubeGeometry, purpleMaterial2);
                     blueTube.rotation.z = 90 * Math.PI/180;
                     blueTube.position.x = -cylinder_height/2;
@@ -364,10 +383,14 @@
             holder.position.z = -9000;
             scene.add(holder);
 
+
+
             //二屏
-            move_second = true;
+
             setTimeout(function () {
 
+                canvasTextFuc();
+                move_second = true;
                 //标记开始旋转
 
                 setTimeout(function () {
@@ -375,51 +398,102 @@
 
                     move_second_over = true
 
-                    changeValue("积累终将改变未来");
-                    addCubes();
 
 
-                    for(var j=0;j<cubesGroup1.children.length;j++){
+                    setTimeout(function () {
 
-                        positionMove(j)
+                        scene.children.length = scene.children.length-1;
 
-                    }
-
-
-
-                    function positionMove(i) {
+                        changeValue("积累终将改变未来");
+                        addCubes();
 
 
 
+                        for(var j=0;j<cubesGroup1.children.length;j++){
 
-                        var tween = new TWEEN.Tween(cubesGroup1.children[i].position).to(cubeposition2[i],1000).onUpdate(function () {
+                            positionMove(j,cubesGroup1.children[j],cubeposition2[j],0,0,0,function () {
+                                move_third = true;
+
+                            })
+
+                        }
+                        setTimeout(function () {
+                            var end_cube = 0;
+                            move_third_over = true
+
+                            for(var j=0;j<cubesGroup1.children.length;j++){
+
+                                positionMove(j,cubesGroup1.children[j],cubeposition3[j],Math.random()*360,Math.random()*360,Math.random()*360,function (j) {
+                                    move_third_over = true;
+                                    end_cube++;
+                                    if(end_cube==8){
+
+                                        scene.children.length = scene.children.length-1;
+
+                                        addX()
+                                        changeValue("连接一切应对未知");
+                                        // debugger;
+                                    }
+                                })
+
+                            }
 
 
-                            cubesGroup1.children[i].position.x = this.x;
-                            cubesGroup1.children[i].position.y = this.y;
-                            cubesGroup1.children[i].position.z = this.z;
-
-                            cubesGroup1.children[i].rotation.x = 0;
-                            cubesGroup1.children[i].rotation.y = 0;
-                            cubesGroup1.children[i].rotation.z = 0;
-                            cubesGroup1.children[i].geometry.verticesNeedUpdate = true;
-
-                        }).easing(TWEEN.Easing.Quintic.InOut).delay(1000*Math.random()).onComplete(function () {
-                            //     拼凑方块完成
-                            move_third = true;
+                        },time_num*time_text);
+                    },time_text)
 
 
-                        });
 
+
+
+                    function positionMove(j,a,b,r1,r2,r3,mycomplete) {
+
+                        var tween = new TWEEN.Tween(a.position).to(b,1000).onUpdate(function () {
+
+
+                            a.position.x = this.x;
+                            a.position.y = this.y;
+                            a.position.z = this.z;
+
+                            a.rotation.x = r1;
+                            a.rotation.y = r2;
+                            a.rotation.z = r3;
+                            a.geometry.verticesNeedUpdate = true;
+
+                        }).easing(TWEEN.Easing.Quintic.InOut).delay(1000*Math.random()).onComplete(mycomplete);
 
                         // debugger;
                         tween.start();
                     }
 
 
+
+
+
+
+
+                    // function callbackself() {
+                    //     if(pause&&move_third!=true ){
+                    //
+                    //
+                    //         callbackself();
+                    //     }else{
+                    //         //八个方块  每个都来一次   回调函数更保险     canvas  改为 threejs  从背景点中来搞定 ；
+                    //         console.log(1)
+                    //         move_third_over = true;
+                    //
+                    //
+                    //         changeValue("连接一切应对未知")
+                    //         debugger;
+                    //
+                    //
+                    //         return   null;
+                    //     }
+                    // }
+                    // callbackself();
                     // add_routine();
 
-                },3000);
+                },time_num*time_text);
             },3000);
         } );
 
@@ -432,7 +506,6 @@
     }
 
     function createText(text,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,positionX) {
-
 
             var textGeo = new THREE.TextGeometry( text, {
                 font: font,
@@ -525,7 +598,7 @@
                 }
 
             }
-            dna.rotation.y += 0.01;
+            dna.rotation.y += 0.05;
 
 
 
@@ -570,7 +643,7 @@
         }
 
 
-        if(move_second_over){
+        if(move_second_over&&move_third!=true){
 
 
 
@@ -594,12 +667,16 @@
 
         }
 
-        if(move_third){
-            cubesGroup1.rotation.x+=0.01;
-            cubesGroup1.rotation.y+=0.01;
-            cubesGroup1.rotation.z+=0.01;
+        if(move_third&&move_third_over!=true){
+            cubesGroup1.rotation.x+=0.05;
+            cubesGroup1.rotation.y+=0.05;
+            cubesGroup1.rotation.z+=0.05;
         }
 
+
+        if(move_four&&x_opacity<1){
+            x_opacity+=0.01;
+        }
     }
     function evolveSmoke() {
         var sp = smokeParticles.length;
@@ -610,7 +687,7 @@
 
     function animatecanvasText(){
         animateRunning = true;
-        var thisTime = +new Date();
+        var thisTime = new Date();
         context.clearRect(0,0,canvasText.width , canvasText.height);
 
 
@@ -626,7 +703,7 @@
                     dot.x = dot.dx;
                     dot.y = dot.dy;
                     dot.z = dot.dz;
-                    if(thisTime - lastTime > 2000) derection = false;
+                    if(thisTime - lastTime > time_text) derection = false;
                 } else {
                     dot.x = dot.x + (dot.dx - dot.x) * 0.1;
                     dot.y = dot.y + (dot.dy - dot.y) * 0.1;
@@ -639,24 +716,24 @@
 
 
                 // // debugger;
-                // if (Math.abs(dot.tx - dot.x) < 0.1 && Math.abs(dot.ty - dot.y) < 0.1 && Math.abs(dot.tz - dot.z)<0.1) {
-                //     dot.x = dot.tx;
-                //     dot.y = dot.ty;
-                //     dot.z = dot.tz;
-                //     pause = true;
-                // } else {
-                //
-                //     dot.x = dot.x + (dot.tx - dot.x) * 0.1;
-                //     dot.y = dot.y + (dot.ty - dot.y) * 0.1;
-                //     dot.z = dot.z + (dot.tz - dot.z) * 0.1;
-                //     pause = false;
-                // }
+                if (Math.abs(dot.tx - dot.x) < 0.1 && Math.abs(dot.ty - dot.y) < 0.1 && Math.abs(dot.tz - dot.z)<0.1) {
+                    dot.x = dot.tx;
+                    dot.y = dot.ty;
+                    dot.z = dot.tz;
+                    pause = true;
+                } else {
 
-                dot.x = dot.x + (dot.tx - dot.x) * 0.1;
-                dot.y = dot.y + (dot.ty - dot.y) * 0.1;
-                dot.z = dot.z + (dot.tz - dot.z) * 0.1;
-                //打乱
-                pause = false;
+                    dot.x = dot.x + (dot.tx - dot.x) * 0.1;
+                    dot.y = dot.y + (dot.ty - dot.y) * 0.1;
+                    dot.z = dot.z + (dot.tz - dot.z) * 0.1;
+                    pause = false;
+                }
+
+                // dot.x = dot.x + (dot.tx - dot.x) * 0.1;
+                // dot.y = dot.y + (dot.ty - dot.y) * 0.1;
+                // dot.z = dot.z + (dot.tz - dot.z) * 0.1;
+                // //打乱
+                // pause = false;
             }
             dot.paint();
         });
@@ -672,23 +749,18 @@
     function addCubes() {
 
         cubesGroup1 = new THREE.Group();
-        //
-        // var cubeGeometry = new THREE.BoxGeometry(100, 100, 100);
-        // var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-        // var cubea = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        // cubea.castShadow = true;
-        // cubea.position.set(0,0,100);
-        // cubea.rotation.set(10,10,10)
+
+
 
 
         for (var i=0;i<8;i++){
-            var cubeGeometry = new THREE.BoxGeometry(50, 50, 50);
-            var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+            var cubeGeometry = new THREE.BoxGeometry(100, 100, 100);
+            var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity:0.9});
 
             var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
             cube.castShadow = true;
             var fuhao = (i%2 ==0)? 1:-1;
-            cube.position.set(i*50-180,50*fuhao-HEIGHT/2,100);
+            cube.position.set(i*100-280,100*fuhao-HEIGHT/2,100);
             cube.rotation.set(10,10,10)
 
             cubesGroup1.add(cube);
@@ -718,9 +790,98 @@
         // cubesGroup1.add(cubeb)
 
 
-        scene.add(cubesGroup1)
+        scene.add(cubesGroup1);
 
     }
+
+
+    function addX() {
+
+        move_four = true;
+        x_group = new THREE.Group();
+        var sphere_x = new THREE.Group();
+
+        x_group.name = "x_group";
+
+        var size = 300;
+
+        // x_opacity = 1 + Math.sin(new Date().getTime() * .0025);
+        var textX = new THREE.TextGeometry( "X", {
+            font: font,
+            size: size,
+            height: 0.5*size,
+
+
+        });
+        x_opacity = 0.9;
+         var materials2 = [
+            new THREE.MeshLambertMaterial( { color: 0xffffff ,transparent:true,opacity: x_opacity,} ), // front
+            new THREE.MeshLambertMaterial( { color: 0x8c8c8c,transparent:true,opacity: x_opacity } ) // side
+        ];
+
+
+
+        var   textMesh1 = new THREE.Mesh( textX, materials2 );
+
+        textMesh1.position.x = -WIDTH/5;
+        textMesh1.rotation.x = (Math.PI * 2*30)/360;
+        textMesh1.rotation.y = -(Math.PI * 2*30)/360;
+
+
+
+        textMesh1.position.y = 0;
+        textMesh1.position.z = 0;
+
+        console.log(textMesh1)
+        x_group.add(textMesh1);
+
+        var x_sphere_z = 100;
+
+        var sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
+        var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+
+        for(var i=0;i<6;i++){
+
+            var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+            sphere.castShadow = true;
+            sphere.receiveShadow = true;
+            sphere.position.x=0;
+            sphere.position.y=0;
+            sphere.position.z=x_sphere_z;
+            sphere_x.add(sphere);
+        }
+
+        var track = new THREE.Mesh( new THREE.RingGeometry (x_sphere_z-0.2, x_sphere_z+0.2, 64,1),
+            new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } )
+        );
+        track.rotation.x = - Math.PI / 2;
+        sphere_x.add(track);
+
+
+
+
+
+        x_group.add(sphere_x)
+
+        var light3 = new THREE.DirectionalLight(0xffffff,1);
+        light3.position.set(-100,10,10);
+        scene.add(light3);
+        scene.add(x_group);
+
+
+
+
+
+        window.scene = scene
+        console.log(scene);
+        // window.x_group = x_group
+
+        // textMesh1.rotation.x = 0;
+        // textMesh1.rotation.y = Math.PI * 2;
+
+
+    }
+
     function add_routine() {
 
         $("#WebGL-output").css("display","none")
@@ -744,7 +905,7 @@
     function canvasTextFuc() {
         canvasText = document.getElementById("cas");
         context = canvasText.getContext('2d');
-        focallength = 500;
+        focallength = WIDTH;
 
          dots = getimgData("从0和1的世界出发");;
          pause = false;
@@ -764,14 +925,15 @@
 
         // pause = true;
         //
-        // if(!pause) return;
+        if(!pause) return;
         // debugger;
 
         dots = getimgData(changeValue);
         pause = false;
-        derection = true;
+        derection = false;
         // pause = false;
         initAnimate(changeValue);
+        derection = true;
     }
     function initAnimate(){
         dots.map(function(v,index){
@@ -800,20 +962,22 @@
         for(var x=0;x<imgData.width;x++){
             for(var y=0;y<imgData.height;y++){
                 var i = (y*imgData.width + x)*4;
-                if(imgData.data[i] >= 128&&i%4==0){
+                if(imgData.data[i] >= 128){
+                    place++
                     var dot = new Dot(x-0.5 , y-0.5 , 0 , 0.5);
                     dots.push(dot);
                 }
             }
         }
 
+       console.log( dots.length)
         return dots;
     }
 
     function drawText(text){
         context.clearRect(0,0,canvasText.width , canvasText.height);
         context.save()
-        context.font = "16px 微软雅黑";
+        context.font = "18px 微软雅黑";
         context.fillStyle = "rgba(255,255,255,1)";
         context.textAlign = "center";
         context.textBaseline = "middle";
