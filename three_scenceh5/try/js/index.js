@@ -42,13 +42,22 @@
         place=0,
         canvasText,
         x_group,
-        x_opacity = 0;
+        x_opacity = 0,
+        cube_num =0,
+        app;
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
 
     var time_text = 1000;
     var time_num = 6;
 
+    var dis = [
+        {
+            z:1000,
+            // x:100,
+            // y:100
+        }
+    ]
 
     var cubeposition2 = [
         {x:-80,y:-80,z:100},
@@ -60,6 +69,7 @@
         {x:20,y:20,z:100},
         {x:20,y:20,z:200},
     ]
+
 
     var cubeposition3 = [
         {x:-WIDTH*(Math.random()*10+1),y:-HEIGHT*(Math.random()*10+1),z:100},
@@ -101,6 +111,8 @@
 
 
     function   init() {
+
+        pixi();
 
         createScene();
 
@@ -433,10 +445,54 @@
                                         addX()
                                         changeValue("连接一切应对未知");
                                         // debugger;
+
+
+
+                                        setTimeout(function () {
+
+
+
+                                            var tween3 = new TWEEN.Tween(x_group.position).to(dis[0],1000).onUpdate(function () {
+
+
+
+
+                                                x_group.position.z = this.z;
+                                                // x_group.position.x = this.x;
+                                                // x_group.position.y = this.y;
+                                                // x_group.rotation.y = 100;
+
+                                            }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
+
+
+                                                scene.children.length -=1;
+
+                                                move_four_over = true;
+
+
+                                            //    五
+
+                                                addBreak();
+                                                changeValue("去打破显示的边界");
+                                            });
+
+                                            // debugger;
+                                            tween3.start();
+
+
+
+
+
+                                        },time_text*4)
+
+
                                     }
                                 })
 
                             }
+
+
+
 
 
                         },time_num*time_text);
@@ -677,6 +733,12 @@
         if(move_four&&x_opacity<1){
             x_opacity+=0.01;
         }
+        if(move_four &&!move_four_over){
+
+            x_group.children[1].rotation.y +=0.02;
+
+
+        }
     }
     function evolveSmoke() {
         var sp = smokeParticles.length;
@@ -797,11 +859,13 @@
 
     function addX() {
 
-        move_four = true;
+
         x_group = new THREE.Group();
         var sphere_x = new THREE.Group();
 
         x_group.name = "x_group";
+
+        x_group.position.set(0,0,0);
 
         var size = 300;
 
@@ -815,8 +879,8 @@
         });
         x_opacity = 0.9;
          var materials2 = [
-            new THREE.MeshLambertMaterial( { color: 0xffffff ,transparent:true,opacity: x_opacity,} ), // front
-            new THREE.MeshLambertMaterial( { color: 0x8c8c8c,transparent:true,opacity: x_opacity } ) // side
+            new THREE.MeshLambertMaterial( { color: 0xffffff ,transparent:true,opacity: 1,} ), // front
+            new THREE.MeshLambertMaterial( { color: 0x8c8c8c,transparent:true,opacity: 1 } ) // side
         ];
 
 
@@ -832,13 +896,13 @@
         textMesh1.position.y = 0;
         textMesh1.position.z = 0;
 
-        console.log(textMesh1)
+
         x_group.add(textMesh1);
 
-        var x_sphere_z = 100;
+        var x_sphere_z = 50;
 
-        var sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
-        var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+        var sphereGeometry = new THREE.SphereGeometry(15, 64, 64);
+        var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity:1});
 
         for(var i=0;i<6;i++){
 
@@ -851,15 +915,47 @@
             sphere_x.add(sphere);
         }
 
-        var track = new THREE.Mesh( new THREE.RingGeometry (x_sphere_z-0.2, x_sphere_z+0.2, 64,1),
+        // console.log(sphere_x)
+        var x_radia =  200;
+
+        sphere_x.children[0].position.x = -Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
+        sphere_x.children[0].position.z = -x_radia/2;
+
+
+
+        sphere_x.children[1].position.x = -Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
+        sphere_x.children[1].position.z = x_radia/2;
+
+        sphere_x.children[2].position.x = 0;
+        sphere_x.children[2].position.z = x_radia;
+
+        sphere_x.children[3].position.x = Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
+        sphere_x.children[3].position.z = x_radia/2;
+
+
+        sphere_x.children[4].position.x = Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
+        sphere_x.children[4].position.z = -x_radia/2;
+
+
+        sphere_x.children[5].position.x = 0;
+        sphere_x.children[5].position.z = -x_radia;
+
+
+        // debugger;
+        var track = new THREE.Mesh( new THREE.RingGeometry (x_radia-1, x_radia+1, 64,1,0,Math.PI * 2),
             new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } )
         );
         track.rotation.x = - Math.PI / 2;
-        sphere_x.add(track);
+        track.position.set(0,0,0);
+        track.geometry.verticesNeedUpdate = true;
+            sphere_x.add(track);
+
+        sphere_x.rotation.x = 30/360*Math.PI*2
 
 
 
 
+        sphere_x.position.set(0,100,100)
 
         x_group.add(sphere_x)
 
@@ -869,11 +965,15 @@
         scene.add(x_group);
 
 
-
-
-
-        window.scene = scene
-        console.log(scene);
+        move_four = true;
+        // window.track = track;
+        // window.sphere_x = sphere_x;
+        // window.x_group = x_group;
+        //
+        //
+        //
+        // window.scene = scene
+        // console.log(scene);
         // window.x_group = x_group
 
         // textMesh1.rotation.x = 0;
@@ -881,10 +981,150 @@
 
 
     }
+    
+    function pixi() {
+         app = new PIXI.Application(WIDTH, HEIGHT, {backgroundColor: "none",transparent: true});
+         document.getElementById("end").appendChild(app.view);
+    }
+
+    function addcubeOpen(i) {
+
+
+
+         $("#end").html("");
+
+        var str = "<div id='end-"+i+"'></div>"
+        $("#end").append(str);
+        document.getElementById("end-"+i).appendChild(app.view);
+        cube_num =i
+
+
+        var frames = [];
+
+        for (var i = 0; i < 39; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('images/cube/box0' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = app.renderer.width / 2;
+        anim.y = app.renderer.height / 2+100;
+
+        var obj = {}
+        obj.y = (app.renderer.height / 2+100-((6-cube_num)*150));
+
+        var tween = new TWEEN.Tween(anim).to(obj,300).onUpdate(function () {
+
+
+
+
+            anim.y = this.y;
+            // x_group.position.x = this.x;
+            // x_group.position.y = this.y;
+            // x_group.rotation.y = 100;
+
+        }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
+
+        });
+
+        // debugger;
+        tween.start();
+
+
+        anim.scale.x=cube_num/10;
+        anim.scale.y=cube_num/10;
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 1;
+        anim.loop = false;
+        anim.play();
+
+        anim.onComplete=function (i) {
+
+
+            if(cube_num>4){
+                addcubeOpen(cube_num-1)
+            }else {
+
+                setTimeout(function () {
+                    add_routine();
+                },2000);
+            }
+
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+        });
+    }
+    function addBreak() {
+        // $("#WebGL-output").css("display","none")
+        $("#end").css("display","block")
+
+        var frames = [];
+
+        for (var i = 0; i < 110; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('images/end/20' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = app.renderer.width / 2;
+        anim.y = app.renderer.height / 2;
+        anim.scale.x=0.5;
+        anim.scale.y=0.5;
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 0.3;
+        anim.loop = false;
+        anim.play();
+
+
+
+
+        anim.onComplete=function () {
+           
+            
+            setTimeout(function () {
+                changeValue("开放可以享有更多");
+                addcubeOpen(6);
+            },1000)
+
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+        });
+    }
+    
 
     function add_routine() {
 
         $("#WebGL-output").css("display","none")
+        $("#end").css("display","none")
+        $("#cas").css("display","none")
         $(".swiper-container").css("display","block")
 
 
