@@ -24,7 +24,7 @@
         HEIGHT,
         camera_field_view,
         range,
-        count = 0,
+
         geom,
         holder,
         text_group ,
@@ -45,6 +45,9 @@
         x_opacity = 0,
         cube_num =0,
         app;
+
+
+    var counts = [],
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
 
@@ -60,14 +63,14 @@
     ]
 
     var cubeposition2 = [
-        {x:-80,y:-80,z:100},
-        {x:-80,y:-80,z:200},
-        {x:20,y:-80,z:100},
-        {x:20,y:-80,z:200},
-        {x:-80,y:20,z:100},
-        {x:-80,y:20,z:200},
-        {x:20,y:20,z:100},
-        {x:20,y:20,z:200},
+        {x:70,y:0,z:100},
+        {x:70,y:0,z:200},
+        {x:170,y:0,z:100},
+        {x:170,y:0,z:200},
+        {x:70,y:100,z:100},
+        {x:70,y:100,z:200},
+        {x:170,y:100,z:100},
+        {x:170,y:100,z:200},
     ]
 
 
@@ -123,6 +126,7 @@
 
 
 
+
     }
 
 
@@ -146,7 +150,8 @@
             camera = new THREE.PerspectiveCamera(camera_field_view,aspectRatic,neardis,fardis);
 
 
-
+            var axes = new THREE.AxisHelper(2000);
+            scene.add(axes);
             camera.position.set(0,0,1000);
             camera.lookAt(scene.position);
 
@@ -160,27 +165,32 @@
             renderer.shadowMapSoft = true; //柔和阴影
 
 
+
+
         //    制造烟雾 和光
 
-
+        var ambLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambLight);
         var light = new THREE.DirectionalLight(0xffffff,0.5);
         light.position.set(-10,500,1000);
+        light.name = "lightDirectional_1"
         scene.add(light);
 
 
 
         var light2 = new THREE.DirectionalLight(0xffffff,0.5);
         light2.position.set(-500,500,2000);
+        light2.name = "lightDirectional_2"
         scene.add(light2);
 
         clock = new THREE.Clock();
         var  smokeTexture = THREE.ImageUtils.loadTexture('images/Smoke-Element.png');
-        var  smokeMaterial = new THREE.MeshLambertMaterial({color: 0x8c8c8c, map: smokeTexture, transparent: true,opacity: 1,});
+        var  smokeMaterial = new THREE.MeshLambertMaterial({color: 0xdcdada, map: smokeTexture, transparent: true,opacity: 0.1,});
         var smokeGeo = new THREE.PlaneGeometry(WIDTH*10,HEIGHT*10);
 
 
 
-        for (var p = 0; p < 100; p++) {
+        for (var p = 0; p < 10; p++) {
             var smokeparticle = new THREE.Mesh(smokeGeo,smokeMaterial);
 
             smokeparticle.position.set(Math.random()*WIDTH*5-WIDTH*5/2,Math.random()*HEIGHT*5-HEIGHT*5/2,-1000);
@@ -200,19 +210,23 @@
     }
 
     function createSprites() {
+        ponits = new THREE.Group();
+        var sprite = createOneSprite(5,true,1,true);
+        // var sprite_2= createOneSprite("ponits-2",5,true,1,true);
 
-        var sprite_1 = createOneSprite("ponits-1",5,true,1,true);
-
-        scene.add(sprite_1)
+        ponits.add(sprite)
+        // ponits.add(sprite_2)
+        scene.add(ponits)
     }
 
-    function createOneSprite (name,size,transparent,opacity,sizeAttenuation) {
+    function createOneSprite (size,transparent,opacity,sizeAttenuation) {
 
         // debugger
 
 
          // geom = new THREE.Geometry();
 
+        counts.push(0);
         var mytexture = new THREE.ImageUtils.loadTexture("images/dots.png");
 
         var material = new THREE.SpriteMaterial({
@@ -221,26 +235,28 @@
             // map:mytexture
             color:0xffffff,
             vertexColors:true,
-            map:mytexture
+            map:mytexture,
+            sizeAttenuation:sizeAttenuation
 
         });
 
+        var type_ponts = new THREE.Group();
+        type_ponts.name = "ponts_group";
+        var size = size ;
 
-
-        ponits = new THREE.Group()
-         range = -10000;
-        for ( var zpos= 0; zpos < 1000; zpos++) {
+         range = 1000;
+        for ( var zpos= 0; zpos < 2000; zpos++) {
 
             // var particle = new THREE.Vector3(Math.random() * WIDTH - WIDTH / 2, Math.random() * HEIGHT - HEIGHT / 2, Math.random() * range);
             var sprite =  new THREE.Sprite( material );
             sprite.position.set( Math.random() * WIDTH - WIDTH / 2, Math.random() * HEIGHT - HEIGHT / 2, Math.random() * range );
 
-            sprite.scale.set(3, 3, 3);
+            sprite.scale.set(size, size, size);
 
             // geom.vertices.push(particle);
             // geom.colors[zpos] = new THREE.Color(0xffffff)
 
-            ponits.add(sprite);
+            type_ponts.add(sprite);
         }
 
 
@@ -255,7 +271,7 @@
         // cloud.FrustrumCulled = true
 
         // scene.add(cloud)
-        return ponits;
+        return type_ponts;
 
 
     }
@@ -268,14 +284,11 @@
         var purple2 = 0xffffff;
         var tubeGeometry = new THREE.CylinderGeometry(0.1,0.1,cylinder_height,64);
         var ballGeometry = new THREE.SphereGeometry(0.8,64,64);
-        var blueMaterial = new THREE.MeshBasicMaterial( { color: blue } );
-        var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow } );
-        var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple } );
-        var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2 } );
 
 
 
-         dna = new THREE.Object3D();
+
+
          holder = new THREE.Object3D();
 
         // var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
@@ -291,10 +304,7 @@
 
 
 
-        materials = [
-            new THREE.MeshBasicMaterial( { color: 0xffffff } ), // front
-            new THREE.MeshBasicMaterial( { color: 0xffffff } ) // side
-        ];
+
 
 
         text_group = new THREE.Group();
@@ -305,7 +315,7 @@
 
             font = response;
 
-            var height = 0.4,
+            var height = 0.2,
                 size = 1.6,
                 curveSegments = 64,
                 bevelThickness = 4,
@@ -313,88 +323,152 @@
                 bevelEnabled = true;
 
 
-            var  text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
-            var  text_mush2 =  createText(0,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,-cylinder_height);
 
-            (function () {
+            function  creatDnaReal(a) {
 
-                for (var i = 0; i < 40; i++) {
+                    materials = [
+                        new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true} ), // front
+                        new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true} ) // side
+                    ];
+                    var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true} );
+                    var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true} );
+                    var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true} );
+                    var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true} );
 
-                    if(i%2){
-                        var text = text_mush1;
-                    }else {
-                        var text = text_mush2;
+
+                var  text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
+                var  text_mush2 =  createText(0,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,-cylinder_height);
+
+
+              var  dna = new THREE.Object3D();
+
+                (function () {
+                    for (var i = 0; i < 40; i++) {
+
+                        if(i<4){
+                            materials = [
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:(i*2/10),transparent:true} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:i*2/10,transparent:true} ) // side
+                            ];
+                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:i*2/10,transparent:true} );
+                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:i*2/10 ,transparent:true} );
+                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:i*2/10,transparent:true} );
+                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:i*2/10 ,transparent:true} );
+
+
+                            text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
+                            text_mush2 =  createText(0,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,-cylinder_height);
+
+                        }
+                        else if(i>36){
+                            materials = [
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:((40-i)*2/10),transparent:true} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:(40-i)*2/10,transparent:true} ) // side
+                            ];
+                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:(40-i)*2/10,transparent:true} );
+                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:(40-i)*2/10 ,transparent:true} );
+                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:(40-i)*2/10,transparent:true} );
+                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:(40-i)*2/10 ,transparent:true} );
+
+
+                            text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
+                            text_mush2 =  createText(0,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,-cylinder_height);
+
+                        }else {
+                            materials = [
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true} ) // side
+                            ];
+                            var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true} );
+                            var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true} );
+                            var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true} );
+                            var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true} );
+
+
+                            var  text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
+                            var  text_mush2 =  createText(0,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,-cylinder_height);
+
+                        }
+
+
+                        if(i%2){
+                            var text = text_mush1;
+                        }else {
+                            var text = text_mush2;
+                        }
+
+                        var add_ball1 = text.clone()
+
+                        add_ball1.position.y = -0.1;
+                        var add_ball2 = text.clone()
+
+                        // add_ball1.position.y  += 2;
+                        add_ball1.position.x  =-4.6;
+                        add_ball2.position.x =  cylinder_height;
+
+                        add_ball1.position.y  =-0.6;
+                        add_ball2.position.y  =- 0.6;
+
+
+                        var blueTube = new THREE.Mesh(tubeGeometry, purpleMaterial2);
+                        blueTube.rotation.z = 90 * Math.PI/180;
+                        blueTube.position.x = -cylinder_height/2;
+
+                        var yellowTube = new THREE.Mesh(tubeGeometry, purpleMaterial2 );
+                        yellowTube.rotation.z = 90 * Math.PI/180;
+                        yellowTube.position.x = cylinder_height/2;
+
+
+
+
+                        var row = new THREE.Object3D();
+                        row.add(blueTube);
+                        row.add(yellowTube);
+                        row.add(add_ball1);
+                        row.add(add_ball2);
+
+                        row.position.y = i*2;
+                        row.rotation.y = 15*i * Math.PI/180;
+
+
+                        dna.add(row);
+
                     }
+                })()
+                return  dna;
+            }
 
-                    var add_ball1 = text.clone()
+           var dna = creatDnaReal(1);
+            dna.position.y = -35;
 
-                    add_ball1.position.y = -0.1;
-                    var add_ball2 = text.clone()
-
-                    // add_ball1.position.y  += 2;
-                    add_ball1.position.x  =-4.6;
-                    add_ball2.position.x =  cylinder_height;
-
-                    add_ball1.position.y  =-0.6;
-                    add_ball2.position.y  =- 0.6;
-
-
-                    var blueTube = new THREE.Mesh(tubeGeometry, purpleMaterial2);
-                    blueTube.rotation.z = 90 * Math.PI/180;
-                    blueTube.position.x = -cylinder_height/2;
-
-                    var yellowTube = new THREE.Mesh(tubeGeometry, purpleMaterial2 );
-                    yellowTube.rotation.z = 90 * Math.PI/180;
-                    yellowTube.position.x = cylinder_height/2;
-
-
-                    var ballRight = new THREE.Mesh( ballGeometry, yellowMaterial );
-                    ballRight.position.x = cylinder_height;
-
-                    var ballLeft = new THREE.Mesh( ballGeometry, blueMaterial );
-                    ballLeft.position.x = -cylinder_height;
-
-
-
-                    var row = new THREE.Object3D();
-                    row.add(blueTube);
-                    row.add(yellowTube);
-                    row.add(add_ball1);
-                    row.add(add_ball2);
-
-                    row.position.y = i*2;
-                    row.rotation.y = 15*i * Math.PI/180;
-
-
-                    dna.add(row);
-                };
-            })()
-
-            dna.position.y = -40;
-
-            scene.add(dna);
+            // scene.add(dna);
 
             holder.add(dna)
 
-            var dna2 = dna.clone();
+            var dna2 = creatDnaReal(0.5);
 
             dna2.children.length = 30
             dna2.position.x = -20;
-            dna2.position.y = -30;
+            dna2.position.y = -25;
+
 
             holder.add(dna2)
 
 
-            var dna3 = dna.clone();
+            var dna3 = creatDnaReal(0.5);
 
             dna3.position.x = 20;
             dna3.children.length = 30;
-            dna3.position.y = -30;
+            dna3.position.y = -25;
+
             holder.add(dna3)
 
-            holder.position.z = -9000;
+            holder.position.z = 900;
             scene.add(holder);
 
+
+
+            holder.position.y = 100;
 
 
             //二屏
@@ -416,111 +490,17 @@
 
                         scene.children.length = scene.children.length-1;
 
-                        changeValue("积累终将改变未来");
-                        addCubes();
+                        addBreak();
+                        changeValue("去打破显示的边界");
 
-
-
-                        for(var j=0;j<cubesGroup1.children.length;j++){
-
-                            positionMove(j,cubesGroup1.children[j],cubeposition2[j],0,0,0,function () {
-                                move_third = true;
-
-                            })
-
-                        }
-                        setTimeout(function () {
-                            var end_cube = 0;
-                            move_third_over = true
-
-                            for(var j=0;j<cubesGroup1.children.length;j++){
-
-                                positionMove(j,cubesGroup1.children[j],cubeposition3[j],Math.random()*360,Math.random()*360,Math.random()*360,function (j) {
-                                    move_third_over = true;
-                                    end_cube++;
-                                    if(end_cube==8){
-
-                                        scene.children.length = scene.children.length-1;
-
-                                        addX()
-                                        changeValue("连接一切应对未知");
-                                        // debugger;
-
-
-
-                                        setTimeout(function () {
-
-
-
-                                            var tween3 = new TWEEN.Tween(x_group.position).to(dis[0],1000).onUpdate(function () {
-
-
-
-
-                                                x_group.position.z = this.z;
-                                                // x_group.position.x = this.x;
-                                                // x_group.position.y = this.y;
-                                                // x_group.rotation.y = 100;
-
-                                            }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
-
-
-                                                scene.children.length -=1;
-
-                                                move_four_over = true;
-
-
-                                            //    五
-
-                                                addBreak();
-                                                changeValue("去打破显示的边界");
-                                            });
-
-                                            // debugger;
-                                            tween3.start();
+                    },time_text*2)
 
 
 
 
 
-                                        },time_text*4)
 
 
-                                    }
-                                })
-
-                            }
-
-
-
-
-
-                        },time_num*time_text);
-                    },time_text)
-
-
-
-
-
-                    function positionMove(j,a,b,r1,r2,r3,mycomplete) {
-
-                        var tween = new TWEEN.Tween(a.position).to(b,1000).onUpdate(function () {
-
-
-                            a.position.x = this.x;
-                            a.position.y = this.y;
-                            a.position.z = this.z;
-
-                            a.rotation.x = r1;
-                            a.rotation.y = r2;
-                            a.rotation.z = r3;
-                            a.geometry.verticesNeedUpdate = true;
-
-                        }).easing(TWEEN.Easing.Quintic.InOut).delay(1000*Math.random()).onComplete(mycomplete);
-
-                        // debugger;
-                        tween.start();
-                    }
 
 
 
@@ -549,8 +529,8 @@
                     // callbackself();
                     // add_routine();
 
-                },time_num*time_text);
-            },3000);
+                },5*time_text);
+            },10000);
         } );
 
 
@@ -607,54 +587,72 @@
         renderer.clear();
         renderer.render(scene,camera);
     }
+    function positionMove(j,a,b,r1,r2,r3,mycomplete) {
 
+        var tween = new TWEEN.Tween(a.position).to(b,1000).onUpdate(function () {
+
+
+            a.position.x = this.x;
+            a.position.y = this.y;
+            a.position.z = this.z;
+
+            a.rotation.x = r1;
+            a.rotation.y = r2;
+            a.rotation.z = r3;
+            a.geometry.verticesNeedUpdate = true;
+
+        }).easing(TWEEN.Easing.Quintic.InOut).delay(500*j).onComplete(mycomplete);
+
+        // debugger;
+        tween.start();
+    }
     function animate_bg() {
 
         // var vertices = geom.vertices;
 
+        var interval_num = 180;
+        var speed_sprite = HEIGHT/2*0.01;
         if(move_second){
 
-            // vertices.forEach(function (v) {
-            //
-            //     if(v.z>=1000){
-            //
-            //         v.setZ(range);
-            //     }else {
-            //
-            //         // v.setZ(9000*Math.random()*(Math.random()>0.5?-1:1));
-            //         v.setZ(v.z+HEIGHT/2*0.05);
-            //     }
-            //
-            //     //    很关键。。。。。各种找
-            //     cloud.geometry.verticesNeedUpdate = true;
-            //
-            // });
 
-            ponits.children.map(function (v,index) {
+
+            ponits.children.map(function (v,index1) {
 
 
 
-
-                v.scale.x =2*Math.sin(  (count+index)/180 )+2*Math.cos( (count+index)/180);
-                v.scale.y =2*Math.sin((count+index)/180 )+2*Math.cos(  (count+index)/180) ;
-
-                count += 0.01;
-                //    很关键。。。。。各种找
-                // cloud.geometry.verticesNeedUpdate = true;
-
-            });
+                v.children.map(function (onesprite,index2) {
 
 
-            for(var i=0;i<holder.children.length;i++){
-                //旋转dna
-                if(i==0){
-                    holder.children[i].rotation.y += 0.01;
-                }else {
-                    holder.children[i].rotation.y -= 0.02;
-                }
 
-            }
-            dna.rotation.y += 0.05;
+                    if(index2<v.children.length/3){
+                        interval_num = 300;
+                    }
+
+                    else if(index2<v.children.length*3/5&&v.children.length/3<index2){
+                        interval_num = 600;
+                    }
+                    else if(index2<v.children.length*4/5&&v.children.length*3/5<index2){
+                        interval_num = 900;
+                    }
+                    else {
+                        interval_num = 1200;
+                    }
+
+                    onesprite.scale.x =1*Math.sin(  (counts[index1]+index2)/interval_num )+1*Math.cos( (counts[index1]+index2)/interval_num);
+                    onesprite.scale.y =1*Math.sin((counts[index1]+index2)/interval_num )+1*Math.cos(  (counts[index1]+index2)/interval_num) ;
+
+                    counts[index1] += 0.01;
+                    //    很关键。。。。。各种找
+                    // cloud.geometry.verticesNeedUpdate = true;
+
+
+                });
+
+            })
+
+
+
+            // dna.rotation.y += 0.05;
 
 
 
@@ -667,33 +665,67 @@
 
             //星闪烁
 
-            ponits.children.map(function (v,index) {
+
+            ponits.children.map(function (v,index1) {
 
 
-                if(v.position.z>=1000){
+                v.children.map(function (onesprite,index2) {
 
-                    v.position.z=range;
-                }else {
+                    if(index2<v.children.length/3){
+                        interval_num = 360;
+                        speed_sprite = HEIGHT/2*0.01;
+                    }
 
-                    v.position.z = ( v.position.z+HEIGHT/2*0.05);
-                }
+                    else if(index2<v.children.length*3/5&&v.children.length/3<index2){
+                        interval_num = 200;
+                        speed_sprite = HEIGHT/2*0.05;
+                    }
+                    else if(index2<v.children.length*4/5&&v.children.length*3/5<index2){
+                        interval_num = 150;
+                        speed_sprite = HEIGHT/2*0.08;
+                    }
+                    else {
+                        interval_num = 90;
+                        speed_sprite = HEIGHT/2*0.1;
+                    }
+
+                    if(onesprite.position.z>=900){
+
+                        onesprite.position.z=range/2;
+                    }else {
+
+                        onesprite.position.z = ( onesprite.position.z+speed_sprite);
+
+                    }
 
 
-                v.scale.x =2*Math.sin(  (count+index)/180 )+2*Math.cos( (count+index)/180);
-                v.scale.y =2*Math.sin((count+index)/180 )+2*Math.cos(  (count+index)/180) ;
+                    onesprite.scale.x =1*Math.sin(  (counts[index1]+index2)/interval_num )+1*Math.cos( (counts[index1]+index2)/interval_num);
+                    onesprite.scale.y =1*Math.sin((counts[index1]+index2)/interval_num )+1*Math.cos(  (counts[index1]+index2)/interval_num) ;
 
-                count += 0.01;
-                //    很关键。。。。。各种找
-                // cloud.geometry.verticesNeedUpdate = true;
+                    counts[index1] += 0.01;
+                    //    很关键。。。。。各种找
+                    // cloud.geometry.verticesNeedUpdate = true;
 
-            });
+                });
+
+            })
+
+
 
 
         }
 
+        for(var i=0;i<holder.children.length;i++){
+            //旋转dna
+            if(i==0){
+                holder.children[i].rotation.y += 0.05;
+            }else {
+                holder.children[i].rotation.y -= 0.1;
+            }
 
-        if(holder.position.z<900){
-            holder.position.z+=100*0.9;
+        }
+        if(holder.position.y>0){
+            holder.position.y-=1;
         }else {
 
         }
@@ -707,27 +739,30 @@
 
 
 
-                for(var i=0;i<holder.children.length;i++){
+                // for(var i=0;i<holder.children.length;i++){
+                //
+                //     for(var j=0;j<holder.children[i].children.length;j++){
+                //
+                //         for(var k=0;k<holder.children[i].children[j].children.length;k++){
+                //
+                //             holder.children[i].children[j].children[k].position.x  += (2+i*j*k)*Math.random()*1;
+                //             holder.children[i].children[j].children[k].position.y  += (2+i*j*k)*Math.random()*0.1;
+                //             holder.children[i].children[j].children[k].position.z  += (2+i*j*k)*Math.random()*10;
+                //         }
+                //     }
+                // }
 
-                    for(var j=0;j<holder.children[i].children.length;j++){
 
-                        for(var k=0;k<holder.children[i].children[j].children.length;k++){
+                if(holder.position.y<100){
+                    holder.position.y+=5;
+                }else {
 
-                            holder.children[i].children[j].children[k].position.x  += (2+i*j*k)*Math.random()*1;
-                            holder.children[i].children[j].children[k].position.y  += (2+i*j*k)*Math.random()*0.1;
-                            holder.children[i].children[j].children[k].position.z  += (2+i*j*k)*Math.random()*10;
-                        }
-                    }
                 }
             })()
 
         }
 
-        if(move_third&&move_third_over!=true){
-            cubesGroup1.rotation.x+=0.05;
-            cubesGroup1.rotation.y+=0.05;
-            cubesGroup1.rotation.z+=0.05;
-        }
+
 
 
         if(move_four&&x_opacity<1){
@@ -821,8 +856,8 @@
 
             var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
             cube.castShadow = true;
-            var fuhao = (i%2 ==0)? 1:-1;
-            cube.position.set(i*100-280,100*fuhao-HEIGHT/2,100);
+
+            cube.position.set(i*100-280,-1000-HEIGHT/2,100);
             cube.rotation.set(10,10,10)
 
             cubesGroup1.add(cube);
@@ -830,27 +865,18 @@
 
 
 
+        var light4 = new THREE.DirectionalLight(0xffffff,0.3);
+        light4.position.set(-300,-2000,100);
+        light4.name = "lightDirectional_3"
+
+        scene.add(light4);
 
 
+        var light5 = new THREE.DirectionalLight(0xffffff,0.5);
+        light5.position.set(-100,10,10);
+        light5.name = "lightDirectional_3"
 
-
-        //
-        // var cubeGeometry = new THREE.BoxGeometry(50, 50, 50);
-        // var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-        //
-        // var cubea = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        // cubea.castShadow = true;
-        // cubea.position.set(-40,-40,100);
-        // cubea.rotation.set(0,0,0)
-        // cubesGroup1.add(cubea)
-        //
-        //
-        // var cubeb = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        // cubeb.castShadow = true;
-        // cubeb.position.set(-40,-40,150);
-        // cubeb.rotation.set(0,0,0);
-        // cubesGroup1.add(cubeb)
-
+        scene.add(light5);
 
         scene.add(cubesGroup1);
 
@@ -873,7 +899,7 @@
         var textX = new THREE.TextGeometry( "X", {
             font: font,
             size: size,
-            height: 0.5*size,
+            height: 0.3*size,
 
 
         });
@@ -961,6 +987,8 @@
 
         var light3 = new THREE.DirectionalLight(0xffffff,1);
         light3.position.set(-100,10,10);
+        light3.name = "lightDirectional_3"
+
         scene.add(light3);
         scene.add(x_group);
 
@@ -1104,8 +1132,104 @@
            
             
             setTimeout(function () {
-                changeValue("开放可以享有更多");
-                addcubeOpen(6);
+
+
+
+
+
+
+
+
+                changeValue("积累终将改变未来");
+                addCubes();
+
+
+
+                for(var j=0;j<cubesGroup1.children.length;j++){
+
+                    positionMove(j,cubesGroup1.children[j],cubeposition2[j],0,0,0,function () {
+                        move_third = true;
+
+                    })
+
+                }
+
+                cubesGroup1.rotation.x= -20/360*2*Math.PI;
+                cubesGroup1.rotation.y= -30/360*2*Math.PI;
+                cubesGroup1.rotation.z= 15/360*2*Math.PI;
+                
+                
+                
+                
+
+                setTimeout(function () {
+                    var end_cube = 0;
+                    move_third_over = true
+
+                    for(var j=0;j<cubesGroup1.children.length;j++){
+
+                        positionMove(j,cubesGroup1.children[j],cubeposition3[j],0,0,0,function (j) {
+                            move_third_over = true;
+                            end_cube++;
+                            if(end_cube==8){
+
+                                scene.children.length = scene.children.length-1;
+
+                                addX()
+                                changeValue("连接一切应对未知");
+                                // debugger;
+
+
+
+                                setTimeout(function () {
+
+
+
+                                    var tween3 = new TWEEN.Tween(x_group.position).to(dis[0],1000).onUpdate(function () {
+
+
+
+
+                                        x_group.position.z = this.z;
+                                        // x_group.position.x = this.x;
+                                        // x_group.position.y = this.y;
+                                        // x_group.rotation.y = 100;
+
+                                    }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
+
+
+                                        scene.children.length -=1;
+
+                                        move_four_over = true;
+
+
+                                        //    五
+
+                                        changeValue("开放可以享有更多");
+                                        addcubeOpen(6);
+
+                                    });
+
+                                    // debugger;
+                                    tween3.start();
+
+
+
+
+
+                                },time_text*4)
+
+
+                            }
+                        })
+
+                    }
+
+
+
+
+
+                },6*time_text);
             },1000)
 
 
@@ -1251,6 +1375,11 @@
             context.restore();
 
         }
+    }
+
+
+    function randomTwinkle() {
+
     }
 
 })(jQuery)

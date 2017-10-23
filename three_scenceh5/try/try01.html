@@ -738,6 +738,50 @@
            });
     })(jQuery)
 </script>
-<script src="js/index.js"></script>
 
+
+<script src="js/index.js"></script>
+<script type="x-shader/x-vertex" id="vertexshader">attribute float size;
+			attribute vec3 position2;
+			attribute float val;
+			varying vec3 vPos;
+			void main() {
+				vPos.x = position.x * val + position2.x * (1.-val);
+				vPos.y = position.y* val + position2.y * (1.-val);
+				vPos.z = position.z* val + position2.z * (1.-val);
+				vec4 mvPosition = modelViewMatrix * vec4( vPos, 1.0 );
+				gl_PointSize = size * ( 300.0 / -mvPosition.z );
+				gl_Position = projectionMatrix * mvPosition;
+			}</script>
+<script type="x-shader/x-fragment" id="fragmentshader">uniform vec3 color;
+			uniform sampler2D texture;
+			varying vec3 vPos;
+			void main() {
+				vec3 vColor = vec3(1.0, 1.0, 1.0);
+				gl_FragColor = vec4( color * vColor, 1.0 );
+				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+			}</script>
+<script type="x-shader/x-vertex" id="skyvertex">varying vec2  vUv;
+			void main() {
+			    vUv  = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}</script>
+<script type="x-shader/x-fragment" id="skyfragment">uniform vec3 color;
+            uniform sampler2D texture;
+            varying vec2  vUv;
+			void main() {
+				gl_FragColor = vec4( color , 1.0 );
+				gl_FragColor = gl_FragColor * (texture2D( texture, vUv ));
+			}</script>
+<script type="x-shader/x-vertex" id="randomdotshader">attribute float size;
+			void main() {
+			    gl_PointSize = size;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}</script>
+<script type="x-shader/x-fragment" id="randomdotfragment">uniform sampler2D texture;
+			void main() {
+			    vec3 vColor = vec3(1.0, 1.0, 1.0);
+				gl_FragColor = vec4( vColor, 1.0 );
+				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+			}</script>
 </html>

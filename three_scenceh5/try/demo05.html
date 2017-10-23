@@ -93,7 +93,8 @@
 
             // we make a particle material and pass through the
             // colour and custom particle render function we defined.
-            material = new THREE.ParticleCanvasMaterial( { color: 0xffffff, program: particleRender } );
+            var mytexture = new THREE.ImageUtils.loadTexture("images/dots.png");
+            material = new THREE.MeshLambertMaterial( { color: 0xffffff, map:mytexture } );
             // make the particle
             particle = new THREE.Particle(material);
 

@@ -1,179 +1,261 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <style>
-        #cas{
-            display: block;
-            border:1px solid;
-            margin:auto;
+    <meta charset="utf-8" />
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, minimal-ui,user-scalable=no" /> <meta name="screen-orientation" content="portrait" /> <meta name="x5-orientation" content="portrait" /> <meta name="apple-mobile-web-app-capable" content="yes" /> <meta name="apple-mobile-web-app-status-bar-style" content="black" /> <meta name="author" content="凤凰网" /> <meta name="robots" content="index" /> <meta name="copyright" content="Copyright 1999-2014. www.ifeng.com . All Rights Reserved." /> <meta name="application-name" content="凤凰网" /> <meta name="format-detection" content="telephone=no" /> <meta http-equiv="x-ua-compatible" content="IE=edge" /> <meta name="description" content="你我，每一个颗粒的闪耀，汇成了新时代的荣光。" /> <meta name="keywords" content="凤凰网,凤凰新闻" /> <title>改革之路</title> <link rel="icon" href="http://www.ifeng.com/favicon.ico" type="image/x-icon" /> <link href="https://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/screen.css" rel="stylesheet" type="text/css" /><style>body{overflow: hidden;}.load{ background: #01071a;}.pcInfo p{width:760px;margin-left: -380px;}</style>
+    <!--[if lt IE]><script>location.href = 'code.shtml';</script><![endif]-->
+    <script type="text/javascript">
+        if (window.location.href.indexOf('http://i') !== -1){
+            gloableSettings = {"queryString":"","channelPath":"/wwwh5/special"}
+        }else{
+            document.write('<script src="https://p0.ifengimg.com/a/2017/0811/5ed644e44a7ed89.js"><\/script><script src="https://p2.ifengimg.com/a/2017/0904/3de16a1c6b6c05d.js"><\/script>');
         }
-    </style>
-    <script>
-        window.onload = function(){
-            canvas = document.getElementById("cas");
-            context = canvas.getContext('2d');
-            focallength = 250;
-
-            var dots = getimgData(document.getElementById('name').value);;
-            var pause = false;
-            initAnimate();
-            function initAnimate(){
-                dots.forEach(function(){
-                    this.x = Math.random()*canvas.width;
-                    this.y = Math.random()*canvas.height;
-                    this.z = Math.random()*focallength*2 - focallength;
-
-                    this.tx = Math.random()*canvas.width;
-                    this.ty = Math.random()*canvas.height;
-                    this.tz = Math.random()*focallength*2 - focallength;
-                    this.paint();
-                });
-                animate();
-            }
-
-            //计算帧速率
-            var lastTime;
-            var derection = true;
-            function animate(){
-                animateRunning = true;
-                var thisTime = +new Date();
-                context.clearRect(0,0,canvas.width , canvas.height);
-                //核心 随机打乱代码
-
-                console.log(dots)
-                dots.map(function (v,index){
-                    var dot = v;
-
-                    if(derection){
-                        if (Math.abs(dot.dx - dot.x) < 0.1 && Math.abs(dot.dy - dot.y) < 0.1 && Math.abs(dot.dz - dot.z)<0.1) {
-                            dot.x = dot.dx;
-                            dot.y = dot.dy;
-                            dot.z = dot.dz;
-                            if(thisTime - lastTime > 1000) derection = false;
-                        } else {
-                            dot.x = dot.x + (dot.dx - dot.x) * 0.1;
-                            dot.y = dot.y + (dot.dy - dot.y) * 0.1;
-                            dot.z = dot.z + (dot.dz - dot.z) * 0.1;
-                            lastTime = +new Date()
-                        }
-                    }
-                    else {
-                        if (Math.abs(dot.tx - dot.x) < 0.1 && Math.abs(dot.ty - dot.y) < 0.1 && Math.abs(dot.tz - dot.z)<0.1) {
-                            dot.x = dot.tx;
-                            dot.y = dot.ty;
-                            dot.z = dot.tz;
-                            pause = true;
-                        } else {
-                            dot.x = dot.x + (dot.tx - dot.x) * 0.1;
-                            dot.y = dot.y + (dot.ty - dot.y) * 0.1;
-                            dot.z = dot.z + (dot.tz - dot.z) * 0.1;
-                            pause = false;
-                        }
-                    }
-                    dot.paint();
-                });
-
-
-
-
-                if(!pause) {
-                    if("requestAnimationFrame" in window){
-                        requestAnimationFrame(animate);
-                    }
-                    else if("webkitRequestAnimationFrame" in window){
-                        webkitRequestAnimationFrame(animate);
-                    }
-                    else if("msRequestAnimationFrame" in window){
-                        msRequestAnimationFrame(animate);
-                    }
-                    else if("mozRequestAnimationFrame" in window){
-                        mozRequestAnimationFrame(animate);
-                    }
-                }
-            }
-
-            document.getElementById('startBtn').onclick = function(){
-                if(!pause) return;
-                dots = getimgData(document.getElementById('name').value);
-                derection=true;
-                pause = false;
-                initAnimate();
-            }
-        }
-
-        Array.prototype.forEach = function(callback){
-            for(var i=0;i<this.length;i++){
-                callback.call(this[i]);
-            }
-        }
-
-        function getimgData(text){
-            drawText(text);
-
-            var imgData = context.getImageData(0,0,canvas.width , canvas.height);
-
-            debugger
-            context.clearRect(0,0,canvas.width , canvas.height);
-            var dots = [];
-
-            for(var x=0;x<imgData.width;x++){
-                for(var y=0;y<imgData.height;y++){
-                    var i = (y*imgData.width + x)*4;
-                    if(imgData.data[i] >= 128){
-                        var dot = new Dot(x-0.5 , y-0.5 , 0 , 0.5);
-                        dots.push(dot);
-                    }
-                }
-            }
-            console.log(dots)
-            return dots;
-        }
-
-        function drawText(text){
-            context.save()
-            context.font = "20px 微软雅黑";
-            context.fillStyle = "rgba(168,168,168,1)";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText(text , canvas.width/2 , canvas.height-20);
-            context.restore();
-        }
-
-
-        var Dot = function(centerX , centerY , centerZ , radius){
-            this.dx = centerX;
-            this.dy = centerY;
-            this.dz = centerZ;
-            this.tx = 0;
-            this.ty = 0;
-            this.tz = 0;
-            this.z = centerZ;
-            this.x = centerX;
-            this.y = centerY;
-            this.radius = radius;
-        }
-
-        Dot.prototype = {
-            paint:function(){
-                context.save();
-                context.beginPath();
-                var scale = focallength/(focallength + this.z);
-                context.arc(canvas.width/2 + (this.x-canvas.width/2)*scale , canvas.height/2 + (this.y-canvas.height/2) * scale, this.radius*scale , 0 , 2*Math.PI);
-                context.fillStyle = "rgba(50,50,50,"+ scale +")";
-                context.fill()
-                context.restore();
-            }
-        }
-    </script>
-    <title>操控字体的数据</title>
-</head>
-<body>
-<div >
-    <canvas id='cas' width="375" height="667">浏览器不支持canvas</canvas>
-    <div style="width:150px;margin:10px auto">
-        <input type="text" name="" id="name" style="width:80px;" value="1"><button id="startBtn">开始</button>
+    </script></head><body><img id="imgForShare" style="position: fixed; left: -1000%; top: -1000%;" src="http://p1.ifengimg.com/a/2017/1019/4079e868c4cef0esize23_w300_h300.jpg" alt="分享缩略图" /> <div id="ifeng_share_thumbnail" style="display:none"></div> <div id="ifeng_share_title" style="display:none"></div> <div id="ifeng_share_description" style="display:none"></div> <div id="ifeng_share_url" style="display:none"></div> <div id="app" ondragstart="return false;">
+    <transition leave-active-class="opacityHide">
+        <div class="full load" v-if="!loadEnd">
+            <!--<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewbox="-0.305 -2.646 180 180">-->
+                <!--<g fill="#e83637">-->
+                    <!--<path d="M172.478 61.37c5.093 10.28 8.14 23.461 6.435 37.368-1.562 12.722-6.059 23.238-11.878 32.913 4.221-11.438 7.03-28.555 3.711-43.059-3.013-13.16-10.545-23.994-19.303-30.685 5.958 10.672 11.614 22.777 12.373 38.357.755 15.479-2.655 30.203-8.413 41.573-11.171 22.054-32.643 36.065-64.341 36.872 22.913-4.452 40.748-16.182 51.473-33.656 10.079-16.421 13.764-51.306-1.238-66.071 7.161 23.902.174 48.691-10.641 63.845-5.692 7.978-12.682 13.992-21.281 19.055-8.401 4.947-18.459 9.433-29.943 10.146-33.75 2.096-51.767-14.675-65.33-34.15-.718-.277.378-.268.247.248 8.196 8.77 17.988 15.819 29.695 20.292 12.102 4.623 27.776 5.327 40.832.989 12.556-4.169 21.937-10.868 28.952-19.302 6.889-8.275 13.344-20.049 14.353-33.902 1.502-20.638-7.418-38.611-27.962-36.624-8.956.866-14.628 6.855-18.561 12.868-4.591 7.021-9.778 15.769-22.768 13.363-.402-.592.827-.903 1.238-1.237 2.021-1.638 4.566-4.333 5.692-6.929 3.169-7.307 2.359-15.486 4.701-22.767 2.223-6.912 5.107-12.445 9.65-17.569 8.189-9.239 19.337-16.781 37.616-16.828 27.282-.071 45.142 15.608 54.691 34.89M165.302 40.583c-13.106-11.774-27.159-24.333-51.72-24.499-22.552-.153-41.271 12.294-51.72 27.221-9.672 13.821-17.591 44.027-2.227 59.391 4.204 4.205 12.569 7.695 21.035 6.187 5.898-1.051 10.836-4.615 14.352-8.909 6.197-7.567 9.964-19.881 25.49-17.075-2.527 2.62-5.134 4.152-6.684 7.423-3.644 7.702-2.575 15.939-4.701 23.015-2.055 6.846-5.342 12.792-9.65 17.817-8.199 9.564-19.79 17.075-38.11 17.075-27.067 0-45.332-15.684-54.688-34.892C1.607 102.928-1.196 89.768.492 75.722 2.038 62.856 6.548 52.539 12.37 42.81 8.166 54.409 5.013 71.356 8.41 86.117c3.042 13.204 10.859 24.073 19.55 30.933-6.244-10.572-11.238-22.514-12.373-38.108-1.137-15.624 2.477-30.505 8.166-41.822C34.825 15.095 56.089 1.101 87.352 0 69.973 3.785 54.958 11.675 44.293 23.756 33.604 35.859 26.428 51.378 27.96 74.238c.71 10.586 4.504 19.03 9.898 25.489-6.956-24.346.098-48.889 10.889-64.092 5.501-7.754 12.679-14.17 21.033-19.056 8.327-4.869 18.944-9.2 30.19-9.898 33.741-2.096 51.351 14.875 65.332 33.902M96.26 78.693c2.996-.052 5.414.791 7.67 1.979-8.652 2.466-10.511 14.185-20.786 14.6-3.286.134-5.696-.578-7.918-1.979 8.858-2.366 10.441-14.413 21.034-14.6"></path>-->
+                <!--</g>-->
+            <!--</svg>-->
+            <p class="loadText">LOADING</p>
+        </div>
+    </transition>
+    <div class="nav" v-if="!isMobile">
+        <img class="news" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/news.png" />
+        <div class="navList">
+            <div v-bind:class="{ navActive: active==-1 }" @click="changeActive(-1)">
+                首页
+            </div>
+            <div v-bind:class="{ navActive: active==0 }" @click="changeActive(0)">
+                核心
+            </div>
+            <div v-bind:class="{ navActive: active==1 }" @click="changeActive(1)">
+                强军
+            </div>
+            <div v-bind:class="{ navActive: active==2 }" @click="changeActive(2)">
+                治党
+            </div>
+            <div v-bind:class="{ navActive: active==3 }" @click="changeActive(3)">
+                深改
+            </div>
+            <div v-bind:class="{ navActive: active==4 }" @click="changeActive(4)">
+                外交
+            </div>
+            <div v-bind:class="{ navActive: active==5 }" @click="changeActive(5)">
+                扶贫
+            </div>
+        </div>
     </div>
-</div>
-</body>
-</html>
+    <div id="mainBox" class="full">
+        <transition enter-active-class="opacityShow" leave-active-class="homeHide" v-on:after-enter="animating2=0">
+            <div class="home full" v-if="loadEnd&amp;&amp;active==-1">
+                <div class="pc" v-if="!isMobile">
+                    <div class="inner" v-html="pcImg"></div>
+                    <img class="arrow" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/arrow.png" @click="changeActive(0)" />
+                </div>
+                <div class="mobile full" v-if="isMobile" @click="changeActive(0)">
+                    <img class="title" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/m-title.png" />
+                    <img class="line" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/m-line.png" />
+                    <img class="text" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/mo-text.png" />
+                    <img class="arrow" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/arrow.png" />
+                    <img class="logo" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/logo.png" />
+                </div>
+            </div>
+        </transition>
+        <div v-if="isMobile">
+            <img class="mo-text" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/mobile-text.png" />
+        </div>
+        <div v-if="!isMobile">
+            <img class="pc-text" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/pc-text.png" />
+        </div>
+        <div class="mainInfo full">
+            <div v-bind:class="{ moInfo: isMobile,pcInfo: !isMobile }" v-bind:style="{ fontSize: fontSize+'px' }">
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==0">
+                        <h1 v-html="isMobile?dataInfo[0].lead:'【'+dataInfo[0].lead+'】'"></h1>
+                        <p>{{ dataInfo[0].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==1">
+                        <h1 v-html="isMobile?dataInfo[1].lead:'【'+dataInfo[1].lead+'】'"></h1>
+                        <p>{{ dataInfo[1].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==2">
+                        <h1 v-html="isMobile?dataInfo[2].lead:'【'+dataInfo[2].lead+'】'"></h1>
+                        <p>{{ dataInfo[2].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==3">
+                        <h1 v-html="isMobile?dataInfo[3].lead:'【'+dataInfo[3].lead+'】'"></h1>
+                        <p>{{ dataInfo[3].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==4">
+                        <h1 v-html="isMobile?dataInfo[4].lead:'【'+dataInfo[4].lead+'】'"></h1>
+                        <p>{{ dataInfo[4].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="blurShow" leave-active-class="blurHide">
+                    <div class="textBox" v-if="active==5">
+                        <h1 v-html="isMobile?dataInfo[5].lead:'【'+dataInfo[5].lead+'】'"></h1>
+                        <p>{{ dataInfo[5].text }}</p>
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==0">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/q51.png" />
+                        <img class="ico3" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/q52.png" />
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==1">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/q11.png" />
+                        <img class="ico3" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/q12.png" />
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==2">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/q61.png" />
+                        <img class="ico3" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/q62.png" />
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==3">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/q21.png" />
+                        <img class="ico3" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/q22.png" />
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==4">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/q41.png" />
+                        <img class="ico3" src="http://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/q42.png" />
+                    </div>
+                </transition>
+                <transition enter-active-class="icoShow" leave-active-class="icoHide" v-on:after-enter="animating2=0">
+                    <div class="ico" v-if="active==5">
+                        <img class="ico1" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/q0.png" />
+                        <img class="ico2" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/q31.png" />
+                        <img class="ico3" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/q32.png" />
+                    </div>
+                </transition>
+            </div>
+            <transition enter-active-class="footerShow" leave-active-class="footerHide" v-on:after-enter="animating2=0">
+                <img class="footer" v-if="footer&amp;&amp;!isMobile" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/footer.png" />
+            </transition>
+            <transition enter-active-class="footerShow" leave-active-class="footerHide" v-on:after-enter="animating2=0">
+                <img class="footer2" v-if="footer&amp;&amp;isMobile" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/footer2.png" />
+            </transition>
+            <transition enter-active-class="opacityShow2" leave-active-class="opacityHide" v-on:after-enter="animating2=0">
+                <div v-if="footer&amp;&amp;isMobile">
+                    <img class="footer3" src="http://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/footer4.png" />
+                    <img class="author" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/author.png" />
+                    <img class="download" src="http://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/download.png" @click="download" />
+                </div>
+            </transition>
+        </div>
+    </div>
+    <div class="functionB" v-bind:style="{ top: funTop, bottom: funBottom, width: fontSize*1.8 + 'px', height: fontSize*1.8 + 'px', fontSize: fontSize*0.7+'px'}">
+        <div v-if="isMobile" class="funShow" v-bind:class="{ funActive: funShow }" @click="funShow = !funShow"></div>
+        <!--<div class="comment_btn funButton" v-show="funShow" @click="openComment" v-bind:style="{ top: isMobile?'240%':'auto',bottom: isMobile?'auto':'240%' }"></div> -->
+        <div class="wxLike funButton" v-bind:class="{ wxLikeActive: funLiked }" v-show="funShow" @click="funLike" v-bind:style="{ top: isMobile?'240%':'auto',bottom: isMobile?'auto':'240%' }"></div>
+        <div class="wxLikeNum" v-bind:class="{ wxLikeNumActive2: funLiked&amp;&amp;!isMobile,wxLikeNumActive: funLiked&amp;&amp;isMobile }" v-show="funLiked" v-bind:style="{ top: isMobile?'360%':'auto',bottom: isMobile?'auto':'360%' }">
+            {{ likeNum }}
+        </div>
+        <div class="shareButton funButton" v-show="funShow" @click="funShare" v-bind:style="{ top: isMobile?'120%':'auto',bottom: isMobile?'auto':'120%' }"></div>
+    </div>
+    <div class="share_mask" v-show="share" @click="share=false" style="display: none">
+        <img class="share_icon" v-if="isWeixin" src="http://p2.ifengimg.com/l/2017/11/07283f1f95cbfb4/share.png" />
+        <img class="share_code" v-if="!isWeixin" src="http://p0.ifengimg.com/a/2017/1019/f9a6b48a471dfabsize7_w300_h300.png" alt="使用移动设备扫描二维码" />
+    </div>
+    <audio id="bgm" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/bgm.mp3" preload="" autoplay="" loop=""></audio>
+</div> <script>var thisHref = 'http://news.ifeng.com/wwwh5/special/ggzl/';
+var commentUrl = 'http://gentie.ifeng.com/view.html?docUrl=http%3A%2F%2Fnews.ifeng.com%2Fwwwh5%2Fspecial%2Fggzl%2F&docName=%E6%94%B9%E9%9D%A9%E4%B9%8B%E8%B7%AF&skey=5abc2e&speUrl=http://news.ifeng.com/wwwh5/special/ggzl/';
+var shareIcon = document.getElementById('imgForShare').src,
+    shareTitle = '新时代原来这么酷',
+    shareContent = document.querySelector('meta[name=description]')?document.querySelector('meta[name=description]').getAttribute('content'):'www.ifeng.com',
+    shareLink = window.location.href;
+var bgm = document.getElementById('bgm');
+var musicPlayed = false;
+document.addEventListener("WeixinJSBridgeReady", function () {
+    bgm.play();
+}, false);
+
+
+</script> <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="https://p1.ifengimg.com/l/2017/13/6292a2341d40c10/vue.min.js"></script>
+<script src="https://p3.ifengimg.com/a/2017/0331/vue-resource.min.js"></script>
+<script src="https://p2.ifengimg.com/l/2016/52/c04bfdff9e25e60/Detector.js"></script>
+<script src="https://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/three.min.js"></script>
+<script src="https://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/data.js"></script>
+<script src="https://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/ConvolutionShader.js"></script>
+<script src="https://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/FocusShader.js"></script>
+<script src="https://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/CopyShader.js"></script>
+<script src="https://p1.ifengimg.com/l/2017/42/8820103bf1b0c33/EffectComposer.js"></script>
+<script src="https://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/RenderPass.js"></script>
+<script src="https://p3.ifengimg.com/l/2017/42/8820103bf1b0c33/ShaderPass.js"></script>
+<script src="https://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/MaskPass.js"></script>
+<script src="https://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/BloomPass.js"></script>
+
+<script type="x-shader/x-vertex" id="vertexshader">attribute float size;
+			attribute vec3 position2;
+			attribute float val;
+			varying vec3 vPos;
+			void main() {
+				vPos.x = position.x * val + position2.x * (1.-val);
+				vPos.y = position.y* val + position2.y * (1.-val);
+				vPos.z = position.z* val + position2.z * (1.-val);
+				vec4 mvPosition = modelViewMatrix * vec4( vPos, 1.0 );
+				gl_PointSize = size * ( 300.0 / -mvPosition.z );
+				gl_Position = projectionMatrix * mvPosition;
+			}</script>
+<script type="x-shader/x-fragment" id="fragmentshader">uniform vec3 color;
+			uniform sampler2D texture;
+			varying vec3 vPos;
+			void main() {
+				vec3 vColor = vec3(1.0, 1.0, 1.0);
+				gl_FragColor = vec4( color * vColor, 1.0 );
+				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+			}</script>
+<script type="x-shader/x-vertex" id="skyvertex">varying vec2  vUv;
+			void main() {
+			    vUv  = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}</script>
+<script type="x-shader/x-fragment" id="skyfragment">uniform vec3 color;
+            uniform sampler2D texture;
+            varying vec2  vUv;
+			void main() {
+				gl_FragColor = vec4( color , 1.0 );
+				gl_FragColor = gl_FragColor * (texture2D( texture, vUv ));
+			}</script>
+<script type="x-shader/x-vertex" id="randomdotshader">attribute float size;
+			void main() {
+			    gl_PointSize = size;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}</script>
+<script type="x-shader/x-fragment" id="randomdotfragment">uniform sampler2D texture;
+			void main() {
+			    vec3 vColor = vec3(1.0, 1.0, 1.0);
+				gl_FragColor = vec4( vColor, 1.0 );
+				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+			}</script>
+
+
+<script src="https://p2.ifengimg.com/a/2017/1020/a99cf3780231939.js"></script><script>if (window.location.href.indexOf('http://i') !== -1){
+    document.write('<script src="https://p1.ifengimg.com/a/2016/0809/sta_collection_common_iifeng_v4.js"><\/script><script src="https://p1.ifengimg.com/a/2017/0811/0466dec65a13105.js"><\/script>');
+}else{
+    document.write('<script>var sta_collection_time = new Date().getTime();<\/script><script id="sta_collection_new">window.analytics(encodeURIComponent(window.location.href));setTimeout(function(){window.aptracker.collection();},800);<\/script><div id="ifeng_da_le"><script src="https://p0.ifengimg.com/a/2017/0811/05c1e2c242e2286.js"><\/script></div>');
+}
+</script></body></html>

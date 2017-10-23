@@ -44,6 +44,7 @@
 
 		<script>
 
+			var count =0;
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 			var container, stats;
@@ -190,13 +191,13 @@
 			}
 
 			function render() {
-
+                count +=0.01;
 				var time = Date.now() * 0.00005;
 
-				camera.position.x += ( mouseX - camera.position.x ) * 0.05;
-				camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
-
-				camera.lookAt( scene.position );
+//				camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+//				camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+//
+//				camera.lookAt( scene.position );
 
 				for ( i = 0; i < scene.children.length; i ++ ) {
 
@@ -215,8 +216,11 @@
 					color = parameters[i][0];
 
 					h = ( 360 * ( color[0] + time ) % 360 ) / 360;
-					materials[i].color.setHSL( h, color[1], color[2] );
-
+					materials[i].color.setHSL( color[0], color[1], color[2] );
+//
+//					materials[i].opacity = Math.cos(count);
+//					materials[i].size = 10*Math.sin(count);
+//					console.log(materials[i])
 				}
 
 				renderer.render( scene, camera );

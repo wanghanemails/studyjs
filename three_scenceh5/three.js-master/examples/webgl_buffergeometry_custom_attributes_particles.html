@@ -134,7 +134,7 @@
 				positions[ i3 + 1 ] = ( Math.random() * 2 - 1 ) * radius;
 				positions[ i3 + 2 ] = ( Math.random() * 2 - 1 ) * radius;
 
-				color.setHSL( i / particles, 1.0, 0.5 );
+				color.setHSL( 1, 1.0, 1 );
 
 				colors[ i3 + 0 ] = color.r;
 				colors[ i3 + 1 ] = color.g;
@@ -143,6 +143,21 @@
 				sizes[ i ] = 20;
 
 			}
+
+
+            var ambLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambLight);
+            var light = new THREE.DirectionalLight(0xffffff,0.5);
+            light.position.set(0,0,1000);
+            light.name = "lightDirectional_1"
+            scene.add(light);
+
+
+
+            var light2 = new THREE.DirectionalLight(0xffffff,0.5);
+            light2.position.set(-500,500,2000);
+            light2.name = "lightDirectional_2"
+            scene.add(light2);
 
 			geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
 			geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );

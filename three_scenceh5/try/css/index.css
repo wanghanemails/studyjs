@@ -633,7 +633,8 @@ html,body{
     position: absolute;
     left: 0;
     bottom: 0px;
-    z-index: 99;
+    z-index: 999;
+    display: none;
 }
 
 
