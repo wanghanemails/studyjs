@@ -1,0 +1,92 @@
+{"frames": {
+
+"30172.png":
+{
+	"frame": {"x":753,"y":707,"w":606,"h":500},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":319,"w":606,"h":500},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30173.png":
+{
+	"frame": {"x":753,"y":707,"w":606,"h":500},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":319,"w":606,"h":500},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30174.png":
+{
+	"frame": {"x":753,"y":707,"w":606,"h":500},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":319,"w":606,"h":500},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30176.png":
+{
+	"frame": {"x":753,"y":1,"w":750,"h":704},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":248,"w":750,"h":704},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30177.png":
+{
+	"frame": {"x":1,"y":816,"w":750,"h":738},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":236,"w":750,"h":738},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30182.png":
+{
+	"frame": {"x":1,"y":1,"w":750,"h":813},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":298,"w":750,"h":813},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30200.png":
+{
+	"frame": {"x":1505,"y":1,"w":537,"h":544},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":99,"y":314,"w":537,"h":544},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30205.png":
+{
+	"frame": {"x":1323,"y":1291,"w":565,"h":578},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":297,"w":565,"h":578},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30227.png":
+{
+	"frame": {"x":1361,"y":707,"w":568,"h":582},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":83,"y":295,"w":568,"h":582},
+	"sourceSize": {"w":750,"h":1334}
+},
+"30248.png":
+{
+	"frame": {"x":753,"y":1209,"w":568,"h":582},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":83,"y":295,"w":568,"h":582},
+	"sourceSize": {"w":750,"h":1334}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "addx-3.png",
+	"format": "RGBA8888",
+	"size": {"w":2043,"h":1870},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:12031a247748da2e8eec1615f2dd9a8b:dd4d3b507acd123899e9f26b7378dfaf:33be7fb1b2a100b88f8a613ceb4ca8ab$"
+}
+}

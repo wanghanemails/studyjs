@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - text</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+	</head>
+	<body>
+
+
+
+		<script src="../js/three.js"></script>
+		<!--<script src="js/utils/GeometryUtils.js"></script>-->
+
+		<!--<script src="js/Detector.js"></script>-->
+		<!--<script src="js/libs/stats.min.js"></script>-->
+
+		<script>
+
+//			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+//			THREE.Cache.enabled = true;
+
+			var container,  permalink, color;
+
+			var camera, cameraTarget, scene, renderer;
+
+			var text_group, textMesh1,  textGeo, materials;
+
+
+			var y = 20;
+
+			var text = "1",
+
+				height = 3,
+				size = 60,
+				curveSegments = 64,
+				bevelThickness = 8,
+				bevelSize = 4,
+
+				bevelEnabled = true;
+
+			init();
+			animate();
+
+
+			function init() {
+
+				container = document.createElement( 'div' );
+
+				document.body.appendChild( container );
+
+				permalink = document.getElementById( "permalink" );
+
+				// CAMERA
+
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.set( 0, 0, 1000 );
+
+				cameraTarget = new THREE.Vector3( 0, 150, 0 );
+
+				// SCENE
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
+				scene.fog = new THREE.Fog( 0x000000, 0, 10000 );
+
+				// LIGHTS
+
+				var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
+				dirLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( dirLight );
+
+				var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+				pointLight.position.set( 0, 100, 90 );
+				scene.add( pointLight );
+	            pointLight.color.setHSL( Math.random(), 1, 0.5 );
+
+
+
+
+
+				materials = [
+					new THREE.MeshPhongMaterial( { color: 0xffffff } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
+				];
+
+
+				text_group = new THREE.Group();
+				text_group.position.y = 100;
+
+				scene.add( text_group );
+
+
+
+
+
+				// RENDERER
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+                var loader = new THREE.FontLoader();
+                loader.load( 'fonts/helvetiker_bold.typeface.json', function ( response ) {
+                    font = response;
+                    var height = 4,
+                        size = 20,
+                        curveSegments = 64,
+                        bevelThickness = 8,
+                        bevelSize = 4,
+                        bevelEnabled = true;
+
+                    createText("1",height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials);
+
+                } );
+
+			}
+function createText(text,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials) {
+
+
+    var textGeo = new THREE.TextGeometry( text, {
+        font: font,
+        size: size,
+        height: height,
+        curveSegments: curveSegments,
+        bevelThickness: bevelThickness,
+        bevelSize: bevelSize,
+        bevelEnabled: bevelEnabled,
+        material: 0,
+        extrudeMaterial: 1
+
+    });
+
+
+    // textGeo.computeBoundingBox();
+    // textGeo.computeVertexNormals();
+
+    var   textMesh1 = new THREE.Mesh( textGeo, materials );
+
+    textMesh1.position.x = 0;
+    textMesh1.position.y = 0;
+    textMesh1.position.z = 100;
+
+    textMesh1.rotation.x = 0;
+    textMesh1.rotation.y = Math.PI * 2;
+
+    // debugger;
+    text_group.add( textMesh1 );
+
+
+    scene.add(text_group)
+
+    console.log(scene)
+}
+
+
+function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+//				stats.update();
+
+			}
+
+			function render() {
+
+				text_group.rotation.y +=   0.05;
+
+				camera.lookAt( cameraTarget );
+
+				renderer.clear();
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

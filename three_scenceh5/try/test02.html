@@ -23,7 +23,7 @@
         </div>
     </transition>
     <div class="nav" v-if="!isMobile">
-        <img class="news" src="http://p2.ifengimg.com/l/2017/42/8820103bf1b0c33/news.png" />
+        <img class="news" src="http://xp2.ifengimg.com/l/2017/42/8820103bf1b0c33/news.png" />
         <div class="navList">
             <div v-bind:class="{ navActive: active==-1 }" @click="changeActive(-1)">
                 首页
@@ -208,7 +208,8 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 <script src="https://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/MaskPass.js"></script>
 <script src="https://p0.ifengimg.com/l/2017/42/8820103bf1b0c33/BloomPass.js"></script>
 
-<script type="x-shader/x-vertex" id="vertexshader">attribute float size;
+<script type="x-shader/x-vertex" id="vertexshader">
+attribute float size;
 			attribute vec3 position2;
 			attribute float val;
 			varying vec3 vPos;
@@ -217,7 +218,7 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 				vPos.y = position.y* val + position2.y * (1.-val);
 				vPos.z = position.z* val + position2.z * (1.-val);
 				vec4 mvPosition = modelViewMatrix * vec4( vPos, 1.0 );
-				gl_PointSize = size * ( 300.0 / -mvPosition.z );
+				gl_PointSize = size * ( 500.0 / -mvPosition.z );
 				gl_Position = projectionMatrix * mvPosition;
 			}</script>
 <script type="x-shader/x-fragment" id="fragmentshader">uniform vec3 color;
@@ -253,7 +254,7 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 			}</script>
 
 
-<script src="https://p2.ifengimg.com/a/2017/1020/a99cf3780231939.js"></script><script>if (window.location.href.indexOf('http://i') !== -1){
+<script src="js/test02.js"></script><script>if (window.location.href.indexOf('http://i') !== -1){
     document.write('<script src="https://p1.ifengimg.com/a/2016/0809/sta_collection_common_iifeng_v4.js"><\/script><script src="https://p1.ifengimg.com/a/2017/0811/0466dec65a13105.js"><\/script>');
 }else{
     document.write('<script>var sta_collection_time = new Date().getTime();<\/script><script id="sta_collection_new">window.analytics(encodeURIComponent(window.location.href));setTimeout(function(){window.aptracker.collection();},800);<\/script><div id="ifeng_da_le"><script src="https://p0.ifengimg.com/a/2017/0811/05c1e2c242e2286.js"><\/script></div>');

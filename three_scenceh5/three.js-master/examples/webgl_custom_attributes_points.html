@@ -50,7 +50,7 @@
 
 				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
-				gl_PointSize = size * ( 300.0 / -mvPosition.z );
+				gl_PointSize = size * ( 100.0 / -mvPosition.z );
 
 				gl_Position = projectionMatrix * mvPosition;
 
@@ -105,6 +105,7 @@
 			var colors = new Float32Array( amount * 3 );
 			var sizes = new Float32Array( amount );
 
+
 			var vertex = new THREE.Vector3();
 			var color = new THREE.Color( 0xffffff );
 
@@ -113,7 +114,10 @@
 				vertex.x = ( Math.random() * 2 - 1 ) * radius;
 				vertex.y = ( Math.random() * 2 - 1 ) * radius;
 				vertex.z = ( Math.random() * 2 - 1 ) * radius;
+
 				vertex.toArray( positions, i * 3 );
+
+
 
 				if ( vertex.x < 0 ) {
 
@@ -135,6 +139,7 @@
 			geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
 			geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
 			geometry.addAttribute( 'size', new THREE.BufferAttribute( sizes, 1 ) );
+
 
 			//
 
@@ -199,10 +204,12 @@
 
 			var time = Date.now() * 0.005;
 
-			sphere.rotation.z = 0.01 * time;
+//			sphere.rotation.z = 0.01 * time;
 
 			var geometry = sphere.geometry;
+
 			var attributes = geometry.attributes;
+
 
 			for ( var i = 0; i < attributes.size.array.length; i++ ) {
 

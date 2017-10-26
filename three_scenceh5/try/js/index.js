@@ -15,6 +15,7 @@
             };
     }();
 
+    var load_jsons = [];
     var scene,camera,
         renderer,
         aspectRatic,
@@ -24,7 +25,7 @@
         HEIGHT,
         camera_field_view,
         range,
-
+        clouds,
         geom,
         holder,
         text_group ,
@@ -44,13 +45,20 @@
         x_group,
         x_opacity = 0,
         cube_num =0,
+        amount,
+        save_position,
+        composer,
+        prevdots,
+
         app;
 
-
+    var otherIndex =0;
     var counts = [],
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
 
+    var device_screen_width  = WIDTH/750;
+    var device_screen_height  = HEIGHT/1334;
     var time_text = 1000;
     var time_num = 6;
 
@@ -85,6 +93,8 @@
         {x:WIDTH*(Math.random()*10+1),y:HEIGHT*(Math.random()*10+1),z:100},
     ]
     var smokeParticles = [];
+    var begin_animation = false;
+    var move_ponts = true;
     var move_second = false;
     var move_second_over = false;
     var move_third = false;
@@ -98,31 +108,36 @@
         black : "0x000000",
 
     }
-    var ponits,cubesGroup1,cubesGroup2;
+    var points,cubesGroup1,cubesGroup2;
 
     var cylinder_height = 3;
     window.onload=function () {
 
 
+        pixi();
+        addjson();
+
+
         setInterval(function () {
             time_add+=1;
         },1000);
-        init()
-        animate();
+        // init()
+
 
     }
 
 
     function   init() {
 
-        pixi();
 
+
+        // debugger;
         createScene();
 
         createDNA();
 
 
-
+        animate();
 
 
 
@@ -141,7 +156,7 @@
             //创建三大件之场景
             scene = new THREE.Scene();
             scene.background = new THREE.Color( 0x000000 );
-            scene.fog = new THREE.Fog(0x000000,1000, -9000);
+            scene.fog = new THREE.FogExp2(0x05050c,0.5);
 
             camera_field_view = 60;
 
@@ -164,12 +179,30 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMapSoft = true; //柔和阴影
 
+            composer = new THREE.EffectComposer(renderer);
+            var renderPass = new THREE.RenderPass(scene,camera);
+            composer.addPass(renderPass);
+            
+            
+            var bloomPass = new THREE.BloomPass(0.8);
+            composer.addPass(bloomPass);
+            
+            var effectFilm = new THREE.FilmPass(0.8,0.325,256,false);
+            effectFilm.renderToScreen = true;
+            composer.addPass(effectFilm);
 
 
+       var  d = new THREE.ShaderPass(THREE.FocusShader);
+        d.uniforms.screenWidth.value = window.innerWidth;
+        d.uniforms.screenHeight.value = window.innerHeight;
+        d.uniforms.waveFactor.value = 0.00000125;
+        d.renderToScreen = !0;
+
+        composer.addPass(d);
 
         //    制造烟雾 和光
 
-        var ambLight = new THREE.AmbientLight(0x404040);
+        var ambLight = new THREE.AmbientLight(1320786);
         scene.add(ambLight);
         var light = new THREE.DirectionalLight(0xffffff,0.5);
         light.position.set(-10,500,1000);
@@ -184,7 +217,7 @@
         scene.add(light2);
 
         clock = new THREE.Clock();
-        var  smokeTexture = THREE.ImageUtils.loadTexture('images/Smoke-Element.png');
+        var  smokeTexture = new THREE.TextureLoader().load('images/Smoke-Element.png');
         var  smokeMaterial = new THREE.MeshLambertMaterial({color: 0xdcdada, map: smokeTexture, transparent: true,opacity: 0.1,});
         var smokeGeo = new THREE.PlaneGeometry(WIDTH*10,HEIGHT*10);
 
@@ -210,13 +243,9 @@
     }
 
     function createSprites() {
-        ponits = new THREE.Group();
-        var sprite = createOneSprite(5,true,1,true);
-        // var sprite_2= createOneSprite("ponits-2",5,true,1,true);
+        // points = new THREE.Object3D();
+         createOneSprite(10,true,1,true);
 
-        ponits.add(sprite)
-        // ponits.add(sprite_2)
-        scene.add(ponits)
     }
 
     function createOneSprite (size,transparent,opacity,sizeAttenuation) {
@@ -226,52 +255,83 @@
 
          // geom = new THREE.Geometry();
 
-        counts.push(0);
-        var mytexture = new THREE.ImageUtils.loadTexture("images/dots.png");
 
-        var material = new THREE.SpriteMaterial({
-            transparent: transparent,
-            opacity: opacity,
-            // map:mytexture
-            color:0xffffff,
-            vertexColors:true,
-            map:mytexture,
-            sizeAttenuation:sizeAttenuation
+         amount =amount|| 1500;
+         
+        var positions = new Float32Array( amount * 3 );
+         save_position = new Float32Array( amount * 3 );
+        var colors = new Float32Array( amount * 3 );
+        var sizes = new Float32Array( amount );
+
+
+
+
+
+        var mytexture = new THREE.TextureLoader().load("images/dot.png");
+
+
+        var material = new THREE.ShaderMaterial( {
+
+            uniforms: {
+                amplitude: { value: 1.0 },
+                color:     { value: new THREE.Color( 0xffffff ) },
+                texture:   { value: new THREE.TextureLoader().load( "images/dots.png" ) }
+            },
+            vertexShader:   document.getElementById( 'vertexshader' ).textContent,
+            fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
+
+            blending:       THREE.AdditiveBlending,
+            depthTest:      false,
+            transparent:    true
 
         });
 
-        var type_ponts = new THREE.Group();
-        type_ponts.name = "ponts_group";
-        var size = size ;
+        
+        // var gemo = new THREE.Geometry();
 
-         range = 1000;
-        for ( var zpos= 0; zpos < 2000; zpos++) {
 
-            // var particle = new THREE.Vector3(Math.random() * WIDTH - WIDTH / 2, Math.random() * HEIGHT - HEIGHT / 2, Math.random() * range);
-            var sprite =  new THREE.Sprite( material );
-            sprite.position.set( Math.random() * WIDTH - WIDTH / 2, Math.random() * HEIGHT - HEIGHT / 2, Math.random() * range );
+        var vertex = new THREE.Vector3();
+        var color = new THREE.Color( 0xffffff );
+         range = 1000 ;
+        for ( var zpos= 0; zpos < amount; zpos++) {
 
-            sprite.scale.set(size, size, size);
 
-            // geom.vertices.push(particle);
-            // geom.colors[zpos] = new THREE.Color(0xffffff)
 
-            type_ponts.add(sprite);
+            vertex.x = Math.random() * WIDTH - WIDTH / 2;
+            vertex.y = Math.random() * HEIGHT - HEIGHT / 2;
+            vertex.z =range +(-range*2)*Math.random()-200;
+
+            vertex.toArray( positions, zpos * 3 );
+            vertex.toArray( save_position, zpos * 3 );
+
+
+            color.toArray( colors, zpos * 3 );
+
+            sizes[ zpos ] = size;
+
+            // var color = new THREE.Color(0xffffff)
+            //color.setHSL(color.getHSL().h,color.getHSL().s,color.getHSL().l);
+            //gemo.colors.push(color);
         }
 
+        var geometry = new THREE.BufferGeometry();
+        geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+        geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
+        geometry.addAttribute( 'size', new THREE.BufferAttribute( sizes, 1 ) );
 
-        // geom.normalize ();
-        // cloud = new THREE.Points(geom, material);
-        // cloud.name = name;
-        // // cloud.sortParticles = true;
-        //
-        // cloud.sortParticles = true
-        // // 允许粒子系统对粒子排序
-        //
-        // cloud.FrustrumCulled = true
+        var cloud = new THREE.Points(geometry,material);
+        cloud.name = name;
 
-        // scene.add(cloud)
-        return type_ponts;
+        cloud.sortParticles = true
+        // 允许粒子系统对粒子排序
+
+        cloud.FrustrumCulled = true
+
+
+        scene.add(cloud)
+
+
+
 
 
     }
@@ -286,25 +346,7 @@
         var ballGeometry = new THREE.SphereGeometry(0.8,64,64);
 
 
-
-
-
          holder = new THREE.Object3D();
-
-        // var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
-        // dirLight.position.set( 0, 0, 1 ).normalize();
-        // scene.add( dirLight );
-        //
-        // var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
-        // pointLight.position.set( 0, 100, 90 );
-        // scene.add( pointLight );
-        // pointLight.color.setHSL( Math.random(), 1, 0.5 );
-
-
-
-
-
-
 
 
         text_group = new THREE.Group();
@@ -327,13 +369,13 @@
             function  creatDnaReal(a) {
 
                     materials = [
-                        new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true} ), // front
-                        new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true} ) // side
+                        new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true,fog:false} ), // front
+                        new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true,fog:false} ) // side
                     ];
-                    var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true} );
-                    var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true} );
-                    var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true} );
-                    var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true} );
+                    var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true,fog:false} );
+                    var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true,fog:false} );
+                    var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true,fog:false} );
+                    var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true,fog:false} );
 
 
                 var  text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
@@ -347,13 +389,13 @@
 
                         if(i<4){
                             materials = [
-                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:(i*2/10),transparent:true} ), // front
-                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:i*2/10,transparent:true} ) // side
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:(i*2/10),transparent:true,fog:false} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:i*2/10,transparent:true,fog:false} ) // side
                             ];
-                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:i*2/10,transparent:true} );
-                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:i*2/10 ,transparent:true} );
-                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:i*2/10,transparent:true} );
-                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:i*2/10 ,transparent:true} );
+                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:i*2/10,transparent:true,fog:false} );
+                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:i*2/10 ,transparent:true,fog:false} );
+                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:i*2/10,transparent:true,fog:false} );
+                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:i*2/10 ,transparent:true,fog:false} );
 
 
                             text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
@@ -362,13 +404,13 @@
                         }
                         else if(i>36){
                             materials = [
-                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:((40-i)*2/10),transparent:true} ), // front
-                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:(40-i)*2/10,transparent:true} ) // side
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:((40-i)*2/10),transparent:true,fog:false} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:(40-i)*2/10,transparent:true,fog:false} ) // side
                             ];
-                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:(40-i)*2/10,transparent:true} );
-                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:(40-i)*2/10 ,transparent:true} );
-                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:(40-i)*2/10,transparent:true} );
-                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:(40-i)*2/10 ,transparent:true} );
+                            blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:(40-i)*2/10,transparent:true,fog:false} );
+                            yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:(40-i)*2/10 ,transparent:true,fog:false} );
+                            purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:(40-i)*2/10,transparent:true,fog:false} );
+                            purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:(40-i)*2/10 ,transparent:true,fog:false} );
 
 
                             text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
@@ -376,13 +418,13 @@
 
                         }else {
                             materials = [
-                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true} ), // front
-                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true} ) // side
+                                new THREE.MeshBasicMaterial( { color: 0xffffff,opacity:a,transparent:true,fog:false} ), // front
+                                new THREE.MeshBasicMaterial( { color: 0xffffff ,opacity:a,transparent:true,fog:false} ) // side
                             ];
-                            var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true} );
-                            var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true} );
-                            var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true} );
-                            var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true} );
+                            var blueMaterial = new THREE.MeshBasicMaterial( { color: blue ,opacity:a,transparent:true,fog:false} );
+                            var yellowMaterial = new THREE.MeshBasicMaterial( { color: yellow,opacity:a ,transparent:true,fog:false} );
+                            var purpleMaterial = new THREE.MeshBasicMaterial( { color: purple ,opacity:a,transparent:true,fog:false} );
+                            var purpleMaterial2 = new THREE.MeshBasicMaterial( { color: purple2,opacity:a ,transparent:true,fog:false} );
 
 
                             var  text_mush1 =  createText(1,height,size,curveSegments,bevelThickness,bevelSize,bevelEnabled,materials,cylinder_height);
@@ -468,69 +510,13 @@
 
 
 
+
             holder.position.y = 100;
 
 
             //二屏
 
-            setTimeout(function () {
 
-                canvasTextFuc();
-                move_second = true;
-                //标记开始旋转
-
-                setTimeout(function () {
-                    //标记结束打散
-
-                    move_second_over = true
-
-
-
-                    setTimeout(function () {
-
-                        scene.children.length = scene.children.length-1;
-
-                        addBreak();
-                        changeValue("去打破显示的边界");
-
-                    },time_text*2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    // function callbackself() {
-                    //     if(pause&&move_third!=true ){
-                    //
-                    //
-                    //         callbackself();
-                    //     }else{
-                    //         //八个方块  每个都来一次   回调函数更保险     canvas  改为 threejs  从背景点中来搞定 ；
-                    //         console.log(1)
-                    //         move_third_over = true;
-                    //
-                    //
-                    //         changeValue("连接一切应对未知")
-                    //         debugger;
-                    //
-                    //
-                    //         return   null;
-                    //     }
-                    // }
-                    // callbackself();
-                    // add_routine();
-
-                },5*time_text);
-            },10000);
         } );
 
 
@@ -577,159 +563,201 @@
         animate_bg();
 
         delta = clock.getDelta()
+        composer.render(delta);
         requestAnimationFrame(animate);
         evolveSmoke();
         TWEEN.update();
         render();
     }
-    
+
+
     function render() {
         renderer.clear();
+
+
         renderer.render(scene,camera);
     }
-    function positionMove(j,a,b,r1,r2,r3,mycomplete) {
 
-        var tween = new TWEEN.Tween(a.position).to(b,1000).onUpdate(function () {
-
-
-            a.position.x = this.x;
-            a.position.y = this.y;
-            a.position.z = this.z;
-
-            a.rotation.x = r1;
-            a.rotation.y = r2;
-            a.rotation.z = r3;
-            a.geometry.verticesNeedUpdate = true;
-
-        }).easing(TWEEN.Easing.Quintic.InOut).delay(500*j).onComplete(mycomplete);
-
-        // debugger;
-        tween.start();
-    }
     function animate_bg() {
 
+        var time = Date.now() * 0.005;
         // var vertices = geom.vertices;
 
-        var interval_num = 180;
-        var speed_sprite = HEIGHT/2*0.01;
-        if(move_second){
+
+
+        scene.children.map(function (c1,index1) {
+                    if(c1.type == "Points"){
+
+                        var geometry = c1.geometry;
+                        var attributes = geometry.attributes;
 
 
 
-            ponits.children.map(function (v,index1) {
+                        var all_size_length = attributes.size.array.length;
+
+                        for ( var i = 0; i <all_size_length ; i++ ) {
+                            // attributes.size.array[ i ] = 8 + 7 * Math.sin( 0.1 * i + time );
+
+
+                            var each_size = 0.1;
+
+                            if(i<=all_size_length/3){
+                                each_size = 0.05
+                            }else if(i<=all_size_length*3/5&&i>all_size_length/3){
+                                each_size = 0.02
+                            }else if(i<=all_size_length*4/5&&i>all_size_length*3/5){
+                                each_size = 0.01
+                            }else{
+                                each_size = 0.1
+                            }
+                            attributes.size.array[ i ] = 5 + (5 * minone(Math.sin( (each_size * i)) + time ))+ (5 * minone(Math.cos( (each_size * i) + time )));
+
+                            if(i<otherIndex){
+                                attributes.size.array[ i ] = 15;
+
+                            }
+
+
+                        }
+                        attributes.size.needsUpdate = true;
 
 
 
-                v.children.map(function (onesprite,index2) {
+                        if(move_second){
+
+                            var all_position_length = attributes.position.array.length;
+
+
+                            for ( var i = 0; i < attributes.position.array.length; i+=3 ) {
 
 
 
-                    if(index2<v.children.length/3){
-                        interval_num = 300;
+                                if(i<=otherIndex){
+
+                                }
+                                else {
+
+
+                                    if(i<=all_position_length/3){
+
+                                        if(attributes.position.array[i] >=-WIDTH/2){
+                                            attributes.position.array[i] -= 0.1*(i*2/all_position_length)+0.01;
+                                        }else{
+                                            attributes.position.array[i] = WIDTH/2;
+                                        }
+                                    }else if(i<=all_position_length*3/5&&i>all_position_length/3){
+
+
+
+                                    }else if(i<=all_position_length*4/5&&i>all_position_length*3/5){
+
+                                        if(attributes.position.array[i] <=WIDTH/2){
+                                            attributes.position.array[i] += 0.2*(i*2/all_position_length)+0.2*Math.random()+0.01;
+                                        }else{
+                                            attributes.position.array[i] = -WIDTH/2;
+                                        }
+                                    }else{
+
+                                        if(attributes.position.array[i] <=WIDTH/2){
+                                            attributes.position.array[i] += 0.2*(i*2/all_position_length)+0.2*Math.random()+0.01;
+                                        }else{
+                                            attributes.position.array[i] = -WIDTH/2;
+                                        }
+
+                                    }
+                                }
+
+
+
+
+                            }
+                            for ( var j = 1; j < attributes.position.array.length; j+=3 ) {
+
+
+
+
+                               if(j<=otherIndex){
+
+                               }else {
+
+                                   if(j<=all_position_length/3){
+
+                                       if(attributes.position.array[j] >-HEIGHT/2){
+                                           attributes.position.array[j] -= 0.1*(j/all_position_length)+0.1;
+                                       }else{
+                                           attributes.position.array[j] = HEIGHT/2;
+                                       }
+
+                                   }else if(j<=all_position_length*3/5&&j>all_position_length/3){
+                                       if(attributes.position.array[j] <HEIGHT/2){
+                                           attributes.position.array[j] += 0.2*(j/all_position_length)+0.2*Math.random()+0.01;
+                                       }else{
+                                           attributes.position.array[j] = -HEIGHT/2;
+                                       }
+
+                                   }else if(j<=all_position_length*4/5&&j>all_position_length*3/5){
+
+
+                                   }else{
+
+                                       if(attributes.position.array[j] <HEIGHT/2){
+                                           attributes.position.array[j] += 0.2*(j/all_position_length)+0.2*Math.random()+0.01;
+                                       }else{
+                                           attributes.position.array[j] = -HEIGHT/2;
+                                       }
+
+                                   }
+                               }
+
+
+
+
+                            }
+
+
+
+
+                            attributes.position.needsUpdate = true;
+
+
+
+
+                        }
+                        else{
+
+
+
+                            attributes.position.needsUpdate = true;
+
+
+                        }
+
+
+
+
                     }
-
-                    else if(index2<v.children.length*3/5&&v.children.length/3<index2){
-                        interval_num = 600;
-                    }
-                    else if(index2<v.children.length*4/5&&v.children.length*3/5<index2){
-                        interval_num = 900;
-                    }
-                    else {
-                        interval_num = 1200;
-                    }
-
-                    onesprite.scale.x =1*Math.sin(  (counts[index1]+index2)/interval_num )+1*Math.cos( (counts[index1]+index2)/interval_num);
-                    onesprite.scale.y =1*Math.sin((counts[index1]+index2)/interval_num )+1*Math.cos(  (counts[index1]+index2)/interval_num) ;
-
-                    counts[index1] += 0.01;
-                    //    很关键。。。。。各种找
-                    // cloud.geometry.verticesNeedUpdate = true;
-
-
-                });
-
-            })
-
-
-
-            // dna.rotation.y += 0.05;
+                })
 
 
 
 
-            animatecanvasText();
-        }
-        else{
+       if(holder&&begin_animation){
+           for(var i=0;i<holder.children.length;i++){
+               //旋转dna
+               if(i==0){
+                   holder.children[i].rotation.y += 0.05;
+               }else {
+                   holder.children[i].rotation.y -= 0.1;
+               }
 
+           }
+           if(holder.position.y>0){
+               holder.position.y-=1;
+           }else {
 
+           }
 
-            //星闪烁
-
-
-            ponits.children.map(function (v,index1) {
-
-
-                v.children.map(function (onesprite,index2) {
-
-                    if(index2<v.children.length/3){
-                        interval_num = 360;
-                        speed_sprite = HEIGHT/2*0.01;
-                    }
-
-                    else if(index2<v.children.length*3/5&&v.children.length/3<index2){
-                        interval_num = 200;
-                        speed_sprite = HEIGHT/2*0.05;
-                    }
-                    else if(index2<v.children.length*4/5&&v.children.length*3/5<index2){
-                        interval_num = 150;
-                        speed_sprite = HEIGHT/2*0.08;
-                    }
-                    else {
-                        interval_num = 90;
-                        speed_sprite = HEIGHT/2*0.1;
-                    }
-
-                    if(onesprite.position.z>=900){
-
-                        onesprite.position.z=range/2;
-                    }else {
-
-                        onesprite.position.z = ( onesprite.position.z+speed_sprite);
-
-                    }
-
-
-                    onesprite.scale.x =1*Math.sin(  (counts[index1]+index2)/interval_num )+1*Math.cos( (counts[index1]+index2)/interval_num);
-                    onesprite.scale.y =1*Math.sin((counts[index1]+index2)/interval_num )+1*Math.cos(  (counts[index1]+index2)/interval_num) ;
-
-                    counts[index1] += 0.01;
-                    //    很关键。。。。。各种找
-                    // cloud.geometry.verticesNeedUpdate = true;
-
-                });
-
-            })
-
-
-
-
-        }
-
-        for(var i=0;i<holder.children.length;i++){
-            //旋转dna
-            if(i==0){
-                holder.children[i].rotation.y += 0.05;
-            }else {
-                holder.children[i].rotation.y -= 0.1;
-            }
-
-        }
-        if(holder.position.y>0){
-            holder.position.y-=1;
-        }else {
-
-        }
-
+       }
 
         if(move_second_over&&move_third!=true){
 
@@ -739,22 +767,8 @@
 
 
 
-                // for(var i=0;i<holder.children.length;i++){
-                //
-                //     for(var j=0;j<holder.children[i].children.length;j++){
-                //
-                //         for(var k=0;k<holder.children[i].children[j].children.length;k++){
-                //
-                //             holder.children[i].children[j].children[k].position.x  += (2+i*j*k)*Math.random()*1;
-                //             holder.children[i].children[j].children[k].position.y  += (2+i*j*k)*Math.random()*0.1;
-                //             holder.children[i].children[j].children[k].position.z  += (2+i*j*k)*Math.random()*10;
-                //         }
-                //     }
-                // }
-
-
                 if(holder.position.y<100){
-                    holder.position.y+=5;
+                    holder.position.y+=3;
                 }else {
 
                 }
@@ -782,344 +796,43 @@
         }
     }
 
-    function animatecanvasText(){
-        animateRunning = true;
-        var thisTime = new Date();
-        context.clearRect(0,0,canvasText.width , canvasText.height);
 
-
-        dots.map(function (v,index){
-            var dot = v;
-
-            if(derection){
-
-                if (Math.abs(dot.dx - dot.x) < 0.1 && Math.abs(dot.dy - dot.y) < 0.1 && Math.abs(dot.dz - dot.z)<0.1) {
-
-
-
-                    dot.x = dot.dx;
-                    dot.y = dot.dy;
-                    dot.z = dot.dz;
-                    if(thisTime - lastTime > time_text) derection = false;
-                } else {
-                    dot.x = dot.x + (dot.dx - dot.x) * 0.1;
-                    dot.y = dot.y + (dot.dy - dot.y) * 0.1;
-                    dot.z = dot.z + (dot.dz - dot.z) * 0.1;
-                    lastTime = +new Date()
-                //打乱
-                }
-            }
-            else {
-
-
-                // // debugger;
-                if (Math.abs(dot.tx - dot.x) < 0.1 && Math.abs(dot.ty - dot.y) < 0.1 && Math.abs(dot.tz - dot.z)<0.1) {
-                    dot.x = dot.tx;
-                    dot.y = dot.ty;
-                    dot.z = dot.tz;
-                    pause = true;
-                } else {
-
-                    dot.x = dot.x + (dot.tx - dot.x) * 0.1;
-                    dot.y = dot.y + (dot.ty - dot.y) * 0.1;
-                    dot.z = dot.z + (dot.tz - dot.z) * 0.1;
-                    pause = false;
-                }
-
-                // dot.x = dot.x + (dot.tx - dot.x) * 0.1;
-                // dot.y = dot.y + (dot.ty - dot.y) * 0.1;
-                // dot.z = dot.z + (dot.tz - dot.z) * 0.1;
-                // //打乱
-                // pause = false;
-            }
-            dot.paint();
-        });
-
-
-
-
-
-    }
 
 
 
     function addCubes() {
 
-        cubesGroup1 = new THREE.Group();
-
-
-
-
-        for (var i=0;i<8;i++){
-            var cubeGeometry = new THREE.BoxGeometry(100, 100, 100);
-            var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity:0.9});
-
-            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-            cube.castShadow = true;
-
-            cube.position.set(i*100-280,-1000-HEIGHT/2,100);
-            cube.rotation.set(10,10,10)
-
-            cubesGroup1.add(cube);
-        }
-
-
-
-        var light4 = new THREE.DirectionalLight(0xffffff,0.3);
-        light4.position.set(-300,-2000,100);
-        light4.name = "lightDirectional_3"
-
-        scene.add(light4);
-
-
-        var light5 = new THREE.DirectionalLight(0xffffff,0.5);
-        light5.position.set(-100,10,10);
-        light5.name = "lightDirectional_3"
-
-        scene.add(light5);
-
-        scene.add(cubesGroup1);
-
-    }
-
-
-    function addX() {
-
-
-        x_group = new THREE.Group();
-        var sphere_x = new THREE.Group();
-
-        x_group.name = "x_group";
-
-        x_group.position.set(0,0,0);
-
-        var size = 300;
-
-        // x_opacity = 1 + Math.sin(new Date().getTime() * .0025);
-        var textX = new THREE.TextGeometry( "X", {
-            font: font,
-            size: size,
-            height: 0.3*size,
-
-
-        });
-        x_opacity = 0.9;
-         var materials2 = [
-            new THREE.MeshLambertMaterial( { color: 0xffffff ,transparent:true,opacity: 1,} ), // front
-            new THREE.MeshLambertMaterial( { color: 0x8c8c8c,transparent:true,opacity: 1 } ) // side
-        ];
-
-
-
-        var   textMesh1 = new THREE.Mesh( textX, materials2 );
-
-        textMesh1.position.x = -WIDTH/5;
-        textMesh1.rotation.x = (Math.PI * 2*30)/360;
-        textMesh1.rotation.y = -(Math.PI * 2*30)/360;
-
-
-
-        textMesh1.position.y = 0;
-        textMesh1.position.z = 0;
-
-
-        x_group.add(textMesh1);
-
-        var x_sphere_z = 50;
-
-        var sphereGeometry = new THREE.SphereGeometry(15, 64, 64);
-        var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity:1});
-
-        for(var i=0;i<6;i++){
-
-            var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-            sphere.castShadow = true;
-            sphere.receiveShadow = true;
-            sphere.position.x=0;
-            sphere.position.y=0;
-            sphere.position.z=x_sphere_z;
-            sphere_x.add(sphere);
-        }
-
-        // console.log(sphere_x)
-        var x_radia =  200;
-
-        sphere_x.children[0].position.x = -Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
-        sphere_x.children[0].position.z = -x_radia/2;
-
-
-
-        sphere_x.children[1].position.x = -Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
-        sphere_x.children[1].position.z = x_radia/2;
-
-        sphere_x.children[2].position.x = 0;
-        sphere_x.children[2].position.z = x_radia;
-
-        sphere_x.children[3].position.x = Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
-        sphere_x.children[3].position.z = x_radia/2;
-
-
-        sphere_x.children[4].position.x = Math.sqrt(x_radia*x_radia-(x_radia/2)*(x_radia/2));
-        sphere_x.children[4].position.z = -x_radia/2;
-
-
-        sphere_x.children[5].position.x = 0;
-        sphere_x.children[5].position.z = -x_radia;
-
-
-        // debugger;
-        var track = new THREE.Mesh( new THREE.RingGeometry (x_radia-1, x_radia+1, 64,1,0,Math.PI * 2),
-            new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } )
-        );
-        track.rotation.x = - Math.PI / 2;
-        track.position.set(0,0,0);
-        track.geometry.verticesNeedUpdate = true;
-            sphere_x.add(track);
-
-        sphere_x.rotation.x = 30/360*Math.PI*2
-
-
-
-
-        sphere_x.position.set(0,100,100)
-
-        x_group.add(sphere_x)
-
-        var light3 = new THREE.DirectionalLight(0xffffff,1);
-        light3.position.set(-100,10,10);
-        light3.name = "lightDirectional_3"
-
-        scene.add(light3);
-        scene.add(x_group);
-
-
-        move_four = true;
-        // window.track = track;
-        // window.sphere_x = sphere_x;
-        // window.x_group = x_group;
-        //
-        //
-        //
-        // window.scene = scene
-        // console.log(scene);
-        // window.x_group = x_group
-
-        // textMesh1.rotation.x = 0;
-        // textMesh1.rotation.y = Math.PI * 2;
-
-
-    }
-    
-    function pixi() {
-         app = new PIXI.Application(WIDTH, HEIGHT, {backgroundColor: "none",transparent: true});
-         document.getElementById("end").appendChild(app.view);
-    }
-
-    function addcubeOpen(i) {
-
-
-
-         $("#end").html("");
-
-        var str = "<div id='end-"+i+"'></div>"
-        $("#end").append(str);
-        document.getElementById("end-"+i).appendChild(app.view);
-        cube_num =i
+        $("#cube-2").css("display","block");
+        $("#cube-2").html("");
+
+        var str = "<div id='end-2'></div>"
+        $("#cube-2").append(str);
+        document.getElementById("end-2").appendChild(app.view);
 
 
         var frames = [];
 
-        for (var i = 0; i < 39; i++) {
+        for (var i = 2; i < 100; i++) {
             var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
 
             // magically works since the spritesheet was loaded with the pixi loader
-            frames.push(PIXI.Texture.fromImage('images/cube/box0' + val + '.png'));
+            frames.push(PIXI.Texture.fromImage('30' + val + '.png'));
         }
+
 
         // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
         var anim = new PIXI.extras.AnimatedSprite(frames);
+
+
 
         /*
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
          */
-        anim.x = app.renderer.width / 2;
-        anim.y = app.renderer.height / 2+100;
-
-        var obj = {}
-        obj.y = (app.renderer.height / 2+100-((6-cube_num)*150));
-
-        var tween = new TWEEN.Tween(anim).to(obj,300).onUpdate(function () {
-
-
-
-
-            anim.y = this.y;
-            // x_group.position.x = this.x;
-            // x_group.position.y = this.y;
-            // x_group.rotation.y = 100;
-
-        }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
-
-        });
-
-        // debugger;
-        tween.start();
-
-
-        anim.scale.x=cube_num/10;
-        anim.scale.y=cube_num/10;
-        anim.anchor.set(0.5);
-        anim.animationSpeed = 1;
-        anim.loop = false;
-        anim.play();
-
-        anim.onComplete=function (i) {
-
-
-            if(cube_num>4){
-                addcubeOpen(cube_num-1)
-            }else {
-
-                setTimeout(function () {
-                    add_routine();
-                },2000);
-            }
-
-
-
-        }
-        app.stage.addChild(anim);
-
-        // Animate the rotation
-        app.ticker.add(function() {
-            // anim.rotation += 0.01;
-        });
-    }
-    function addBreak() {
-        // $("#WebGL-output").css("display","none")
-        $("#end").css("display","block")
-
-        var frames = [];
-
-        for (var i = 0; i < 110; i++) {
-            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
-
-            // magically works since the spritesheet was loaded with the pixi loader
-            frames.push(PIXI.Texture.fromImage('images/end/20' + val + '.png'));
-        }
-
-        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
-        var anim = new PIXI.extras.AnimatedSprite(frames);
-
-        /*
-         * An AnimatedSprite inherits all the properties of a PIXI sprite
-         * so you can change its position, its anchor, mask it, etc
-         */
-        anim.x = app.renderer.width / 2;
-        anim.y = app.renderer.height / 2;
-        anim.scale.x=0.5;
-        anim.scale.y=0.5;
+        anim.x = WIDTH / 2;
+        anim.y = HEIGHT / 2;
+        anim.scale.x=device_screen_width;
+        anim.scale.y=device_screen_height;
         anim.anchor.set(0.5);
         anim.animationSpeed = 0.3;
         anim.loop = false;
@@ -1128,108 +841,25 @@
 
 
 
+
         anim.onComplete=function () {
-           
-            
+
+
             setTimeout(function () {
+                app.stage.children.shift();
+
+                addCubes2();
 
 
 
 
 
+                // changeValue("积累终将改变未来");
+                // addCubes();
 
 
 
-                changeValue("积累终将改变未来");
-                addCubes();
-
-
-
-                for(var j=0;j<cubesGroup1.children.length;j++){
-
-                    positionMove(j,cubesGroup1.children[j],cubeposition2[j],0,0,0,function () {
-                        move_third = true;
-
-                    })
-
-                }
-
-                cubesGroup1.rotation.x= -20/360*2*Math.PI;
-                cubesGroup1.rotation.y= -30/360*2*Math.PI;
-                cubesGroup1.rotation.z= 15/360*2*Math.PI;
-                
-                
-                
-                
-
-                setTimeout(function () {
-                    var end_cube = 0;
-                    move_third_over = true
-
-                    for(var j=0;j<cubesGroup1.children.length;j++){
-
-                        positionMove(j,cubesGroup1.children[j],cubeposition3[j],0,0,0,function (j) {
-                            move_third_over = true;
-                            end_cube++;
-                            if(end_cube==8){
-
-                                scene.children.length = scene.children.length-1;
-
-                                addX()
-                                changeValue("连接一切应对未知");
-                                // debugger;
-
-
-
-                                setTimeout(function () {
-
-
-
-                                    var tween3 = new TWEEN.Tween(x_group.position).to(dis[0],1000).onUpdate(function () {
-
-
-
-
-                                        x_group.position.z = this.z;
-                                        // x_group.position.x = this.x;
-                                        // x_group.position.y = this.y;
-                                        // x_group.rotation.y = 100;
-
-                                    }).easing(TWEEN.Easing.Quintic.InOut).onComplete(function () {
-
-
-                                        scene.children.length -=1;
-
-                                        move_four_over = true;
-
-
-                                        //    五
-
-                                        changeValue("开放可以享有更多");
-                                        addcubeOpen(6);
-
-                                    });
-
-                                    // debugger;
-                                    tween3.start();
-
-
-
-
-
-                                },time_text*4)
-
-
-                            }
-                        })
-
-                    }
-
-
-
-
-
-                },6*time_text);
+                //
             },1000)
 
 
@@ -1240,6 +870,309 @@
         // Animate the rotation
         app.ticker.add(function() {
             // anim.rotation += 0.01;
+
+        });
+
+
+    }
+    function addCubes2() {
+
+
+
+        $("#cube-2").html("");
+
+        var str = "<div id='end-2'></div>"
+        $("#cube-2").append(str);
+        document.getElementById("end-2").appendChild(app.view);
+
+        // var str = "<div id='end-3'></div>"
+        // $("#end").append(str);
+
+        // document.getElementById("end").appendChild(app.view);
+
+        var frames = [];
+
+        for (var i = 100; i < 166; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('30' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = WIDTH / 2;
+        anim.y = HEIGHT / 2;
+        anim.scale.x=device_screen_width;
+        anim.scale.y=device_screen_height;
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 0.5;
+        anim.loop = false;
+        anim.play();
+
+
+
+        // anim.onStart = function () {
+        //
+        //     $("#end").css("display","none");
+        // }
+
+        setTimeout(function () {
+
+
+            app.stage.children.shift();
+
+
+
+
+
+            // changeValue("积累终将改变未来");
+            // addCubes();
+
+
+
+            //
+        },1000)
+
+        anim.onComplete=function () {
+
+
+
+            addX();
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+        });
+
+
+    }
+
+    function addX() {
+
+
+
+
+
+        // var str = "<div id='end-3'></div>"
+        // $("#end").append(str);
+
+        document.getElementById("end").appendChild(app.view);
+
+        var frames = [];
+
+        for (var i = 166; i < 259; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('30' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = WIDTH / 2;
+        anim.y = HEIGHT / 2;
+        anim.scale.x=device_screen_width;
+        anim.scale.y=device_screen_height;
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 0.3;
+        anim.loop = false;
+        anim.play();
+
+
+
+        // anim.onStart = function () {
+        //
+        //     $("#end").css("display","none");
+        // }
+
+        setTimeout(function () {
+
+
+            app.stage.children.shift();
+
+
+
+
+
+            // changeValue("积累终将改变未来");
+            // addCubes();
+
+
+
+            //
+        },100)
+
+        anim.onComplete=function () {
+
+            loopX();
+
+
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+        });
+
+
+    }
+    function loopX() {
+
+
+
+
+
+        // var str = "<div id='end-3'></div>"
+        // $("#end").append(str);
+
+        document.getElementById("end").appendChild(app.view);
+
+        var frames = [];
+
+        for (var i = 198; i < 258; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('30' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = WIDTH / 2;
+        anim.y = HEIGHT / 2;
+        anim.scale.x=device_screen_width;
+        anim.scale.y=device_screen_height;
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 0.3;
+        anim.loop = true;
+        anim.play();
+
+
+
+        // anim.onStart = function () {
+        //
+        //     $("#end").css("display","none");
+        // }
+
+        setTimeout(function () {
+
+
+            app.stage.children.shift();
+
+
+
+
+
+            // changeValue("积累终将改变未来");
+            // addCubes();
+
+
+
+            //
+        },100)
+
+        anim.onComplete=function () {
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+        });
+
+
+    }
+
+
+    
+    function pixi() {
+         app = new PIXI.Application(WIDTH, HEIGHT, {backgroundColor: "none",transparent: true});
+         document.getElementById("end").appendChild(app.view);
+    }
+
+
+    function addBreak() {
+        // $("#WebGL-output").css("display","none")
+        $("#end").css("display","block")
+
+        document.getElementById("end").appendChild(app.view);
+        app.stage.children.shift();
+
+        var frames = [];
+
+        for (var i = 0; i < 78; i++) {
+            var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+            // magically works since the spritesheet was loaded with the pixi loader
+            frames.push(PIXI.Texture.fromImage('10' + val + '.png'));
+        }
+
+        // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+        var anim = new PIXI.extras.AnimatedSprite(frames);
+
+        /*
+         * An AnimatedSprite inherits all the properties of a PIXI sprite
+         * so you can change its position, its anchor, mask it, etc
+         */
+        anim.x = WIDTH / 2;
+        anim.y = HEIGHT / 2;
+
+        anim.scale.x=device_screen_width;
+        anim.scale.y=device_screen_height;
+
+
+        anim.anchor.set(0.5);
+        anim.animationSpeed = 0.4;
+        anim.loop = false;
+        anim.play();
+
+
+
+
+        anim.onComplete=function () {
+            
+
+                // changeValue("积累终将改变未来");
+                //
+
+
+        }
+        app.stage.addChild(anim);
+
+        // Animate the rotation
+        var count_zhen = 0;
+        app.ticker.add(function() {
+            // anim.rotation += 0.01;
+
+
+
+
+
         });
     }
     
@@ -1266,120 +1199,325 @@
     }
 
 
-    function canvasTextFuc() {
-        canvasText = document.getElementById("cas");
-        context = canvasText.getContext('2d');
-        focallength = WIDTH;
-
-         dots = getimgData("从0和1的世界出发");;
-         pause = false;
-
-         initAnimate();
 
 
-        //计算帧速率
 
-         derection = true;
+
+
+
+    function drawText(text,context,canvasText){
+
+        context.clearRect(0,0,WIDTH , HEIGHT);
+        context.save()
+        context.font = "100 16px Microsoft Yahei";
+        context.fillStyle = "rgba(255,255,255,1)";
+        context.textAlign = "center";
+        context.textBaseline = "bottom";
+
+        context.fillText(text , canvasText.width/2 , canvasText.height/2);
+        context.restore();
+
+
 
 
 
     }
 
-    function changeValue(changeValue){
 
-        // pause = true;
-        //
-        if(!pause) return;
-        // debugger;
 
-        dots = getimgData(changeValue);
-        pause = false;
-        derection = false;
-        // pause = false;
-        initAnimate(changeValue);
-        derection = true;
+
+
+    function movediv() {
+
+
+
+        $(".begin-1").css("display","block");
+        $(".begin-2").css("display","block");
+
+
+        $(".begin-1").animate({top:"0%"},1000);
+        $(".begin-2").animate({top:"0%"},1000);
+
+        setTimeout(function () {
+            $(".begin-1").css("display","none");
+            $(".begin-2").css("display","none");
+
+
+            addBreak()
+        },1000)
+
+        setTimeout(function () {
+            scene.children.length = scene.children.length-1;
+            addCubes();
+        },3800);
     }
-    function initAnimate(){
-        dots.map(function(v,index){
-            v.x = Math.random()*canvasText.width;
-            v.y = Math.random()*canvasText.height;
-            v.z = Math.random()*focallength*10 - focallength;
 
-            v.tx = Math.random()*canvasText.width;
-            v.ty = Math.random()*canvasText.height;
-            v.tz = Math.random()*focallength*10 - focallength;
-            v.paint();
-        });
-        animatecanvasText();
+    function addjson(){
+
+        for(var i=0;i<11;i++){
+            load_jsons.push("img/addx-"+i+".json")
+        }
+        for(var i=0;i<10;i++){
+            load_jsons.push("img/broken-"+i+".json")
+        }
+
+        for(var i=0;i<5;i++){
+            load_jsons.push("img/cube01-"+i+".json")
+        }
+        for(var i=0;i<6;i++){
+            load_jsons.push("img/cube02-"+i+".json")
+        }
+
+        // load_jsons.push("img/loading-0.json")
+
+        loadjson();
     }
 
+    function loadjson() {
 
-    function getimgData(text){
-        drawText(text);
+
+        init()
+
+        PIXI.loader.add("img/loading-0.json").load(function () {
+            document.getElementById("loading-sky").appendChild(app.view);
+
+            var frames = [];
+
+            for (var i = 0; i < 13; i++) {
+                // var val = i < 9 ? '00' + (i+1) : (i < 99?"0"+(i+1):(i+1));
+
+                // magically works since the spritesheet was loaded with the pixi loader
+                frames.push(PIXI.Texture.fromImage('loading-' + (i+1)+ '.png'));
+            }
+
+            // create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+            var anim = new PIXI.extras.AnimatedSprite(frames);
+
+            /*
+             * An AnimatedSprite inherits all the properties of a PIXI sprite
+             * so you can change its position, its anchor, mask it, etc
+             */
+            anim.x = WIDTH / 2;
+            anim.y = HEIGHT / 2;
+            anim.scale.x=device_screen_width;
+            anim.scale.y=device_screen_height;
+            anim.anchor.set(0.5);
+            anim.animationSpeed = 0.1;
+            anim.loop = true;
+            anim.play();
+
+
+
+            anim.onComplete=function () {
+
+
+
+            }
+            app.stage.addChild(anim);
+
+            // Animate the rotation
+            app.ticker.add(function() {
+                // anim.rotation += 0.01;
+            });
+
+
+
+            PIXI.loader.add(load_jsons).on("progress",function () {
+                console.log(this.progress-100)
+                if(Math.floor(this.progress-100)>=100){{
+
+                    // $("#loading-sky").css("display","none");
+                    }
+                }
+            }).load(function () {
+                $("#loading-sky").css("display","none")
+                begin_animation = true;
+                getMyTextData("从0和1的世界出发");
+                // getMyTextData("打破现实的边界");
+                // getMyTextData("积累终将改变未来");
+                // getMyTextData("开放可以享有更多");
+                // getMyTextData("连接一切应对未知");
+                setTimeout(function () {
+                    // canvasTextFuc();
+                    move_second = true;
+
+
+
+                    //标记开始旋转
+                    $(".begin-2").animate({top:"-20%"},2000);
+                    setTimeout(function () {
+                        //标记结束打散
+                        move_second_over = true
+                    },3*time_text);
+                    setTimeout(function () {
+                        //标记结束打散
+                        movediv();
+                    },2.8*time_text);
+                },1000000);
+            })
+
+
+
+        })
+
+
+
+
+    }
+
+    function minone(a) {
+
+        if(a>=-1&&a<=1){
+
+          return   a;
+        }else if(a>0) {
+            return 1;
+            
+        }else {
+            return-1;
+        }
+    }
+
+    function getprevDots() {
+
+
+        var dots = [];
+        scene.children.map(function (c1,index1) {
+            if(c1.type == "Points"){
+
+                var geometry = c1.geometry;
+                var attributes = geometry.attributes;
+
+
+
+                var all_position_length = attributes.position.array.length;
+                var all_size_length = attributes.size.array.length;
+
+                for ( var i = 0; i <all_position_length-2 ; i+=3 ) {
+                    // attributes.size.array[ i ] = 8 + 7 * Math.sin( 0.1 * i + time );
+
+                    if(i<=otherIndex){
+
+                        var obj = {};
+
+                        obj.x = attributes.position.array[ i ];
+                        obj.y = attributes.position.array[ i+1];
+                        obj.z = attributes.position.array[ i+2 ];
+                        obj.size = 1;
+
+
+                        dots.push(obj);
+                    }
+                }
+
+                for ( var i = 0; i <dots.length ; i++ ) {
+                    // attributes.size.array[ i ] = 8 + 7 * Math.sin( 0.1 * i + time );
+
+
+                    if(i<otherIndex){
+                        dots[i].size = attributes.size.array[ i ];
+                    }
+
+                }
+
+            }
+        })
+
+        return dots;
+    }
+
+    function getMyTextData(text) {
+        move_ponts = false;
+        var canvasText = document.getElementById("cas");
+        var context = canvasText.getContext('2d');
+        drawText(text,context,canvasText);
 
         var imgData = context.getImageData(0,0,canvasText.width , canvasText.height);
-
-
         context.clearRect(0,0,canvasText.width , canvasText.height);
-         dots = [];
 
+        var dots = [];
+
+        var dotall = [];
         for(var x=0;x<imgData.width;x++){
             for(var y=0;y<imgData.height;y++){
                 var i = (y*imgData.width + x)*4;
                 if(imgData.data[i] >= 128){
-                    place++
-                    var dot = new Dot(x-0.5 , y-0.5 , 0 , 0.5);
+                    // place++
+                    var dot = {x:x,y:-y-60};
                     dots.push(dot);
                 }
             }
         }
 
-       console.log( dots.length)
+
+
+
+        otherIndex = dots.length;
+
+        prevdots = getprevDots();
+
+
+
+
+
+        for(var i=0;i<dots.length;i++){
+
+            dotall.push(dots[i].x-150)
+            dotall.push(dots[i].y-50)
+            dotall.push(600)
+        }
+
+        movepoints(dotall);
+       
         return dots;
     }
+    function movepoints(dotall) {
 
-    function drawText(text){
-        context.clearRect(0,0,canvasText.width , canvasText.height);
-        context.save()
-        context.font = "18px 微软雅黑";
-        context.fillStyle = "rgba(255,255,255,1)";
-        context.textAlign = "center";
-        context.textBaseline = "middle";
-        context.fillText(text , canvasText.width/2 , canvasText.height/2);
-        context.restore();
+        scene.children.map(function (c1,index) {
+            if(c1.type=="Points"){
+
+                // debugger
+
+                var geometry = c1.geometry;
+                var attributes = geometry.attributes;
+
+                move_ponts = false;
+
+
+                var all_position_length = attributes.position.array.length;
+
+
+                pointPositionMove(c1,attributes.position.array,dotall,function () {
+
+                //    执行完回调
+                })
+
+                attributes.size.needsUpdate = true;
+            }
+            
+        })
+
     }
 
+    function pointPositionMove(c1,a,b,mycomplete) {
 
-    var Dot = function(centerX , centerY , centerZ , radius){
-        this.dx = centerX;
-        this.dy = centerY;
-        this.dz = centerZ;
-        this.tx = 0;
-        this.ty = 0;
-        this.tz = 0;
-        this.z = centerZ;
-        this.x = centerX;
-        this.y = centerY;
-        this.radius = radius;
-    }
-
-    Dot.prototype = {
-        paint:function(){
-            context.save();
-            context.beginPath();
-            var scale = focallength/(focallength + (this.z));
-            context.arc(canvasText.width/2 + (this.x-canvasText.width/2)*scale , canvasText.height/2 + (this.y-canvasText.height/2) * scale, this.radius*scale , 0 , 2*Math.PI);
-            //核心算法根据距离显示偏移和透明度。
-            context.fillStyle = "rgba(255,255,255,"+ scale +")";
-            context.fill()
-            context.restore();
-
-        }
-    }
+        var tween = new TWEEN.Tween(a).to(b,3000).onUpdate(function () {
 
 
-    function randomTwinkle() {
 
+
+            for(var i=0;i<a.length;i++){
+
+                a[i] = this[i] ||0;
+            }
+
+
+            c1.geometry.attributes.position.needsUpdate = true;
+
+        }).easing(TWEEN.Easing.Quintic.InOut).delay(500*Math.random()).onComplete(mycomplete);
+
+        // debugger;
+        tween.start();
     }
 
 })(jQuery)

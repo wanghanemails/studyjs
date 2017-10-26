@@ -634,15 +634,15 @@ html,body{
     left: 0;
     bottom: 0px;
     z-index: 999;
-    display: none;
+
 }
 
 
 
 
 #end{
-    width: 210px;
-
+    width: 100%;
+    height: 100%;
     position: absolute;
     z-index: 100;
     left: 0;
@@ -650,9 +650,53 @@ html,body{
     display: none;
 }
 
+#cube-2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    display: none;
+}
+#loading-sky{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+
+}
 
 
+.begin-1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 100%;
+    display: none;
+}
+.begin-1 img{
+    width: 100%;
+    height: 100%;
+}
+.begin-2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: -100%;
 
+}
+.begin-2 img{
+    width: 100%;
+    height: 100%;
+}
 
 
 

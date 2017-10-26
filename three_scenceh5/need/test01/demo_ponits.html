@@ -38,7 +38,7 @@
         renderer.setSize(window.innerWidth,window.innerHeight);
 
 
-        camera.position.set(0,0,500);
+        camera.position.set(0,0,1000);
 
 
         var textureLoader = new THREE.TextureLoader();
@@ -106,18 +106,22 @@
                     blending: THREE.AdditiveBlending,
                     map:mytexture,
                     sizeAttenuation: sizeAttenuation,
-                    color: color_from,
+//                    color: 0xffffff,
 
                 })
 
+                var  WIDTH = window.innerWidth;
+                var HEIGHT = window.innerHeight;
 
-                var range = 3000;
+
+                var range = 1000;
                 for(var i=0;i<amount;i++){
                     var x = (Math.random()*(range/5))-((range/5)/2);
                     var y = (Math.random()*(range/5))-((range/5)/2);
                     var z = (Math.random()*(range/5))-((range/5)/2);
                     var particle = new THREE.Vector3(x,y,z);
 //                    particle.opacity=Math.random();
+//                    var particle = new THREE.Vector3(Math.random() * WIDTH - WIDTH / 2,Math.random() * HEIGHT - HEIGHT / 2,-600)
 
 
                     var timerandom = 1 ;
@@ -132,7 +136,7 @@
                     gemo.vertices.push(particle);
 
 
-                    var color = new THREE.Color(color_from)
+                    var color = new THREE.Color(0xffffff)
 
 
 //                    color.setHSL(color.getHSL().h,color.getHSL().s,(Math.random()*0.5+0.5)*color.getHSL().l);
