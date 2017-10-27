@@ -48,10 +48,12 @@
         amount,
         save_position,
         composer,
-        prevdots,
-
         app;
 
+        var test =false;
+        var maxnum = 0;
+
+    var prevdots = [];
     var otherIndex =0;
     var counts = [],
     WIDTH = window.innerWidth;
@@ -256,7 +258,7 @@
          // geom = new THREE.Geometry();
 
 
-         amount =amount|| 1500;
+         amount =amount|| 6000;
          
         var positions = new Float32Array( amount * 3 );
          save_position = new Float32Array( amount * 3 );
@@ -297,9 +299,13 @@
 
 
 
-            vertex.x = Math.random() * WIDTH - WIDTH / 2;
-            vertex.y = Math.random() * HEIGHT - HEIGHT / 2;
-            vertex.z =range +(-range*2)*Math.random()-200;
+            vertex.x = Math.random() * WIDTH*2 - WIDTH
+            vertex.y = Math.random() * HEIGHT*2 - HEIGHT;
+            vertex.z =5*range +(-range*5)*Math.random()-200;
+
+            if(zpos<3000){
+                vertex.z =10*range +(-range*5)*Math.random();
+            }
 
             vertex.toArray( positions, zpos * 3 );
             vertex.toArray( save_position, zpos * 3 );
@@ -595,25 +601,24 @@
 
                         var all_size_length = attributes.size.array.length;
 
-                        for ( var i = 0; i <all_size_length ; i++ ) {
+                        for ( var k = 0; k <all_size_length ; k++ ) {
                             // attributes.size.array[ i ] = 8 + 7 * Math.sin( 0.1 * i + time );
-
 
                             var each_size = 0.1;
 
-                            if(i<=all_size_length/3){
+                            if(k<=all_size_length/3){
                                 each_size = 0.05
-                            }else if(i<=all_size_length*3/5&&i>all_size_length/3){
+                            }else if(k<=all_size_length*3/5&&k>all_size_length/3){
                                 each_size = 0.02
-                            }else if(i<=all_size_length*4/5&&i>all_size_length*3/5){
+                            }else if(k<=all_size_length*4/5&&k>all_size_length*3/5){
                                 each_size = 0.01
                             }else{
                                 each_size = 0.1
                             }
-                            attributes.size.array[ i ] = 5 + (5 * minone(Math.sin( (each_size * i)) + time ))+ (5 * minone(Math.cos( (each_size * i) + time )));
+                            attributes.size.array[ k ] = 5 + (5 * minone(Math.sin( (each_size * k)) + time ))+ (5 * minone(Math.cos( (each_size * k) + time )));
 
-                            if(i<otherIndex){
-                                attributes.size.array[ i ] = 15;
+                            if(k<maxnum*3){
+                                attributes.size.array[ k ] = 15;
 
                             }
 
@@ -625,6 +630,8 @@
 
                         if(move_second){
 
+
+
                             var all_position_length = attributes.position.array.length;
 
 
@@ -632,16 +639,21 @@
 
 
 
-                                if(i<=otherIndex){
+
+                                if(i<=otherIndex*3){
 
                                 }
                                 else {
 
 
+                                    // if(test){
+                                    //     debugger;
+                                    // }
+
                                     if(i<=all_position_length/3){
 
                                         if(attributes.position.array[i] >=-WIDTH/2){
-                                            attributes.position.array[i] -= 0.1*(i*2/all_position_length)+0.01;
+                                            attributes.position.array[i] -= 0.1*(i*2/all_position_length)-0.01;
                                         }else{
                                             attributes.position.array[i] = WIDTH/2;
                                         }
@@ -665,6 +677,9 @@
                                         }
 
                                     }
+
+
+
                                 }
 
 
@@ -676,7 +691,7 @@
 
 
 
-                               if(j<=otherIndex){
+                               if(j<=otherIndex*3){
 
                                }else {
 
@@ -718,8 +733,6 @@
 
 
                             attributes.position.needsUpdate = true;
-
-
 
 
                         }
@@ -843,24 +856,15 @@
 
 
         anim.onComplete=function () {
-
+            movepoints(prevdots,0);
 
             setTimeout(function () {
                 app.stage.children.shift();
-
+                getMyTextData("开放可以享有更多");
                 addCubes2();
 
-
-
-
-
-                // changeValue("积累终将改变未来");
-                // addCubes();
-
-
-
                 //
-            },1000)
+            },3000)
 
 
 
@@ -922,28 +926,33 @@
         //     $("#end").css("display","none");
         // }
 
-        setTimeout(function () {
 
 
-            app.stage.children.shift();
-
-
-
-
-
-            // changeValue("积累终将改变未来");
-            // addCubes();
-
-
-
-            //
-        },1000)
+        app.stage.children.shift();
 
         anim.onComplete=function () {
 
+            setTimeout(function () {
 
 
-            addX();
+
+                movepoints(prevdots,0);
+                // changeValue("积累终将改变未来");
+                // addCubes();
+
+                setTimeout(function () {
+
+
+                    addX();
+
+
+                    //
+                },2000)
+
+                //
+            },2000)
+
+
 
 
         }
@@ -961,7 +970,7 @@
 
 
 
-
+        getMyTextData("连接一切应对未知");
 
         // var str = "<div id='end-3'></div>"
         // $("#end").append(str);
@@ -1019,6 +1028,7 @@
 
         anim.onComplete=function () {
 
+            movepoints(prevdots,0);
             loopX();
 
 
@@ -1117,6 +1127,8 @@
 
 
     function addBreak() {
+
+
         // $("#WebGL-output").css("display","none")
         $("#end").css("display","block")
 
@@ -1152,7 +1164,8 @@
         anim.play();
 
 
-
+        // debugger
+        movepoints(prevdots,0);
 
         anim.onComplete=function () {
             
@@ -1160,6 +1173,12 @@
                 // changeValue("积累终将改变未来");
                 //
 
+            setTimeout(function () {
+                scene.children.length = scene.children.length-1;
+
+                getMyTextData("积累终将改变未来");
+                addCubes();
+            },2000);
 
         }
         app.stage.addChild(anim);
@@ -1209,7 +1228,7 @@
 
         context.clearRect(0,0,WIDTH , HEIGHT);
         context.save()
-        context.font = "100 16px Microsoft Yahei";
+        context.font = "100 38px PingFang SC Light";
         context.fillStyle = "rgba(255,255,255,1)";
         context.textAlign = "center";
         context.textBaseline = "bottom";
@@ -1217,6 +1236,7 @@
         context.fillText(text , canvasText.width/2 , canvasText.height/2);
         context.restore();
 
+        // debugger
 
 
 
@@ -1231,6 +1251,11 @@
 
 
 
+        getMyTextData("打破现实的边界",true);
+        // getMyTextData("积累终将改变未来");
+        // getMyTextData("开放可以享有更多");
+        // getMyTextData("连接一切应对未知");
+
         $(".begin-1").css("display","block");
         $(".begin-2").css("display","block");
 
@@ -1244,12 +1269,9 @@
 
 
             addBreak()
-        },1000)
+        },5000)
 
-        setTimeout(function () {
-            scene.children.length = scene.children.length-1;
-            addCubes();
-        },3800);
+
     }
 
     function addjson(){
@@ -1337,10 +1359,14 @@
                 // getMyTextData("积累终将改变未来");
                 // getMyTextData("开放可以享有更多");
                 // getMyTextData("连接一切应对未知");
+
+
+                console.log(prevdots)
+                move_second = true;
                 setTimeout(function () {
                     // canvasTextFuc();
-                    move_second = true;
 
+                    movepoints(prevdots,0);
 
 
                     //标记开始旋转
@@ -1353,7 +1379,7 @@
                         //标记结束打散
                         movediv();
                     },2.8*time_text);
-                },1000000);
+                },3500);
             })
 
 
@@ -1396,7 +1422,8 @@
                 for ( var i = 0; i <all_position_length-2 ; i+=3 ) {
                     // attributes.size.array[ i ] = 8 + 7 * Math.sin( 0.1 * i + time );
 
-                    if(i<=otherIndex){
+                    if(i<=maxnum*3){
+
 
                         var obj = {};
 
@@ -1423,10 +1450,11 @@
             }
         })
 
+
         return dots;
     }
 
-    function getMyTextData(text) {
+    function getMyTextData(text,test2) {
         move_ponts = false;
         var canvasText = document.getElementById("cas");
         var context = canvasText.getContext('2d');
@@ -1452,26 +1480,42 @@
 
 
 
+
         otherIndex = dots.length;
 
-        prevdots = getprevDots();
+
+        maxNum(dots.length);
 
 
+        var prevdot = getprevDots();
+
+
+        prevdots = [];
+
+        for(var i=0;i<prevdot.length;i++){
+
+            prevdots.push(prevdot[i].x)
+            prevdots.push(prevdot[i].y)
+            prevdots.push(prevdot[i].z)
+        }
 
 
 
         for(var i=0;i<dots.length;i++){
 
             dotall.push(dots[i].x-150)
-            dotall.push(dots[i].y-50)
-            dotall.push(600)
+            dotall.push(dots[i].y-500)
+            dotall.push(-300)
         }
 
-        movepoints(dotall);
+
+
+
+        movepoints(dotall,otherIndex,test2);
        
         return dots;
     }
-    function movepoints(dotall) {
+    function movepoints(dotall,otherrealIndex,test2) {
 
         scene.children.map(function (c1,index) {
             if(c1.type=="Points"){
@@ -1481,7 +1525,8 @@
                 var geometry = c1.geometry;
                 var attributes = geometry.attributes;
 
-                move_ponts = false;
+
+
 
 
                 var all_position_length = attributes.position.array.length;
@@ -1490,6 +1535,17 @@
                 pointPositionMove(c1,attributes.position.array,dotall,function () {
 
                 //    执行完回调
+                    move_ponts = true;
+                    otherIndex = otherrealIndex||0;
+                    console.log(1,otherIndex);
+
+
+
+
+                    // if(otherIndex==0){
+                    //     test=true;
+                    // }
+
                 })
 
                 attributes.size.needsUpdate = true;
@@ -1498,6 +1554,8 @@
         })
 
     }
+
+
 
     function pointPositionMove(c1,a,b,mycomplete) {
 
@@ -1518,6 +1576,15 @@
 
         // debugger;
         tween.start();
+    }
+    function maxNum(a) {
+        var end = maxnum;
+        if(a>maxnum){
+           end = a;
+        }
+
+        maxnum = end;
+
     }
 
 })(jQuery)
